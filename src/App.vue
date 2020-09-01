@@ -5,7 +5,8 @@
 </template>
 
 <style>
-* {
+  @import "~bootstrap/dist/css/bootstrap.css";
+  * {
   margin: 0;
   padding: 0;
 }
