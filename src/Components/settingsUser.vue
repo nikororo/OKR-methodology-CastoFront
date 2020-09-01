@@ -5,29 +5,28 @@
         <div class="row cont">
             <toolBar/>
 
-            <div class="col-sm-10 col-md-2 col-lg-1 Private_user">
+            <div class="col-sm-10 col-md-4 col-lg-2 Private_user">
                 <div class="bg_color">
                     <div class="ps_user">
                         <img src="../style/img/User.png" alt="User">
                         <p class="User_name">User</p>
                     </div>
-                    <ul class="ul_Private_user">
-                        <li class="li_Private_user">
-                            <router-link active-class="active_settings" to="/settingsUser" exact>Настройки профиля
-                            </router-link>
-                        </li>
-                        <li class="li_Private_user"><a href="">Оповещания</a></li>
-                    </ul>
+                    <router-link class="settings_link" active-class="active_settings_one" to="/settingsUser" exact>Настройки
+                        профиля
+                    </router-link>
+                    <router-link class="settings_link" active-class="active_settings_two" to="/settingsUser" exact>
+                        Оповещения
+                    </router-link>
                 </div>
             </div>
 
-            <div class="col-md-8 col-lg-10 Settings">
+            <div class="col-md-5 col-lg-8 settings">
 
-                <div class="Header_settings">
+                <div class="header_settings">
                     <h2 class="h2_settings">Настройки профиля</h2>
                 </div>
 
-                <div class="Main_settings">
+                <div class="main_settings">
                     <div class="ps_settings">
                         <div class="data_user">
                             <p class="p_data_user">Фото</p>
@@ -55,14 +54,12 @@
                         </div>
 
                         <a href="" class="button_pass">Обновить пароль</a>
-
-                        <div class="ps_last data_user">
-                            <p class="p_data_user">Подключите профль Google</p>
+                        <div class="ps_last data_user_google">
+                            <p class="p_data_user">Подключите профиль Google</p>
                             <a href="" class="button_google">Подключите Google</a>
                         </div>
                     </div>
                 </div>
-
             </div>
 
         </div>
@@ -82,7 +79,7 @@
     .bg_color {
         background-color: white;
         width: 100%;
-        height: 100%;
+        height: 822px;
         padding: 74px 0 0 25px;
     }
 
@@ -96,35 +93,26 @@
         margin: 0 0 0 10px;
     }
 
-    .ul_Private_user {
-        list-style: none;
-    }
-
-    .li_Private_user {
+    .settings_link {
+        display: block;
         margin-bottom: 10px;
-    }
-
-    .li_Private_user a {
         text-decoration: none;
         font-size: 18px;
         line-height: 25px;
         color: black;
     }
 
-    .li_Private_user a:hover {
+    .settings_link:hover {
+        text-decoration: none;
         color: #86919A;
     }
 
-    .active_settings {
-        color: #86919A;
-    }
-
-    .Settings {
+    .settings {
         margin-top: 5px;
         padding: 0;
     }
 
-    .Header_settings {
+    .header_settings {
         width: 100%;
         background-color: white;
         margin-bottom: 5px;
@@ -138,8 +126,9 @@
         margin: 0;
     }
 
-    .Main_settings {
-        min-height: 100%;
+    .main_settings {
+        position: relative;
+        height: 757px;
         width: 100%;
         background-color: white;
         display: flex;
@@ -187,6 +176,20 @@
         transform: none;
     }
 
+    .data_user_google {
+        position: absolute;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 30px;
+        align-items: center;
+        right: 36%;
+    }
+
+    .data_user_google p {
+        margin-right: 42px;
+        margin-bottom: 0;
+    }
+
     .button_google {
         background: #3EC6FF;
         color: white;
@@ -209,6 +212,11 @@
     .ps_last {
         margin-top: 73px;
     }
+
+    .active_settings_one {
+        color: #86919A;
+    }
+
 </style>
 
 <script>

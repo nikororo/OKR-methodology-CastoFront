@@ -1,29 +1,27 @@
 <template>
-    <div class="toolBar col-sm-2 col-md-2 col-lg-1">
+    <div class="toolBar col-sm-2 col-md-3 col-lg-2">
 
         <router-link class="block_button" active-class="active" to="/private" exact>
-            <a href="">
                 <div>
                     <img src="../style/img/Home.png" alt="">
                     <p>Личный кабинет</p>
                 </div>
-            </a>
         </router-link>
 
-        <a href="" class="block_button">
+        <router-link class="block_button" active-class="" to="" exact>
             <div>
                 <img src="../style/img/Project.png" alt="">
                 <p>Проект</p>
             </div>
-        </a>
+        </router-link>
 
 
-        <a href="" class="block_button">
+        <router-link class="block_button" active-class="" to="" exact>
             <div>
                 <img src="../style/img/Group.png" alt="">
                 <p>Команды</p>
             </div>
-        </a>
+        </router-link>
     </div>
 </template>
 
@@ -31,7 +29,8 @@
     .toolBar {
         display: flex;
         flex-direction: column;
-        height: calc(100vh - 88px);
+        /*height: calc(100vh - 88px);*/
+        height: 822px;
         background: #DDDDDD;
         margin: 5px 0 0 0;
         padding: 0;

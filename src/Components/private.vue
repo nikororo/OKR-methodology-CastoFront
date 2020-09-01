@@ -6,19 +6,18 @@
 
             <toolBar/>
 
-            <div class="col-sm-10 col-md-3 col-lg-1 Private_user">
+            <div class="col-sm-10 col-md-4 col-lg-2 Private_user">
                 <div class="bg_color">
                     <div class="ps_user">
                         <img src="../style/img/User.png" alt="User">
                         <p class="User_name">User</p>
                     </div>
-                    <ul class="ul_Private_user">
-                        <li class="li_Private_user">
-                            <router-link active-class="active_settings" to="/settingsUser" exact>Настройки профиля
-                            </router-link>
-                        </li>
-                        <li class="li_Private_user"><a href="">Оповещания</a></li>
-                    </ul>
+                    <router-link class="settings_link" active-class="active_settings_one" to="/settingsUser" exact>Настройки
+                        профиля
+                    </router-link>
+                    <router-link class="settings_link" active-class="active_settings_two" to="/settingsUser" exact>
+                        Оповещения
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -29,6 +28,9 @@
     .row {
         margin: 0;
     }
+    .cont {
+        /*min-height: 100%;*/
+    }
 
     .Private_user {
         margin-top: 5px;
@@ -38,7 +40,7 @@
     .bg_color {
         background-color: white;
         width: 100%;
-        height: 100%;
+        height: 822px;
         padding: 74px 0 0 25px;
     }
 
@@ -52,26 +54,21 @@
         margin: 0 0 0 10px;
     }
 
-    .ul_Private_user {
-        list-style: none;
-    }
-
-    .li_Private_user {
+    .settings_link {
+        display: block;
         margin-bottom: 10px;
-    }
-
-    .li_Private_user a {
         text-decoration: none;
         font-size: 18px;
         line-height: 25px;
         color: black;
     }
 
-    .li_Private_user a:hover {
+    .settings_link:hover {
+        text-decoration: none;
         color: #86919A;
     }
 
-    .active_settings {
+    .active_settings_one {
         color: #86919A;
     }
 </style>
