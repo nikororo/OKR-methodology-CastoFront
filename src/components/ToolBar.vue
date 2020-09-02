@@ -1,0 +1,43 @@
+<template>
+    <div class="toolBar col-sm-2 col-md-3 col-lg-2">
+
+        <router-link class="block_button" active-class="active" to="/private">
+            <div>
+                <img src="../style/img/Home.png" alt="">
+                <p>Личный кабинет</p>
+            </div>
+        </router-link>
+
+        <router-link class="block_button" active-class="" to="">
+            <div>
+                <img src="../style/img/Project.png" alt="">
+                <p>Проект</p>
+            </div>
+        </router-link>
+
+
+        <router-link class="block_button" active-class="" to="">
+            <div>
+                <img src="../style/img/Group.png" alt="">
+                <p>Команды</p>
+            </div>
+        </router-link>
+    </div>
+</template>
+<style>
+    .row {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<script>
+    export default {
+        data: () => ({
+            links: [
+                {title: 'Личный кабинет', url: '/private'},
+                {title: 'Проект', url: ''},
+                {title: 'Команды', url: ''}
+            ]
+        })
+    }
+</script>

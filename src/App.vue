@@ -5,6 +5,7 @@
 </template>
 
 <style>
+  @import "style/Style.css";
   @import "~bootstrap/dist/css/bootstrap.css";
   * {
   margin: 0;

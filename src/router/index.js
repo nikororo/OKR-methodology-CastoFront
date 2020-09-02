@@ -6,23 +6,38 @@ Vue.use(VueRouter);
   const routes = [
     {
       path: '/',
-      name: 'home',
-      component: () => import('../Components/home')
+      name: 'Home',
+      component: () => import('../components/Home')
     },
     {
-      path: '/toolBar',
-      name: 'toolBar',
-      component: () => import('../Components/toolBar')
+      path: '/ToolBar',
+      name: 'ToolBar',
+      component: () => import('../components/ToolBar')
     },
     {
-      path: '/private',
-      name: 'private',
-      component: () => import('../Components/private')
+      path: '/Private',
+      name: 'Private',
+      component: () => import('../components/Private')
     },
     {
-      path: '/settingsUser',
-      name: 'settingsUser',
-      component: () => import('../Components/settingsUser')
+      path: '/SettingsUser',
+      name: 'SettingsUser',
+      component: () => import('../components/SettingsUser')
+    },
+    {
+      path: '/TargetsUser',
+      name: 'TargetsUser',
+      component: () => import('../components/TargetsUser')
+    },
+    {
+      path: '/PlanWeek',
+      name: 'PlanWeek',
+      component: () => import('../components/PlanWeek')
+    },
+    {
+      path: '/GoalsUser',
+      name: 'GoalsUser',
+      component: () => import('../components/GoalsUser')
     }
 ]
 
