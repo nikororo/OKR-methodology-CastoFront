@@ -392,7 +392,8 @@ nav ul {
 /*PlanWeek*/
 .main_plan_week {
     /*height: 100%;*/
-    height: calc(100vh - 192px);
+    /*height: calc(100vh - 192px);*/
+    height: auto;
     margin-top: 5px;
     padding-top: 37px;
     background-color: white;
