@@ -6,6 +6,9 @@ html {
 button, input {
     outline: none;
 }
+input:active, input:focus, select:focus  {
+    outline: none;
+}
 .no-gutter > [class*='col-'] {
      padding-right:0;
      padding-left:0;
@@ -154,14 +157,12 @@ nav ul {
     height: calc(100vh - 85px);
     background: #DDDDDD;
     margin: 5px 0 0 0;
-    padding: 0;
-
 }
 
 .block_button {
-    margin-bottom: 5px;
+    margin: 0 5px 5px 0;
     outline: none;
-    background-color: #DDDDDD;
+    background-color: #dee7ee;
     border: none;
     text-decoration: none;
     text-align: center;

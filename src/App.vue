@@ -5,10 +5,11 @@
 </template>
 
 <style>
-  @import "style/Style.css";
-  @import "~bootstrap/dist/css/bootstrap.css";
-  * {
-  margin: 0;
-  padding: 0;
-}
+    @import "style/Style.css";
+    @import "~bootstrap/dist/css/bootstrap.css";
+    
+    * {
+        margin: 0;
+        padding: 0;
+    }
 </style>
