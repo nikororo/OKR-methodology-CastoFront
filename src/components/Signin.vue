@@ -1,0 +1,40 @@
+<template>
+    <div class="authorization">
+        <img alt="Okr" :src="`${publicPath}auth.png`">
+        <form v-on:submit.prevent="onLog">
+            <div class="authTitle">Вход</div>
+            <label for="signinEmail">E-mail</label>
+            <input id="signinEmail" v-model="email" v-bind:class="{error: this.$store.state.authHasError}" type="email" placeholder="E-mail" required/>
+            <label for="signinPass">Пароль</label>
+            <input id="signinPass" v-model="password" v-bind:class="{error: this.$store.state.authHasError}" type="password" placeholder="Пароль" required/>
+            <div class="errorMsg" v-if="this.$store.state.authHasError">Неверно введен email и/или пароль.</div>
+            <div class="message">Еще не зарегистрированы? <router-link to="/signup">Создать аккаунт</router-link></div>
+            <button class="submit">Войти</button>
+        </form>
+    </div>
+</template>
+
+<script>
+
+export default {
+    name: 'Signin',
+    data: () => ({
+        email: '',
+        password: '',
+        publicPath: process.env.BASE_URL
+    }),
+
+    methods: {
+        onLog() {
+            //ВЫЗВАТЬ АВТОРИЗАЦИЮ С БЕКА,
+            // .then(() => {
+            // 	this.$store.commit('authCorr');
+            //  this.$router.push('/');
+            // })
+            // .catch(() => {
+            // 		this.$store.commit('authErr');
+            // });
+        },
+    }
+}
+</script>

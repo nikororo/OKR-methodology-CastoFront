@@ -520,3 +520,78 @@ nav ul {
 .task_goals:last-child {
     margin-bottom: 40px;
 }
+
+
+/* oauth */
+
+.authorization {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.authorization form {
+    min-width: 350px;
+    max-width: 350px;
+    padding-right: 45px;
+    margin-left: 130px;
+}
+
+.authorization .authTitle {
+    margin-bottom: 25px;
+    font-size: 40px;
+}
+
+.authorization input, .authorization select {
+    width: 100%;
+    height: 46px;
+    border: 2px solid #dddddd;
+    margin: 5px 0 15px;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+
+.authorization label {
+    margin-left: 17px;
+    margin-bottom: 0;
+}
+
+.authorization .error {
+    border: 1.5px solid rgb(255, 112, 112);
+}
+
+.authorization .errorMsg {
+    color: #ff3838;
+    text-align: left;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.authorization button {
+    outline: 0;
+    border-radius: 19px;
+    background-color: #3ec6ff;
+    border: none;
+    min-width: 200px;
+    padding: 4px 25px;
+    display: block;
+    margin: 0 auto;
+    color: #fff;
+    font-size: 20px;
+}
+
+.authorization button:hover {
+    background-color: #00adf7;
+}
+
+.authorization .message {
+    font-size: 14px;
+    margin: 10px 0 20px;
+    text-align: center;
+}
+
+.authorization .message a {
+    color: #86919a;
+}
