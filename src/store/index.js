@@ -8,8 +8,17 @@ Vue.use(VueAxios, axios)
 
 export default new Vuex.Store({
   state: {
+    authHasError: false,
+    errMsg: '',
   },
   mutations: {
+    authErr: (state, error) => {
+      state.authHasError = true;
+      state.errMsg = error;
+    },
+    authCorr: (state) => {
+      state.authHasError = false;
+    },
   },
   actions: {
   },

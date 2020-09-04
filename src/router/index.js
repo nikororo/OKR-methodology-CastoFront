@@ -10,35 +10,45 @@ Vue.use(VueRouter);
       component: () => import('../components/Home')
     },
     {
-      path: '/ToolBar',
+      path: '/toolBar',
       name: 'ToolBar',
       component: () => import('../components/ToolBar')
     },
     {
-      path: '/Private',
+      path: '/private',
       name: 'Private',
       component: () => import('../components/Private')
     },
     {
-      path: '/SettingsUser',
+      path: '/settingsUser',
       name: 'SettingsUser',
       component: () => import('../components/SettingsUser')
     },
     {
-      path: '/TargetsUser',
+      path: '/targetsUser',
       name: 'TargetsUser',
       component: () => import('../components/TargetsUser')
     },
     {
-      path: '/PlanWeek',
+      path: '/planWeek',
       name: 'PlanWeek',
       component: () => import('../components/PlanWeek')
     },
     {
-      path: '/GoalsUser',
+      path: '/goalsUser',
       name: 'GoalsUser',
       component: () => import('../components/GoalsUser')
-    }
+    },
+    {
+      path: '/signin',
+      name: 'Signin',
+      component: () => import('../components/Signin')
+    },
+    {
+      path: '/signup',
+      name: 'Signup',
+      component: () => import('../components/Signup')
+    },
 ]
 
 const router = new VueRouter({
