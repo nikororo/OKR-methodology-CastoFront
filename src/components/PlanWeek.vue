@@ -57,30 +57,22 @@
                             <div class="task">
                                 <input type="checkbox">
                                 <span>Название задачи</span>
-                                <img class="tr" src="../style/img/Frame.png" alt="">
-                                <div class="window">
-                                    <p>+</p>
-                                    <span>Связать задачу с целью</span>
-                                </div>
+                                <a href="" class="link_task"><img class="tr" src="../style/img/Frame.png" alt=""> <p class="i_task"> <span>+</span>Cвязать задачу с целью</p></a>
                             </div>
                             <div class="task">
                                 <input type="checkbox">
                                 <span>Название задачи</span>
-                                <a class="tr" href=""><img src="../style/img/Frame.png" alt=""></a>
-                                <div class="window">
-                                    <p>+</p>
-                                    <span>Связать задачу с целью</span>
-                                </div>
+                                <a href="" class="link_task"><img class="tr" src="../style/img/Frame.png" alt=""> <p class="i_task"> <span>+</span>Cвязать задачу с целью</p></a>
                             </div>
                             <div class="task">
                                 <input type="checkbox">
                                 <span>Название задачи</span>
-                                <a href=""><img src="../style/img/Frame.png" alt=""></a>
+                                <a href="" class="link_task"><img class="tr" src="../style/img/Frame.png" alt=""> <p class="i_task"> <span>+</span>Cвязать задачу с целью</p></a>
                             </div>
                             <div class="task">
                                 <input type="checkbox">
                                 <span>Название задачи</span>
-                                <a href=""><img src="../style/img/Frame.png" alt=""></a>
+                                <a href="" class="link_task"><img class="tr" src="../style/img/Frame.png" alt=""> <p class="i_task"> <span>+</span>Cвязать задачу с целью</p></a>
                             </div>
                         </div>
                         <div class="status_tasks">
@@ -89,11 +81,11 @@
                             </h2>
                             <div class="task">
                                 <span>Название задачи</span>
-                                <a href=""><img src="../style/img/Frame.png" alt=""></a>
+                                <a href="" class="link_task"><img class="tr" src="../style/img/Frame.png" alt=""> <p class="i_task"> <span>+</span>Cвязать задачу с целью</p></a>
                             </div>
                             <div class="task">
                                 <span>Название задачи</span>
-                                <a href=""><img src="../style/img/Frame.png" alt=""></a>
+                                <a href="" class="link_task"><img class="tr" src="../style/img/Frame.png" alt=""> <p class="i_task"> <span>+</span>Cвязать задачу с целью</p></a>
                             </div>
                         </div>
                         <div class="status_tasks">
@@ -102,7 +94,7 @@
                             </h2>
                             <div class="task">
                                 <span>Название задачи</span>
-                                <a href=""><img src="../style/img/Frame.png" alt=""></a>
+                                <a href="" class="link_task"><img class="tr" src="../style/img/Frame.png" alt=""> <p class="i_task"> <span>+</span>Cвязать задачу с целью</p></a>
                             </div>
 
                         </div>
