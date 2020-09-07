@@ -34,6 +34,7 @@ input:active, input:focus, select:focus {
     padding: 0 20px 0 20px;
     justify-content: space-between;;
     align-items: center;
+    margin-bottom: 1px;
 }
 
 .logo_okr {
@@ -78,7 +79,7 @@ input:active, input:focus, select:focus {
     width: auto;
     margin-right: 18px;
     text-decoration: none;
-    color: black;
+    color: #40B5C6;
 }
 
 .use_name:hover {
@@ -113,7 +114,7 @@ nav ul {
     text-transform: uppercase;
     font-size: 14px;
     font-weight: bold;
-    color: #404040;
+    color: #40B5C6;
 }
 
 .menu_user li a:hover {
@@ -158,14 +159,13 @@ nav ul {
     flex-direction: column;
     /*height: 100%;*/
     height: calc(100vh - 85px);
-    background: #DDDDDD;
-    margin: 5px 0 0 0;
+    background: #A7E3EC;
+    margin: 0;
 }
 
 .block_button {
-    margin: 0 5px 5px 0;
+    margin-bottom: 5px;
     outline: none;
-    background-color: #dee7ee;
     border: none;
     text-decoration: none;
     text-align: center;
@@ -195,14 +195,12 @@ nav ul {
 
 /*Private*/
 .Private_user {
-    margin-top: 5px;
     padding: 0 5px 0 0;
 }
 
 .bg_color {
     background-color: white;
     width: 100%;
-    /*height: 100%;*/
     height: calc(100vh - 85px);
     padding: 74px 5px 0 25px;
 }
@@ -228,16 +226,15 @@ nav ul {
 
 .settings_link:hover {
     text-decoration: none;
-    color: #86919A;
+    color: #40B5C6;
 }
 
 .active_settings_one {
-    color: #86919A;
+    color: #40B5C6;
 }
 
 /*SettingsUser*/
 .settings {
-    margin-top: 5px;
     padding: 0;
 }
 
@@ -278,6 +275,34 @@ nav ul {
     margin-bottom: 0;
 }
 
+.input_file {
+    display: none;
+    outline:0;
+    opacity:0;
+    pointer-events:none;
+    user-select:none
+}
+.button_file {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 30px;
+    margin: 0;
+    background-color: #C4C4C4;
+    color: white;
+    outline: none;
+}
+.data_user label:hover {
+    background-color: white;
+    color: #40B5C6;
+    border: 1px solid #40B5C6;
+}
+.p_input_file {
+    margin-right: 133px;
+    margin-left: 10px;
+}
+
 .input_user {
     border: 2px solid #DDDDDD;
     padding: 11px;
@@ -287,7 +312,7 @@ nav ul {
 
 .button_pass {
     margin-bottom: 73px;
-    background: #3EC6FF;
+    background: #40B5C6;
     color: white;
     height: 40px;
     width: 177px;
@@ -296,12 +321,14 @@ nav ul {
     padding: 8px;
     border-radius: 25px;
 }
-
+.promt_pass {
+    font-size: 12px;
+}
 .button_pass:hover {
     text-decoration: none;
     background: white;
-    border: 1px solid #3EC6FF;
-    color: #3EC6FF;
+    border: 1px solid #40B5C6;
+    color: #40B5C6;
     transform: none;
 }
 
@@ -320,7 +347,7 @@ nav ul {
 }
 
 .button_google {
-    background: #3EC6FF;
+    background: #40B5C6;
     color: white;
     height: 40px;
     width: 203px;
@@ -333,8 +360,8 @@ nav ul {
 .button_google:hover {
     text-decoration: none;
     background: white;
-    border: 1px solid #3EC6FF;
-    color: #3EC6FF;
+    border: 1px solid #40B5C6;
+    color: #40B5C6;
     transform: none;
 }
 
@@ -343,7 +370,7 @@ nav ul {
 }
 
 .active_settings_one {
-    color: #86919A;
+    color: #40B5C6;
 }
 
 /*TargetsUser*/
