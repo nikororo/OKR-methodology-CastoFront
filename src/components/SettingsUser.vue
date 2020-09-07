@@ -51,9 +51,11 @@
             <div class="data_user">
               <p class="p_data_user">Пароль</p>
               <input class="input_user" type="password" placeholder="Ваш пароль">
-
+              <div class="promt">
+                <span class="promt_pass">Заполните в случае обновления пароля</span>
+              </div>
             </div>
-            <span class="promt_pass">Заполните в случае обновления пароля</span>
+
             <div class="data_user">
               <p class="p_data_user">Новый пароль</p>
               <input class="input_user" type="password" placeholder="Новый пароль">

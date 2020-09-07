@@ -2,11 +2,12 @@
     <div>
         <header class="header_okr">
             <div class="soft_menu">
+              <router-link href="" class="home_main" to="/">
                 <img src="../style/img/Logo.png" alt="Logo" class="logo_okr">
+              </router-link>
                 <label>
-                    <input type="search" class="search_okr">
+                    <input type="search" class="search_okr" >
                 </label>
-                <a href="" class="button_header">+</a>
             </div>
 
             <div class="user_menu">
