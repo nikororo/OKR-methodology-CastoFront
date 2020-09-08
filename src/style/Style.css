@@ -21,52 +21,30 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 /*Header */
-.soft_menu {
-    display: flex;
-    justify-content: space-between;;
-    align-items: center;
+.home_main {
+
 }
 
 .header_okr {
     display: flex;
-    height: 81px;
+    height: 82px;
     background-color: white;
     padding: 0 20px 0 20px;
     justify-content: space-between;;
     align-items: center;
+    margin-bottom: 1px;
 }
 
 .logo_okr {
-    margin-right: 18px;
+    margin-right: 50px;
 }
 
 .search_okr {
-    width: 115px;
-    height: 18px;
+    width: 188px;
+    height: 25px;
     margin-right: 18px;
-    border: 2px solid #ADADAD;
+    border: 2px solid #70C7D4;
     padding: 3px;
-}
-
-.button_header {
-    width: 33px;
-    height: 33px;
-    border-radius: 25px;
-    border: 1px solid #3EC6FF;
-    color: #3EC6FF;
-    font-size: 26px;
-    background-color: white;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.button_header:hover {
-    border: none;
-    background-color: #3EC6FF;
-    color: white;
-    text-decoration: none;
 }
 
 .bell_okr {
@@ -78,7 +56,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     width: auto;
     margin-right: 18px;
     text-decoration: none;
-    color: black;
+    color: #40B5C6;
 }
 
 .use_name:hover {
@@ -113,7 +91,7 @@ nav ul {
     text-transform: uppercase;
     font-size: 14px;
     font-weight: bold;
-    color: #404040;
+    color: #40B5C6;
 }
 
 .menu_user li a:hover {
@@ -158,14 +136,17 @@ nav ul {
     flex-direction: column;
     /*height: 100%;*/
     height: calc(100vh - 85px);
-    background: #DDDDDD;
-    margin: 5px 0 0 0;
+    background: #A7E3EC;
+    margin: 0;
 }
-
+.content_toolbar {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 .block_button {
-    margin: 0 5px 5px 0;
+    margin-bottom: 5px;
     outline: none;
-    background-color: #dee7ee;
     border: none;
     text-decoration: none;
     text-align: center;
@@ -187,6 +168,21 @@ nav ul {
     color: black;
 }
 
+.button_toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 35px;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+.block_button:hover .button_toolbar {
+    background-color: #40B5C6;
+}
+
 .active {
     background-color: white;
     text-decoration: none;
@@ -195,14 +191,12 @@ nav ul {
 
 /*Private*/
 .Private_user {
-    margin-top: 5px;
     padding: 0 5px 0 0;
 }
 
 .bg_color {
     background-color: white;
     width: 100%;
-    /*height: 100%;*/
     height: calc(100vh - 85px);
     padding: 74px 5px 0 25px;
 }
@@ -228,16 +222,15 @@ nav ul {
 
 .settings_link:hover {
     text-decoration: none;
-    color: #86919A;
+    color: #40B5C6;
 }
 
 .active_settings_one {
-    color: #86919A;
+    color: #40B5C6;
 }
 
 /*SettingsUser*/
 .settings {
-    margin-top: 5px;
     padding: 0;
 }
 
@@ -278,6 +271,37 @@ nav ul {
     margin-bottom: 0;
 }
 
+.input_file {
+    display: none;
+    outline: 0;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none
+}
+
+.button_file {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 30px;
+    margin: 0;
+    background-color: #C4C4C4;
+    color: white;
+    outline: none;
+}
+
+.data_user label:hover {
+    background-color: white;
+    color: #40B5C6;
+    border: 1px solid #40B5C6;
+}
+
+.p_input_file {
+    margin-right: 120px;
+    margin-left: 10px;
+}
+
 .input_user {
     border: 2px solid #DDDDDD;
     padding: 11px;
@@ -287,7 +311,7 @@ nav ul {
 
 .button_pass {
     margin-bottom: 73px;
-    background: #3EC6FF;
+    background: #40B5C6;
     color: white;
     height: 40px;
     width: 177px;
@@ -297,11 +321,24 @@ nav ul {
     border-radius: 25px;
 }
 
+.promt {
+    position: relative;
+}
+
+.promt_pass {
+    font-size: 12px;
+    position: absolute;
+    right: 80px;
+    width: 235px;
+    top: 25px;
+    color: #aba9a9;
+}
+
 .button_pass:hover {
     text-decoration: none;
     background: white;
-    border: 1px solid #3EC6FF;
-    color: #3EC6FF;
+    border: 1px solid #40B5C6;
+    color: #40B5C6;
     transform: none;
 }
 
@@ -311,7 +348,7 @@ nav ul {
     justify-content: flex-end;
     margin-bottom: 30px;
     align-items: center;
-    right: 36%;
+    right: 515px;
 }
 
 .data_user_google p {
@@ -320,7 +357,7 @@ nav ul {
 }
 
 .button_google {
-    background: #3EC6FF;
+    background: #40B5C6;
     color: white;
     height: 40px;
     width: 203px;
@@ -333,8 +370,8 @@ nav ul {
 .button_google:hover {
     text-decoration: none;
     background: white;
-    border: 1px solid #3EC6FF;
-    color: #3EC6FF;
+    border: 1px solid #40B5C6;
+    color: #40B5C6;
     transform: none;
 }
 
@@ -343,7 +380,7 @@ nav ul {
 }
 
 .active_settings_one {
-    color: #86919A;
+    color: #40B5C6;
 }
 
 /*TargetsUser*/
@@ -512,6 +549,7 @@ nav ul {
     padding: 15px 0 12px 0;
     margin: 0;
 }
+
 .i_task span {
     position: absolute;
     top: 5px;
