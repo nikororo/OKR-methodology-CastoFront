@@ -40,11 +40,34 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .search_okr {
-    width: 188px;
-    height: 25px;
+    display: inline-block;
+    width: 203px;
+    height: 30px;
     margin-right: 18px;
     border: 2px solid #70C7D4;
-    padding: 3px;
+    font-size: 13px;
+    color: #70C7D4;
+}
+
+.search_okr form {
+    position: relative;
+    padding: 4px 0 4px 30px;
+
+}
+
+.search_okr button {
+    width: 30px;
+    height: 26px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    background: transparent;
+}
+
+.search_okr input, .search_okr button {
+    border: none;
+    outline: none;
 }
 
 .bell_okr {
@@ -139,11 +162,13 @@ nav ul {
     background: #A7E3EC;
     margin: 0;
 }
+
 .content_toolbar {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
+
 .block_button {
     margin-bottom: 5px;
     outline: none;
@@ -183,10 +208,22 @@ nav ul {
     background-color: #40B5C6;
 }
 
+.block_button:hover .img_color {
+    filter: invert(1);
+}
+
 .active {
     background-color: white;
     text-decoration: none;
     color: black;
+}
+
+.active .button_toolbar {
+    background-color: #40B5C6;
+}
+
+.active .img_color {
+    filter: invert(1);
 }
 
 /*Private*/

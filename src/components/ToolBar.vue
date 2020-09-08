@@ -4,7 +4,7 @@
     <router-link class="block_button" active-class="active" to="/private">
       <div class="content_toolbar">
         <div class="button_toolbar">
-          <img width="18" height="18" src="../style/img/Home.png" alt="">
+          <img class="img_color" width="18" height="18" src="../style/img/Home.png" alt="">
         </div>
         <p>Личный кабинет</p>
       </div>
@@ -13,7 +13,7 @@
     <router-link class="block_button" active-class="" to="">
       <div class="content_toolbar">
         <div class="button_toolbar">
-          <img width="18" height="18" src="../style/img/Project.png" alt="">
+          <img class="img_color" width="18" height="18" src="../style/img/Project.png" alt="">
         </div>
         <p>Проект</p>
       </div>
@@ -23,7 +23,7 @@
     <router-link class="block_button" active-class="" to="">
       <div class="content_toolbar">
         <div class="button_toolbar">
-          <img width="18" height="18" src="../style/img/Group.png" alt="">
+          <img class="img_color" width="18" height="18" src="../style/img/Group.png" alt="">
         </div>
         <p>Команды</p>
       </div>

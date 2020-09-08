@@ -5,9 +5,15 @@
               <router-link href="" class="home_main" to="/">
                 <img src="../style/img/Logo.png" alt="Logo" class="logo_okr">
               </router-link>
-                <label>
-                    <input type="search" class="search_okr" >
-                </label>
+<!--                <label>-->
+<!--                    <input type="search" class="search_okr" >-->
+<!--                </label>-->
+              <div class="search_okr">
+                <form>
+                  <input type="text">
+                  <button type="submit"><img width="15" height="15" src="../style/img/Search.png" alt=""></button>
+                </form>
+              </div>
             </div>
 
             <div class="user_menu">

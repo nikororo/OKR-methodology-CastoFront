@@ -20,7 +20,7 @@ Vue.use(VueRouter);
       component: () => import('../components/Private')
     },
     {
-      path: '/settingsUser',
+      path: '/private/settingsUser',
       name: 'SettingsUser',
       component: () => import('../components/SettingsUser')
     },

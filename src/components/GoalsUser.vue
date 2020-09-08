@@ -11,7 +11,7 @@
                         <img src="../style/img/User.png" alt="User">
                         <p class="User_name">User</p>
                     </div>
-                    <router-link class="settings_link" active-class="active_settings_one" to="/settingsUser">
+                    <router-link class="settings_link" active-class="active_settings_one" to="/private/settingsUser">
                         Настройки
                         профиля
                     </router-link>
