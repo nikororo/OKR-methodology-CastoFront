@@ -655,7 +655,7 @@ nav ul {
 }
 
 .authorization .error {
-    border: 1.5px solid rgb(255, 112, 112);
+    border: 2px solid rgb(255, 112, 112);
 }
 
 .authorization .errorMsg {
@@ -671,7 +671,7 @@ nav ul {
     background-color: #40B5C6;
     border: none;
     min-width: 159px;
-    padding:0 25px;
+    padding:0 42px;
     display: block;
     margin: 0 auto 30px;
     color: #fff;
@@ -701,7 +701,7 @@ nav ul {
     position: absolute;
     left: 0;
     top: 0;
-	overflow:hidden;
+	overflow: hidden;
     height: 100%;
 	width: 60%;
     min-height: 100vh;
@@ -709,16 +709,8 @@ nav ul {
 
 .imgAuth img {
     position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: auto;
-        margin: auto;    
-    /* position: absolute;
+    top: 0;
+    bottom: 0;
     width: 100%;
-    top: -50%;
-    margin: auto; 
-    float: left; */
+    margin: auto;
 }

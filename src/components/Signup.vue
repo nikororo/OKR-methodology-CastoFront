@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 
 export default {
     name: 'Signup',
@@ -50,14 +51,19 @@ export default {
     
     methods: {
         onReg() {
-            //ВЫЗВАТЬ регистрацию С БЕКА,
-            // .then(() => {
-            // 	this.$store.commit('authCorr');
-            //  this.$router.push('/');
-            // })
-            // .catch(() => {
-            // 		this.$store.commit('authErr');
-            // });
+            Vue.axios.post(this.$store.state.urlBD + 'api/register', {
+                name: this.fullName,
+                email: this.email,
+                password: this.password,
+                c_password: this.password,
+                company: this.company,
+                activity: this.activity
+            })
+            .then(() => {
+                this.$store.commit('authCorr');
+                this.$router.push('/');
+            })
+            .catch(() => this.$store.commit('authErr'));
         },
     }
 }
