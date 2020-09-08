@@ -10,6 +10,9 @@
             <option value="selectProccess">В процессе</option>
             <option value="selectPause">На паузе</option>
         </select>
+      <div class="ps_button_goals">
+        <button class="button_goals">Добавить</button>
+      </div>
         <div class="goals companyGoals">
             <p>Цель компании</p>
             <div class="statistics">
@@ -33,6 +36,7 @@
             <p>{{percent}}%</p>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -55,11 +59,20 @@
     }
 
     .page {
+      position: relative;
         background-color: white;
-        margin-top: 5px;
         padding: 40px;
     }
-
+.button_goals {
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  width: 151px;
+  height: 31px;
+  background-color: #86919A;
+  color: white;
+  border-radius: 10px;
+}
     .goals {
         padding: 10px 40px;
         border-radius: 10px;
@@ -87,7 +100,7 @@
         font-size: 16px;
         line-height: 22px;
     }
-    
+
     .statItem {
         padding: 2px 10px;
         border: 1px solid black;

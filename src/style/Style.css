@@ -24,6 +24,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 .home_main {
 
 }
+
 .header_okr {
     display: flex;
     height: 82px;
@@ -138,7 +139,11 @@ nav ul {
     background: #A7E3EC;
     margin: 0;
 }
-
+.content_toolbar {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 .block_button {
     margin-bottom: 5px;
     outline: none;
@@ -161,6 +166,21 @@ nav ul {
     background-color: white;
     text-decoration: none;
     color: black;
+}
+
+.button_toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 35px;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+.block_button:hover .button_toolbar {
+    background-color: #40B5C6;
 }
 
 .active {
@@ -253,11 +273,12 @@ nav ul {
 
 .input_file {
     display: none;
-    outline:0;
-    opacity:0;
-    pointer-events:none;
-    user-select:none
+    outline: 0;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none
 }
+
 .button_file {
     display: flex;
     align-items: center;
@@ -269,6 +290,7 @@ nav ul {
     color: white;
     outline: none;
 }
+
 .data_user label:hover {
     background-color: white;
     color: #40B5C6;
@@ -298,9 +320,11 @@ nav ul {
     padding: 8px;
     border-radius: 25px;
 }
+
 .promt {
     position: relative;
 }
+
 .promt_pass {
     font-size: 12px;
     position: absolute;
@@ -309,6 +333,7 @@ nav ul {
     top: 25px;
     color: #aba9a9;
 }
+
 .button_pass:hover {
     text-decoration: none;
     background: white;
@@ -524,6 +549,7 @@ nav ul {
     padding: 15px 0 12px 0;
     margin: 0;
 }
+
 .i_task span {
     position: absolute;
     top: 5px;
