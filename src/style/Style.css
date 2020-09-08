@@ -644,41 +644,55 @@ nav ul {
 /* oauth */
 
 .authorization {
+    position: relative;
     min-height: 100vh;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: white;
 }
 
+.contAuth {
+    margin-left: 60%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
 .authorization form {
     min-width: 350px;
-    max-width: 350px;
-    padding-right: 45px;
-    margin-left: 130px;
+    max-width: 413px;
+    padding: 0 45px;
 }
 
 .authorization .authTitle {
-    margin-bottom: 25px;
-    font-size: 40px;
+    margin-bottom: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 82px;
+    font-size: 60px;
+    color: #40B5C6;
 }
 
 .authorization input, .authorization select {
     width: 100%;
     height: 46px;
-    border: 2px solid #dddddd;
-    margin: 5px 0 15px;
-    padding-left: 15px;
+    border: 2px solid #40B5C6;
+    margin: 10px 0 15px;
+    padding-left: 11px;
     box-sizing: border-box;
 }
 
 .authorization label {
-    margin-left: 17px;
+    margin-left: 13px;
     margin-bottom: 0;
 }
 
 .authorization .error {
-    border: 1.5px solid rgb(255, 112, 112);
+    border: 2px solid rgb(255, 112, 112);
 }
 
 .authorization .errorMsg {
@@ -690,27 +704,50 @@ nav ul {
 
 .authorization button {
     outline: 0;
-    border-radius: 19px;
-    background-color: #3ec6ff;
+    border-radius: 58px;
+    background-color: #40B5C6;
     border: none;
-    min-width: 200px;
-    padding: 4px 25px;
+    min-width: 159px;
+    padding:0 42px;
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 30px;
     color: #fff;
-    font-size: 20px;
+    font-size: 18px;
+    height: 42px;
 }
 
 .authorization button:hover {
-    background-color: #00adf7;
+    background-color: #fff;
+    color: #40B5C6;
+    border: 2px solid #40B5C6;
+    transform: none;
 }
 
 .authorization .message {
     font-size: 14px;
-    margin: 10px 0 20px;
+    margin: 0 0 45px;
     text-align: center;
 }
 
 .authorization .message a {
-    color: #86919a;
+    color: #468e98;
+    text-decoration: underline;
+}
+
+.imgAuth {
+    position: absolute;
+    left: 0;
+    top: 0;
+	overflow: hidden;
+    height: 100%;
+	width: 60%;
+    min-height: 100vh;
+}
+
+.imgAuth img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    margin: auto;
 }
