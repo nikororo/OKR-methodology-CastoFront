@@ -20,6 +20,10 @@ input:active, input:focus, select:focus, button:active, button:focus {
     padding-right: 5px;
 }
 
+.pustota {
+    height: calc(100vh - 85px);
+}
+
 /*Header */
 .home_main {
 
@@ -158,7 +162,7 @@ nav ul {
     display: flex;
     flex-direction: column;
     /*height: 100%;*/
-    height: calc(100vh - 85px);
+    /*height: calc(100vh - 85px);*/
     background: #A7E3EC;
     margin: 0;
 }
@@ -228,14 +232,14 @@ nav ul {
 
 /*Private*/
 .Private_user {
-    padding: 0 5px 0 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .bg_color {
+    padding: 74px 5px 5px 25px;
+    height: 100%;
     background-color: white;
-    width: 100%;
-    height: calc(100vh - 85px);
-    padding: 74px 5px 0 25px;
 }
 
 .ps_user {
@@ -269,6 +273,7 @@ nav ul {
 /*SettingsUser*/
 .settings {
     padding: 0;
+
 }
 
 .header_settings {
@@ -294,6 +299,7 @@ nav ul {
     justify-content: center;
     padding-top: 83px;
     text-align: center;
+    flex-wrap: wrap-reverse;
 }
 
 .data_user {
@@ -379,39 +385,6 @@ nav ul {
     transform: none;
 }
 
-.data_user_google {
-    position: absolute;
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 30px;
-    align-items: center;
-    right: 515px;
-}
-
-.data_user_google p {
-    margin-right: 42px;
-    margin-bottom: 0;
-}
-
-.button_google {
-    background: #40B5C6;
-    color: white;
-    height: 40px;
-    width: 203px;
-    text-decoration: none;
-    text-align: center;
-    padding: 8px;
-    border-radius: 25px;
-}
-
-.button_google:hover {
-    text-decoration: none;
-    background: white;
-    border: 1px solid #40B5C6;
-    color: #40B5C6;
-    transform: none;
-}
-
 .ps_last {
     margin-top: 73px;
 }
@@ -468,8 +441,6 @@ nav ul {
 
 /*PlanWeek*/
 .main_plan_week {
-    /*height: 100%;*/
-    /*height: calc(100vh - 192px);*/
     height: auto;
     margin-top: 5px;
     padding-top: 37px;
@@ -513,7 +484,10 @@ nav ul {
 .tasks {
     padding-top: 47px;
     padding-left: 60px;
-    overflow: hidden;
+    height: calc(100vh - 192px);
+    display: flex;
+    flex-wrap: wrap-reverse;
+    flex-direction: column;
 }
 
 .h2_status_tasks {
@@ -708,7 +682,7 @@ nav ul {
     background-color: #40B5C6;
     border: none;
     min-width: 159px;
-    padding:0 42px;
+    padding: 0 42px;
     display: block;
     margin: 0 auto 30px;
     color: #fff;
@@ -738,9 +712,9 @@ nav ul {
     position: absolute;
     left: 0;
     top: 0;
-	overflow: hidden;
+    overflow: hidden;
     height: 100%;
-	width: 60%;
+    width: 60%;
     min-height: 100vh;
 }
 

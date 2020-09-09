@@ -62,10 +62,6 @@
             </div>
 
             <a href="" class="button_pass">Обновить пароль</a>
-            <div class="ps_last data_user_google">
-              <p class="p_data_user">Подключите профиль Google</p>
-              <a href="" class="button_google">Подключите Google</a>
-            </div>
           </div>
         </div>
       </div>
