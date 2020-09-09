@@ -751,3 +751,15 @@ nav ul {
     width: 100%;
     margin: auto;
 }
+
+
+@media (orientation: portrait), (max-width: 1000px) {
+    .imgAuth {
+        display: none;
+    }
+
+    .contAuth {
+        margin-left: 0;
+        width: 100%;
+    }
+}

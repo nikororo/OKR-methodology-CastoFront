@@ -7,11 +7,11 @@
             <div class="authTitle">Регистрация</div>
             <form v-on:submit.prevent="onReg" class="register-form">
                 <label for="signupFullName">Полное имя</label>
-                <input id="signupFullName" v-model="fullName" type="text" placeholder="Полное имя" required/>
+                <input id="signupFullName" v-model="fullName" type="text" placeholder="Полное имя" required minlength="3" maxlength="80"/>
                 <label for="signupEmail">E-mail</label>
-                <input id="signupEmail" v-model="email" v-bind:class="{error: this.$store.state.authHasError}" type="email" placeholder="E-mail" required/>
+                <input id="signupEmail" v-model="email" v-bind:class="{error: this.$store.state.authHasError}" type="email" placeholder="E-mail" required minlength="3" maxlength="40"/>
                 <label for="signupCompany">Название вашей компании</label>
-                <input id="signupCompany" v-model="company" type="text" placeholder="Название компании" required/>
+                <input id="signupCompany" v-model="company" type="text" placeholder="Название компании" required minlength="4" maxlength="60"/>
                 <label for="signupActivity">Ваша сфера деятельности</label>
                 <div>
                     <select id="signupActivity" v-model="activity" required>
@@ -26,7 +26,7 @@
                     </select>
                 </div>
                 <label for="signupPass">Пароль</label>
-                <input id="signupPass" v-model="password" v-bind:class="{error: this.$store.state.authHasError}" type="password" placeholder="Пароль" required/>
+                <input id="signupPass" v-model="password" v-bind:class="{error: this.$store.state.authHasError}" type="password" placeholder="Пароль" required pattern="^[a-zA-Z0-9]+$" title="Латинские символы, цифры" minlength="8" maxlength="30"/>
                 <div class="errorMsg" v-if="this.$store.state.authHasError">{{this.$store.state.errMsg}}</div>
                 <div class="message">Уже зарегистрированы? <router-link to="/signin">Войти</router-link></div>
                 <button>Зарегистрироваться</button>
@@ -46,7 +46,7 @@ export default {
         company: '',
         fullName: '',
         activity: '',
-        publicPath: process.env.BASE_URL
+        publicPath: process.env.BASE_URL,
     }),
     
     methods: {
