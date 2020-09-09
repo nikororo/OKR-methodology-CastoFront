@@ -292,12 +292,12 @@ nav ul {
 
 .main_settings {
     position: relative;
-    height: calc(100vh - 150px);
+    min-height: calc(100vh - 150px);
     width: 100%;
     background-color: white;
     display: flex;
     justify-content: center;
-    padding-top: 83px;
+    padding: 83px 0 40px;
     text-align: center;
     flex-wrap: wrap-reverse;
 }

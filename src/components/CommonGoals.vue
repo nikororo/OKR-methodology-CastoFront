@@ -66,7 +66,7 @@ button {
   position: relative;
   background-color: white;
   padding: 40px;
-  height: calc(100vh - 85px);
+  min-height: calc(100vh - 85px);
 }
 
 .button_goals {
