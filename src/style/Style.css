@@ -334,7 +334,7 @@ nav ul {
     outline: none;
 }
 
-.data_user label:hover {
+.data_user .button_file:hover {
     background-color: white;
     color: #40B5C6;
     border: 1px solid #40B5C6;
@@ -346,7 +346,8 @@ nav ul {
 }
 
 .input_user {
-    border: 2px solid #DDDDDD;
+    border: 2px solid #00000069;
+    opacity: 0.5;
     padding: 11px;
     height: 46px;
     width: 323px;
@@ -716,6 +717,20 @@ nav ul {
     height: 100%;
     width: 60%;
     min-height: 100vh;
+    z-index: 1;
+}
+
+.blueAuth {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 60%;
+    min-height: 100vh;
+    background: #40B5C6;
+    opacity: 0.4;
+    z-index: 10;
 }
 
 .imgAuth img {

@@ -11,7 +11,8 @@
       <option value="selectPause">На паузе</option>
     </select>
     <div class="ps_button_goals">
-      <button class="button_goals">Добавить</button>
+      <button class="button_goals" @click="showAddGoalModal = true">Добавить</button>
+      <AddGoalModal  v-if="showAddGoalModal" @close="showAddGoalModal = false"/>
     </div>
     <div class="goals companyGoals">
       <p>Цель компании</p>
@@ -40,14 +41,22 @@
 </template>
 
 <script>
+import AddGoalModal from './AddGoalModal';
+
 export default {
   name: 'CommonGoals',
+  
+  components: {
+    AddGoalModal
+  },
+  
   data: () => ({
     percent: 22,
     onPause: 4,
     inProcess: 10,
     selectLvlGoals: '',
-    selectActivity: ''
+    selectActivity: '',
+    showAddGoalModal: false
   }),
 }
 </script>
