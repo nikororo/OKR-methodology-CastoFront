@@ -25,10 +25,6 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 /*Header */
-.home_main {
-
-}
-
 .header_okr {
     display: flex;
     height: 82px;
@@ -161,8 +157,6 @@ nav ul {
 .toolBar {
     display: flex;
     flex-direction: column;
-    /*height: 100%;*/
-    /*height: calc(100vh - 85px);*/
     background: #A7E3EC;
     margin: 0;
 }
@@ -234,6 +228,7 @@ nav ul {
 .Private_user {
     display: flex;
     flex-direction: column;
+    overflow: auto;
 }
 
 .bg_color {
@@ -575,32 +570,6 @@ nav ul {
     display: block;
 }
 
-/*.window {*/
-/*    display: flex;*/
-/*    opacity: 1;*/
-/*    position: absolute;*/
-/*    width: 200px;*/
-/*    height: 46px;*/
-/*    background-color: #DEE7EE;*/
-/*    color: black;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    top: 0;*/
-/*    right: 68%;*/
-/*}*/
-/*.window span {*/
-/*    margin: 0;*/
-/*    font-size: 15px;*/
-/*}*/
-/*.window p {*/
-/*    display: inline-block;*/
-/*    color: #86919A;*/
-/*    font-size: 40px;*/
-/*    margin: 0;*/
-/*}*/
-/*.tr:hover .window {*/
-/*    opacity: 1;*/
-/*}*/
 
 /*GoalsUser*/
 .task_goals span {
@@ -614,9 +583,6 @@ nav ul {
 .task_goals:last-child {
     margin-bottom: 40px;
 }
-
-
-/* oauth */
 
 .authorization {
     position: relative;

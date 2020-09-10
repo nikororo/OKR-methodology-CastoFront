@@ -8,7 +8,10 @@ export default new Vuex.Store({
     authHasError: false,
     errMsg: '',
     urlBD: 'http://127.0.0.1:8000/',
-    user: ''
+    user: {
+      name: 'Ешь, пей, жуй - Буржуй',
+      email: ''
+    }
   },
   mutations: {
     authErr: (state, error) => {
