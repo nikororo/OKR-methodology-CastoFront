@@ -1,5 +1,6 @@
 <template>
   <div class="authorization">
+    <div class="blueAuth"></div>
     <div class="imgAuth">
       <img alt="Картинка для авторизации" :src="`${publicPath}auth.png`">
     </div>
@@ -12,13 +13,14 @@
         <input id="signinPass" v-model="password" v-bind:class="{error: this.$store.state.authHasError}" type="password" placeholder="Пароль" required minlength="8" maxlength="30"/>
         <div class="errorMsg" v-if="this.$store.state.authHasError">Неверно введен email и/или пароль.</div>
         <div class="message">Еще не зарегистрированы? <router-link to="/signup">Создать аккаунт</router-link></div>
-        <button class="submit">Войти</button>
+        <button>Войти</button>
       </form>
     </div>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
 
 export default {
   name: 'Signin',
@@ -30,14 +32,19 @@ export default {
 
   methods: {
     onLog() {
-      //ВЫЗВАТЬ АВТОРИЗАЦИЮ С БЕКА,
-      // .then(() => {
-      // 	this.$store.commit('authCorr');
-      //  this.$router.push('/');
-      // })
-      // .catch(() => {
-      // 		this.$store.commit('authErr');
-      // });
+      Vue.axios.post(this.$store.state.urlBD + 'api/user/login', {
+        email: this.email,
+        password: this.password
+      })
+        .then((res) => {
+          let user = {
+            email: res.data.user.email,
+            name: res.data.user.name,
+          }
+          this.$store.commit('authCorr', user);
+          this.$router.push('/');
+        })
+        .catch(() => this.$store.commit('authErr'));
     },
   }
 }
