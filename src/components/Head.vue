@@ -18,7 +18,7 @@
 
       <div class="user_menu">
         <img src="../style/img/Bell.png" alt="Bell" class="bell_okr">
-        <router-link class="use_name" to="/targetsUser">User</router-link>
+        <router-link class="use_name" to="/targetsUser">{{ user }}</router-link>
         <img src="../style/img/User.png" alt="Photo" class="user_photo">
         <nav>
           <ul class="menu_user">

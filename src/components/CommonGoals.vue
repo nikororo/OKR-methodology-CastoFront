@@ -21,16 +21,19 @@
       </div>
     </div>
     <div class="goals otherGoals">
+      <div class="line_tree"></div>
       <p>Цель отдела</p>
       <input type="range" min="1" max="100" v-model="percent" class="slider">
       <p>{{ percent }}%</p>
     </div>
     <div class="goals otherGoals">
+      <div class="line_tree"></div>
       <p>Цель отдела</p>
       <input type="range" min="1" max="100" v-model="percent" class="slider">
       <p>{{ percent }}%</p>
     </div>
     <div class="goals otherGoals">
+      <div class="line_tree"></div>
       <p>Цель отдела</p>
       <input type="range" min="1" max="100" v-model="percent" class="slider">
       <p>{{ percent }}%</p>
@@ -43,7 +46,7 @@
 export default {
   name: 'CommonGoals',
   data: () => ({
-    percent: 22,
+    percent:'',
     onPause: 4,
     inProcess: 10,
     selectLvlGoals: '',
@@ -81,6 +84,7 @@ button {
 }
 
 .goals {
+  position: relative;
   padding: 10px 40px;
   border-radius: 10px;
   font-size: 18px;
@@ -148,5 +152,14 @@ button {
   border-radius: 50%;
   background: #86919A;
   cursor: pointer;
+}
+.line_tree {
+  position: absolute;
+  width: 10px;
+  height: 80px;
+  border-left: 2px solid #dee7ee;
+  border-bottom: 2px solid #dee7ee;
+  left: -10px;
+  bottom: 20px;
 }
 </style>

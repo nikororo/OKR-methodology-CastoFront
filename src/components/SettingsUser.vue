@@ -45,7 +45,16 @@
 
             <div class="data_user">
               <p class="p_data_user">Сфера деятельности</p>
-              <input class="input_user" type="text" placeholder="Сфера деятельности">
+              <select class="input_user" type="text" id="signupActivity" v-model="activity" required>
+                <option value disabled selected>Сфера деятельности</option>
+                <option value="departmentHead">Руководитель отдела</option>
+                <option value="manager">Менеджер</option>
+                <option selected value="developer">Разработчик</option>
+                <option value="analyst">Аналитик</option>
+                <option value="designer">Дизайнер</option>
+                <option selected value="tester">Тестировщик</option>
+                <option value="other">Другое</option>
+              </select>
             </div>
 
             <div class="data_user">
@@ -70,14 +79,23 @@
   </div>
 </template>
 
+
 <script>
-import Head from './Head'
-import ToolBar from './ToolBar'
+import Head from "@/components/Head";
+import ToolBar from "@/components/ToolBar";
 
 export default {
-  name: 'Home',
+  name: 'settingsUser',
   components: {
     Head, ToolBar
+  },
+  data: () => ({
+    activity: '',
+    publicPath: process.env.BASE_URL,
+  }),
+
+  methods: {
+
   }
 }
 </script>
