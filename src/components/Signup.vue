@@ -2,7 +2,7 @@
   <div class="authorization">
     <div class="blueAuth"></div>
     <div class="imgAuth">
-      <img alt="Картинка для регистрации" :src="`${publicPath}auth.png`">
+      <img alt="Картинка для регистрации" src="../style/img/auth.png">
     </div>
     <div class="contAuth">
       <div class="authTitle">Регистрация</div>
