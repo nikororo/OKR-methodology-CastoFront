@@ -83,6 +83,9 @@ export default {
 body {
   overflow: hidden;
 }
+button{
+  line-height: normal;
+}
 
 .addGoalModalCont {
   position: fixed;
@@ -91,7 +94,7 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 5%;
+  padding: 10% 5% 10% 5%;
   background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
