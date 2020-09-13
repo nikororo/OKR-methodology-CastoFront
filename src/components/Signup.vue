@@ -25,7 +25,7 @@
           </select>
         </div>
         <label for="signupPass">Пароль</label>
-        <input id="signupPass" v-model="password" v-bind:class="{error: this.$store.state.authHasError}" type="password" placeholder="Пароль" required pattern="^[a-zA-Z0-9]+$" title="Латинские символы, цифры" minlength="8" maxlength="30"/>
+        <input id="signupPass" v-model="password" v-bind:class="{error: this.$store.state.authHasError}" type="password" placeholder="Пароль" required pattern="^(?=.*\d)(?=.*[a-zA-Z])(?!.*\s).+$" title="Латинские символы и цифры, без пробелов" minlength="8" maxlength="30"/>
         <div class="errorMsg" v-if="this.$store.state.authHasError">{{this.$store.state.errMsg}}</div>
         <div class="message">Уже зарегистрированы? <router-link to="/signin">Войти</router-link></div>
         <button>Зарегистрироваться</button>
@@ -54,7 +54,7 @@ export default {
           email: this.email,
           password: this.password,
           c_password: this.password,
-          // activity: this.activity
+          activity: this.activity
       })
         .then(() => {
           Vue.axios.post(this.$store.state.urlBD + 'api/user/login', {

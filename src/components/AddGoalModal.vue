@@ -4,7 +4,7 @@
 
       <form v-on:submit.prevent="addGoal">
         <header>
-          <input placeholder="Название цели" required/>
+          <input placeholder="Название цели" required minlength="5" maxlength="100"/>
           <button class="btnClose" @click="close">
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -69,7 +69,6 @@
 
 export default {
   name: 'AddGoalModal',
-  data: () => ({}),
 
   methods: {
     close() {
@@ -80,34 +79,43 @@ export default {
 </script>
 
 <style>
+
 body {
   overflow: hidden;
 }
+
 button{
   line-height: normal;
 }
 
 .addGoalModalCont {
   position: fixed;
-  width: 100%;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 10% 5% 10% 5%;
   background-color: rgba(0, 0, 0, 0.3);
-  display: flex;
-  justify-content: center;
   overflow: auto;
   z-index: 9999;
+  padding: 30px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.addGoalModalCont::before {
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .addGoalModal {
-  min-width: 45%;
+  width: 859px;
   background: #FFFFFF;
   box-shadow: 2px 2px 20px 1px;
-  display: flex;
   height: 650px;
+  display: inline-block;
+  white-space: normal;
+  vertical-align: middle;
 }
 
 .addGoalModal header {

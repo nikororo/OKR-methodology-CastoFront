@@ -16,7 +16,6 @@
 
       <div class="user_menu">
         <img src="../style/img/Bell.png" alt="Bell" class="bell_okr">
-        <router-link class="use_name" to="/targetsUser">{{ user }}</router-link>
         <router-link class="use_name" to="/targetsUser" v-if="this.$store.state.user">{{this.$store.state.user.name}}</router-link>
         <img src="../style/img/User.png" alt="Photo" class="user_photo">
         <nav>
