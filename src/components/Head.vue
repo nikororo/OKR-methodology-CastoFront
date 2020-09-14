@@ -33,15 +33,3 @@
     </header>
   </div>
 </template>
-
-<script>
-export default {
-
-  data: () => ({
-    links: [
-      {title: 'User', url: '/targetsUser'},
-      {title: 'Проект', url: ''}
-    ]
-  })
-}
-</script>

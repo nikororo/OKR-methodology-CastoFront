@@ -74,6 +74,11 @@ const routes = [
     name: 'Signup',
     component: () => import('../components/Signup')
   },
+  {
+    path: '/goalsQuarter',
+    name: 'goalsQuarter',
+    component: () => import('../components/GoalsQuarter')
+  },
 ]
 
 const router = new VueRouter({
