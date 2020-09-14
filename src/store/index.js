@@ -9,7 +9,7 @@ export default new Vuex.Store({
     errMsg: '',
     urlBD: 'http://127.0.0.1:8000/',
     user: {
-      name: 'Ешь, пей, жуй - Буржуй',
+      name: 'Максимов Станислав Игоревич',
       email: '',
       id: ''
     }

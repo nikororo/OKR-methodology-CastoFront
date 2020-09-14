@@ -27,7 +27,6 @@ const routes = [
     component: () => import('../components/UserNotAuth'),
     beforeEnter: ifNotAuthenticated
   },
-
   {
     path: '/',
     name: 'Home',
@@ -79,6 +78,11 @@ const routes = [
     path: '/signup',
     name: 'Signup',
     component: () => import('../components/Signup')
+  },
+  {
+    path: '/goalsQuarter',
+    name: 'goalsQuarter',
+    component: () => import('../components/GoalsQuarter')
   },
 ]
 
