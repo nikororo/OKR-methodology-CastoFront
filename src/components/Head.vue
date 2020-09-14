@@ -36,12 +36,6 @@
 
 <script>
 export default {
-
-  data: () => ({
-    links: [
-      {title: 'User', url: '/targetsUser'},
-      {title: 'Проект', url: ''}
-    ]
-  })
+  name: 'Head'
 }
 </script>

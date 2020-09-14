@@ -10,7 +10,8 @@ export default new Vuex.Store({
     urlBD: 'http://127.0.0.1:8000/',
     user: {
       name: 'Ешь, пей, жуй - Буржуй',
-      email: ''
+      email: '',
+      id: ''
     }
   },
   mutations: {

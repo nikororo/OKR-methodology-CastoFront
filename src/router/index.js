@@ -65,6 +65,12 @@ const routes = [
     beforeEnter: ifAuthenticated
   },
   {
+    path: '/command',
+    name: 'Сommand',
+    component: () => import('../components/Command'),
+    beforeEnter: ifAuthenticated
+  },
+  {
     path: '/signin',
     name: 'Signin',
     component: () => import('../components/Signin')

@@ -20,7 +20,7 @@
     </router-link>
 
 
-    <router-link class="block_button" active-class="" to="">
+    <router-link class="block_button" active-class="active" to="/command">
       <div class="content_toolbar">
         <div class="button_toolbar">
           <img class="img_color" width="18" height="18" src="../style/img/Group.png" alt="">
@@ -39,12 +39,6 @@
 </style>
 <script>
 export default {
-  data: () => ({
-    links: [
-      {title: 'Личный кабинет', url: '/private'},
-      {title: 'Проект', url: ''},
-      {title: 'Команды', url: ''}
-    ]
-  })
+   name: 'ToolBar'
 }
 </script>

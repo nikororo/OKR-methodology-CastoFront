@@ -66,109 +66,109 @@ export default {
 
 
 <style scoped>
-p {
-  margin-bottom: 0;
-}
+  p {
+    margin-bottom: 0;
+  }
 
-button {
-  border: none;
-}
+  button {
+    border: none;
+  }
 
-.page {
-  position: relative;
-  background-color: white;
-  padding: 40px;
-  min-height: calc(100vh - 85px);
-}
+  .page {
+    position: relative;
+    background-color: white;
+    padding: 40px;
+    min-height: calc(100vh - 85px);
+  }
 
-.button_goals {
-  position: absolute;
-  right: 40px;
-  top: 40px;
-  width: 151px;
-  height: 31px;
-  background-color: #86919A;
-  color: white;
-  border-radius: 10px;
-}
+  .button_goals {
+    position: absolute;
+    right: 40px;
+    top: 40px;
+    width: 151px;
+    height: 31px;
+    background-color: #86919A;
+    color: white;
+    border-radius: 10px;
+  }
 
-.goals {
-  position: relative;
-  padding: 10px 40px;
-  border-radius: 10px;
-  font-size: 18px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+  .goals {
+    position: relative;
+    padding: 10px 40px;
+    border-radius: 10px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-.companyGoals {
-  background-color: #dee7ee;
-  font-size: 24px;
-}
+  .companyGoals {
+    background-color: #dee7ee;
+    font-size: 24px;
+  }
 
-.otherGoals {
-  background-color: #B8C5D0;
-  margin-left: 20px;
-}
+  .otherGoals {
+    background-color: #B8C5D0;
+    margin-left: 20px;
+  }
 
-.statistics {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 16px;
-  line-height: 22px;
-}
+  .statistics {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    line-height: 22px;
+  }
 
-.statItem {
-  padding: 2px 10px;
-  border: 1px solid black;
-  border-radius: 8px;
-  margin-right: 20px;
-}
+  .statItem {
+    padding: 2px 10px;
+    border: 1px solid black;
+    border-radius: 8px;
+    margin-right: 20px;
+  }
 
-.search {
-  padding: 2px 10px;
-  border: 1px solid black;
-  border-radius: 8px;
-  margin: 0 20px 20px 0;
-  min-width: 200px;
-}
+  .search {
+    padding: 2px 10px;
+    border: 1px solid black;
+    border-radius: 8px;
+    margin: 0 20px 20px 0;
+    min-width: 200px;
+  }
 
-.slider {
-  -webkit-appearance: none;
-  width: 40%;
-  height: 7px;
-  border-radius: 4px;
-  background: #86919A;
-  outline: none;
-}
+  .slider {
+    -webkit-appearance: none;
+    width: 40%;
+    height: 7px;
+    border-radius: 4px;
+    background: #86919A;
+    outline: none;
+  }
 
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #86919A;
-  cursor: pointer;
-}
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #86919A;
+    cursor: pointer;
+  }
 
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #86919A;
-  cursor: pointer;
-}
-.line_tree {
-  position: absolute;
-  width: 10px;
-  height: 80px;
-  border-left: 2px solid #dee7ee;
-  border-bottom: 2px solid #dee7ee;
-  left: -10px;
-  bottom: 20px;
-}
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #86919A;
+    cursor: pointer;
+  }
+  .line_tree {
+    position: absolute;
+    width: 10px;
+    height: 80px;
+    border-left: 2px solid #dee7ee;
+    border-bottom: 2px solid #dee7ee;
+    left: -10px;
+    bottom: 20px;
+  }
 </style>
