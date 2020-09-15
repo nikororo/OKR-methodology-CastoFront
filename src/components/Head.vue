@@ -33,3 +33,9 @@
     </header>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'Head'
+}
+</script>

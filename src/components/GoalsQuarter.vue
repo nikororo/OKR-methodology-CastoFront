@@ -151,4 +151,77 @@ button {
   cursor: pointer;
 }
 
+p {
+  margin-bottom: 0;
+}
+
+button {
+  border: none;
+}
+
+.page {
+  position: relative;
+  background-color: white;
+  padding: 40px 180px;
+  min-height: calc(100vh - 85px);
+}
+
+.button_goals {
+  right: 40px;
+  top: 40px;
+  width: 151px;
+  height: 31px;
+  background-color: #86919A;
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 23px;
+}
+
+.block_goals {
+  margin-bottom: 40px;
+}
+
+.goals {
+  position: relative;
+  padding: 10px 40px;
+  border-radius: 10px;
+  font-size: 18px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.companyGoals {
+  background-color: #dee7ee;
+  font-size: 24px;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 40%;
+  height: 7px;
+  border-radius: 4px;
+  background: #86919A;
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #86919A;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #86919A;
+  cursor: pointer;
+}
+
 </style>

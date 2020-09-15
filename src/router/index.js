@@ -27,7 +27,6 @@ const routes = [
     component: () => import('../components/UserNotAuth'),
     beforeEnter: ifNotAuthenticated
   },
-
   {
     path: '/',
     name: 'Home',
@@ -68,6 +67,12 @@ const routes = [
     path: '/goalsUser',
     name: 'GoalsUser',
     component: () => import('../components/GoalsUser'),
+    beforeEnter: ifAuthenticated
+  },
+  {
+    path: '/command',
+    name: 'Сommand',
+    component: () => import('../components/Command'),
     beforeEnter: ifAuthenticated
   },
   {

@@ -33,15 +33,9 @@ import Head from './Head'
 import ToolBar from './ToolBar'
 
 export default {
-  name: 'Home',
+  name: 'Private',
   components: {
     Head, ToolBar
-  },
-  data: () => ({
-    links: [
-      {title: 'Настройки профиля', url: '/settingsUser'},
-      {title: 'Проект', url: ''}
-    ]
-  })
+  }
 }
 </script>

@@ -9,8 +9,9 @@ export default new Vuex.Store({
     errMsg: '',
     urlBD: 'http://127.0.0.1:8000/',
     user: {
-      name: 'Юзер',
-      email: ''
+      name: 'Максимов Станислав Игоревич',
+      email: '',
+      id: ''
     }
   },
   mutations: {
