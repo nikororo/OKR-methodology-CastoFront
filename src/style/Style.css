@@ -21,10 +21,27 @@ input:active, input:focus, select:focus, button:active, button:focus {
     height: calc(100vh - 85px);
 }
 
+.icon_logo {
+    width: 80px;
+    height: 45px;
+}
+
+.icon_user {
+    width: 30px;
+    height: 30px;
+}
+
+.icon_bell {
+    width: 25px;
+    height: 25px;
+}
+
+
 /*Header */
 .shadow_header {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
 }
+
 .header_okr {
     display: flex;
     height: 82px;
@@ -80,7 +97,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     width: auto;
     margin-right: 18px;
     text-decoration: none;
-    color: #40B5C6;
+    color: #0C2528;
 }
 
 .use_name:hover {
@@ -115,7 +132,7 @@ nav ul {
     text-transform: uppercase;
     font-size: 14px;
     font-weight: bold;
-    color: #40B5C6;
+    color: #0C2528;
 }
 
 .menu_user li a:hover {
@@ -160,6 +177,7 @@ nav ul {
     flex-direction: column;
     background: #A7E3EC;
     margin: 0;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
 }
 
 .content_toolbar {
@@ -270,6 +288,7 @@ nav ul {
 .ps_settings {
     margin-right: 160px;
 }
+
 .settings {
     padding: 0;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
@@ -382,6 +401,7 @@ nav ul {
 .ps_last {
     margin-top: 73px;
 }
+
 .save_settings {
     width: 328px;
     height: 40px;

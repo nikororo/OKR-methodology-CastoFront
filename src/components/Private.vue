@@ -9,8 +9,8 @@
       <div class="col-sm-10 col-md-2 col-lg-2 Private_user">
         <div class="bg_color">
           <div class="ps_user">
-            <img src="../style/img/User.png" alt="User">
-            <p class="User_name">{{this.$store.state.user.name}}</p>
+            <img class="icon_user" src="../style/img/User.png" alt="User">
+            <p class="User_name">{{ this.$store.state.user.name }}</p>
           </div>
           <router-link class="settings_link" active-class="active_settings_one" to="/private/settingsUser">
             Настройки

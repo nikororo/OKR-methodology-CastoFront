@@ -159,13 +159,6 @@ button {
   border: none;
 }
 
-.page {
-  position: relative;
-  background-color: white;
-  padding: 40px 180px;
-  min-height: calc(100vh - 85px);
-}
-
 .button_goals {
   right: 40px;
   top: 40px;

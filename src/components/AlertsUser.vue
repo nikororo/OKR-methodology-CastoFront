@@ -8,8 +8,8 @@
       <div class="col-sm-10 col-md-4 col-lg-2 Private_user">
         <div class="bg_color">
           <div class="ps_user">
-            <img src="../style/img/User.png" alt="User">
-            <p class="User_name">{{this.$store.state.user.name}}</p>
+            <img class="icon_user" src="../style/img/User.png" alt="User">
+            <p class="User_name">{{ this.$store.state.user.name }}</p>
           </div>
           <router-link class="settings_link" active-class="active_settings" to="/private/settingsUser">
             Настройки
@@ -24,7 +24,8 @@
       <div class="col-md-5 col-lg-9 settings">
 
         <div class="header_targets_link">
-          <router-link class="link_targets" active-class="active_link_targets" to="/private/settingsUser">Найстройки профиля
+          <router-link class="link_targets" active-class="active_link_targets" to="/private/settingsUser">Найстройки
+            профиля
           </router-link>
           <router-link class="link_targets" active-class="active_link_targets" to="/private/alertsUser">Оповещения
           </router-link>
@@ -54,8 +55,6 @@ export default {
     publicPath: process.env.BASE_URL,
   }),
 
-  methods: {
-
-  }
+  methods: {}
 }
 </script>

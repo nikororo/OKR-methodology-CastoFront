@@ -8,9 +8,11 @@
       <div class="authTitle">Регистрация</div>
       <form v-on:submit.prevent="onReg" class="register-form">
         <label for="signupFullName">Полное имя</label>
-        <input id="signupFullName" v-model="fullName" type="text" placeholder="Полное имя" required minlength="3" maxlength="80"/>
+        <input id="signupFullName" v-model="fullName" type="text" placeholder="Полное имя" required minlength="3"
+               maxlength="80"/>
         <label for="signupEmail">E-mail</label>
-        <input id="signupEmail" v-model="email" v-bind:class="{error: this.$store.state.authHasError}" type="email" placeholder="E-mail" required minlength="3" maxlength="40"/>
+        <input id="signupEmail" v-model="email" v-bind:class="{error: this.$store.state.authHasError}" type="email"
+               placeholder="E-mail" required minlength="3" maxlength="40"/>
         <label for="signupActivity">Ваша сфера деятельности</label>
         <div>
           <select id="signupActivity" v-model="activity" required>
@@ -25,9 +27,13 @@
           </select>
         </div>
         <label for="signupPass">Пароль</label>
-        <input id="signupPass" v-model="password" v-bind:class="{error: this.$store.state.authHasError}" type="password" placeholder="Пароль" required pattern="^(?=.*\d)(?=.*[a-zA-Z])(?!.*\s).+$" title="Латинские символы и цифры, без пробелов" minlength="8" maxlength="30"/>
-        <div class="errorMsg" v-if="this.$store.state.authHasError">{{this.$store.state.errMsg}}</div>
-        <div class="message">Уже зарегистрированы? <router-link to="/signin">Войти</router-link></div>
+        <input id="signupPass" v-model="password" v-bind:class="{error: this.$store.state.authHasError}" type="password"
+               placeholder="Пароль" required pattern="^(?=.*\d)(?=.*[a-zA-Z])(?!.*\s).+$"
+               title="Латинские символы и цифры, без пробелов" minlength="8" maxlength="30"/>
+        <div class="errorMsg" v-if="this.$store.state.authHasError">{{ this.$store.state.errMsg }}</div>
+        <div class="message">Уже зарегистрированы?
+          <router-link to="/signin">Войти</router-link>
+        </div>
         <button>Зарегистрироваться</button>
       </form>
     </div>
@@ -46,33 +52,33 @@ export default {
     activity: '',
     publicPath: process.env.BASE_URL,
   }),
-    
+
   methods: {
     onReg() {
       Vue.axios.post(this.$store.state.urlBD + 'api/user/register', {
-          name: this.fullName,
-          email: this.email,
-          password: this.password,
-          c_password: this.password,
-          activity: this.activity
+        name: this.fullName,
+        email: this.email,
+        password: this.password,
+        c_password: this.password,
+        activity: this.activity
       })
-        .then(() => {
-          Vue.axios.post(this.$store.state.urlBD + 'api/user/login', {
-            email: this.email,
-            password: this.password
+          .then(() => {
+            Vue.axios.post(this.$store.state.urlBD + 'api/user/login', {
+              email: this.email,
+              password: this.password
+            })
+                .then((res) => {
+                  let user = {
+                    email: res.data.user.email,
+                    name: res.data.user.name,
+                    id: res.data.user.id,
+                  }
+                  this.$store.commit('authCorr', user);
+                  this.$router.push('/');
+                })
+                .catch(() => this.$store.commit('authErr'));
           })
-            .then((res) => {
-              let user = {
-                email: res.data.user.email,
-                name: res.data.user.name,
-                id: res.data.user.id,
-              }
-              this.$store.commit('authCorr', user);
-              this.$router.push('/');
-            })
-            .catch(() => this.$store.commit('authErr'));
-            })
-        .catch(() => this.$store.commit('authErr'));
+          .catch(() => this.$store.commit('authErr'));
     },
   }
 }
