@@ -2,7 +2,10 @@
   <div class="authorization">
     <div class="blueAuth"></div>
     <div class="imgAuth">
-      <img alt="Картинка для авторизации" src="../style/img/auth.png">
+      <img alt="Картинка для авторизации" src="../style/img/Auth.png">
+    </div>
+    <div class="authLogo">
+      <img alt="Логотип OKR" src="../style/img/AuthLogo.png">
     </div>
     <div class="contAuth">
       <div class="authTitle">Вход</div>
@@ -17,7 +20,7 @@
         <div class="message">Еще не зарегистрированы?
           <router-link to="/signup">Создать аккаунт</router-link>
         </div>
-        <button>Войти</button>
+        <button>Вход</button>
       </form>
     </div>
   </div>

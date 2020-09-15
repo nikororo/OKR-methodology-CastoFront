@@ -1,25 +1,27 @@
 <template>
   <div>
-    <header class="header_okr">
-      <div class="soft_menu">
-        <router-link href="" class="home_main" to="/">
-          <img src="../style/img/Logo.png" alt="Logo" class="logo_okr">
-        </router-link>
-      </div>
-      <div class="user_menu">
-        <router-link class="use_name" to="/signup" v-if="this.$store.state.user">Зарегистрироваться</router-link>
-        <router-link class="use_name" to="/signin" v-if="this.$store.state.user">Войти</router-link>
-      </div>
-    </header>
+    <div class="shadow_header">
+      <header class="header_okr">
+        <div class="soft_menu">
+          <router-link href="" class="home_main" to="/">
+            <img src="../style/img/Logo.png" alt="Logo" class="logo_okr icon_logo">
+          </router-link>
+        </div>
+        <div class="user_menu">
+          <router-link class="linkAuth" to="/signup" v-if="this.$store.state.user"><b class="redText">Зарегистрироваться</b></router-link>
+          <router-link class="linkAuth" to="/signin" v-if="this.$store.state.user">Войти</router-link>
+        </div>
+      </header>
+    </div>
     <div class="userNotAuthCont">
-      <div class="msgOops">Упс! Что-то пошло не так</div>
+      <div class="msgOops"><b class="redText">Упс!</b> Что-то пошло не так</div>
       <div class="msgNotAuth">У Вас нет доступа,
-        <router-link to="/signup">зарегистрируйтесь</router-link>
+        <router-link to="/signup"><b class="redText">зарегистрируйтесь</b></router-link>
         или
         <router-link to="/signin">войдите</router-link>
         в систему
       </div>
-      <img src="../style/img/cat.png" alt="cat">
+      <img src="../style/img/Cat.png" alt="Котик">
     </div>
   </div>
 </template>
@@ -32,12 +34,8 @@ export default {
 </script>
 
 <style scoped>
-.use_name {
-  margin-right: 36px;
-}
-
 .userNotAuthCont {
-  background-color: white;
+  background-color: #F4F4F4;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -49,14 +47,19 @@ export default {
 .msgOops {
   font-weight: 600;
   font-size: 60px;
-  line-height: 82px;
+  line-height: 71px;
   color: #40B5C6;
   margin-top: 45px;
 }
 
+.redText {
+  color: #C9002E;
+  font-weight: inherit;
+}
+
 .msgNotAuth {
   max-width: 751px;
-  font-weight: 600;
+  font-weight: normal;
   font-size: 36px;
   line-height: 49px;
   margin: 25px 0;
@@ -65,5 +68,16 @@ export default {
 .msgNotAuth a {
   color: #40B5C6;
   text-decoration: underline;
+}
+
+.msgNotAuth a .redText {
+  text-decoration: underline;
+}
+
+.linkAuth {
+  color: #40B5C6;
+  font-size: 18px;
+  line-height: 21px;
+  margin-right: 36px;
 }
 </style>

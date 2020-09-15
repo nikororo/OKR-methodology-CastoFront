@@ -659,6 +659,7 @@ nav ul {
     margin-bottom: 40px;
 }
 
+/*auth*/
 .authorization {
     position: relative;
     min-height: 100vh;
@@ -666,7 +667,7 @@ nav ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color:#F4F4F4;
 }
 
 .contAuth {
@@ -680,23 +681,23 @@ nav ul {
 
 .authorization form {
     min-width: 350px;
-    max-width: 413px;
+    max-width: 453px;
     padding: 0 45px;
 }
 
 .authorization .authTitle {
     margin-bottom: 40px;
-    font-style: normal;
     font-weight: 600;
     line-height: 82px;
     font-size: 60px;
-    color: #40B5C6;
+    color: #3AACBD;
 }
 
 .authorization input, .authorization select {
     width: 100%;
     height: 46px;
-    border: 2px solid #40B5C6;
+    border: 2px solid #43CBD7;
+    background-color:#F4F4F4;
     margin: 10px 0 15px;
     padding-left: 11px;
     box-sizing: border-box;
@@ -721,7 +722,7 @@ nav ul {
 .authorization button {
     outline: 0;
     border-radius: 58px;
-    background-color: #40B5C6;
+    background-color: #3AACBD;
     border: none;
     min-width: 159px;
     padding: 0 42px;
@@ -733,20 +734,20 @@ nav ul {
 }
 
 .authorization button:hover {
-    background-color: #fff;
+    background-color: #F4F4F4;
     color: #40B5C6;
-    border: 2px solid #40B5C6;
+    border: 2px solid #43CBD7;
     transform: none;
 }
 
 .authorization .message {
-    font-size: 14px;
+    font-size: 16px;
     margin: 0 0 45px;
     text-align: center;
 }
 
 .authorization .message a {
-    color: #468e98;
+    color: #C9002E;
     text-decoration: underline;
 }
 
@@ -782,9 +783,21 @@ nav ul {
     margin: auto;
 }
 
+.authLogo {
+    width: 60%;
+    position: absolute;
+    z-index: 999;
+    right: 40%;
+}
+
+.authLogo img {
+    width: 490px;
+    margin-left: calc( 50% - 245px);
+}
+
 
 @media (orientation: portrait), (max-width: 1000px) {
-    .imgAuth {
+    .imgAuth, .blueAuth, .authLogo {
         display: none;
     }
 

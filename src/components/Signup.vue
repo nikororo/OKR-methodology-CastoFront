@@ -2,7 +2,10 @@
   <div class="authorization">
     <div class="blueAuth"></div>
     <div class="imgAuth">
-      <img alt="Картинка для регистрации" src="../style/img/auth.png">
+      <img alt="Картинка для регистрации" src="../style/img/Auth.png">
+    </div>
+    <div class="authLogo">
+      <img alt="Логотип OKR" src="../style/img/AuthLogo.png">
     </div>
     <div class="contAuth">
       <div class="authTitle">Регистрация</div>
