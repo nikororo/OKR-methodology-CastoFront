@@ -17,23 +17,22 @@ input:active, input:focus, select:focus, button:active, button:focus {
     padding-left: 0;
 }
 
-.no-gutter > [class*='Private_user'] {
-    padding-right: 5px;
-}
-
 .pustota {
     height: calc(100vh - 85px);
 }
 
 /*Header */
+.shadow_header {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}
 .header_okr {
     display: flex;
     height: 82px;
-    background-color: white;
+    background-color: #F4F4F4;
     padding: 0 20px 0 20px;
     justify-content: space-between;;
     align-items: center;
-    margin-bottom: 1px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
 }
 
 .logo_okr {
@@ -69,6 +68,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 .search_okr input, .search_okr button {
     border: none;
     outline: none;
+    background-color: #F4F4F4;
 }
 
 .bell_okr {
@@ -169,7 +169,7 @@ nav ul {
 }
 
 .block_button {
-    margin-bottom: 5px;
+    margin-bottom: 1px;
     outline: none;
     border: none;
     text-decoration: none;
@@ -187,7 +187,7 @@ nav ul {
 }
 
 .block_button:hover {
-    background-color: white;
+    background-color: #F4F4F4;
     text-decoration: none;
     color: black;
 }
@@ -212,7 +212,7 @@ nav ul {
 }
 
 .active {
-    background-color: white;
+    background-color: #F4F4F4;
     text-decoration: none;
     color: black;
 }
@@ -235,7 +235,7 @@ nav ul {
 .bg_color {
     padding: 74px 5px 5px 25px;
     height: 100%;
-    background-color: white;
+    background-color: #F4F4F4;
 }
 
 .ps_user {
@@ -259,27 +259,20 @@ nav ul {
 
 .settings_link:hover {
     text-decoration: none;
-    color: #40B5C6;
+    color: #C9002E;
 }
 
-.active_settings_one {
-    color: #40B5C6;
+.active_settings {
+    color: #C9002E;
 }
 
 /*SettingsUser*/
+.ps_settings {
+    margin-right: 160px;
+}
 .settings {
     padding: 0;
-
-}
-
-.header_settings {
-    width: 100%;
-    background-color: white;
-    margin-bottom: 5px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
 }
 
 .h2_settings {
@@ -290,7 +283,7 @@ nav ul {
     position: relative;
     min-height: calc(100vh - 150px);
     width: 100%;
-    background-color: white;
+    background-color: #F4F4F4;
     display: flex;
     justify-content: center;
     padding: 83px 0 40px;
@@ -325,19 +318,21 @@ nav ul {
     width: 65px;
     height: 30px;
     margin: 0;
-    background-color: #C4C4C4;
+    background-color: #0C2528;
+    border-radius: 30px;
     color: white;
     outline: none;
 }
 
 .data_user .button_file:hover {
     background-color: white;
-    color: #40B5C6;
-    border: 1px solid #40B5C6;
+    color: #0C2528;
+    border: 1px solid #0C2528;
 }
 
 .p_input_file {
-    margin-right: 120px;
+    font-size: 12px;
+    margin-right: 163px;
     margin-left: 10px;
 }
 
@@ -357,8 +352,10 @@ nav ul {
     width: 177px;
     text-decoration: none;
     text-align: center;
-    padding: 8px;
+    padding: 10px 22px;
     border-radius: 25px;
+    margin-left: 65px;
+    font-size: 16px;
 }
 
 .promt {
@@ -385,9 +382,62 @@ nav ul {
 .ps_last {
     margin-top: 73px;
 }
+.save_settings {
+    width: 328px;
+    height: 40px;
+    margin-top: 80px;
+    position: relative;
+    margin-left: 214px;
+}
 
-.active_settings_one {
+.button_save {
+    display: flex;
+    align-items: center;
+    background: #40B5C6;
+    color: white;
+    height: 40px;
+    width: 208px;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px 22px;
+    border-radius: 25px;
+    font-size: 15px;
+    transform: none;
+    float: left;
+    margin-right: 32px;
+}
+
+.button_save:hover {
+    text-decoration: none;
+    background: white;
+    border: 1px solid #40B5C6;
     color: #40B5C6;
+    transform: none;
+    font-size: 15px;
+}
+
+.button_canceling {
+    display: flex;
+    align-items: center;
+    background: #0C2528;
+    color: white;
+    height: 40px;
+    width: 88px;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px 15px;
+    border-radius: 25px;
+    font-size: 15px;
+    transform: none;
+}
+
+.button_canceling:hover {
+    text-decoration: none;
+    background: white;
+    border: 1px solid #0C2528;
+    color: #0C2528;
+    transform: none;
+    font-size: 15px;
 }
 
 /*TargetsUser*/
@@ -397,8 +447,8 @@ nav ul {
     align-items: center;
     justify-content: center;
     height: 60px;
-    background-color: white;
-    margin-bottom: 5px;
+    background-color: #F4F4F4;
+    margin-bottom: 1px;
 }
 
 .h2_user_name {
@@ -410,26 +460,31 @@ nav ul {
 .header_targets_link {
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
-    height: 37px;
-    background-color: white;
+    height: 83px;
+    font-size: 22px;
+    background-color: #F4F4F4;
+    margin-bottom: 1px;
 }
 
 .link_targets {
-    margin-right: 10px;
+    margin-right: 25px;
     text-decoration: none;
-    color: black;
-    font-size: 18px;
+    color: #0C2528;
+    font-size: 22px;
+    padding-bottom: 15px;
 }
 
 .link_targets:hover {
-    color: #86919A;
+    color: #C9002E;
     text-decoration: none;
+    border-bottom: 3px solid #C9002E;
 }
 
-.active_link_targets_one {
-    color: #86919A;
+.active_link_targets {
+    color: #C9002E;
+    border-bottom: 3px solid #C9002E;
 }
 
 .active_link_targets_two {
@@ -439,9 +494,8 @@ nav ul {
 /*PlanWeek*/
 .main_plan_week {
     height: auto;
-    margin-top: 5px;
     padding-top: 37px;
-    background-color: white;
+    background-color: #F4F4F4;
 }
 
 .scale_bg {

@@ -76,9 +76,10 @@ button {
 
 .page {
   position: relative;
-  background-color: white;
+  background-color: #F4F4F4;
   padding: 40px;
   min-height: calc(100vh - 85px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
 }
 
 .button_goals {

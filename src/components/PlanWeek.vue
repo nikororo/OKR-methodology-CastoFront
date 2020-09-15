@@ -9,29 +9,29 @@
         <div class="bg_color">
           <div class="ps_user">
             <img src="../style/img/User.png" alt="User">
-            <p class="User_name">User</p>
+            <p class="User_name">{{this.$store.state.user.name}}</p>
           </div>
-          <router-link class="settings_link" active-class="active_settings_one" to="/private/settingsUser">
+          <router-link class="settings_link" active-class="active_settings" to="/private/settingsUser">
             Настройки
             профиля
           </router-link>
-          <router-link class="settings_link" active-class="active_settings_two" to="/settingsUser">
+          <router-link class="settings_link" active-class="active_settings" to="/private/alertsUser">
             Оповещения
           </router-link>
         </div>
       </div>
 
-      <div class="col-md-5 col-lg-8 settings">
+      <div class="col-md-5 col-lg-9 settings">
 
         <div class="header_targets">
-          <h2 class="h2_user_name">User</h2>
+          <h2 class="h2_user_name">{{this.$store.state.user.name}}</h2>
         </div>
 
         <div class="header_targets_link">
-          <router-link class="link_targets" active-class="active_link_targets_one" to="/PlanWeek">Планы на
+          <router-link class="link_targets" active-class="active_link_targets" to="/PlanWeek">Планы на
             неделю
           </router-link>
-          <router-link class="link_targets" active-class="active_link_targets_two" to="/GoalsUser">Цели
+          <router-link class="link_targets" active-class="active_link_targets" to="/GoalsUser">Цели
           </router-link>
         </div>
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="shadow_header">
     <header class="header_okr">
       <div class="soft_menu">
         <router-link href="" class="home_main" to="/">

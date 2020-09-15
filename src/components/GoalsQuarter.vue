@@ -5,7 +5,7 @@
     <div class="row no-gutter cont">
       <toolBar/>
 
-      <div class="page col-lg-10 col-md-7">
+      <div class="page col-lg-11 col-md-7">
 
         <div class="ps_button_goals">
           <button class="button_goals" @click="showAddGoalModal = true">Добавить</button>
@@ -87,9 +87,10 @@ button {
 
 .page {
   position: relative;
-  background-color: white;
+  background-color: #F4F4F4;
   padding: 40px 180px;
   min-height: calc(100vh - 85px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
 }
 
 .button_goals {

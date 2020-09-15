@@ -47,6 +47,12 @@ const routes = [
     beforeEnter: ifAuthenticated
   },
   {
+    path: '/private/alertsUser',
+    name: 'AlertsUser',
+    component: () => import('../components/AlertsUser'),
+    beforeEnter: ifAuthenticated
+  },
+  {
     path: '/targetsUser',
     name: 'TargetsUser',
     component: () => import('../components/TargetsUser'),

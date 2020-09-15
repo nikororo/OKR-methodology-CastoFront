@@ -1,5 +1,5 @@
 <template>
-  <div class="toolBar col-sm-2 col-md-3 col-lg-2">
+  <div class="toolBar col-sm-1 col-md-2 col-lg-1">
 
     <router-link class="block_button" active-class="active" to="/private">
       <div class="content_toolbar">

@@ -9,22 +9,25 @@
         <div class="bg_color">
           <div class="ps_user">
             <img src="../style/img/User.png" alt="User">
-            <p class="User_name">User</p>
+            <p class="User_name">{{this.$store.state.user.name}}</p>
           </div>
-          <router-link class="settings_link" active-class="active_settings_one" to="/private/settingsUser">
+          <router-link class="settings_link" active-class="active_settings" to="/private/settingsUser">
             Настройки
             профиля
           </router-link>
-          <router-link class="settings_link" active-class="active_settings_two" to="">
+          <router-link class="settings_link" active-class="active_settings" to="/private/alertsUser">
             Оповещения
           </router-link>
         </div>
       </div>
 
-      <div class="col-md-5 col-lg-8 settings">
+      <div class="col-md-5 col-lg-9 settings">
 
-        <div class="header_settings">
-          <h2 class="h2_settings">Настройки профиля</h2>
+        <div class="header_targets_link">
+          <router-link class="link_targets" active-class="active_link_targets" to="/private/settingsUser">Найстройки профиля
+          </router-link>
+          <router-link class="link_targets" active-class="active_link_targets" to="/private/alertsUser">Оповещения
+          </router-link>
         </div>
 
         <div class="main_settings">
@@ -71,6 +74,12 @@
             </div>
 
             <a href="" class="button_pass">Обновить пароль</a>
+
+            <div class="save_settings">
+              <a href="" class="button_save">Сохранить изменения</a>
+              <a href="" class="button_canceling">Отмена</a>
+            </div>
+
           </div>
         </div>
       </div>
@@ -78,7 +87,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
 import Head from "@/components/Head";
@@ -94,8 +102,6 @@ export default {
     publicPath: process.env.BASE_URL,
   }),
 
-  methods: {
-
-  }
+  methods: {}
 }
 </script>

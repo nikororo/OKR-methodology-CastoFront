@@ -3,7 +3,7 @@
     <Head/>
     <div class="row no-gutter">
       <toolBar/>
-      <CommonGoals class="col-sm-10 col-md-4 col-lg-10"/>
+      <CommonGoals class="col-sm-11 col-md-4 col-lg-11"/>
     </div>
   </div>
 </template>
