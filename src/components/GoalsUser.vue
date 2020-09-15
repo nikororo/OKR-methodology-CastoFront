@@ -15,7 +15,7 @@
             Настройки
             профиля
           </router-link>
-          <router-link class="settings_link" active-class="active_settings_two" to="/settingsUser">
+          <router-link class="settings_link" active-class="active_settings_two" to="/private/alertsUser">
             Оповещения
           </router-link>
         </div>

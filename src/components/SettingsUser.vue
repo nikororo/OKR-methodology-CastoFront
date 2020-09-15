@@ -39,7 +39,7 @@
               <label for="file" class="button_file">
                 <span>Фото</span>
               </label>
-              <span class="p_input_file">Выберете фото</span>
+              <span class="p_input_file">Выбрать фото</span>
             </div>
 
             <div class="data_user">
