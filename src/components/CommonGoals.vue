@@ -1,64 +1,66 @@
 <template>
-  <div class="page">
-    <select id="selectLvlGoals" class="search" v-model="selectLvlGoals">
-      <option value selected disabled>По уровню цели</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-    </select>
-    <select id="selectActivity" class="search" v-model="selectActivity">
-      <option value selected disabled>По активности</option>
-      <option value="selectProccess">В процессе</option>
-      <option value="selectPause">На паузе</option>
-    </select>
-    <div class="ps_button_goals">
-      <button class="button_goals" @click="showAddGoalModal = true">Добавить</button>
-      <AddGoalModal v-if="showAddGoalModal" @close="showAddGoalModal = false"/>
-    </div>
-    <div class="goals companyGoals">
-      <p>Цель компании</p>
-      <div class="statistics">
-        <p class="statItem">В процессе {{ onPause }}</p>
-        <p class="statItem">На паузе {{ inProcess }}</p>
+  <div>
+    <Head/>
+
+    <div class="row no-gutter">
+      <toolBar/>
+      <div class="col-lg-11 col-md-7">
+        <div class="header_targets_link">
+          <router-link class="link_targets" active-class="active_link_targets" to="/goals">
+            Дерево целей
+          </router-link>
+          <router-link class="link_targets" active-class="active_link_targets" to="/GoalsQuarter">
+            Цели на квартал
+          </router-link>
+        </div>
+        <div class="page">
+          <div>
+            <button class="button_goals" @click="showAddGoalModal = true">Добавить</button>
+            <AddGoalModal v-if="showAddGoalModal" @close="showAddGoalModal = false"/>
+          </div>
+          <div class="goals companyGoals">
+            <p class="nameGoals">Цель компании</p>
+            <input type="range" min="1" max="100" v-model="percent" class="slider">
+            <p class="percentGoals">{{ percent }}%</p>
+          </div>
+          <div class="goals otherGoals">
+            <div class="line_tree"></div>
+            <p class="nameGoals">Цель отдела</p>
+            <input type="range" min="1" max="100" v-model="percent" class="slider">
+            <p class="percentGoals">{{ percent }}%</p>
+          </div>
+          <div class="goals otherGoals">
+            <div class="line_tree"></div>
+            <p class="nameGoals">Цель отдела</p>
+            <input type="range" min="1" max="100" v-model="percent" class="slider">
+            <p class="percentGoals">{{ percent }}%</p>
+          </div>
+          <div class="goals otherGoals">
+            <div class="line_tree"></div>
+            <p class="nameGoals">Цель отдела</p>
+            <input type="range" min="1" max="100" v-model="percent" class="slider">
+            <p class="percentGoals">{{ percent }}%</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="goals otherGoals">
-      <div class="line_tree"></div>
-      <p>Цель отдела</p>
-      <input type="range" min="1" max="100" v-model="percent" class="slider">
-      <p>{{ percent }}%</p>
-    </div>
-    <div class="goals otherGoals">
-      <div class="line_tree"></div>
-      <p>Цель отдела</p>
-      <input type="range" min="1" max="100" v-model="percent" class="slider">
-      <p>{{ percent }}%</p>
-    </div>
-    <div class="goals otherGoals">
-      <div class="line_tree"></div>
-      <p>Цель отдела</p>
-      <input type="range" min="1" max="100" v-model="percent" class="slider">
-      <p>{{ percent }}%</p>
-    </div>
   </div>
-
 </template>
 
 <script>
+import Head from "@/components/Head";
+import ToolBar from "@/components/ToolBar";
 import AddGoalModal from './AddGoalModal';
 
 export default {
   name: 'CommonGoals',
 
   components: {
-    AddGoalModal
+    Head, ToolBar, AddGoalModal
   },
 
   data: () => ({
     percent: '',
-    onPause: 4,
-    inProcess: 10,
-    selectLvlGoals: '',
-    selectActivity: '',
     showAddGoalModal: false
   }),
 }
@@ -73,205 +75,4 @@ p {
 button {
   border: none;
 }
-
-.page {
-  position: relative;
-  background-color: #F4F4F4;
-  padding: 40px;
-  min-height: calc(100vh - 85px);
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-}
-
-.button_goals {
-  position: absolute;
-  right: 40px;
-  top: 40px;
-  width: 151px;
-  height: 31px;
-  background-color: #86919A;
-  color: white;
-  border-radius: 10px;
-}
-
-.goals {
-  position: relative;
-  padding: 10px 40px;
-  border-radius: 10px;
-  font-size: 18px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.companyGoals {
-  background-color: #dee7ee;
-  font-size: 24px;
-}
-
-.otherGoals {
-  background-color: #B8C5D0;
-  margin-left: 20px;
-}
-
-.statistics {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 16px;
-  line-height: 22px;
-}
-
-.statItem {
-  padding: 2px 10px;
-  border: 1px solid black;
-  border-radius: 8px;
-  margin-right: 20px;
-}
-
-.search {
-  padding: 2px 10px;
-  border: 1px solid black;
-  border-radius: 8px;
-  margin: 0 20px 20px 0;
-  min-width: 200px;
-}
-
-.slider {
-  -webkit-appearance: none;
-  width: 40%;
-  height: 7px;
-  border-radius: 4px;
-  background: #86919A;
-  outline: none;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #86919A;
-  cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #86919A;
-  cursor: pointer;
-}
-
-.line_tree {
-  position: absolute;
-  width: 10px;
-  height: 80px;
-  border-left: 2px solid #dee7ee;
-  border-bottom: 2px solid #dee7ee;
-  left: -10px;
-  bottom: 20px;
-}
-
-p {
-  margin-bottom: 0;
-}
-
-button {
-  border: none;
-}
-
-.button_goals {
-  position: absolute;
-  right: 40px;
-  top: 40px;
-  width: 151px;
-  height: 31px;
-  background-color: #86919A;
-  color: white;
-  border-radius: 10px;
-}
-
-.goals {
-  position: relative;
-  padding: 10px 40px;
-  border-radius: 10px;
-  font-size: 18px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.companyGoals {
-  background-color: #dee7ee;
-  font-size: 24px;
-}
-
-.otherGoals {
-  background-color: #B8C5D0;
-  margin-left: 20px;
-}
-
-.statistics {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 16px;
-  line-height: 22px;
-}
-
-.statItem {
-  padding: 2px 10px;
-  border: 1px solid black;
-  border-radius: 8px;
-  margin-right: 20px;
-}
-
-.search {
-  padding: 2px 10px;
-  border: 1px solid black;
-  border-radius: 8px;
-  margin: 0 20px 20px 0;
-  min-width: 200px;
-}
-
-.slider {
-  -webkit-appearance: none;
-  width: 40%;
-  height: 7px;
-  border-radius: 4px;
-  background: #86919A;
-  outline: none;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #86919A;
-  cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #86919A;
-  cursor: pointer;
-}
-
-.line_tree {
-  position: absolute;
-  width: 10px;
-  height: 80px;
-  border-left: 2px solid #dee7ee;
-  border-bottom: 2px solid #dee7ee;
-  left: -10px;
-  bottom: 20px;
-}
-
 </style>

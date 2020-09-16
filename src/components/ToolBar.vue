@@ -10,7 +10,7 @@
       </div>
     </router-link>
 
-    <router-link class="block_button" active-class="active" to="/goalsQuarter">
+    <router-link class="block_button" active-class="active" to="/goals">
       <div class="content_toolbar">
         <div class="button_toolbar">
           <img class="img_color" width="18" height="18" src="../style/img/Project.png" alt="">

@@ -9,7 +9,7 @@ const ifNotAuthenticated = (to, from, next) => {
     next()
     return
   }
-  next('/')
+  next('/goals')
 }
 
 const ifAuthenticated = (to, from, next) => {
@@ -31,6 +31,12 @@ const routes = [
     path: '/',
     name: 'Home',
     component: () => import('../components/Home'),
+    beforeEnter: ifAuthenticated
+  },
+  {
+    path: '/goals',
+    name: 'Goals',
+    component: () => import('../components/CommonGoals'),
     beforeEnter: ifAuthenticated
   },
   {
@@ -86,7 +92,7 @@ const routes = [
     component: () => import('../components/Signup')
   },
   {
-    path: '/goalsQuarter',
+    path: '/GoalsQuarter',
     name: 'goalsQuarter',
     component: () => import('../components/GoalsQuarter')
   },

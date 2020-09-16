@@ -38,10 +38,6 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 
 /*Header */
-.shadow_header {
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-}
-
 .header_okr {
     display: flex;
     height: 82px;
@@ -49,7 +45,6 @@ input:active, input:focus, select:focus, button:active, button:focus {
     padding: 0 20px 0 20px;
     justify-content: space-between;;
     align-items: center;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
 }
 
 .logo_okr {
@@ -177,7 +172,7 @@ nav ul {
     flex-direction: column;
     background: #A7E3EC;
     margin: 0;
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px -20px rgba(0, 0, 0, 0.5) inset;
 }
 
 .content_toolbar {
@@ -233,6 +228,7 @@ nav ul {
     background-color: #F4F4F4;
     text-decoration: none;
     color: black;
+    box-shadow: 0 10px 20px -20px rgba(0, 0, 0, 0.5) inset;
 }
 
 .active .button_toolbar {
@@ -254,6 +250,7 @@ nav ul {
     padding: 74px 5px 5px 25px;
     height: 100%;
     background-color: #F4F4F4;
+    box-shadow: 0 10px 20px -20px rgba(0, 0, 0, 0.5) inset;
 }
 
 .ps_user {
@@ -291,7 +288,7 @@ nav ul {
 
 .settings {
     padding: 0;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    box-shadow: -10px 10px 20px -5px rgba(0, 0, 0, 0.1);
 }
 
 .h2_settings {
@@ -485,15 +482,20 @@ nav ul {
     height: 83px;
     font-size: 22px;
     background-color: #F4F4F4;
-    margin-bottom: 1px;
+    margin-bottom: 1px; 
+    box-shadow: 0 10px 20px -20px rgba(0, 0, 0, 0.5) inset;
 }
 
 .link_targets {
-    margin-right: 25px;
+    margin-right: 50px;
     text-decoration: none;
     color: #0C2528;
     font-size: 22px;
     padding-bottom: 15px;
+}
+
+.link_targets:last-child {
+    margin-right: 0;
 }
 
 .link_targets:hover {
@@ -808,3 +810,90 @@ nav ul {
 }
 
 /*GoalsQuarter*/
+
+.line_tree {
+    position: absolute;
+    width: 18px;
+    height: 120px;
+    border-left: 2px solid #c6cbcb;
+    border-bottom: 2px solid #c6cbcb;
+    left: -18px;
+    bottom: 38px;
+  }
+
+.page {
+    background-color: #F4F4F4;
+    padding: 40px 100px;
+    min-height: calc(100vh - 166px);
+    width: 100%;
+}
+  
+.button_goals {
+    margin-left: calc(100% - 114px);
+    width: 114px;
+    height: 37px;
+    font-size: 16px;
+    background-color: #3AACBD;
+    color: white;
+    border-radius: 35px;
+    margin-bottom: 23px;
+}
+  
+.goals {
+    position: relative;
+    padding: 25px 40px;
+    font-size: 22px;
+    line-height: 26px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    background-color: #F4F4F4;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+}
+
+.nameGoals {
+    width: 45%;
+}
+
+.percentGoals {
+    position: absolute;
+    right: 10%;
+}
+
+.companyGoals {
+    z-index: 100;
+}
+
+.otherGoals {
+    z-index: 80;
+    margin-left: 35px;
+}
+
+.slider {
+    position: absolute;
+    left: 50%;
+    -webkit-appearance: none;
+    width: 30%;
+    height: 10px;
+    border-radius: 4px;
+    background: #e7abb9;
+    outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #C9002E;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #C9002E;
+    cursor: pointer;
+}

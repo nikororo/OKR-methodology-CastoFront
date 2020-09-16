@@ -17,18 +17,14 @@
         <section class="addGoalModalBody">
           <div class="addGoalNameInput">
             <label for="addGoalAuthor">Автор</label>
-            <label for="addGoalType">Тип цели</label>
             <label for="addGoalDateStart">Период</label>
             <label for="addGoalExecutor">Исполнитель</label>
-            <label for="addGoalParentGoals">Родительские цели</label>
             <label for="addGoalDescr">Описание цели</label>
           </div>
           <div class="addGoalInput">
             <select id="addGoalAuthor" class="input_user" required>
-              <option value disabled selected>Автор</option>
-              <option v-if="$store.state.user">{{ this.$store.state.user.name }}</option>
+              <option v-if="$store.state.user" selected>{{ this.$store.state.user.name }}</option>
             </select>
-            <input id="addGoalType" class="input_user" type="text" placeholder="Тип цели" required>
             <div class="addGoalDate">
               <input id="addGoalDateStart" class="input_user" placeholder="Дата начала" type="text"
                      onfocus="(this.type='date')" onblur="(this.type='text')" required>
@@ -37,9 +33,6 @@
             </div>
             <select id="addGoalExecutor" class="input_user" required>
               <option value disabled selected>Исполнитель</option>
-            </select>
-            <select id="addGoalParentGoals" class="input_user" required>
-              <option value disabled selected>Родительские цели</option>
             </select>
             <textarea id="addGoalDescr" class="input_user" type="text"
                       placeholder="Описание цели"></textarea>
@@ -79,10 +72,6 @@ export default {
 </script>
 
 <style>
-body {
-  overflow: hidden;
-}
-
 button {
   line-height: normal;
 }
@@ -111,7 +100,7 @@ button {
   width: 859px;
   background: #FFFFFF;
   box-shadow: 2px 2px 20px 1px;
-  height: 650px;
+  height: 530px;
   display: inline-block;
   white-space: normal;
   vertical-align: middle;
@@ -200,13 +189,13 @@ button {
 .addGoalModal .button_pass {
   border: 1px solid #40B5C6;
   width: 150px;
-  margin-bottom: 20px;
+  margin: 0;
 }
 
 .addGoalModal .button_pass:last-child {
   border: 1px solid #40B5C6;
   background-color: white;
   color: #40B5C6;
-  margin-left: 20px;
+  margin-left: 50px;
 }
 </style>

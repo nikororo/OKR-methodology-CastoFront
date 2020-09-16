@@ -5,9 +5,9 @@
       <toolBar/>    
       <div class="col-sm-10 col-md-9 col-lg-11 command">
 
-        <div class="header_targets">
-          <router-link class="linkCommand" active-class="activeLinkCommand" to="/command">Моя команда</router-link>
-          <router-link class="linkCommand" active-class="activeLinkCommand" to="/commandList">Список команд</router-link>
+        <div class="header_targets_link">
+          <router-link class="link_targets" active-class="active_link_targets" to="/command">Моя команда</router-link>
+          <router-link class="link_targets" active-class="active_link_targets" to="/commandList">Список команд</router-link>
         </div>
 
         <h2 class="commandName">{{commName}}</h2>
@@ -93,7 +93,6 @@ export default {
 
   .command {
     min-height: calc(100vh - 150px);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
   }
 
   .commandName {
@@ -104,7 +103,7 @@ export default {
   }
 
   .listOfEmployees {
-    min-height: calc(100vh - 215px);  
+    min-height: calc(100vh - 225px);  
     background-color: #F4F4F4;
     text-align: right;
     padding-top: 30px;
@@ -127,24 +126,6 @@ export default {
       color: #40B5C6;
       border: 2px solid #40B5C6;
       transform: none;
-  }
-  .linkCommand {
-    text-decoration: none;
-    color: black;
-    font-size: 18px;
-  }
-
-  .linkCommand:first-child {
-    margin-right: 40px;
-  }
-
-  .linkCommand:hover {
-    color: #40B5C6;
-    text-decoration: underline;
-  }
-
-  .activeLinkCommand {
-    color: #40B5C6;
   }
 
   .contUserComm {
