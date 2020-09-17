@@ -104,67 +104,6 @@ input:active, input:focus, select:focus, button:active, button:focus {
     margin-right: 18px;
 }
 
-.user_menu nav {
-    display: inline-block;
-}
-
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.menu_user:after {
-    display: table;
-    margin-right: 18px;
-}
-
-.menu_user > li {
-    position: relative;
-}
-
-.menu_user > li > a {
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: bold;
-    color: #0C2528;
-}
-
-.menu_user li a:hover {
-    color: black;
-}
-
-.submenu-link:after {
-    color: inherit;
-}
-
-.submenu {
-    background: #DDDDDD;
-    position: absolute;
-    top: 30px;
-    right: 0;
-    z-index: 5;
-    width: 180px;
-    transform: scaleY(0);
-    transform-origin: 0 0;
-    transition: .5s ease-in-out;
-}
-
-.submenu a {
-    color: white;
-    padding: 12px 15px;
-    font-size: 13px;
-    border-bottom: 1px solid rgba(255, 255, 255, .1);
-}
-
-.submenu li:last-child a {
-    border-bottom: none;
-}
-
-.menu_user > li:hover .submenu {
-    opacity: 1;
-    transform: scaleY(1);
-}
 
 /*ToolBar*/
 .toolBar {
@@ -240,46 +179,46 @@ nav ul {
 }
 
 /*Private*/
-.Private_user {
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
-}
+/*.Private_user {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    overflow: auto;*/
+/*}*/
 
-.bg_color {
-    padding: 74px 5px 5px 25px;
-    height: 100%;
-    background-color: #F4F4F4;
-    box-shadow: 0 10px 20px -20px rgba(0, 0, 0, 0.5) inset;
-}
+/*.bg_color {*/
+/*    padding: 74px 5px 5px 25px;*/
+/*    height: 100%;*/
+/*    background-color: #F4F4F4;*/
+/*    box-shadow: 0 10px 20px -20px rgba(0, 0, 0, 0.5) inset;*/
+/*}*/
 
-.ps_user {
-    display: flex;
-    align-items: center;
-    padding-bottom: 40px;
-}
+/*.ps_user {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    padding-bottom: 40px;*/
+/*}*/
 
-.User_name {
-    margin: 0 0 0 10px;
-}
+/*.User_name {*/
+/*    margin: 0 0 0 10px;*/
+/*}*/
 
-.settings_link {
-    display: block;
-    margin-bottom: 10px;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 25px;
-    color: black;
-}
+/*.settings_link {*/
+/*    display: block;*/
+/*    margin-bottom: 10px;*/
+/*    text-decoration: none;*/
+/*    font-size: 18px;*/
+/*    line-height: 25px;*/
+/*    color: black;*/
+/*}*/
 
-.settings_link:hover {
-    text-decoration: none;
-    color: #C9002E;
-}
+/*.settings_link:hover {*/
+/*    text-decoration: none;*/
+/*    color: #C9002E;*/
+/*}*/
 
-.active_settings {
-    color: #C9002E;
-}
+/*.active_settings {*/
+/*    color: #C9002E;*/
+/*}*/
 
 /*SettingsUser*/
 .ps_settings {
@@ -499,14 +438,14 @@ nav ul {
 }
 
 .link_targets:hover {
-    color: #C9002E;
+    color: #D76101;
     text-decoration: none;
-    border-bottom: 3px solid #C9002E;
+    border-bottom: 3px solid #D76101;
 }
 
 .active_link_targets {
-    color: #C9002E;
-    border-bottom: 3px solid #C9002E;
+    color: #D76101;
+    border-bottom: 3px solid #D76101;
 }
 
 .active_link_targets_two {
@@ -896,4 +835,25 @@ nav ul {
     border-radius: 50%;
     background: #C9002E;
     cursor: pointer;
+}
+.create_goal {
+    position: relative;
+    padding: 25px 40px;
+    margin-left: 35px;
+    font-size: 22px;
+    line-height: 26px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    background-color: #F4F4F4;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+}
+.create_goal button>img {
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
+}
+.create_goal input {
+    border: none;
+    background-color: #F4F4F4;
 }

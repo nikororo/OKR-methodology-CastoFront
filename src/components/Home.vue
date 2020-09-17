@@ -3,7 +3,7 @@
     <Head/>
     <div class="row no-gutter">
       <toolBar/>
-      <div class="col-lg-11 col-md-7">
+      <div class="col-lg-10 col-md-7">
         <div class="homePage">Какое-то описание окр</div>
       </div>
     </div>

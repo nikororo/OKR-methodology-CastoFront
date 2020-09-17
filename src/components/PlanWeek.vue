@@ -5,23 +5,23 @@
     <div class="row no-gutter cont">
       <toolBar/>
 
-      <div class="col-sm-10 col-md-4 col-lg-2 Private_user">
-        <div class="bg_color">
-          <div class="ps_user">
-            <img class="icon_user" src="../style/img/User.png" alt="User">
-            <p class="User_name">{{ this.$store.state.user.name }}</p>
-          </div>
-          <router-link class="settings_link" active-class="active_settings" to="/private/settingsUser">
-            Настройки
-            профиля
-          </router-link>
-          <router-link class="settings_link" active-class="active_settings" to="/private/alertsUser">
-            Оповещения
-          </router-link>
-        </div>
-      </div>
+<!--      <div class="col-sm-10 col-md-4 col-lg-2 Private_user">-->
+<!--        <div class="bg_color">-->
+<!--          <div class="ps_user">-->
+<!--            <img class="icon_user" src="../style/img/User.png" alt="User">-->
+<!--            <p class="User_name">{{ this.$store.state.user.name }}</p>-->
+<!--          </div>-->
+<!--          <router-link class="settings_link" active-class="active_settings" to="/private/settingsUser">-->
+<!--            Настройки-->
+<!--            профиля-->
+<!--          </router-link>-->
+<!--          <router-link class="settings_link" active-class="active_settings" to="/private/alertsUser">-->
+<!--            Оповещения-->
+<!--          </router-link>-->
+<!--        </div>-->
+<!--      </div>-->
 
-      <div class="col-md-5 col-lg-9 settings">
+      <div class="col-md-5 col-lg-10 settings">
 
         <div class="header_targets">
           <h2 class="h2_user_name">{{ this.$store.state.user.name }}</h2>

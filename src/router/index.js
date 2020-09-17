@@ -39,20 +39,20 @@ const routes = [
     component: () => import('../components/CommonGoals'),
     beforeEnter: ifAuthenticated
   },
+  // {
+  //   path: '/private',
+  //   name: 'Private',
+  //   component: () => import('../components/Private'),
+  //   beforeEnter: ifAuthenticated
+  // },
   {
-    path: '/private',
-    name: 'Private',
-    component: () => import('../components/Private'),
-    beforeEnter: ifAuthenticated
-  },
-  {
-    path: '/private/settingsUser',
+    path: '/settingsUser',
     name: 'SettingsUser',
     component: () => import('../components/SettingsUser'),
     beforeEnter: ifAuthenticated
   },
   {
-    path: '/private/alertsUser',
+    path: '/settingsUser/alertsUser',
     name: 'AlertsUser',
     component: () => import('../components/AlertsUser'),
     beforeEnter: ifAuthenticated
@@ -92,7 +92,7 @@ const routes = [
     component: () => import('../components/Signup')
   },
   {
-    path: '/GoalsQuarter',
+    path: '/goals/GoalsQuarter',
     name: 'goalsQuarter',
     component: () => import('../components/GoalsQuarter')
   },

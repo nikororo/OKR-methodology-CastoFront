@@ -4,12 +4,12 @@
 
     <div class="row no-gutter">
       <toolBar/>
-      <div class="col-lg-11 col-md-7">
+      <div class="col-lg-10 col-md-7">
         <div class="header_targets_link">
           <router-link class="link_targets" active-class="active_link_targets" to="/goals">
             Дерево целей
           </router-link>
-          <router-link class="link_targets" active-class="active_link_targets" to="/GoalsQuarter">
+          <router-link class="link_targets" active-class="active_link_targets" to="/goals/GoalsQuarter">
             Цели на квартал
           </router-link>
         </div>
