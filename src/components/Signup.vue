@@ -20,20 +20,20 @@
         <div>
           <select id="signupActivity" v-model="activity" required>
             <option value disabled selected>Сфера деятельности</option>
-            <option value="departmentHead">Руководитель отдела</option>
-            <option value="manager">Менеджер</option>
-            <option selected value="developer">Разработчик</option>
-            <option value="analyst">Аналитик</option>
-            <option value="designer">Дизайнер</option>
-            <option selected value="tester">Тестировщик</option>
-            <option value="other">Другое</option>
+            <option value="Руководитель отдела">Руководитель отдела</option>
+            <option value="Менеджер">Менеджер</option>
+            <option selected value="Разработчик">Разработчик</option>
+            <option value="Аналитик">Аналитик</option>
+            <option value="Дизайнер">Дизайнер</option>
+            <option selected value="Тестировщик">Тестировщик</option>
+            <option value="Другое">Другое</option>
           </select>
         </div>
         <label for="signupPass">Пароль</label>
-        <input id="signupPass" v-model="password" v-bind:class="{error: this.$store.state.authHasError}" type="password"
+        <input id="signupPass" v-model="password" type="password"
                placeholder="Пароль" required pattern="^(?=.*\d)(?=.*[a-zA-Z])(?!.*\s).+$"
                title="Латинские символы и цифры, без пробелов" minlength="8" maxlength="30"/>
-        <div class="errorMsg" v-if="this.$store.state.authHasError">{{ this.$store.state.errMsg }}</div>
+        <div class="errorMsg" v-if="this.$store.state.authHasError">Возможно, ваш e-mail уже зарегистрирован</div>
         <div class="message">Уже зарегистрированы?
           <router-link to="/signin">Войти</router-link>
         </div>
@@ -75,9 +75,10 @@ export default {
                     email: res.data.user.email,
                     name: res.data.user.name,
                     id: res.data.user.id,
+                    activity: res.data.user.activity
                   }
                   this.$store.commit('authCorr', user);
-                  this.$router.push('/');
+                  this.$router.push('/goals');
                 })
                 .catch(() => this.$store.commit('authErr'));
           })

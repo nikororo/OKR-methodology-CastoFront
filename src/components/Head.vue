@@ -31,13 +31,32 @@
             </li>
           </ul>
         </nav>
+        <button @click="showLogOutModal = true" class='btnLogOut'><img src="../style/img/LogOut.png" alt="Log Out"></button>
+        <LogOutModal v-if="showLogOutModal" @close="showLogOutModal = false"/>
       </div>
     </header>
   </div>
 </template>
 
 <script>
+import LogOutModal from './LogOutModal';
+
 export default {
-  name: 'Head'
+  name: 'Head',
+
+  components: {
+    LogOutModal
+  },
+  
+  data: () => ({
+    showLogOutModal: false
+  }),
 }
 </script>
+
+<style scoped>
+.btnLogOut {
+  border: none;
+  margin-left: 20px;
+}
+</style>
