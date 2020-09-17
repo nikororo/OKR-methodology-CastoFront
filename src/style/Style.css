@@ -51,37 +51,37 @@ input:active, input:focus, select:focus, button:active, button:focus {
     margin-right: 50px;
 }
 
-.search_okr {
-    display: inline-block;
-    width: 203px;
-    height: 30px;
-    margin-right: 18px;
-    border: 2px solid #70C7D4;
-    font-size: 13px;
-    color: #70C7D4;
-}
+/*.search_okr {*/
+/*    display: inline-block;*/
+/*    width: 203px;*/
+/*    height: 30px;*/
+/*    margin-right: 18px;*/
+/*    border: 2px solid #70C7D4;*/
+/*    font-size: 13px;*/
+/*    color: #70C7D4;*/
+/*}*/
 
-.search_okr form {
-    position: relative;
-    padding: 4px 0 4px 30px;
+/*.search_okr form {*/
+/*    position: relative;*/
+/*    padding: 4px 0 4px 30px;*/
 
-}
+/*}*/
 
-.search_okr button {
-    width: 30px;
-    height: 26px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    cursor: pointer;
-    background: transparent;
-}
+/*.search_okr button {*/
+/*    width: 30px;*/
+/*    height: 26px;*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    cursor: pointer;*/
+/*    background: transparent;*/
+/*}*/
 
-.search_okr input, .search_okr button {
-    border: none;
-    outline: none;
-    background-color: #F4F4F4;
-}
+/*.search_okr input, .search_okr button {*/
+/*    border: none;*/
+/*    outline: none;*/
+/*    background-color: #F4F4F4;*/
+/*}*/
 
 .bell_okr {
     margin-right: 18px;
@@ -104,6 +104,38 @@ input:active, input:focus, select:focus, button:active, button:focus {
     margin-right: 18px;
 }
 
+.button_menu {
+    background: transparent;
+    text-decoration: none;
+}
+
+.button_menu img {
+    width: 20px;
+    height: 20px;
+}
+
+.menu {
+    display: none;
+}
+
+.links_menu {
+    z-index: 100;
+    display: none;
+    position: absolute;
+    top: 100px;
+    right: 0;
+    width: 194px;
+    height: 117px;
+    border-radius: 15px;
+    background-color: #C4C4C4;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 28px 0;
+}
+
+.button_menu:hover .menu {
+    display: block;
+}
 
 /*ToolBar*/
 .toolBar {
@@ -421,7 +453,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     height: 83px;
     font-size: 22px;
     background-color: #F4F4F4;
-    margin-bottom: 1px; 
+    margin-bottom: 1px;
     box-shadow: 0 10px 20px -20px rgba(0, 0, 0, 0.5) inset;
 }
 
@@ -454,7 +486,8 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 /*PlanWeek*/
 .main_plan_week {
-    height: auto;
+    /*height: auto;*/
+    min-height: calc(100vh - 150px);
     padding-top: 37px;
     background-color: #F4F4F4;
 }
@@ -494,9 +527,9 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .tasks {
+    min-height: calc(100vh - 150px);
     padding-top: 47px;
     padding-left: 60px;
-    height: calc(100vh - 192px);
     display: flex;
     flex-wrap: wrap-reverse;
     flex-direction: column;
@@ -608,7 +641,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:#F4F4F4;
+    background-color: #F4F4F4;
 }
 
 .contAuth {
@@ -638,7 +671,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     width: 100%;
     height: 46px;
     border: 2px solid #43CBD7;
-    background-color:#F4F4F4;
+    background-color: #F4F4F4;
     margin: 10px 0 15px;
     padding-left: 11px;
     box-sizing: border-box;
@@ -733,7 +766,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .authLogo img {
     width: 490px;
-    margin-left: calc( 50% - 245px);
+    margin-left: calc(50% - 245px);
 }
 
 
@@ -758,7 +791,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     border-bottom: 2px solid #c6cbcb;
     left: -18px;
     bottom: 38px;
-  }
+}
 
 .page {
     background-color: #F4F4F4;
@@ -766,7 +799,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     min-height: calc(100vh - 166px);
     width: 100%;
 }
-  
+
 .button_goals {
     margin-left: calc(100% - 114px);
     width: 114px;
@@ -777,7 +810,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     border-radius: 35px;
     margin-bottom: 23px;
 }
-  
+
 .goals {
     position: relative;
     padding: 25px 40px;
@@ -849,11 +882,13 @@ input:active, input:focus, select:focus, button:active, button:focus {
     background-color: #F4F4F4;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
 }
-.create_goal button>img {
+
+.create_goal button > img {
     width: 20px;
     height: 20px;
     margin-right: 20px;
 }
+
 .create_goal input {
     border: none;
     background-color: #F4F4F4;
@@ -873,7 +908,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .listOfEmployees {
-    min-height: calc(100vh - 225px);  
+    min-height: calc(100vh - 225px);
     background-color: #F4F4F4;
     text-align: right;
     padding-top: 30px;
@@ -892,10 +927,10 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .addBtnUserComm:hover {
-      background-color: #fff;
-      color: #40B5C6;
-      border: 2px solid #40B5C6;
-      transform: none;
+    background-color: #fff;
+    color: #40B5C6;
+    border: 2px solid #40B5C6;
+    transform: none;
 }
 
 .contUserComm {
@@ -915,9 +950,9 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .addGoalModalCont button {
     line-height: normal;
-  }
-  
-  .addGoalModalCont {
+}
+
+.addGoalModalCont {
     position: fixed;
     top: 0;
     right: 0;
@@ -929,15 +964,15 @@ input:active, input:focus, select:focus, button:active, button:focus {
     padding: 30px;
     white-space: nowrap;
     text-align: center;
-  }
-  
-  .addGoalModalCont::before {
+}
+
+.addGoalModalCont::before {
     height: 100%;
     display: inline-block;
     vertical-align: middle;
-  }
-  
-  .addGoalModal {
+}
+
+.addGoalModal {
     width: 859px;
     background: #F4F4F4;
     box-shadow: 2px 2px 20px 1px;
@@ -945,107 +980,106 @@ input:active, input:focus, select:focus, button:active, button:focus {
     display: inline-block;
     white-space: normal;
     vertical-align: middle;
-  }
-  
-  .addGoalModal header {
+}
+
+.addGoalModal header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     padding: 21px 29px 0 52px;
-  }
-  
-  .addGoalModal header input {
+}
+
+.addGoalModal header input {
     border: none;
     font-size: 50px;
     line-height: 68px;
     color: #535353;
     background: #F4F4F4;
-  }
-  
-  .addGoalModal hr {
+}
+
+.addGoalModal hr {
     border: none;
     background: #C4C4C4;
     height: 3px;
     width: 786px;
     margin: 0 auto;
-  }
-  
-  .addGoalModal .btnClose {
+}
+
+.addGoalModal .btnClose {
     border: none;
     cursor: pointer;
     background: transparent;
-  }
-  
-  .addGoalModalBody {
+}
+
+.addGoalModalBody {
     margin: 43px 115px 35px 55px;
     display: flex;
     justify-content: flex-start;
     font-size: 16px;
     line-height: 22px;
-  }
-  
-  .addGoalNameInput {
+}
+
+.addGoalNameInput {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-  }
-  
-  .addGoalNameInput label {
+}
+
+.addGoalNameInput label {
     margin: 12px 25px 27px 0;
-  }
-  
-  .addGoalInput {
+}
+
+.addGoalInput {
     display: flex;
     flex-direction: column;
-  }
-  
-  .addGoalInput input, .addGoalInput select {
+}
+
+.addGoalInput input, .addGoalInput select {
     margin-bottom: 15px;
     font-size: 14px;
     line-height: 19px;
-  }
-  
-  .addGoalDate {
+}
+
+.addGoalDate {
     display: flex;
-  }
-  
-  .addGoalDate input {
+}
+
+.addGoalDate input {
     max-width: 145px;
     margin-right: 20px;
-  }
-  
-  #addGoalDescr {
+}
+
+#addGoalDescr {
     height: 100px;
     width: 520px;
-  }
-  
-  #addGoalDescr:focus {
+}
+
+#addGoalDescr:focus {
     outline: none;
-  }
-  
-  .addGoalModal footer {
+}
+
+.addGoalModal footer {
     display: flex;
     justify-content: center;
-  }
-  
-  .addGoalModal .button_pass {
+}
+
+.addGoalModal .button_pass {
     border: 1px solid #40B5C6;
     width: 150px;
     margin: 0;
-  }
-  
-  .addGoalModal .button_pass:last-child {
+}
+
+.addGoalModal .button_pass:last-child {
     border: 1px solid #40B5C6;
     background-color: #F4F4F4;
     color: #40B5C6;
     margin-left: 50px;
-  }
+}
 
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover, 
-  input:-webkit-autofill:focus, 
-  input:-webkit-autofill:active  {
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
     background-color: #F4F4F4 !important;
     -webkit-box-shadow: 0 0 0 30px #F4F4F4 inset !important;
-  }
-
+}

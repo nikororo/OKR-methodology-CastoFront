@@ -80,8 +80,8 @@ export default {
 
 <style>
 body {
-  overflow: hidden;
-}
+   overflow: hidden;
+ }
 
 button {
   line-height: normal;

@@ -35,7 +35,7 @@
           <div class="ps_settings">
             <div class="data_user">
               <p class="p_data_user">Фото</p>
-              <input type="file" id="file" class="input_file">
+              <input type="file" id="file" class="input_file" accept="image/*">
               <label for="file" class="button_file">
                 <span>Фото</span>
               </label>
