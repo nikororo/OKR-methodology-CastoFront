@@ -328,7 +328,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .button_pass:hover {
     text-decoration: none;
-    background: white;
+    background: #F4F4F4;
     border: 1px solid #40B5C6;
     color: #40B5C6;
     transform: none;
@@ -836,6 +836,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     background: #C9002E;
     cursor: pointer;
 }
+
 .create_goal {
     position: relative;
     padding: 25px 40px;
@@ -857,3 +858,194 @@ input:active, input:focus, select:focus, button:active, button:focus {
     border: none;
     background-color: #F4F4F4;
 }
+
+/* command */
+
+.command {
+    min-height: calc(100vh - 150px);
+}
+
+.commandName {
+    background-color: #F4F4F4;
+    margin-bottom: 1px;
+    padding: 10px;
+    text-align: center;
+}
+
+.listOfEmployees {
+    min-height: calc(100vh - 225px);  
+    background-color: #F4F4F4;
+    text-align: right;
+    padding-top: 30px;
+}
+
+.addBtnUserComm {
+    margin: 0 50px 35px 0;
+    outline: 0;
+    border-radius: 58px;
+    border: 2px solid #40B5C6;
+    background-color: #40B5C6;
+    padding: 0 20px;
+    color: #fff;
+    font-size: 18px;
+    height: 42px;
+}
+
+.addBtnUserComm:hover {
+      background-color: #fff;
+      color: #40B5C6;
+      border: 2px solid #40B5C6;
+      transform: none;
+}
+
+.contUserComm {
+    display: flex;
+    flex-direction: column;
+    margin-left: 150px;
+}
+
+.userComm {
+    display: flex;
+    justify-content: space-between;
+    width: 435px;
+    padding-left: 15px;
+}
+
+/* Modal */
+
+.addGoalModalCont button {
+    line-height: normal;
+  }
+  
+  .addGoalModalCont {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    z-index: 9999;
+    padding: 30px;
+    white-space: nowrap;
+    text-align: center;
+  }
+  
+  .addGoalModalCont::before {
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .addGoalModal {
+    width: 859px;
+    background: #F4F4F4;
+    box-shadow: 2px 2px 20px 1px;
+    height: 530px;
+    display: inline-block;
+    white-space: normal;
+    vertical-align: middle;
+  }
+  
+  .addGoalModal header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 21px 29px 0 52px;
+  }
+  
+  .addGoalModal header input {
+    border: none;
+    font-size: 50px;
+    line-height: 68px;
+    color: #535353;
+    background: #F4F4F4;
+  }
+  
+  .addGoalModal hr {
+    border: none;
+    background: #C4C4C4;
+    height: 3px;
+    width: 786px;
+    margin: 0 auto;
+  }
+  
+  .addGoalModal .btnClose {
+    border: none;
+    cursor: pointer;
+    background: transparent;
+  }
+  
+  .addGoalModalBody {
+    margin: 43px 115px 35px 55px;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 16px;
+    line-height: 22px;
+  }
+  
+  .addGoalNameInput {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .addGoalNameInput label {
+    margin: 12px 25px 27px 0;
+  }
+  
+  .addGoalInput {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .addGoalInput input, .addGoalInput select {
+    margin-bottom: 15px;
+    font-size: 14px;
+    line-height: 19px;
+  }
+  
+  .addGoalDate {
+    display: flex;
+  }
+  
+  .addGoalDate input {
+    max-width: 145px;
+    margin-right: 20px;
+  }
+  
+  #addGoalDescr {
+    height: 100px;
+    width: 520px;
+  }
+  
+  #addGoalDescr:focus {
+    outline: none;
+  }
+  
+  .addGoalModal footer {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .addGoalModal .button_pass {
+    border: 1px solid #40B5C6;
+    width: 150px;
+    margin: 0;
+  }
+  
+  .addGoalModal .button_pass:last-child {
+    border: 1px solid #40B5C6;
+    background-color: #F4F4F4;
+    color: #40B5C6;
+    margin-left: 50px;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active  {
+    background-color: #F4F4F4 !important;
+    -webkit-box-shadow: 0 0 0 30px #F4F4F4 inset !important;
+  }
+

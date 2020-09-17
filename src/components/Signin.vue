@@ -48,6 +48,7 @@ export default {
               email: res.data.user.email,
               name: res.data.user.name,
               id: res.data.user.id,
+              activity: res.data.user.activity
             }
             this.$store.commit('authCorr', user);
             this.$router.push('/');

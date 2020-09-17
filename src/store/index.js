@@ -1,30 +1,30 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     authHasError: false,
-    errMsg: '',
     urlBD: 'http://127.0.0.1:8000/',
     user: {
       name: 'Максимов Станислав Игоревич',
-      email: '',
-      id: ''
     }
   },
   mutations: {
-    authErr: (state, error) => {
+    authErr: (state) => {
       state.authHasError = true;
-      state.errMsg = error;
     },
     authCorr: (state, user) => {
       state.user = user;
       state.authHasError = false;
-      console.log(state.user)
     },
+    logOut: (state) => {
+      state.user = {};
+    }
   },
+  plugins: [createPersistedState()],
   actions: {
   },
   modules: {

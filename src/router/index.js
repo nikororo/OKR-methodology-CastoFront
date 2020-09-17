@@ -28,12 +28,6 @@ const routes = [
     beforeEnter: ifNotAuthenticated
   },
   {
-    path: '/',
-    name: 'Home',
-    component: () => import('../components/Home'),
-    beforeEnter: ifAuthenticated
-  },
-  {
     path: '/goals',
     name: 'Goals',
     component: () => import('../components/CommonGoals'),
@@ -82,6 +76,12 @@ const routes = [
     beforeEnter: ifAuthenticated
   },
   {
+    path: '/commandList',
+    name: 'СommandList',
+    component: () => import('../components/CommandList'),
+    beforeEnter: ifAuthenticated
+  },
+  {
     path: '/signin',
     name: 'Signin',
     component: () => import('../components/Signin')
@@ -96,6 +96,11 @@ const routes = [
     name: 'goalsQuarter',
     component: () => import('../components/GoalsQuarter')
   },
+
+  { 
+    path: '*', 
+    redirect: '/goals' 
+  }
 ]
 
 const router = new VueRouter({
