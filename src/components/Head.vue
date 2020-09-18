@@ -1,85 +1,84 @@
 <template>
-    <div>
-        <header class="header_okr">
-            <div class="soft_menu">
-                <router-link href="" class="home_main" to="/">
-                    <img src="../style/img/Logo.png" alt="Logo" class="logo_okr icon_logo">
-                </router-link>
+  <div>
+    <header class="header_okr">
+      <div class="soft_menu">
+        <router-link href="" class="home_main" to="/">
+          <img src="../style/img/Logo.png" alt="Logo" class="logo_okr icon_logo">
+        </router-link>
 
+      </div>
+
+      <div class="user_menu">
+        <img src="../style/img/Bell.png" alt="Bell" class="bell_okr icon_bell">
+        <router-link class="use_name" to="/targetsUser" v-if="this.$store.state.user">
+          {{ this.$store.state.user.name }}
+        </router-link>
+        <img src="../style/img/User.png" alt="Photo" class="user_photo icon_user">
+
+        <div class="menu">
+          <a href="" class="button_menu"><img src="../style/img/Menu.png" alt=""></a>
+          <div class="links_menu">
+            <div class="tre"></div>
+            <div class="link_menu">
+              <router-link @click="SettingsLink = true" class="btnLogOut" to="/settingsUser">
+                <img width="25" height="25" src="../style/img/Settings.png" alt="">
+                <span>Настройки</span>
+              </router-link>
             </div>
-
-            <div class="user_menu">
-                <img src="../style/img/Bell.png" alt="Bell" class="bell_okr icon_bell">
-                <router-link class="use_name" to="/targetsUser" v-if="this.$store.state.user">
-                    {{ this.$store.state.user.name }}
-                </router-link>
-                <img src="../style/img/User.png" alt="Photo" class="user_photo icon_user">
-
-                <a href="" class="button_menu"><img src="../style/img/Menu.png" alt=""></a>
-                <div class="menu">
-                    <div class="links_menu">
-                        <div class="tre"></div>
-                        <div class="link_menu">
-                            <button @click="showLogOutModal = true" class="btnLogOut">
-                                <img width="25" height="25" src="../style/img/Settings.png" alt="">
-                                <span>Настройки</span>
-                            </button>
-                        </div>
-                        <div class="link_menu">
-                            <button @click="showLogOutModal = true" class="btnLogOut">
-                                <img width="25" height="25" src="../style/img/Exit.png" alt="Log Out">
-                                <span>Выход</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <LogOutModal v-if="showLogOutModal" @close="showLogOutModal = false"/>
-                <!--                <button @click="showLogOutModal = true" class='btnLogOut'><img src="../style/img/LogOut.png"-->
-                <!--                                                                               alt="Log Out"></button>-->
-                <!--                <LogOutModal v-if="showLogOutModal" @close="showLogOutModal = false"/>-->
-
+            <div class="link_menu">
+              <button @click="showLogOutModal = true" class="btnLogOut">
+                <img width="25" height="25" src="../style/img/Exit.png" alt="Log Out">
+                <span>Выход</span>
+              </button>
             </div>
-        </header>
-    </div>
+          </div>
+        </div>
+
+        <LogOutModal v-if="showLogOutModal" @close="showLogOutModal = false"/>
+
+      </div>
+    </header>
+  </div>
 </template>
 
 <script>
-    import LogOutModal from './LogOutModal';
+import LogOutModal from './LogOutModal';
 
-    export default {
-        name: 'Head',
+export default {
+  name: 'Head',
 
-        components: {
-            LogOutModal
-        },
+  components: {
+    LogOutModal
+  },
 
-        data: () => ({
-            showLogOutModal: false
-        }),
-    }
+  data: () => ({
+    showLogOutModal: false,
+  }),
+}
 </script>
 
 <style scoped>
-    .tre {
-        top: -42px;
-        right: 0;
-        position: absolute;
-        border: 24px solid transparent;
-        border-bottom: 30px solid #C4C4C4;
-        border-radius: 10px;
-    }
+.tre {
+  top: -42px;
+  right: 0;
+  position: absolute;
+  border: 24px solid transparent;
+  border-bottom: 30px solid #C4C4C4;
+  border-radius: 10px;
+}
 
-    .btnLogOut {
-        border: none;
-        margin-left: 20px;
-        background: transparent;
-    }
+.btnLogOut {
+  border: none;
+  margin-left: 20px;
+  background: transparent;
+  text-decoration: none;
+}
 
-    .btnLogOut img {
-        margin-right: 15px;
-    }
+.btnLogOut img {
+  margin-right: 15px;
+}
 
-    .btnLogOut span {
-        color: #0C2528;
-    }
+.btnLogOut span {
+  color: #0C2528;
+}
 </style>
