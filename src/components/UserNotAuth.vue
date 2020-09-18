@@ -16,7 +16,7 @@
     <div class="userNotAuthCont">
       <div class="msgOops"><b class="redText">Упс!</b> Что-то пошло не так</div>
       <div class="msgNotAuth">У Вас нет доступа,
-        <router-link to="/signup"><b class="redText">зарегистрируйтесь</b></router-link>
+        <router-link to="/signup">зарегистрируйтесь</router-link>
         или
         <router-link to="/signin">войдите</router-link>
         в систему
@@ -36,12 +36,13 @@ export default {
 <style scoped>
 .userNotAuthCont {
   background-color: #F4F4F4;
-  min-height: 100vh;
+  min-height: calc(100vh - 82px);
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 2px;
   text-align: center;
+  padding: 20px;
 }
 
 .msgOops {
@@ -49,7 +50,6 @@ export default {
   font-size: 60px;
   line-height: 71px;
   color: #40B5C6;
-  margin-top: 45px;
 }
 
 .redText {
@@ -67,11 +67,7 @@ export default {
 
 .msgNotAuth a {
   color: #40B5C6;
-  text-decoration: underline;
-}
-
-.msgNotAuth a .redText {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .linkAuth {
@@ -79,5 +75,6 @@ export default {
   font-size: 18px;
   line-height: 21px;
   margin-right: 36px;
+  text-decoration: none;
 }
 </style>

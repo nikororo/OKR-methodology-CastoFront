@@ -23,15 +23,15 @@
 
           <div class="block_goals">
             <div class="goals companyGoals">
-              <p>Название командной цели</p>
+              <p class="nameGoals">Название командной цели</p>
               <input type="range" min="1" max="100" v-model="percent" class="slider">
-              <p>{{ percent }}%</p>
+              <p class="percentGoals">{{ percent }}%</p>
             </div>
             <div class="goals_comand">
               <div class="goals otherGoals" v-for="goal in this.goals" v-bind:key="goal.id">
                 <p> {{ goal.title }}</p>
                 <input type="range" min="1" max="100" v-model="percent" class="slider">
-                <p>{{ percent }}%</p>
+                <p class="percentGoals">{{ percent }}%</p>
               </div>
               <div class="create_goal">
                 <button @click="add_goal"><img src="../style/img/Plus.png" alt="Add Goal"></button>

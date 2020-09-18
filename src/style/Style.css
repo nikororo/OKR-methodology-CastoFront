@@ -141,9 +141,9 @@ input:active, input:focus, select:focus, button:active, button:focus {
 .toolBar {
     display: flex;
     flex-direction: column;
-    background: #A7E3EC;
+    background: #70C7D4;
     margin: 0;
-    box-shadow: 0 10px 20px -20px rgba(0, 0, 0, 0.5) inset;
+    box-shadow: -25px 25px 35px -30px rgba(0, 0, 0, 0.2) inset;
 }
 
 .content_toolbar {
@@ -183,7 +183,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     width: 50px;
     height: 50px;
     border-radius: 35px;
-    background-color: white;
+    background-color: #F4F4F4;
     margin-bottom: 10px;
 }
 
@@ -199,7 +199,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     background-color: #F4F4F4;
     text-decoration: none;
     color: black;
-    box-shadow: 0 10px 20px -20px rgba(0, 0, 0, 0.5) inset;
+    box-shadow: -25px 25px 35px -30px rgba(0, 0, 0, 0.2) inset;
 }
 
 .active .button_toolbar {
@@ -259,7 +259,6 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .settings {
     padding: 0;
-    box-shadow: -10px 10px 20px -5px rgba(0, 0, 0, 0.1);
 }
 
 .h2_settings {
@@ -811,6 +810,13 @@ input:active, input:focus, select:focus, button:active, button:focus {
     margin-bottom: 23px;
 }
 
+.button_goals:hover {
+    background-color: #F4F4F4;
+    color: #3AACBD;
+    border: 2px solid #40B5C6;
+    transform: none;
+}
+
 .goals {
     position: relative;
     padding: 25px 40px;
@@ -883,6 +889,10 @@ input:active, input:focus, select:focus, button:active, button:focus {
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
 }
 
+.create_goal button {
+    background-color: #F4F4F4;
+}
+
 .create_goal button > img {
     width: 20px;
     height: 20px;
@@ -927,7 +937,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .addBtnUserComm:hover {
-    background-color: #fff;
+    background-color: #F4F4F4;
     color: #40B5C6;
     border: 2px solid #40B5C6;
     transform: none;
@@ -1074,6 +1084,11 @@ input:active, input:focus, select:focus, button:active, button:focus {
     background-color: #F4F4F4;
     color: #40B5C6;
     margin-left: 50px;
+}
+
+.addGoalModal .button_pass:last-child:hover {
+    border: 1px solid #167381;
+    color: #167381;
 }
 
 input:-webkit-autofill,
