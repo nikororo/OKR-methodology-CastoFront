@@ -122,8 +122,8 @@ input:active, input:focus, select:focus, button:active, button:focus {
     z-index: 100;
     display: none;
     position: absolute;
-    top: 69px;
-    right: 9px;
+    top: 39px;
+    right: -12px;
     width: 194px;
     height: 117px;
     border-radius: 15px;

@@ -58,6 +58,9 @@ export default {
 </script>
 
 <style scoped>
+  .menu {
+    position: relative;
+  }
 .tre {
   top: -42px;
   right: 0;
