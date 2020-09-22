@@ -22,9 +22,10 @@
             <label for="addGoalDescr">Описание цели</label>
           </div>
           <div class="addGoalInput">
-            <select id="addGoalAuthor" class="input_user" required>
-              <option v-if="$store.state.user" selected>{{ this.$store.state.user.name }}</option>
-            </select>
+            <div class="modal_user_name">
+              <img class="icon_user" src="../style/img/User.png" alt="">
+              <p v-if="this.$store.state.user">{{ this.$store.state.user.name }}</p>
+            </div>
             <div class="addGoalDate">
               <input id="addGoalDateStart" class="input_user" placeholder="Дата начала" type="text"
                      onfocus="(this.type='date')" onblur="(this.type='text')" required>
@@ -33,6 +34,9 @@
             </div>
             <select id="addGoalExecutor" class="input_user" required>
               <option value disabled selected>Исполнитель</option>
+            </select>
+            <select id="addGoalExecutor" class="input_user" required>
+              <option value disabled selected>Родительская цель</option>
             </select>
             <textarea id="addGoalDescr" class="input_user" type="text"
                       placeholder="Описание цели"></textarea>
