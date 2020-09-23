@@ -4,7 +4,7 @@
 
       <form v-on:submit.prevent="addGoal">
         <header>
-          <input placeholder="Название цели" required minlength="5" maxlength="100"/>
+          <input v-model="name" placeholder="Название цели" required minlength="5" maxlength="100"/>
           <button class="btnClose" @click="close">
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -19,7 +19,7 @@
             <label for="addGoalAuthor">Автор</label>
             <label for="addGoalDateStart">Период</label>
             <label for="addGoalExecutor">Исполнитель</label>
-            <label for="addGoalParentGoals">Родительские цели</label>
+            <label for="addGoalParentGoal">Родительская цель</label>
             <label for="addGoalDescr">Описание цели</label>
           </div>
           <div class="addGoalInput">
@@ -28,18 +28,18 @@
               <p v-if="this.$store.state.user">{{ this.$store.state.user.name }}</p>
             </div>
             <div class="addGoalDate">
-              <input id="addGoalDateStart" class="input_user" placeholder="Дата начала" type="text"
+              <input v-model="dateStart" id="addGoalDateStart" class="input_user" placeholder="Дата начала" type="text"
                      onfocus="(this.type='date')" onblur="(this.type='text')" required>
-              <input id="addGoalDateEnd" class="input_user" placeholder="Дата окончания" type="text"
+              <input v-model="dateEnd" id="addGoalDateEnd" class="input_user" placeholder="Дата окончания" type="text"
                      onfocus="(this.type='date')" onblur="(this.type='text')" required>
             </div>
-            <select id="addGoalExecutor" class="input_user">
+            <select v-model="executor" id="addGoalExecutor" class="input_user">
               <option value disabled selected>Исполнитель</option>
             </select>
-            <select id="addGoalParentGoals" class="input_user" required>
-              <option value disabled selected>Родительские цели</option>
+            <select v-model="parentGoal" id="addGoalParentGoal" class="input_user">
+              <option value disabled selected>Родительская цель</option>
             </select>
-            <textarea id="addGoalDescr" class="input_user" type="text"
+            <textarea v-model="descr" id="addGoalDescr" class="input_user" type="text"
                       placeholder="Описание цели"></textarea>
           </div>
         </section>
@@ -68,10 +68,33 @@
 export default {
   name: 'AddGoalModal',
 
+  data: () => ({
+    name: '',
+    dateStart: '',
+    dateEnd: '',
+    executor: '',
+    parentGoal: '',
+    descr: ''
+  }),
+
   methods: {
     close() {
       this.$emit('close');
     },
+    addGoal() {
+      let newGoal = {
+        name: this.name,
+        author: this.$store.state.user.name,
+        dateStart: this.dateStart,
+        dateEnd: this.dateEnd,
+        percentOfCompletion: 0,
+      }
+      if (this.descr) newGoal.descr = this.descr
+      if (this.executor) newGoal.executor = this.executor
+      // if (this.parentGoal) newGoal.parentGoal = this.parentGoal
+      this.$store.commit('addGoal', newGoal);
+      this.$emit('close');
+    }
   },
 }
 </script>

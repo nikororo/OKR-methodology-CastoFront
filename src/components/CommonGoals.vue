@@ -18,39 +18,51 @@
             <button class="button_goals" @click="showAddGoalModal = true">Добавить</button>
             <AddGoalModal v-if="showAddGoalModal" @close="showAddGoalModal = false"/>
           </div>
-          <div class="main_tree" v-if="haveGoals">
-            <div class="companyGoals" v-for="goal in goalComp" v-bind:key="goal.id">
-              <p class="nameGoals">Цель компании</p>
-              <input type="range" min="1" max="100" v-model="avrg" class="slider" disabled>
-              <p  class="percentGoals">{{avrg}}%</p>
-            </div>
+          <div v-if="haveGoals">
+            <div v-for="goal in this.$store.state.goals" v-bind:key="goal.id">
+              <div v-if="goal.lvl === 1" class="contGoal">
+                <div class="companyGoals">
+                  <p class="nameGoals">{{goal.name}}</p>
+                  <input type="range" min="0" max="100" v-model="avrg" class="slider" disabled>
+                  <p  class="percentGoals">{{avrg}}%</p>
+                </div>
 
-            <div class="goals_comand">
-              <div class="goals otherGoals" v-for="goal in goals" :key="goal.id">
-                <p> {{ goal.title }}</p>
-                <input  type="range" min="1" max="100" v-model="goal.percent" class="slider">
-                <p class="percentGoals">{{ goal.percent }}%</p>
-              </div>
-
-              <div class="create_goal">
                 <div>
-                  <button @click="add_goal"><img src="../style/img/Plus.png" alt="Add Goal"></button>
-                  <input class="input_creat_goal" type="text" placeholder="Добавить КР" v-model="new_goal.title">
-                </div>
-                <div class="meaning">
-                  <div class="start_meaning">
-                    <span>Начальное значение</span>
-                    <input class="input_percent" type="number" placeholder="0" v-model="new_goal.percent">
-                    <span>%</span>
+                  <div class="goals otherGoals" v-for="kr in krs" :key="kr.id">
+                    <p> {{ kr.title }}</p>
+                    <input  type="range" min="0" max="100" v-model="kr.percent" class="slider">
+                    <p class="percentGoals">{{ kr.percent }}%</p>
                   </div>
-                  <div class="finish_meaning">
-                    <span>Итоговое значение</span>
-                    <input class="input_percent" type="number" placeholder="100">
-                    <span>%</span>
+
+                  <div class="createKR">
+                    <div>
+                      <button @click="addKr"><img src="../style/img/Plus.png" alt="Add KR"></button>
+                      <input type="text" placeholder="Добавить КР" v-model="newKR.title">
+                    </div>
+                    <div class="meaning">
+                      <div class="start_meaning">
+                        <span>Начальное значение</span>
+                        <input class="input_percent" type="number" placeholder="0" v-model="newKR.percent">
+                        <span>%</span>
+                      </div>
+                      <div class="finish_meaning">
+                        <span>Итоговое значение</span>
+                        <input class="input_percent" type="number" placeholder="100">
+                        <span>%</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
+              <div v-else>
+                <div class="goals otherGoals">
+                  <div class="line_tree"></div>
+                  <p class="nameGoals">{{goal.name}}</p>
+                  <input type="range" min="0" max="100" class="slider" v-model="goal.percentOfCompletion">
+                  <p class="percentGoals">{{goal.percentOfCompletion}}%</p>
+                </div>
+              </div>
             </div>
           </div>
           <div v-else class="haveNoGoals">
@@ -77,30 +89,25 @@ export default {
   data: () => ({
     showAddGoalModal: false,
     haveGoals: true,
-    new_goal: {
+    newKR: {
       percent: '',
       percent_max: '',
       title: '',
       id: ''
     },
-    goals: [],
-    goalComp:{
-      percent: ''
-    }
+    krs: [],
   }),
   computed: {
-    avrg () {
+    avrg() {
       let percentAll = 0;
       let itemsFound = 0;
       let item = 0;
-      let len = this.goals.length;
+      let len = this.krs.length;
       let result = 0;
       for (let i = 0; i < len; i++) {
-        item = Number(this.goals[i].percent)
+        item = Number(this.krs[i].percent)
         percentAll = item + percentAll;
         itemsFound = itemsFound + 1;
-        console.log(percentAll)
-        console.log(itemsFound)
         result = percentAll / itemsFound;
         result = result.toFixed()
 
@@ -109,15 +116,15 @@ export default {
     }
   },
   methods: {
-    add_goal() {
-      if (this.new_goal.title !== '' && this.new_goal.percent !== '') {
-        this.goals.push({
-          title: this.new_goal.title,
-          percent: this.new_goal.percent,
-          percent_max: this.new_goal.percent_max,
+    addKr() {
+      if (this.newKR.title !== '' && this.newKR.percent !== '') {
+        this.krs.push({
+          title: this.newKR.title,
+          percent: this.newKR.percent,
+          percent_max: this.newKR.percent_max,
         });
-        this.new_goal.title = '';
-        this.new_goal.percent = '';
+        this.newKR.title = '';
+        this.newKR.percent = '';
       }
     }
   }
