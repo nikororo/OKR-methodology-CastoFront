@@ -19,6 +19,7 @@
             <label for="addGoalAuthor">Автор</label>
             <label for="addGoalDateStart">Период</label>
             <label for="addGoalExecutor">Исполнитель</label>
+            <label for="addGoalParentGoals">Родительские цели</label>
             <label for="addGoalDescr">Описание цели</label>
           </div>
           <div class="addGoalInput">
@@ -32,11 +33,11 @@
               <input id="addGoalDateEnd" class="input_user" placeholder="Дата окончания" type="text"
                      onfocus="(this.type='date')" onblur="(this.type='text')" required>
             </div>
-            <select id="addGoalExecutor" class="input_user" required>
+            <select id="addGoalExecutor" class="input_user">
               <option value disabled selected>Исполнитель</option>
             </select>
-            <select id="addGoalExecutor" class="input_user" required>
-              <option value disabled selected>Родительская цель</option>
+            <select id="addGoalParentGoals" class="input_user" required>
+              <option value disabled selected>Родительские цели</option>
             </select>
             <textarea id="addGoalDescr" class="input_user" type="text"
                       placeholder="Описание цели"></textarea>

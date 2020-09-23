@@ -25,7 +25,7 @@
           <div class="main_tree" v-if="haveGoals">
             <div class="companyGoals" v-for="goal in this.goalComp" v-bind:key="goal.id">
               <p class="nameGoals">Название командной цели</p>
-              <input type="range" min="1" max="100" v-model="avrg" class="slider">
+              <input type="range" min="1" max="100" v-model="avrg" class="slider" disabled>
               <p class="percentGoals">{{ avrg }}%</p>
             </div>
 

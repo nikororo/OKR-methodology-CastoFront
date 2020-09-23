@@ -21,7 +21,7 @@
           <div class="main_tree" v-if="haveGoals">
             <div class="companyGoals" v-for="goal in goalComp" v-bind:key="goal.id">
               <p class="nameGoals">Цель компании</p>
-              <input type="range" min="1" max="100" v-model="avrg" class="slider">
+              <input type="range" min="1" max="100" v-model="avrg" class="slider" disabled>
               <p  class="percentGoals">{{avrg}}%</p>
             </div>
 
@@ -102,7 +102,7 @@ export default {
         console.log(percentAll)
         console.log(itemsFound)
         result = percentAll / itemsFound;
-        result = result.toFixed(2)
+        result = result.toFixed()
 
       }
       return result
