@@ -44,17 +44,10 @@
           </div>
         </section>
         <footer>
-          <button
-              type="submit"
-              class="button_pass"
-          >
+          <button type="submit" class="button_pass">
             Сохранить
           </button>
-          <button
-              type="button"
-              class="button_pass"
-              @click="close"
-          >
+          <button type="button" class="button_pass" @click="close">
             Отмена
           </button>
         </footer>

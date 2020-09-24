@@ -19,7 +19,21 @@ export default new Vuex.Store({
         author: 'Екатерина',
         id: 1,
         lvl: 1,
-        percentOfCompletion: 0
+        percentOfCompletion: 0,
+        krs: [
+          {
+            percent: '',
+            percent_max: '',
+            title: '',
+            id: ''
+          },
+          {
+            percent: '',
+            percent_max: '',
+            title: '',
+            id: ''
+          },
+        ]
       },
       {
         name: 'Цель отдела',
@@ -57,6 +71,16 @@ export default new Vuex.Store({
       newGoal.id = state.goals.length + 1;
       newGoal.lvl = 2;
       state.goals.push(newGoal);
+    },
+
+    deleteGoal: (state, idGoal) => {
+      let placeGoal;
+      state.goals.map(function(item, i) {
+        if (item.id === idGoal) {
+          placeGoal=i;
+        }
+      });
+      state.goals.splice(placeGoal, 1);
     }
   },
   plugins: [createPersistedState()],

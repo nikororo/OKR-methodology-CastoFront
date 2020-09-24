@@ -40,16 +40,9 @@
                       <input type="text" placeholder="Добавить КР" v-model="newKR.title">
                     </div>
                     <div class="meaning">
-                      <div class="start_meaning">
-                        <span>Начальное значение</span>
-                        <input class="input_percent" type="number" placeholder="0" v-model="newKR.percent">
-                        <span>%</span>
-                      </div>
-                      <div class="finish_meaning">
-                        <span>Итоговое значение</span>
-                        <input class="input_percent" type="number" placeholder="100">
-                        <span>%</span>
-                      </div>
+                      <span>Вес</span>
+                      <input class="input_percent" type="number" placeholder="0" v-model="newKR.percent">
+                      <span>%</span>
                     </div>
                   </div>
                 </div>
@@ -61,6 +54,37 @@
                   <p class="nameGoals">{{goal.name}}</p>
                   <input type="range" min="0" max="100" class="slider" v-model="goal.percentOfCompletion">
                   <p class="percentGoals">{{goal.percentOfCompletion}}%</p>
+                  
+                  <div class="menu">
+                    <a href="" class="button_menu"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#aad7de"><path d="M86,21.5c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333zM86,71.66667c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333zM86,121.83333c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333z"></path></g></g></svg></a>
+                    <div class="links_menu">
+                      <div class="tre"></div>
+                      <div>
+                        <button class="btnLogOut">
+                          <img width="25" height="25" src="../style/img/Copy.png" alt="copy">
+                          <span>Добавить описание</span>
+                        </button>
+                      </div>
+                      <div>
+                        <button class="btnLogOut">
+                          <img width="25" height="25" src="../style/img/Pen.png" alt="Pen">
+                          <span>Редактировать</span>
+                        </button>
+                      </div>
+                      <div>
+                        <button class="btnLogOut">
+                          <img width="25" height="25" src="../style/img/Expand.png" alt="Expand">
+                          <span>Подробнее</span>
+                        </button>
+                      </div>
+                      <div>
+                        <button v-on:click="deleteGoal(goal.id, goal.name)" class="btnLogOut">
+                          <img width="25" height="25" src="../style/img/Delete.png" alt="Delete">
+                          <span>Удалить</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -126,6 +150,12 @@ export default {
         this.newKR.title = '';
         this.newKR.percent = '';
       }
+    },
+
+    deleteGoal(idGoal, nameGoal) {
+      if (confirm(`Удалить цель ${nameGoal}?`)) {
+        this.$store.commit('deleteGoal', idGoal);
+      } 
     }
   }
 }
@@ -159,5 +189,37 @@ button {
   height: 29px;
   border: solid 1px #43CBD7;
   margin-right: 10px;
+}
+
+.menu {
+  position: absolute;
+  right: 25px;
+}
+
+.tre {
+  top: -42px;
+  right: 0;
+  position: absolute;
+  border: 24px solid transparent;
+  border-bottom: 30px solid #70C7D4;
+  border-radius: 10px;
+}
+
+.btnLogOut {
+  margin-bottom: 10px;
+  border: none;
+  background: transparent;
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+.btnLogOut span {
+  color: #0C2528;
+  margin-left: 12px;
+}
+
+.links_menu {
+  width: 270px;
+  font-size: 18px;
 }
 </style>

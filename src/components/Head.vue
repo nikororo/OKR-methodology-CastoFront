@@ -19,13 +19,13 @@
           <a href="" class="button_menu"><img src="../style/img/Menu.png" alt=""></a>
           <div class="links_menu">
             <div class="tre"></div>
-            <div class="link_menu">
-              <router-link @click="SettingsLink = true" class="btnLogOut" to="/settingsUser">
+            <div>
+              <router-link class="btnLogOut" to="/settingsUser">
                 <img width="25" height="25" src="../style/img/Settings.png" alt="">
                 <span>Настройки</span>
               </router-link>
             </div>
-            <div class="link_menu">
+            <div>
               <button @click="showLogOutModal = true" class="btnLogOut">
                 <img width="25" height="25" src="../style/img/Exit.png" alt="Log Out">
                 <span>Выход</span>
@@ -58,30 +58,29 @@ export default {
 </script>
 
 <style scoped>
-  .menu {
-    position: relative;
-  }
+.menu {
+  position: relative;
+}
+
 .tre {
   top: -42px;
   right: 0;
   position: absolute;
   border: 24px solid transparent;
-  border-bottom: 30px solid #C4C4C4;
+  border-bottom: 30px solid #70C7D4;
   border-radius: 10px;
 }
 
 .btnLogOut {
   border: none;
-  margin-left: 20px;
   background: transparent;
   text-decoration: none;
-}
-
-.btnLogOut img {
-  margin-right: 15px;
+  opacity: 0.7;
+  margin: 10px 0 10px;
 }
 
 .btnLogOut span {
+  margin-left: 12px;
   color: #0C2528;
 }
 </style>
