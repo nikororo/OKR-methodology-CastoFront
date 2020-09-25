@@ -1,10 +1,8 @@
 <template>
   <div>
     <Head/>
-
     <div class="row no-gutter cont">
       <toolBar/>
-
       <div class="col-lg-10 col-md-7">
         <div class="header_targets_link">
           <router-link class="link_targets" active-class="active_link_targets" to="/goals" exact>
@@ -14,14 +12,11 @@
             Цели на квартал
           </router-link>
         </div>
-
         <div class="page">
-
           <div>
             <button class="button_goals" @click="showAddGoalModal = true">Добавить</button>
             <AddGoalModal v-if="showAddGoalModal" @close="showAddGoalModal = false"/>
           </div>
-
 <div v-if="haveGoals">
             <div v-for="goal in this.$store.state.goals" v-bind:key="goal.id">
               <div v-if="goal.lvl === 1" class="contGoal">
@@ -51,7 +46,6 @@
                   </div>
                 </div>
               </div>
-
               <div v-else>
                 <div class="goals otherGoals">
                   <div class="line_tree"></div>
@@ -97,9 +91,7 @@
             <div>Здесь еще ничего нет, Вы не составили свое дерево целей</div>
             <img src="../style/img/CatNoGoals.png" alt="Котик">
           </div>
-
         </div>
-
       </div>
     </div>
   </div>

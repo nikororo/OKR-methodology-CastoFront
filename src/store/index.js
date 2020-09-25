@@ -20,20 +20,7 @@ export default new Vuex.Store({
         id: 1,
         lvl: 1,
         percentOfCompletion: 0,
-        krs: [
-          {
-            percent: '',
-            percent_max: '',
-            title: '',
-            id: ''
-          },
-          {
-            percent: '',
-            percent_max: '',
-            title: '',
-            id: ''
-          },
-        ]
+        krs: []
       },
       {
         name: 'Цель отдела',
@@ -81,7 +68,20 @@ export default new Vuex.Store({
         }
       });
       state.goals.splice(placeGoal, 1);
+    },
+
+    createKr: (state, newKR) => {
+      state.goals.map(function(item) {
+        if (item.id === newKR.goalId) {
+          item.krs.push({
+            title: newKR.title,
+            weight: newKR.weight,
+            percent: 0
+          });
+        }
+      });
     }
+
   },
   plugins: [createPersistedState()],
   actions: {

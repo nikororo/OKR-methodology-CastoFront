@@ -33,12 +33,6 @@ const routes = [
     component: () => import('../components/CommonGoals'),
     beforeEnter: ifAuthenticated
   },
-  // {
-  //   path: '/private',
-  //   name: 'Private',
-  //   component: () => import('../components/Private'),
-  //   beforeEnter: ifAuthenticated
-  // },
   {
     path: '/settingsUser',
     name: 'SettingsUser',

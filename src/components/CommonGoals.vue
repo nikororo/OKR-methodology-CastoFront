@@ -1,7 +1,6 @@
 <template>
   <div>
     <Head/>
-
     <div class="row no-gutter">
       <toolBar/>
       <div class="col-lg-10 col-md-7">
@@ -22,41 +21,55 @@
             <div v-for="goal in this.$store.state.goals" v-bind:key="goal.id">
               <div v-if="goal.lvl === 1" class="contGoal">
                 <div class="companyGoals">
-                  <p class="nameGoals">{{goal.name}}</p>
-                  <input type="range" min="0" max="100" v-model="avrg" class="slider" disabled>
-                  <p  class="percentGoals">{{avrg}}%</p>
+                  <label for="bigGoal" class="nameGoals">{{ goal.name }}</label>
+                  <input id="bigGoal" type="range" min="0" max="100" v-model="avrg" class="slider" disabled>
+                  <p class="percentGoals">{{ avrg }}%</p>
                 </div>
-
                 <div>
-                  <div class="goals otherGoals" v-for="kr in krs" :key="kr.id">
-                    <p> {{ kr.title }}</p>
-                    <input  type="range" min="0" max="100" v-model="kr.percent" class="slider">
+                  <div class="goals otherGoals" v-for="kr in goal.krs" :key="kr.id">
+                    <label for="newKr"> {{ kr.title }}</label>
+                    <input id="newKr" type="range" min="0" max="100" v-model="kr.percent" class="slider">
                     <p class="percentGoals">{{ kr.percent }}%</p>
                   </div>
-
-                  <div class="createKR">
+                  <form v-on:submit.prevent="addKr(goal.id)" class="createKR">
                     <div>
-                      <button @click="addKr"><img src="../style/img/Plus.png" alt="Add KR"></button>
-                      <input type="text" placeholder="Добавить КР" v-model="newKR.title">
+                      <label for="createKrButton">
+                        <button type="submit">
+                          <img src="../style/img/Plus.png" alt="Add KR">
+                        </button>
+                      </label>
+                      <input id="createKrButton" type="text" placeholder="Добавить КР" required v-model="title">
                     </div>
                     <div class="meaning">
-                      <span>Вес</span>
-                      <input class="input_percent" type="number" placeholder="0" v-model="newKR.percent">
+                      <label for="createKrPercent">Вес</label>
+                      <input id="createKrPercent" class="input_percent" type="number" placeholder="0" v-model="weight">
                       <span>%</span>
                     </div>
-                  </div>
+                  </form>
                 </div>
               </div>
-
               <div v-else>
                 <div class="goals otherGoals">
                   <div class="line_tree"></div>
-                  <p class="nameGoals">{{goal.name}}</p>
+                  <p class="nameGoals">{{ goal.name }}</p>
                   <input type="range" min="0" max="100" class="slider" v-model="goal.percentOfCompletion">
-                  <p class="percentGoals">{{goal.percentOfCompletion}}%</p>
-                  
+                  <p class="percentGoals">{{ goal.percentOfCompletion }}%</p>
                   <div class="menu">
-                    <a href="" class="button_menu"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#aad7de"><path d="M86,21.5c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333zM86,71.66667c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333zM86,121.83333c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333z"></path></g></g></svg></a>
+                    <a href="" class="button_menu">
+                      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35"
+                           viewBox="0 0 172 172" style=" fill:#000000;">
+                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                           stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                           font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                           style="mix-blend-mode: normal">
+                          <path d="M0,172v-172h172v172z" fill="none"></path>
+                          <g fill="#aad7de">
+                            <path
+                                d="M86,21.5c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333zM86,71.66667c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333zM86,121.83333c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333z"></path>
+                          </g>
+                        </g>
+                      </svg>
+                    </a>
                     <div class="links_menu">
                       <div class="tre"></div>
                       <div>
@@ -113,49 +126,44 @@ export default {
   data: () => ({
     showAddGoalModal: false,
     haveGoals: true,
-    newKR: {
-      percent: '',
-      percent_max: '',
-      title: '',
-      id: ''
-    },
-    krs: [],
+    showKr: true,
+    weight: '',
+    title: '',
+    id: ''
   }),
-  computed: {
-    avrg() {
-      let percentAll = 0;
-      let itemsFound = 0;
-      let item = 0;
-      let len = this.krs.length;
-      let result = 0;
-      for (let i = 0; i < len; i++) {
-        item = Number(this.krs[i].percent)
-        percentAll = item + percentAll;
-        itemsFound = itemsFound + 1;
-        result = percentAll / itemsFound;
-        result = result.toFixed()
-
-      }
-      return result
-    }
-  },
+  // computed: {
+  //   avrg() {
+  //     let percentAll = 0;
+  //     let itemsFound = 0;
+  //     let item = 0;
+  //     let len = this.krs.length;
+  //     let result = 0;
+  //     for (let i = 0; i < len; i++) {
+  //       item = Number(this.krs[i])
+  //       percentAll = item + percentAll;
+  //       itemsFound = itemsFound + 1;
+  //       result = percentAll / itemsFound;
+  //       result = result.toFixed()
+  //     }
+  //     return result
+  //   }
+  // },
   methods: {
-    addKr() {
-      if (this.newKR.title !== '' && this.newKR.percent !== '') {
-        this.krs.push({
-          title: this.newKR.title,
-          percent: this.newKR.percent,
-          percent_max: this.newKR.percent_max,
-        });
-        this.newKR.title = '';
-        this.newKR.percent = '';
-      }
+    addKr(goalId) {
+      let newKr = {
+        title: this.title,
+        weight: this.weight,
+        goalId: goalId
+    }
+      this.$store.commit('createKr', newKr);
+      this.title = '';
+      this.weight = '';
     },
 
     deleteGoal(idGoal, nameGoal) {
       if (confirm(`Удалить цель ${nameGoal}?`)) {
         this.$store.commit('deleteGoal', idGoal);
-      } 
+      }
     }
   }
 }
