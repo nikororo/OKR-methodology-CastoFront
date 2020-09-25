@@ -5,9 +5,7 @@
         <router-link href="" class="home_main" to="/">
           <img src="../style/img/Logo.png" alt="Logo" class="logo_okr icon_logo">
         </router-link>
-
       </div>
-
       <div class="user_menu">
         <img src="../style/img/Bell.png" alt="Bell" class="bell_okr icon_bell">
         <router-link class="use_name" to="/targetsUser" v-if="this.$store.state.user">
@@ -33,9 +31,7 @@
             </div>
           </div>
         </div>
-
         <LogOutModal v-if="showLogOutModal" @close="showLogOutModal = false"/>
-
       </div>
     </header>
   </div>

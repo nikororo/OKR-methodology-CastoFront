@@ -36,7 +36,6 @@ input:active, input:focus, select:focus, button:active, button:focus {
     height: 25px;
 }
 
-
 /*Header */
 .header_okr {
     display: flex;
@@ -50,38 +49,6 @@ input:active, input:focus, select:focus, button:active, button:focus {
 .logo_okr {
     margin-right: 50px;
 }
-
-/*.search_okr {*/
-/*    display: inline-block;*/
-/*    width: 203px;*/
-/*    height: 30px;*/
-/*    margin-right: 18px;*/
-/*    border: 2px solid #70C7D4;*/
-/*    font-size: 13px;*/
-/*    color: #70C7D4;*/
-/*}*/
-
-/*.search_okr form {*/
-/*    position: relative;*/
-/*    padding: 4px 0 4px 30px;*/
-
-/*}*/
-
-/*.search_okr button {*/
-/*    width: 30px;*/
-/*    height: 26px;*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    cursor: pointer;*/
-/*    background: transparent;*/
-/*}*/
-
-/*.search_okr input, .search_okr button {*/
-/*    border: none;*/
-/*    outline: none;*/
-/*    background-color: #F4F4F4;*/
-/*}*/
 
 .bell_okr {
     margin-right: 18px;
@@ -208,48 +175,6 @@ input:active, input:focus, select:focus, button:active, button:focus {
 .active .img_color {
     filter: invert(1);
 }
-
-/*Private*/
-/*.Private_user {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    overflow: auto;*/
-/*}*/
-
-/*.bg_color {*/
-/*    padding: 74px 5px 5px 25px;*/
-/*    height: 100%;*/
-/*    background-color: #F4F4F4;*/
-/*    box-shadow: 0 10px 20px -20px rgba(0, 0, 0, 0.5) inset;*/
-/*}*/
-
-/*.ps_user {*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    padding-bottom: 40px;*/
-/*}*/
-
-/*.User_name {*/
-/*    margin: 0 0 0 10px;*/
-/*}*/
-
-/*.settings_link {*/
-/*    display: block;*/
-/*    margin-bottom: 10px;*/
-/*    text-decoration: none;*/
-/*    font-size: 18px;*/
-/*    line-height: 25px;*/
-/*    color: black;*/
-/*}*/
-
-/*.settings_link:hover {*/
-/*    text-decoration: none;*/
-/*    color: #C9002E;*/
-/*}*/
-
-/*.active_settings {*/
-/*    color: #C9002E;*/
-/*}*/
 
 /*SettingsUser*/
 .ps_settings {
@@ -481,7 +406,6 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 /*PlanWeek*/
 .main_plan_week {
-    /*height: auto;*/
     min-height: calc(100vh - 150px);
     padding-top: 37px;
     background-color: #F4F4F4;
@@ -777,7 +701,6 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 /*GoalsQuarter*/
-
 .line_tree {
     position: absolute;
     width: 18px;
@@ -823,6 +746,10 @@ input:active, input:focus, select:focus, button:active, button:focus {
     align-items: center;
     background-color: #F4F4F4;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+}
+
+.krs label {
+    margin: 0;
 }
 
 .krs svg {
@@ -881,13 +808,19 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .createKR {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     position: relative;
     padding: 25px 40px;
     font-size: 22px;
     line-height: 26px;
     background-color: #F4F4F4;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+}
+
+.nameCreateKR {
+    display: flex;
 }
 
 .contGoal {
@@ -903,14 +836,14 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .meaning {
     display: flex;
-    margin-top: 25px;
 }
 
-.meaning span {
+.meaning label, .meaning span {
     font-size: 24px;
     line-height: 28px;
     color: #6d7273;
     margin-right: 20px;
+    margin-bottom: 0;
 }
 
 .createKR button {
@@ -929,7 +862,6 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 /* command */
-
 .command {
     min-height: calc(100vh - 150px);
 }
@@ -981,7 +913,6 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 /* Modal */
-
 .addGoalModalCont button {
     line-height: normal;
 }
@@ -992,6 +923,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     padding-top: 10px;
     margin-bottom: 15px;
 }
+
 .modal_user_name p {
     margin-bottom: 0;
     margin-left: 15px;

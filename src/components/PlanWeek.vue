@@ -1,16 +1,12 @@
 <template>
     <div>
         <Head/>
-
         <div class="row no-gutter cont">
             <toolBar/>
-
             <div class="col-md-5 col-lg-10 settings">
-
                 <div class="header_targets">
                     <h2 class="h2_user_name">{{ this.$store.state.user.name }}</h2>
                 </div>
-
                 <div class="header_targets_link">
                     <router-link class="link_targets" active-class="active_link_targets" to="/PlanWeek">Планы на
                         неделю
@@ -18,7 +14,6 @@
                     <router-link class="link_targets" active-class="active_link_targets" to="/GoalsUser">Цели
                     </router-link>
                 </div>
-
                 <div class="main_plan_week">
                     <div class="scale_bg">
                         <div class="scale">
@@ -87,7 +82,6 @@
                                 <a href="" class="link_task"><img class="tr" src="../style/img/Frame.png" alt="">
                                     <p class="i_task"><span>+</span>Cвязать задачу с целью</p></a>
                             </div>
-
                         </div>
                     </div>
                 </div>

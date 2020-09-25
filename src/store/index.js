@@ -20,15 +20,8 @@ export default new Vuex.Store({
         id: 1,
         lvl: 1,
         percentOfCompletion: 0,
-        showKr: true,
-        krs: [
-          {
-            percent: '',
-            percent_max: '',
-            title: '',
-            id: ''
-          },
-        ]
+        showKr: false,
+        krs: []
       },
       {
         name: 'Цель отдела',
@@ -39,6 +32,7 @@ export default new Vuex.Store({
         lvl: 2,
         percentOfCompletion: 0,
         showKr: false,
+        krs: []
       },
       {
         name: 'Цель отдела 2',
@@ -49,6 +43,7 @@ export default new Vuex.Store({
         lvl: 2,
         percentOfCompletion: 0,
         showKr: false,
+        krs: []
       }
     ]
   },
@@ -68,6 +63,7 @@ export default new Vuex.Store({
       newGoal.id = state.goals.length + 1;
       newGoal.lvl = 2;
       newGoal.showKr = false;
+      newGoal.krs = [];
       state.goals.push(newGoal);
     },
 
@@ -85,6 +81,18 @@ export default new Vuex.Store({
       state.goals.map(function(item) {
         if (item.id === idGoal) {
           item.showKr = !item.showKr;
+        }
+      });
+    },
+
+    createKr: (state, newKR) => {
+      state.goals.map(function(item) {
+        if (item.id === newKR.goalId) {
+          item.krs.push({
+            title: newKR.title,
+            weight: newKR.weight,
+            percent: 0
+          });
         }
       });
     }

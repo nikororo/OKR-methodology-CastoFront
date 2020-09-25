@@ -1,6 +1,5 @@
 <template>
   <div class="toolBar col-sm-1 col-md-2 col-lg-2">
-
     <router-link class="block_button" active-class="active" to="/settingsUser">
       <div class="content_toolbar">
         <div class="button_toolbar">
@@ -9,7 +8,6 @@
         <p>Личный кабинет</p>
       </div>
     </router-link>
-
     <router-link class="block_button" active-class="active" to="/goals">
       <div class="content_toolbar">
         <div class="button_toolbar">
@@ -18,8 +16,6 @@
         <p>Цели</p>
       </div>
     </router-link>
-
-
     <router-link class="block_button" active-class="active" to="/command">
       <div class="content_toolbar">
         <div class="button_toolbar">
@@ -28,7 +24,6 @@
         <p>Команды</p>
       </div>
     </router-link>
-
   </div>
 </template>
 
