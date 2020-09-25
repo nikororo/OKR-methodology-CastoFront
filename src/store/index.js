@@ -20,13 +20,8 @@ export default new Vuex.Store({
         id: 1,
         lvl: 1,
         percentOfCompletion: 0,
+        showKr: true,
         krs: [
-          {
-            percent: '',
-            percent_max: '',
-            title: '',
-            id: ''
-          },
           {
             percent: '',
             percent_max: '',
@@ -42,7 +37,8 @@ export default new Vuex.Store({
         author: 'Екатерина',
         id: 2,
         lvl: 2,
-        percentOfCompletion: 0
+        percentOfCompletion: 0,
+        showKr: false,
       },
       {
         name: 'Цель отдела 2',
@@ -51,7 +47,8 @@ export default new Vuex.Store({
         author: 'Екатерина',
         id: 3,
         lvl: 2,
-        percentOfCompletion: 0
+        percentOfCompletion: 0,
+        showKr: false,
       }
     ]
   },
@@ -70,6 +67,7 @@ export default new Vuex.Store({
     addGoal: (state, newGoal) => {
       newGoal.id = state.goals.length + 1;
       newGoal.lvl = 2;
+      newGoal.showKr = false;
       state.goals.push(newGoal);
     },
 
@@ -81,6 +79,14 @@ export default new Vuex.Store({
         }
       });
       state.goals.splice(placeGoal, 1);
+    },
+
+    displayKr: (state, idGoal) => {
+      state.goals.map(function(item) {
+        if (item.id === idGoal) {
+          item.showKr = !item.showKr;
+        }
+      });
     }
   },
   plugins: [createPersistedState()],

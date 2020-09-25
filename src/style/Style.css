@@ -790,7 +790,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .page {
     background-color: #F4F4F4;
-    padding: 40px 100px 180px;
+    padding: 40px 100px 165px;
     min-height: calc(100vh - 166px);
     width: 100%;
 }
@@ -813,19 +813,19 @@ input:active, input:focus, select:focus, button:active, button:focus {
     transform: none;
 }
 
-.goals {
+.krs {
     position: relative;
     padding: 25px 40px;
     font-size: 22px;
     line-height: 26px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     display: flex;
     align-items: center;
     background-color: #F4F4F4;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
 }
 
-.goals svg {
+.krs svg {
     position: absolute;
     right: -5px;
     top: -17px;
@@ -833,6 +833,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .nameGoals {
     width: 45%;
+    padding: 25px 0 25px 40px;
 }
 
 .percentGoals {
@@ -842,17 +843,11 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .companyGoals {
     position: relative;
-    padding: 25px 40px;
     font-size: 22px;
     line-height: 26px;
-    margin-bottom: 15px;
     display: flex;
     align-items: center;
     background-color: #F4F4F4;
-}
-
-.otherGoals {
-    margin-left: 35px;
 }
 
 .slider {
@@ -889,21 +884,21 @@ input:active, input:focus, select:focus, button:active, button:focus {
     flex-direction: column;
     position: relative;
     padding: 25px 40px;
-    margin-left: 35px;
     font-size: 22px;
     line-height: 26px;
-    margin-bottom: 15px;
     background-color: #F4F4F4;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
 }
 
 .contGoal {
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
-    padding: 0 30px 30px 0;
     margin-bottom: 20px;
     position: relative;
-    z-index: 100;
     background-color: #F4F4F4;
+}
+
+.contKr {
+    padding: 25px 40px;
 }
 
 .meaning {

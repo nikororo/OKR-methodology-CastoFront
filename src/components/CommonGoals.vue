@@ -20,38 +20,11 @@
           </div>
           <div v-if="haveGoals">
             <div v-for="goal in this.$store.state.goals" v-bind:key="goal.id">
-              <div v-if="goal.lvl === 1" class="contGoal">
+              <div class="contGoal">
                 <div class="companyGoals">
-                  <p class="nameGoals">{{goal.name}}</p>
-                  <input type="range" min="0" max="100" v-model="avrg" class="slider" disabled>
-                  <p  class="percentGoals">{{avrg}}%</p>
-                </div>
-
-                <div>
-                  <div class="goals otherGoals" v-for="kr in krs" :key="kr.id">
-                    <p> {{ kr.title }}</p>
-                    <input  type="range" min="0" max="100" v-model="kr.percent" class="slider">
-                    <p class="percentGoals">{{ kr.percent }}%</p>
-                  </div>
-
-                  <div class="createKR">
-                    <div>
-                      <button @click="addKr"><img src="../style/img/Plus.png" alt="Add KR"></button>
-                      <input type="text" placeholder="Добавить КР" v-model="newKR.title">
-                    </div>
-                    <div class="meaning">
-                      <span>Вес</span>
-                      <input class="input_percent" type="number" placeholder="0" v-model="newKR.percent">
-                      <span>%</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div v-else>
-                <div class="goals otherGoals">
-                  <div class="line_tree"></div>
-                  <p class="nameGoals">{{goal.name}}</p>
+                  <button class="btnShowKR" @click="displayKr(goal.id)">
+                    <p class="nameGoals">{{goal.name}}</p>
+                  </button>
                   <input type="range" min="0" max="100" class="slider" v-model="goal.percentOfCompletion">
                   <p class="percentGoals">{{goal.percentOfCompletion}}%</p>
                   
@@ -86,7 +59,28 @@
                     </div>
                   </div>
                 </div>
-              </div>
+                
+                <div class="contKr" v-if="goal.showKr">
+                  <div class="krs" v-for="kr in krs" :key="kr.id">
+                    <p> {{ kr.title }}</p>
+                    <input  type="range" min="0" max="100" v-model="kr.percent" class="slider">
+                    <p class="percentGoals">{{ kr.percent }}%</p>
+                  </div>
+
+                  <div class="createKR">
+                    <div>
+                      <button @click="addKr"><img src="../style/img/Plus.png" alt="Add KR"></button>
+                      <input type="text" placeholder="Добавить КР" v-model="newKR.title">
+                    </div>
+                    <div class="meaning">
+                      <span>Вес</span>
+                      <input class="input_percent" type="number" placeholder="0" v-model="newKR.percent">
+                      <span>%</span>
+                    </div>
+                  </div>
+                </div>
+
+                </div>
             </div>
           </div>
           <div v-else class="haveNoGoals">
@@ -156,6 +150,10 @@ export default {
       if (confirm(`Удалить цель ${nameGoal}?`)) {
         this.$store.commit('deleteGoal', idGoal);
       } 
+    },
+
+    displayKr(idGoal) {
+      this.$store.commit('displayKr', idGoal);
     }
   }
 }
@@ -221,5 +219,13 @@ button {
 .links_menu {
   width: 270px;
   font-size: 18px;
+  top: 52px;
+  right: -7px;
+}
+
+.btnShowKR {
+  width: 100%;
+  background-color: #f4f4f4;
+  text-align: left;
 }
 </style>
