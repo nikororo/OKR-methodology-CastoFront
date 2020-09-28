@@ -64,7 +64,7 @@
                         </button>
                       </div>
                       <div>
-                        <button v-on:click="deleteGoal(goal.id, goal.name)" class="btnLogOut">
+                        <button @click="openDeleteGoal(goal.id)" class="btnLogOut">
                           <img width="25" height="25" src="../style/img/Delete.png" alt="Delete">
                           <span>Удалить</span>
                         </button>
@@ -115,7 +115,7 @@
                         </button>
                       </div>
                       <div>
-                        <button class="btnLogOut">
+                        <button class="btnLogOut" @click="openDeleteKr(goal.id, kr.id)">
                           <img width="25" height="25" src="../style/img/Delete.png" alt="Delete">
                           <span>Удалить</span>
                         </button>
@@ -124,7 +124,7 @@
                   </div>
                   </div>
 
-                  <form v-on:submit.prevent="addKr(goal.id)" class="createKR">
+                  <form v-on:submit="addKr(goal.id, $event)" class="createKR">
                     <div class="nameCreateKR">
                       <button type="submit">
                         <img src="../style/img/Plus.png" alt="Add KR">
@@ -138,8 +138,10 @@
                     </div>
                   </form>
                 </div>
-
-                </div>
+              
+              </div>
+              <DeleteGoalModal v-if="showDeleteGoalModal" @close="showDeleteGoalModal = false" @delete="deleteGoal"/>
+              <DeleteKrModal v-if="showDeleteKrModal" @close="showDeleteKrModal = false" @delete="deleteKr"/>
             </div>
           </div>
           <div v-else class="haveNoGoals">
@@ -156,18 +158,24 @@
 import Head from "@/components/Head";
 import ToolBar from "@/components/ToolBar";
 import AddGoalModal from './AddGoalModal';
+import DeleteGoalModal from './DeleteGoalModal';
+import DeleteKrModal from './DeleteKrModal';
 
 export default {
   name: 'CommonGoals',
   components: {
-    Head, ToolBar, AddGoalModal
+    Head, ToolBar, AddGoalModal, DeleteGoalModal, DeleteKrModal
   },
 
   data: () => ({
     showAddGoalModal: false,
+    showDeleteGoalModal: false,
+    showDeleteKrModal: false,
     haveGoals: true,
     weight: '',
-    title: ''
+    title: '',
+    idDeleteGoal: '',
+    idDeleteKr: ''
   }),
   // computed: {
   //   avrg() {
@@ -187,7 +195,8 @@ export default {
   //   }
   // },
   methods: {
-    addKr(goalId) {
+    addKr(goalId, event) {
+      event.preventDefault();
       let newKr = {
         title: this.title,
         weight: this.weight,
@@ -198,15 +207,35 @@ export default {
       this.weight = '';
     },
 
-    deleteGoal(idGoal, nameGoal) {
-      if (confirm(`Удалить цель ${nameGoal}?`)) {
-        this.$store.commit('deleteGoal', idGoal);
-      } 
+    openDeleteGoal(id) {
+      this.idDeleteGoal = id;
+      this.showDeleteGoalModal = true;
+    },
+
+    openDeleteKr(idGoal, idKr) {
+      this.idDeleteGoal = idGoal;
+      this.idDeleteKr = idKr;
+      this.showDeleteKrModal = true;
+    },
+
+    deleteGoal() {
+      this.$store.commit('deleteGoal', this.idDeleteGoal);
+      this.idDeleteGoal = '';
+    },
+
+    deleteKr() {
+      let payload = {
+        idGoal: this.idDeleteGoal, 
+        idKr: this.idDeleteKr
+      }
+      this.$store.commit('deleteKr', payload);
+      this.idDeleteGoal = '';
+      this.idDeleteKr = '';
     },
 
     displayKr(idGoal) {
       this.$store.commit('displayKr', idGoal);
-    }
+    },
   }
 }
 </script>

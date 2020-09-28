@@ -750,6 +750,8 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .krs label {
     margin: 0;
+    max-width: 45%;
+    word-wrap: break-word;
 }
 
 .krs svg {
@@ -761,6 +763,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 .nameGoals {
     width: 45%;
     padding: 25px 0 25px 40px;
+    word-wrap: break-word;
 }
 
 .percentGoals {
@@ -821,6 +824,11 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .nameCreateKR {
     display: flex;
+    width: calc(100% - 220px);
+}
+
+.nameCreateKR input {
+    width: 100%;
 }
 
 .contGoal {
@@ -944,10 +952,10 @@ input:active, input:focus, select:focus, button:active, button:focus {
     text-align: center;
 }
 
-.addGoalModalCont::before {
+.flexModalCont {
+    display: flex;
+    width: 100%;
     height: 100%;
-    display: inline-block;
-    vertical-align: middle;
 }
 
 .addGoalModal {
@@ -955,9 +963,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     background: #F4F4F4;
     box-shadow: 2px 2px 20px 1px;
     height: 600px;
-    display: inline-block;
-    white-space: normal;
-    vertical-align: middle;
+    margin: auto;
 }
 
 .addGoalModal header {
@@ -1050,13 +1056,12 @@ input:active, input:focus, select:focus, button:active, button:focus {
 .addGoalModal .button_pass:last-child {
     border: 1px solid #40B5C6;
     background-color: #F4F4F4;
-    color: #40B5C6;
+    color: #0C2528;
     margin-left: 50px;
 }
 
 .addGoalModal .button_pass:last-child:hover {
-    border: 1px solid #167381;
-    color: #167381;
+    border: 1px solid #0C2528;
 }
 
 input:-webkit-autofill,

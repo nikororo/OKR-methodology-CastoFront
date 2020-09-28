@@ -60,7 +60,11 @@ export default new Vuex.Store({
     },
 
     addGoal: (state, newGoal) => {
-      newGoal.id = state.goals.length + 1;
+      let maxID = 0;
+      state.goals.forEach((goal) => {
+        if (goal.id > maxID) maxID = goal.id;
+      }) 
+      newGoal.id = maxID + 1;
       newGoal.lvl = 2;
       newGoal.showKr = false;
       newGoal.krs = [];
@@ -68,34 +72,51 @@ export default new Vuex.Store({
     },
 
     deleteGoal: (state, idGoal) => {
-      let placeGoal;
-      state.goals.map(function(item, i) {
-        if (item.id === idGoal) {
-          placeGoal=i;
-        }
+      state.goals.forEach((goal, i) => {
+        if (goal.id === idGoal) state.goals.splice(i, 1);
       });
-      state.goals.splice(placeGoal, 1);
     },
 
     displayKr: (state, idGoal) => {
-      state.goals.map(function(item) {
-        if (item.id === idGoal) {
-          item.showKr = !item.showKr;
+      state.goals.forEach((goal) => {
+        if (goal.id === idGoal) {
+          goal.showKr = !goal.showKr;
         }
       });
     },
 
     createKr: (state, newKR) => {
-      state.goals.map(function(item) {
-        if (item.id === newKR.goalId) {
-          item.krs.push({
+      state.goals.forEach((goal) => {
+        if (goal.id === newKR.goalId) {
+          let maxID = 0;
+          if (goal.krs.length > 0) {
+            goal.krs.forEach((kr) => {
+              if (kr.id > maxID) maxID = kr.id;
+            });
+          }
+          maxID ++;
+
+          goal.krs.push({
             title: newKR.title,
             weight: newKR.weight,
-            percent: 0
+            percent: 0,
+            id: maxID,
           });
         }
       });
-    }
+    },
+
+    deleteKr: (state, {idGoal, idKr}) => {
+      state.goals.forEach((goal) => {
+        if (goal.id === idGoal) {
+          goal.krs.forEach((kr, i) => {
+            if (kr.id === idKr) {
+              goal.krs.splice(i, 1);
+            }
+          });
+        }
+      });
+    },
   },
   plugins: [createPersistedState()],
   actions: {
