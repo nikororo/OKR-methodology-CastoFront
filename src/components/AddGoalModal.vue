@@ -41,7 +41,7 @@
                 <option value disabled selected>Ответственный</option>
               </select>
               <textarea v-model="descr" id="addGoalDescr" class="input_user" type="text"
-                        placeholder="Описание цели"></textarea>
+                        placeholder="Описание цели" minlength="5" maxlength="500"></textarea>
             </div>
           </section>
           <footer>

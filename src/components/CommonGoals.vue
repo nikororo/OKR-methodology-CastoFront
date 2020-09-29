@@ -111,11 +111,11 @@
                       <button type="submit">
                         <img src="../style/img/Plus.png" alt="Add KR">
                       </button>
-                      <input type="text" placeholder="Добавить КР" required v-model="title">
+                      <input type="text" placeholder="Добавить КР" required v-model="title" minlength="5" maxlength="100">
                     </div>
                     <div class="meaning">
                       <label for="createKrPercent">Вес</label>
-                      <input id="createKrPercent" class="input_percent" type="number" placeholder="0" v-model="weight">
+                      <input id="createKrPercent" class="input_percent" type="number" min="1" max="100" placeholder="0" v-model="weight" required>
                       <span>%</span>
                     </div>
                   </form>
@@ -165,12 +165,7 @@ export default {
 
   methods: {
     sum(id) {
-      let data =
-          {
-            state: this.$store.getters.getState,
-            id: id
-          }
-      this.$store.dispatch('sumPercent', data)
+      this.$store.dispatch('sumPercent', id)
     },
 
     addKr(goalId, event) {
@@ -212,6 +207,7 @@ export default {
         idKr: this.idSelectedKr
       }
       this.$store.commit('deleteKr', payload);
+      this.$store.dispatch('sumPercent', this.idSelectedGoal);
       this.idSelectedGoal = '';
       this.idSelectedKr = '';
     },

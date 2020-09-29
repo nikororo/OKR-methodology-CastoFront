@@ -82,7 +82,6 @@ export default new Vuex.Store({
           for (const property in modifiedGoal) {
             goal[property] = modifiedGoal[property];
           }
-          console.log(goal)
         }
       }); 
     },
@@ -137,27 +136,27 @@ export default new Vuex.Store({
     setPercentOfCompletion: (state, payload) => {
       state.goals.forEach((goal) => {
         if (goal.id === payload.id) {
-          goal.percentOfCompletion = payload.percent.toFixed(2)
+          goal.percentOfCompletion = payload.percent.toFixed()
         }
       })
     }
   },
   plugins: [createPersistedState()],
     actions: {
-      sumPercent: ({commit, state}, data) => {
+      sumPercent: ({commit, state}, id) => {
         state.goals.forEach((goal) => {
-          if (goal.id === data.id) {
+          if (goal.id === id) {
             let percentOfCompletion = 0;
             goal.krs.forEach((kr) => {
               let weightKr = kr.weight / 100;
               let percentKr = kr.percent;
               percentOfCompletion = weightKr * percentKr + percentOfCompletion;
-              let payload = {
-                id: data.id,
-                percent: percentOfCompletion
-              }
-              commit('setPercentOfCompletion', payload)
             })
+            let payload = {
+              id,
+              percent: percentOfCompletion
+            }
+            commit('setPercentOfCompletion', payload)
           }
         })
       }

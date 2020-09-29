@@ -983,6 +983,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .addGoalModal header input {
+    width: 95%;
     border: none;
     font-size: 50px;
     line-height: 68px;
