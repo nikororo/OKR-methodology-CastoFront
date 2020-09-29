@@ -3,9 +3,9 @@
     <div class="flexModalCont">
       <div class="addGoalModal">
 
-        <form v-on:submit.prevent="addGoal">
+        <form v-on:submit.prevent="editGoal">
           <header>
-            <input v-model="name" placeholder="Название цели" required minlength="5" maxlength="100"/>
+            <input v-model="name" required minlength="5" maxlength="100"/>
             <button class="btnClose" @click="close">
               <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -26,11 +26,11 @@
             <div class="addGoalInput">
               <div class="modal_user_name">
                 <img class="icon_user" src="../style/img/User.png" alt="">
-                <p>{{this.$store.state.user.name}}</p>
+                <p>{{author}}</p>
               </div>
-               <div class="modal_user_name">
-                <p>{{this.$store.state.user.command}}</p>
-              </div>
+              <select v-model="command" id="addGoalExecutor" class="input_user">
+                <option selected>{{command}}</option>
+              </select>
               <div class="addGoalDate">
                 <input v-model="dateStart" id="addGoalDateStart" class="input_user" placeholder="Дата начала" type="text"
                       onfocus="(this.type='date')" onblur="(this.type='text')" required>
@@ -38,7 +38,7 @@
                       onfocus="(this.type='date')" onblur="(this.type='text')" required>
               </div>
               <select v-model="executor" id="addGoalExecutor" class="input_user">
-                <option value disabled selected>Ответственный</option>
+                <option selected>{{executor}}</option>
               </select>
               <textarea v-model="descr" id="addGoalDescr" class="input_user" type="text"
                         placeholder="Описание цели"></textarea>
@@ -46,7 +46,7 @@
           </section>
           <footer>
             <button type="submit" class="button_pass">
-              Отправить
+              Сохранить
             </button>
             <button type="button" class="button_pass" @click="close">
               Отмена
@@ -61,32 +61,50 @@
 <script>
 
 export default {
-  name: 'AddGoalModal',
+  name: 'EditGoalModal',
+
+  props: ['idGoal'],
 
   data: () => ({
     name: '',
+    author: '',
     dateStart: '',
     dateEnd: '',
     executor: '',
+    command: '',
     descr: ''
   }),
+
+  mounted: function () {
+    this.$store.state.goals.forEach(goal => {
+      if (goal.id === this.idGoal) {
+          this.name = goal.name;
+          this.author = goal.author;
+          this.dateStart = goal.dateStart;
+          this.dateEnd = goal.dateEnd;
+          this.executor = goal.executor;
+          this.command = goal.command;
+          this.descr = goal.descr;
+        }
+    });
+  },
 
   methods: {
     close() {
       this.$emit('close');
     },
-    addGoal() {
-      let newGoal = {
+
+    editGoal() {
+      let modifiedGoal = {
         name: this.name,
-        author: this.$store.state.user.name,
-        command: this.$store.state.user.command,
+        command: this.command,
         dateStart: this.dateStart,
         dateEnd: this.dateEnd,
-        percentOfCompletion: 0,
+        id: this.idGoal,
+        descr: this.descr,
+        executor: this.executor
       }
-      if (this.descr) newGoal.descr = this.descr;
-      if (this.executor) newGoal.executor = this.executor;
-      this.$store.commit('addGoal', newGoal);
+      this.$store.commit('editGoal', modifiedGoal);
       this.$emit('close');
     }
   },
@@ -94,12 +112,11 @@ export default {
 </script>
 
 <style scoped>
-.addGoalModalCont {    
-  background-color: rgba(0, 0, 0, 0.3);
+.addGoalModal {
+  padding: 0 0 60px;
 }
 
-.addGoalModal {
-  box-shadow: 2px 2px 20px 1px;
-  padding: 0 0 60px;
+.modal_user_name {
+  margin-bottom: 23px;
 }
 </style>

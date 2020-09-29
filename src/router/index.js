@@ -46,12 +46,6 @@ const routes = [
     beforeEnter: ifAuthenticated
   },
   {
-    path: '/targetsUser',
-    name: 'TargetsUser',
-    component: () => import('../components/TargetsUser'),
-    beforeEnter: ifAuthenticated
-  },
-  {
     path: '/planWeek',
     name: 'PlanWeek',
     component: () => import('../components/PlanWeek'),
@@ -86,7 +80,7 @@ const routes = [
     component: () => import('../components/Signup')
   },
   {
-    path: '/goals/GoalsQuarter',
+    path: '/goals/goalsQuarter',
     name: 'goalsQuarter',
     component: () => import('../components/GoalsQuarter')
   },

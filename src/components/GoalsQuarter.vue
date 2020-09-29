@@ -8,7 +8,7 @@
           <router-link class="link_targets" active-class="active_link_targets" to="/goals" exact>
             Дерево целей
           </router-link>
-          <router-link class="link_targets" active-class="active_link_targets" to="/goals/GoalsQuarter">
+          <router-link class="link_targets" active-class="active_link_targets" to="/goals/goalsQuarter">
             Цели на квартал
           </router-link>
         </div>

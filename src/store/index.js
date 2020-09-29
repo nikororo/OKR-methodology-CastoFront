@@ -10,6 +10,7 @@ export default new Vuex.Store({
     urlBD: 'http://127.0.0.1:8000/',
     user: {
       name: 'Максимов Станислав Игоревич',
+      command: 'Castoroides'
     },
     goals: [
       {
@@ -17,6 +18,7 @@ export default new Vuex.Store({
         dateStart: '2020-09-25',
         dateEnd: '2020-09-29',
         author: 'Екатерина',
+        command: 'Castoroides',
         id: 1,
         lvl: 1,
         percentOfCompletion: 0,
@@ -27,7 +29,8 @@ export default new Vuex.Store({
         name: 'Цель отдела',
         dateStart: '2020-09-25',
         dateEnd: '2020-09-29',
-        author: 'Екатерина',
+        author: 'Виктор',
+        command: 'Тераторн',
         id: 2,
         lvl: 2,
         percentOfCompletion: 0,
@@ -38,7 +41,9 @@ export default new Vuex.Store({
         name: 'Цель отдела 2',
         dateStart: '2020-09-25',
         dateEnd: '2020-09-29',
-        author: 'Екатерина',
+        author: 'Максимов Станислав Игоревич',
+        command: 'Castoroides',
+        executor: 'Екатерина',
         id: 3,
         lvl: 2,
         percentOfCompletion: 0,
@@ -69,6 +74,17 @@ export default new Vuex.Store({
       newGoal.showKr = false;
       newGoal.krs = [];
       state.goals.push(newGoal);
+    },
+
+    editGoal: (state, modifiedGoal) => {
+      state.goals.forEach((goal) => {
+        if (goal.id === modifiedGoal.id) {
+          for (const property in modifiedGoal) {
+            goal[property] = modifiedGoal[property];
+          }
+          console.log(goal)
+        }
+      }); 
     },
 
     deleteGoal: (state, idGoal) => {

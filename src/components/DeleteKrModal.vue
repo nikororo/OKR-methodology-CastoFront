@@ -38,16 +38,6 @@ export default {
 </script>
 
 <style scoped>
-.addGoalModalCont {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.addGoalModal {
-  box-shadow: 2px 2px 20px 1px rgba(0, 0, 0, 0.2);
-  height: auto;
-  padding: 60px 40px 40px;
-}
-
 .addGoalModal footer {
   margin-top: 40px;
 }

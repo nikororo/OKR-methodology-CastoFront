@@ -9,10 +9,10 @@
         </div>
 
         <div class="header_targets_link">
-          <router-link class="link_targets" active-class="active_link_targets" to="/PlanWeek">Планы на
+          <router-link class="link_targets" active-class="active_link_targets" to="/planWeek">Планы на
             неделю
           </router-link>
-          <router-link class="link_targets" active-class="active_link_targets" to="/GoalsUser">Цели
+          <router-link class="link_targets" active-class="active_link_targets" to="/goalsUser">Цели
           </router-link>
         </div>
         <div class="main_plan_week">

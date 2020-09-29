@@ -8,7 +8,7 @@
       </div>
       <div class="user_menu">
         <img src="../style/img/Bell.png" alt="Bell" class="bell_okr icon_bell">
-        <router-link class="use_name" to="/targetsUser" v-if="this.$store.state.user">
+        <router-link class="use_name" to="/planWeek" v-if="this.$store.state.user">
           {{ this.$store.state.user.name }}
         </router-link>
         <img src="../style/img/User.png" alt="Photo" class="user_photo icon_user">

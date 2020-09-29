@@ -3,12 +3,12 @@
     <Head/>
     <div class="row no-gutter">
       <toolBar/>
-      <div class="col-lg-10 col-md-10">
+      <div class="col-lg-10 col-md-10 col-sm-11">
         <div class="header_targets_link">
           <router-link class="link_targets" active-class="active_link_targets" to="/goals">
             Дерево целей
           </router-link>
-          <router-link class="link_targets" active-class="active_link_targets" to="/goals/GoalsQuarter">
+          <router-link class="link_targets" active-class="active_link_targets" to="/goals/goalsQuarter">
             Цели на квартал
           </router-link>
         </div>
@@ -46,13 +46,7 @@
                     <div class="links_menu">
                       <div class="tre"></div>
                       <div>
-                        <button class="btnLogOut">
-                          <img width="25" height="25" src="../style/img/Copy.png" alt="copy">
-                          <span>Добавить описание</span>
-                        </button>
-                      </div>
-                      <div>
-                        <button class="btnLogOut">
+                        <button @click="openEditGoal(goal.id)" class="btnLogOut">
                           <img width="25" height="25" src="../style/img/Pen.png" alt="Pen">
                           <span>Редактировать</span>
                         </button>
@@ -98,20 +92,8 @@
                       <div class="tre"></div>
                       <div>
                         <button class="btnLogOut">
-                          <img width="25" height="25" src="../style/img/Copy.png" alt="copy">
-                          <span>Добавить описание</span>
-                        </button>
-                      </div>
-                      <div>
-                        <button class="btnLogOut">
                           <img width="25" height="25" src="../style/img/Pen.png" alt="Pen">
                           <span>Редактировать</span>
-                        </button>
-                      </div>
-                      <div>
-                        <button class="btnLogOut">
-                          <img width="25" height="25" src="../style/img/Expand.png" alt="Expand">
-                          <span>Подробнее</span>
                         </button>
                       </div>
                       <div>
@@ -140,9 +122,10 @@
                 </div>
               
               </div>
-              <DeleteGoalModal v-if="showDeleteGoalModal" @close="showDeleteGoalModal = false" @delete="deleteGoal"/>
-              <DeleteKrModal v-if="showDeleteKrModal" @close="showDeleteKrModal = false" @delete="deleteKr"/>
             </div>
+            <EditGoalModal v-if="showEditGoalModal" v-bind:idGoal="idSelectedGoal" @close="showEditGoalModal = false"/>
+            <DeleteGoalModal v-if="showDeleteGoalModal" @close="showDeleteGoalModal = false" @delete="deleteGoal"/>
+            <DeleteKrModal v-if="showDeleteKrModal" @close="showDeleteKrModal = false" @delete="deleteKr"/>
           </div>
           <div v-else class="haveNoGoals">
             <div>Здесь еще ничего нет, Вы не составили свое дерево целей</div>
@@ -160,22 +143,24 @@ import ToolBar from "@/components/ToolBar";
 import AddGoalModal from './AddGoalModal';
 import DeleteGoalModal from './DeleteGoalModal';
 import DeleteKrModal from './DeleteKrModal';
+import EditGoalModal from './EditGoalModal';
 
 export default {
   name: 'CommonGoals',
   components: {
-    Head, ToolBar, AddGoalModal, DeleteGoalModal, DeleteKrModal
+    Head, ToolBar, AddGoalModal, DeleteGoalModal, DeleteKrModal, EditGoalModal
   },
 
   data: () => ({
     showAddGoalModal: false,
+    showEditGoalModal: false,
     showDeleteGoalModal: false,
     showDeleteKrModal: false,
     haveGoals: true,
     weight: '',
     title: '',
-    idDeleteGoal: '',
-    idDeleteKr: ''
+    idSelectedGoal: '',
+    idSelectedKr: ''
   }),
   // computed: {
   //   avrg() {
@@ -207,30 +192,35 @@ export default {
       this.weight = '';
     },
 
+    openEditGoal(id) {
+      this.idSelectedGoal = id;
+      this.showEditGoalModal = true;
+    },
+
     openDeleteGoal(id) {
-      this.idDeleteGoal = id;
+      this.idSelectedGoal = id;
       this.showDeleteGoalModal = true;
     },
 
     openDeleteKr(idGoal, idKr) {
-      this.idDeleteGoal = idGoal;
-      this.idDeleteKr = idKr;
+      this.idSelectedGoal = idGoal;
+      this.idSelectedKr = idKr;
       this.showDeleteKrModal = true;
     },
 
     deleteGoal() {
-      this.$store.commit('deleteGoal', this.idDeleteGoal);
-      this.idDeleteGoal = '';
+      this.$store.commit('deleteGoal', this.idSelectedGoal);
+      this.idSelectedGoal = '';
     },
 
     deleteKr() {
       let payload = {
-        idGoal: this.idDeleteGoal, 
-        idKr: this.idDeleteKr
+        idGoal: this.idSelectedGoal, 
+        idKr: this.idSelectedKr
       }
       this.$store.commit('deleteKr', payload);
-      this.idDeleteGoal = '';
-      this.idDeleteKr = '';
+      this.idSelectedGoal = '';
+      this.idSelectedKr = '';
     },
 
     displayKr(idGoal) {
@@ -298,7 +288,7 @@ button {
 }
 
 .links_menu {
-  width: 270px;
+  width: 220px;
   font-size: 18px;
   top: 52px;
   right: -7px;

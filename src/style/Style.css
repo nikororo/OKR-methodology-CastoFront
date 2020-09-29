@@ -96,7 +96,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     background-color: #70C7D4;
     justify-content: space-between;
     flex-direction: column;
-    padding: 28px 20px 10px;
+    padding: 20px 20px 10px;
 }
 
 .menu:hover .links_menu {
@@ -928,8 +928,12 @@ input:active, input:focus, select:focus, button:active, button:focus {
 .modal_user_name {
     display: flex;
     align-items: center;
-    padding-top: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 28px;
+}
+
+.modal_user_name:first-child {
+    padding-top: 8px;
+    margin-bottom: 34px;
 }
 
 .modal_user_name p {
@@ -938,20 +942,24 @@ input:active, input:focus, select:focus, button:active, button:focus {
     font-size: 18px;
 }
 
+.modal_user_name p:nth-child(1) {
+    margin-left: 0;
+}
+
 .addGoalModalCont {
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.1);
     overflow: auto;
     z-index: 9999;
     padding: 30px;
     white-space: nowrap;
     text-align: center;
 }
-
+  
 .flexModalCont {
     display: flex;
     width: 100%;
@@ -961,8 +969,9 @@ input:active, input:focus, select:focus, button:active, button:focus {
 .addGoalModal {
     width: 859px;
     background: #F4F4F4;
-    box-shadow: 2px 2px 20px 1px;
-    height: 600px;
+    box-shadow: 2px 2px 20px 1px rgba(0, 0, 0, 0.2);
+    height: auto;
+    padding: 60px 20px 40px;
     margin: auto;
 }
 
@@ -985,7 +994,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     border: none;
     background: #C4C4C4;
     height: 3px;
-    width: 786px;
+    width: 95%;
     margin: 0 auto;
 }
 
@@ -996,7 +1005,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .addGoalModalBody {
-    margin: 43px 115px 35px 55px;
+    margin: 43px 40px 35px 55px;
     display: flex;
     justify-content: flex-start;
     font-size: 16px;
@@ -1029,7 +1038,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .addGoalDate input {
-    max-width: 145px;
+    max-width: 152px;
     margin-right: 20px;
 }
 
