@@ -76,7 +76,7 @@
                 <div class="contKr" v-if="goal.showKr">
                   <div class="krs" v-for="kr in goal.krs" :key="kr.id">
                     <label for="newKr"> {{ kr.title }}</label>
-                    <input id="newKr" type="range" min="0" max="100" v-model="kr.percent" class="slider">
+                    <input id="newKr" type="range" min="0" max="100" @change="sum(goal.id)" v-model="kr.percent" class="slider">
                     <p class="percentGoals">{{ kr.percent }}%</p>
                     <div class="menu">
                     <a href="" class="button_menu">
@@ -177,24 +177,17 @@ export default {
     idDeleteGoal: '',
     idDeleteKr: ''
   }),
-  // computed: {
-  //   avrg() {
-  //     let percentAll = 0;
-  //     let itemsFound = 0;
-  //     let item = 0;
-  //     let len = this.krs.length;
-  //     let result = 0;
-  //     for (let i = 0; i < len; i++) {
-  //       item = Number(this.krs[i])
-  //       percentAll = item + percentAll;
-  //       itemsFound = itemsFound + 1;
-  //       result = percentAll / itemsFound;
-  //       result = result.toFixed()
-  //     }
-  //     return result
-  //   }
-  // },
+
   methods: {
+    sum(id) {
+      let data =
+          {
+            state: this.$store.getters.getState,
+            id: id
+          }
+      this.$store.dispatch('sumPercent', data)
+    },
+
     addKr(goalId, event) {
       event.preventDefault();
       let newKr = {
