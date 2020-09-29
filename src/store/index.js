@@ -133,10 +133,35 @@ export default new Vuex.Store({
         }
       });
     },
+
+    setPercentOfCompletion: (state, payload) => {
+      state.goals.forEach((goal) => {
+        if (goal.id === payload.id) {
+          goal.percentOfCompletion = payload.percent.toFixed(2)
+        }
+      })
+    }
   },
   plugins: [createPersistedState()],
-  actions: {
-  },
+    actions: {
+      sumPercent: ({commit, state}, data) => {
+        state.goals.forEach((goal) => {
+          if (goal.id === data.id) {
+            let percentOfCompletion = 0;
+            goal.krs.forEach((kr) => {
+              let weightKr = kr.weight / 100;
+              let percentKr = kr.percent;
+              percentOfCompletion = weightKr * percentKr + percentOfCompletion;
+              let payload = {
+                id: data.id,
+                percent: percentOfCompletion
+              }
+              commit('setPercentOfCompletion', payload)
+            })
+          }
+        })
+      }
+    },
   modules: {
   }
 })
