@@ -777,36 +777,66 @@ input:active, input:focus, select:focus, button:active, button:focus {
     line-height: 26px;
     display: flex;
     align-items: center;
+    border-radius: 4px;
     background-color: #F4F4F4;
+}
+.sliderGoal {
+    -webkit-appearance: none;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 4px;
+    left: 50%;
+    width: 30%;
+    background-color: #bebebe;
+}
+
+.sliderGoal::-webkit-slider-thumb {
+    width:1px;
+    -webkit-appearance: none;
+    height: 10px;
+    background: #D76101;
+    box-shadow: -480px 0 0 480px #D76101;
+}
+.sliderGoal::-moz-range-thumb {
+    width:1px;
+    -webkit-appearance: none;
+    height: 10px;
+    border-radius: 4px;
+    cursor: ew-resize;
+    background: #D76101;
+    box-shadow: -480px 0 0 480px #D76101;
 }
 
 .slider {
-    position: absolute;
-    left: 50%;
     -webkit-appearance: none;
-    width: 30%;
+    overflow: hidden;
+    position: absolute;
     height: 10px;
     border-radius: 4px;
-    background: #d7610159;
+    left: 50%;
+    width: 30%;
+    background-color: #bebebe;
     outline: none;
 }
 
 .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #D76101;
+    -webkit-appearance: none;
     cursor: pointer;
+    background-color: #D76101;
+    box-shadow: -495px 0 0 480px #f1c79e;
 }
 
 .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #D76101;
+    -webkit-appearance: none;
     cursor: pointer;
+    background-color: #D76101;
+    box-shadow: -495px 0 0 480px #f1c79e;
 }
 
 .createKR {

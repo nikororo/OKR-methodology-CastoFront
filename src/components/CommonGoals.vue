@@ -24,7 +24,7 @@
                   <button class="btnShowKR" @click="displayKr(goal.id)">
                     <p class="nameGoals">{{goal.name}}</p>
                   </button>
-                  <input type="range" min="0" max="100" class="slider" v-model="goal.percentOfCompletion" disabled>
+                  <input type="range" min="0" max="100" class="sliderGoal" v-model="goal.percentOfCompletion" disabled>
                   <p class="percentGoals">{{ goal.percentOfCompletion }}%</p>
 
                   <div class="menu">
