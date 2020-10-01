@@ -3,9 +3,9 @@
     <div class="flexModalCont">
       <div class="addGoalModal">
 
-        <form v-on:submit.prevent="editGoal">
+        <form v-on:submit.prevent="editKr">
           <header>
-            <input v-model="name" required minlength="5" maxlength="100"/>
+            <input v-model="title" required minlength="5" maxlength="100"/>
             <button class="btnClose" @click="close">
               <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -17,28 +17,14 @@
           <hr>
           <section class="addGoalModalBody">
             <div class="addGoalNameInput">
-              <label for="addGoalAuthor">Автор</label>
-              <label for="addGoalCommand">Отдел</label>
-              <label for="addGoalDateStart">Период</label>
-              <label for="addGoalExecutor">Ответственный</label>
-              <label for="addGoalDescr">Описание цели</label>
+              <label for="editKrWeight">Вес</label>
+              <label for="editKrExecutor">Ответственный</label>
+              <label for="editKrPerformers">Исполнители</label>
             </div>
             <div class="addGoalInput">
-              <div class="modal_user_name">
-                <img class="icon_user" src="../style/img/User.png" alt="">
-                <p>{{author}}</p>
-              </div>
-              <select v-model="command" id="addGoalExecutor" class="input_user">
-                <option selected hidden>{{command}}</option>
-                <option v-for="(com, index) in this.$store.state.commands" v-bind:key="index">
-                  {{com}}
-                </option>
-              </select>
-              <div class="addGoalDate">
-                <input v-model="dateStart" id="addGoalDateStart" class="input_user" placeholder="Дата начала" type="text"
-                      onfocus="(this.type='date')" onblur="(this.type='text')" required>
-                <input v-model="dateEnd" id="addGoalDateEnd" class="input_user" placeholder="Дата окончания" type="text"
-                      onfocus="(this.type='date')" onblur="(this.type='text')" required>
+              <div class="meaning">
+                <input v-model="weight" id="editKrWeight" class="input_user" type="number" min="1" max="100" placeholder="1" required>
+                <span>%</span>
               </div>
               <select v-model="executor" id="addGoalExecutor" class="input_user">
                 <option selected hidden>{{executor}}</option>
@@ -46,8 +32,13 @@
                   {{men}}
                 </option>
               </select>
-              <textarea v-model="descr" id="addGoalDescr" class="input_user" type="text"
-                        placeholder="Описание цели" minlength="5" maxlength="500"></textarea>
+              <select v-model="performers" id="editKrPerformers" class="input_user" multiple>
+                <option v-for="(men, index) in this.$store.state.people" v-bind:key="index">
+                  {{men}}
+                </option>
+              </select>
+              <label for="createKrFile">Документ <img class="icon_user" src="../style/img/AddFile.png" alt="add"></label>
+              <input type="file" id="createKrFile" class="fileKr" />
             </div>
           </section>
           <footer>
@@ -67,31 +58,29 @@
 <script>
 
 export default {
-  name: 'EditGoalModal',
+  name: 'EditKrModal',
 
-  props: ['idGoal'],
+  props: ['idGoal','idKr'],
 
   data: () => ({
-    name: '',
-    author: '',
-    dateStart: '',
-    dateEnd: '',
+    title: '',
+    weight: '',
     executor: '',
-    command: '',
-    descr: ''
+    performers: [],
   }),
 
   mounted: function () {
     this.$store.state.goals.forEach(goal => {
       if (goal.id === this.idGoal) {
-          this.name = goal.name;
-          this.author = goal.author;
-          this.dateStart = goal.dateStart;
-          this.dateEnd = goal.dateEnd;
-          this.executor = goal.executor;
-          this.command = goal.command;
-          this.descr = goal.descr;
-        }
+        goal.krs.forEach(kr => {
+          if (kr.id === this.idKr) {
+            this.title = kr.title;
+            this.weight = kr.weight;
+            this.executor = kr.executor;
+            this.performers = kr.performers
+          }
+        })
+      }
     });
   },
 
@@ -100,17 +89,17 @@ export default {
       this.$emit('close');
     },
 
-    editGoal() {
-      let modifiedGoal = {
-        name: this.name,
-        command: this.command,
-        dateStart: this.dateStart,
-        dateEnd: this.dateEnd,
-        id: this.idGoal,
-        descr: this.descr,
-        executor: this.executor
+    editKr() {
+      let modifiedKr = {
+        title: this.title,
+        weight: this.weight,
+        executor: this.executor,
+        performers: this.performers,
+        idGoal: this.idGoal,
+        id: this.idKr
       }
-      this.$store.commit('editGoal', modifiedGoal);
+      this.$store.commit('editKr', modifiedKr);
+      this.$store.dispatch('sumPercent', this.idGoal);
       this.$emit('close');
     }
   },
@@ -120,9 +109,32 @@ export default {
 <style scoped>
 .addGoalModal {
   padding: 0 0 30px;
+  width: 750px;
 }
 
 .modal_user_name {
   margin-bottom: 23px;
+}
+
+#editKrWeight {
+  font-size: 16px;
+  width: 80px;
+}
+
+.meaning span {
+  margin: 10px 0 0 10px;
+}
+
+.addGoalInput {
+  text-align: left;
+}
+
+#editKrPerformers {
+  height: 70px;
+}
+
+#editKrPerformers option {
+    background-color:inherit;
+    color: black;
 }
 </style>

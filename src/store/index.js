@@ -12,6 +12,22 @@ export default new Vuex.Store({
       name: 'Максимов Станислав Игоревич',
       command: 'Castoroides'
     },
+    people: [
+      'Литвинова Наталья Игоревна',
+      'Черкасов Данил Владимирович',
+      'Печуркина Екатерина Андреевна',
+      'Чеснокова Ксения Андреевна',
+      'Венберг Алексей Алексеевич',
+      'Бруев Максим Олегович',
+      'Титова Арина Радиевна',
+    ],
+    commands: [
+      'Тестировщики',
+      'Castoroides',
+      'Академия',
+      'Marketing',
+      'Человек Умелый',
+    ],
     goals: [
       {
         name: 'Главная цель компании',
@@ -114,11 +130,28 @@ export default new Vuex.Store({
           goal.krs.push({
             title: newKR.title,
             weight: newKR.weight,
+            executor: newKR.executor,
+            performers: [],
             percent: 0,
             id: maxID,
           });
         }
       });
+    },
+
+    editKr: (state, modifiedKr) => {
+      state.goals.forEach((goal) => {
+        if (goal.id === modifiedKr.idGoal) {
+          goal.krs.forEach((kr) => {
+            if (kr.id === modifiedKr.id) {
+              delete modifiedKr.idGoal;
+              for (const property in modifiedKr) {
+                kr[property] = modifiedKr[property];
+              }
+            }
+          });
+        }
+      }); 
     },
 
     deleteKr: (state, {idGoal, idKr}) => {

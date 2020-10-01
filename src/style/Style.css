@@ -713,7 +713,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .page {
     background-color: #F4F4F4;
-    padding: 40px 100px 165px;
+    padding: 40px 100px 120px;
     min-height: calc(100vh - 166px);
     width: 100%;
 }
@@ -810,10 +810,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .createKR {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    color: #6d7273;
     position: relative;
     padding: 25px 40px;
     font-size: 22px;
@@ -952,7 +949,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.3);
     overflow: auto;
     z-index: 9999;
     padding: 30px;
@@ -969,7 +966,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 .addGoalModal {
     width: 859px;
     background: #F4F4F4;
-    box-shadow: 2px 2px 20px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 20px 1px;
     height: auto;
     padding: 60px 20px 40px;
     margin: auto;
@@ -985,7 +982,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 .addGoalModal header input {
     width: 95%;
     border: none;
-    font-size: 50px;
+    font-size: 35px;
     line-height: 68px;
     color: #535353;
     background: #F4F4F4;
@@ -993,7 +990,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .addGoalModal hr {
     border: none;
-    background: #C4C4C4;
+    background: #70C7D4;
     height: 3px;
     width: 95%;
     margin: 0 auto;
@@ -1072,6 +1069,20 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .addGoalModal .button_pass:last-child:hover {
     border: 1px solid #0C2528;
+}
+
+.fileKr {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.addGoalModalCont option {
+    background-color: #f7f7f7;
+    color: #6d7273;
 }
 
 input:-webkit-autofill,

@@ -25,7 +25,7 @@
             </div>
             <div class="addGoalInput">
               <div class="modal_user_name">
-                <img class="icon_user" src="../style/img/User.png" alt="">
+                <img class="icon_user" src="../style/img/User.png" alt="User">
                 <p>{{this.$store.state.user.name}}</p>
               </div>
                <div class="modal_user_name">
@@ -38,7 +38,10 @@
                       onfocus="(this.type='date')" onblur="(this.type='text')" required>
               </div>
               <select v-model="executor" id="addGoalExecutor" class="input_user">
-                <option value disabled selected>Ответственный</option>
+                <option value disabled selected hidden>Ответственный</option>
+                <option v-for="(men, index) in this.$store.state.people" v-bind:key="index">
+                  {{men}}
+                </option>
               </select>
               <textarea v-model="descr" id="addGoalDescr" class="input_user" type="text"
                         placeholder="Описание цели" minlength="5" maxlength="500"></textarea>
@@ -94,12 +97,7 @@ export default {
 </script>
 
 <style scoped>
-.addGoalModalCont {    
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
 .addGoalModal {
-  box-shadow: 2px 2px 20px 1px;
-  padding: 0 0 60px;
+  padding: 0 0 30px;
 }
 </style>
