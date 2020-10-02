@@ -106,16 +106,17 @@
                   </div>
                   </div>
 
-                  <form v-on:submit="addKr(goal.id, $event)" class="createKR">
+                  <form v-on:submit="addKr(goal.id, goal.remainderWeight, $event)" class="createKR">
                      <div class="flexModalCont"> <div class="nameCreateKR">
                         <button type="submit">
                           <img src="../style/img/Plus.png" alt="Add KR">
                         </button>
                         <input type="text" placeholder="Добавить КР" required v-model="title" minlength="5" maxlength="100">
                       </div>
+                      <div class="promptWeight" v-bind:class="{errorWeigth}">Осталось: {{goal.remainderWeight}}</div>
                       <div class="meaning">
                         <label for="createKrPercent">Вес</label>
-                        <input id="createKrPercent" class="input_percent" type="number" min="1" max="100" placeholder="1" v-model="weight" required>
+                        <input v-bind:class="{errorWeigth}" id="createKrPercent" class="input_percent" type="number" min="1" max="100" placeholder="1" v-model="weight" required>
                         <span>%</span>
                       </div>
                     </div>
@@ -178,6 +179,7 @@ export default {
     showEditKrModal: false,
     showDeleteKrModal: false,
     haveGoals: true,
+    errorWeigth: false,
     people: '',
     weight: '',
     title: '',
@@ -185,7 +187,7 @@ export default {
     idSelectedGoal: '',
     idSelectedKr: ''
   }),
-
+    
   mounted: function () {
     this.people = this.$store.state.people;
   }, 
@@ -195,8 +197,13 @@ export default {
       this.$store.dispatch('sumPercent', id)
     },
 
-    addKr(goalId, event) {
+    addKr(goalId, remainderWeight, event) {
       event.preventDefault();
+      if (this.weight > remainderWeight) {
+        this.errorWeigth = true;
+        return;
+      }
+      this.errorWeigth = false;
       let newKr = {
         title: this.title,
         weight: this.weight,
@@ -211,23 +218,27 @@ export default {
     openEditGoal(id) {
       this.idSelectedGoal = id;
       this.showEditGoalModal = true;
+      this.errorWeigth = false;
     },
 
     openDeleteGoal(id) {
       this.idSelectedGoal = id;
       this.showDeleteGoalModal = true;
+      this.errorWeigth = false;
     },
 
     openEditKr(idGoal, idKr) {
       this.idSelectedGoal = idGoal;
       this.idSelectedKr = idKr;
       this.showEditKrModal = true;
+      this.errorWeigth = false;
     },
 
     openDeleteKr(idGoal, idKr) {
       this.idSelectedGoal = idGoal;
       this.idSelectedKr = idKr;
       this.showDeleteKrModal = true;
+      this.errorWeigth = false;
     },
 
     deleteGoal() {
@@ -342,5 +353,12 @@ button {
   margin-right: 55px;
   width: 320px;
   font-size: 18px;
+}
+
+.promptWeight {
+  position: absolute;
+  font-size: 18px;
+  right: 80px;
+  top: 10px;
 }
 </style>

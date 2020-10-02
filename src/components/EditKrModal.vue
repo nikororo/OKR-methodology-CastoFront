@@ -22,8 +22,9 @@
               <label for="editKrPerformers">Исполнители</label>
             </div>
             <div class="addGoalInput">
+              <div class="promptWeight" v-bind:class="{errorWeigth}">Осталось: {{remainderWeight}}</div>
               <div class="meaning">
-                <input v-model="weight" id="editKrWeight" class="input_user" type="number" min="1" max="100" placeholder="1" required>
+                <input v-bind:class="{errorWeigth}" v-model="weight" id="editKrWeight" class="input_user" type="number" min="1" max="100" required>
                 <span>%</span>
               </div>
               <select v-model="executor" id="addGoalExecutor" class="input_user">
@@ -64,20 +65,25 @@ export default {
 
   data: () => ({
     title: '',
+    oldWeight: '',
     weight: '',
     executor: '',
     performers: [],
+    remainderWeight: '',
+    errorWeigth: false,
   }),
 
   mounted: function () {
     this.$store.state.goals.forEach(goal => {
       if (goal.id === this.idGoal) {
+        this.remainderWeight = goal.remainderWeight;
         goal.krs.forEach(kr => {
           if (kr.id === this.idKr) {
             this.title = kr.title;
             this.weight = kr.weight;
+            this.oldWeight = kr.weight;
             this.executor = kr.executor;
-            this.performers = kr.performers
+            this.performers = kr.performers;
           }
         })
       }
@@ -90,6 +96,10 @@ export default {
     },
 
     editKr() {
+      if ((this.weight - this.oldWeight) > this.remainderWeight) {
+        this.errorWeigth = true;
+        return;
+      }
       let modifiedKr = {
         title: this.title,
         weight: this.weight,
@@ -127,6 +137,7 @@ export default {
 
 .addGoalInput {
   text-align: left;
+  position: relative;
 }
 
 #editKrPerformers {
@@ -134,7 +145,13 @@ export default {
 }
 
 #editKrPerformers option {
-    background-color:inherit;
-    color: black;
+  background-color:inherit;
+  color: black;
+}
+
+.promptWeight {
+  position: absolute;
+  left: 0;
+  top: -23px;
 }
 </style>

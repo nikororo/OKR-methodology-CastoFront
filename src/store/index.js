@@ -39,6 +39,7 @@ export default new Vuex.Store({
         lvl: 1,
         percentOfCompletion: 0,
         showKr: false,
+        remainderWeight: 100,
         krs: []
       },
       {
@@ -51,6 +52,7 @@ export default new Vuex.Store({
         lvl: 2,
         percentOfCompletion: 0,
         showKr: false,
+        remainderWeight: 100,
         krs: []
       },
       {
@@ -64,6 +66,7 @@ export default new Vuex.Store({
         lvl: 2,
         percentOfCompletion: 0,
         showKr: false,
+        remainderWeight: 100,
         krs: []
       }
     ]
@@ -126,6 +129,7 @@ export default new Vuex.Store({
             });
           }
           maxID ++;
+          goal.remainderWeight -= newKR.weight;
 
           goal.krs.push({
             title: newKR.title,
@@ -144,6 +148,10 @@ export default new Vuex.Store({
         if (goal.id === modifiedKr.idGoal) {
           goal.krs.forEach((kr) => {
             if (kr.id === modifiedKr.id) {
+              if (kr.weight !== modifiedKr.weight) {
+                goal.remainderWeight += kr.weight - modifiedKr.weight;
+              }
+
               delete modifiedKr.idGoal;
               for (const property in modifiedKr) {
                 kr[property] = modifiedKr[property];
@@ -159,6 +167,7 @@ export default new Vuex.Store({
         if (goal.id === idGoal) {
           goal.krs.forEach((kr, i) => {
             if (kr.id === idKr) {
+              goal.remainderWeight += Number(kr.weight);
               goal.krs.splice(i, 1);
             }
           });

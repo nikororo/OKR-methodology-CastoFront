@@ -842,7 +842,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 .createKR {
     color: #6d7273;
     position: relative;
-    padding: 25px 40px;
+    padding: 35px 40px 25px;
     font-size: 22px;
     line-height: 26px;
     background-color: #F4F4F4;
@@ -852,6 +852,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 .nameCreateKR {
     display: flex;
     width: calc(100% - 220px);
+    margin-right: 20px;
 }
 
 .nameCreateKR input {
@@ -1113,6 +1114,12 @@ input:active, input:focus, select:focus, button:active, button:focus {
 .addGoalModalCont option {
     background-color: #f7f7f7;
     color: #6d7273;
+}
+
+
+.errorWeigth {
+    color:brown;
+    border-color: brown;
 }
 
 input:-webkit-autofill,
