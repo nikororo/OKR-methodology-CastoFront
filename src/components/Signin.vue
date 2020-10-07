@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
+// import Vue from 'vue'
 
 export default {
   name: 'Signin',
@@ -38,23 +38,23 @@ export default {
   }),
 
   methods: {
-    onLog() {
-      Vue.axios.post(this.$store.state.urlBD + 'api/user/login', {
-        email: this.email,
-        password: this.password
-      })
-          .then((res) => {
-            let user = {
-              email: res.data.user.email,
-              name: res.data.user.name,
-              id: res.data.user.id,
-              activity: res.data.user.activity
-            }
-            this.$store.commit('authCorr', user);
-            this.$router.push('/');
-          })
-          .catch(() => this.$store.commit('authErr'));
-    },
+    // onLog() {
+    //   Vue.axios.post(this.$store.state.urlBD + 'api/user/login', {
+    //     email: this.email,
+    //     password: this.password
+    //   })
+    //       .then((res) => {
+    //         let user = {
+    //           email: res.data.user.email,
+    //           name: res.data.user.name,
+    //           id: res.data.user.id,
+    //           activity: res.data.user.activity
+    //         }
+    //         this.$store.commit('authCorr', user);
+    //         this.$router.push('/');
+    //       })
+    //       .catch(() => this.$store.commit('authErr'));
+    // },
   }
 }
 </script>

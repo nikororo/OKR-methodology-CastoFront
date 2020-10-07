@@ -12,6 +12,7 @@ export default new Vuex.Store({
       name: 'Максимов Станислав Игоревич',
       command: 'Castoroides'
     },
+    missions: [],
     goals: [
       {
         name: 'Главная цель компании',
@@ -139,7 +140,24 @@ export default new Vuex.Store({
           goal.percentOfCompletion = payload.percent.toFixed()
         }
       })
-    }
+    },
+    percentFromColors:(state, id) => {
+      state.goals.forEach((goal) =>{
+        if (goal.id === id) {
+          let PercGoal = goal.percentOfCompletion
+          switch (PercGoal) {
+            case PercGoal <= 30:
+              return  'red'
+            case PercGoal >= 30 && PercGoal <= 70:
+              return 'black'
+            case PercGoal >= 70:
+              return 'blue'
+            default:
+              return 'blue'
+          }
+        }
+      })
+    },
   },
   plugins: [createPersistedState()],
     actions: {

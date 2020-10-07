@@ -5,11 +5,14 @@
       <toolBar/>
       <div class="col-lg-10 col-md-10 col-sm-11">
         <div class="header_targets_link">
+          <router-link class="link_targets" active-class="active_link_targets" to="/goals/MissionCompany">
+            Миссия компании
+          </router-link>
           <router-link class="link_targets" active-class="active_link_targets" to="/goals">
             Дерево целей
           </router-link>
           <router-link class="link_targets" active-class="active_link_targets" to="/goals/goalsQuarter">
-            Цели на квартал
+            Цели отделов
           </router-link>
         </div>
         <div class="page">
@@ -17,14 +20,17 @@
             <button class="button_goals" @click="showAddGoalModal = true">Добавить</button>
             <AddGoalModal v-if="showAddGoalModal" @close="showAddGoalModal = false"/>
           </div>
-          <div v-if="haveGoals">
+          <div v-if="this.$store.state.goals.length !== 0">
             <div v-for="goal in this.$store.state.goals" v-bind:key="goal.id">
               <div class="contGoal">
                 <div class="companyGoals">
                   <button class="btnShowKR" @click="displayKr(goal.id)">
-                    <p class="nameGoals">{{goal.name}}</p>
+                    <p class="nameGoals">{{ goal.name }}</p>
                   </button>
-                  <input type="range" min="0" max="100" class="sliderGoal" v-model="goal.percentOfCompletion" disabled>
+                  <div>
+                    <input type="range" min="0" max="100" class="sliderGoal"
+                           v-model="goal.percentOfCompletion" disabled>
+                  </div>
                   <p class="percentGoals">{{ goal.percentOfCompletion }}%</p>
 
                   <div class="menu">
@@ -66,44 +72,45 @@
                     </div>
                   </div>
                 </div>
-                
+
                 <div class="contKr" v-if="goal.showKr">
                   <div class="krs" v-for="kr in goal.krs" :key="kr.id">
                     <label for="newKr"> {{ kr.title }}</label>
-                    <input id="newKr" type="range" min="0" max="100" @change="sum(goal.id)" v-model="kr.percent" class="slider">
+                    <input id="newKr" type="range" min="0" max="100" @change="sum(goal.id)" v-model="kr.percent"
+                           class="slider">
                     <p class="percentGoals">{{ kr.percent }}%</p>
                     <div class="menu">
-                    <a href="" class="button_menu">
-                      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35"
-                           viewBox="0 0 172 172" style=" fill:#000000;">
-                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
-                           stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
-                           font-family="none" font-weight="none" font-size="none" text-anchor="none"
-                           style="mix-blend-mode: normal">
-                          <path d="M0,172v-172h172v172z" fill="none"></path>
-                          <g fill="#aad7de">
-                            <path
-                                d="M86,21.5c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333zM86,71.66667c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333zM86,121.83333c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333z"></path>
+                      <a href="" class="button_menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35"
+                             viewBox="0 0 172 172" style=" fill:#000000;">
+                          <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                             stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                             font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                             style="mix-blend-mode: normal">
+                            <path d="M0,172v-172h172v172z" fill="none"></path>
+                            <g fill="#aad7de">
+                              <path
+                                  d="M86,21.5c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333zM86,71.66667c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333zM86,121.83333c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333z"></path>
+                            </g>
                           </g>
-                        </g>
-                      </svg>
-                    </a>
-                    <div class="links_menu">
-                      <div class="tre"></div>
-                      <div>
-                        <button class="btnLogOut">
-                          <img width="25" height="25" src="../style/img/Pen.png" alt="Pen">
-                          <span>Редактировать</span>
-                        </button>
-                      </div>
-                      <div>
-                        <button class="btnLogOut" @click="openDeleteKr(goal.id, kr.id)">
-                          <img width="25" height="25" src="../style/img/Delete.png" alt="Delete">
-                          <span>Удалить</span>
-                        </button>
+                        </svg>
+                      </a>
+                      <div class="links_menu">
+                        <div class="tre"></div>
+                        <div>
+                          <button class="btnLogOut">
+                            <img width="25" height="25" src="../style/img/Pen.png" alt="Pen">
+                            <span>Редактировать</span>
+                          </button>
+                        </div>
+                        <div>
+                          <button class="btnLogOut" @click="openDeleteKr(goal.id, kr.id)">
+                            <img width="25" height="25" src="../style/img/Delete.png" alt="Delete">
+                            <span>Удалить</span>
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
                   </div>
 
                   <form v-on:submit="addKr(goal.id, $event)" class="createKR">
@@ -111,16 +118,17 @@
                       <button type="submit">
                         <img src="../style/img/Plus.png" alt="Add KR">
                       </button>
-                      <input type="text" placeholder="Добавить КР" required v-model="title" minlength="5" maxlength="100">
+                      <input type="text" placeholder="Добавить КР" required v-model="title" minlength="5"
+                             maxlength="100">
                     </div>
                     <div class="meaning">
                       <label for="createKrPercent">Вес</label>
-                      <input id="createKrPercent" class="input_percent" type="number" min="1" max="100" placeholder="0" v-model="weight" required>
+                      <input id="createKrPercent" class="input_percent" type="number" min="1" max="100" placeholder="0"
+                             v-model="weight" required>
                       <span>%</span>
                     </div>
                   </form>
                 </div>
-              
               </div>
             </div>
             <EditGoalModal v-if="showEditGoalModal" v-bind:idGoal="idSelectedGoal" @close="showEditGoalModal = false"/>
@@ -156,11 +164,10 @@ export default {
     showEditGoalModal: false,
     showDeleteGoalModal: false,
     showDeleteKrModal: false,
-    haveGoals: true,
     weight: '',
     title: '',
     idSelectedGoal: '',
-    idSelectedKr: ''
+    idSelectedKr: '',
   }),
 
   methods: {
@@ -203,7 +210,7 @@ export default {
 
     deleteKr() {
       let payload = {
-        idGoal: this.idSelectedGoal, 
+        idGoal: this.idSelectedGoal,
         idKr: this.idSelectedKr
       }
       this.$store.commit('deleteKr', payload);
@@ -221,6 +228,7 @@ export default {
 
 
 <style scoped>
+
 p {
   margin-bottom: 0;
 }

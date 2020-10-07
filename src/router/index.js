@@ -84,6 +84,11 @@ const routes = [
     name: 'goalsQuarter',
     component: () => import('../components/GoalsQuarter')
   },
+  {
+    path: '/goals/MissionCompany',
+    name: 'MissionCompany',
+    component: () => import('../components/MissionCompany')
+  },
 
   { 
     path: '*', 
