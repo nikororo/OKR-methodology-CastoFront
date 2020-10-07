@@ -30,17 +30,47 @@ export default new Vuex.Store({
     ],
     goals: [
       {
-        name: 'Главная цель компании',
+        name: 'Цель 1',
         dateStart: '2020-09-25',
         dateEnd: '2020-09-29',
         author: 'Екатерина',
         command: 'Castoroides',
         id: 1,
-        lvl: 1,
         percentOfCompletion: 0,
         showKr: false,
-        remainderWeight: 100,
-        krs: []
+        remainderWeight: 0,
+        krs: [
+          {
+            title: "кр цели 1", 
+            weight: "20", 
+            executor: "Титова Арина Радиевна", 
+            performers: [], 
+            percent: 0, 
+            id: 1
+          },
+          {
+            title: "кр цели 1 второй", 
+            weight: "50", 
+            executor: "Титова Арина Радиевна", 
+            performers: [], 
+            percent: 0, 
+            id: 3
+          },
+          {
+            title: "кр цели 1 еще один", 
+            weight: "30", 
+            executor: "Титова Арина Радиевна", 
+            performers: [], 
+            percent: 0, 
+            id: 4
+          }
+        ],
+        status: 'approved',
+        newKr: {
+          title: '',
+          weight: '',
+          executor: '',
+        }
       },
       {
         name: 'Цель отдела',
@@ -49,11 +79,25 @@ export default new Vuex.Store({
         author: 'Виктор',
         command: 'Тераторн',
         id: 2,
-        lvl: 2,
         percentOfCompletion: 0,
         showKr: false,
-        remainderWeight: 100,
-        krs: []
+        remainderWeight: 0,
+        krs: [
+          {
+            title: "кр цели 2", 
+            weight: "100", 
+            executor: "Титова Арина Радиевна", 
+            performers: [], 
+            percent: 0, 
+            id: 1
+          }
+        ],
+        status: 'approved',
+        newKr: {
+          title: '',
+          weight: '',
+          executor: '',
+        }
       },
       {
         name: 'Цель отдела 2',
@@ -63,13 +107,116 @@ export default new Vuex.Store({
         command: 'Castoroides',
         executor: 'Екатерина',
         id: 3,
-        lvl: 2,
         percentOfCompletion: 0,
         showKr: false,
-        remainderWeight: 100,
-        krs: []
-      }
-    ]
+        remainderWeight: 0,
+        krs: [
+          {
+            title: "кр цели 3", 
+            weight: "60", 
+            executor: "Титова Арина Радиевна", 
+            performers: [], 
+            percent: 0, 
+            id: 1
+          },
+          {
+            title: "кр цели 3 второй", 
+            weight: "40", 
+            executor: "Титова Арина Радиевна", 
+            performers: [], 
+            percent: 0, 
+            id: 2
+          }
+        ],
+        status: 'approved',
+        newKr: {
+          title: '',
+          weight: '',
+          executor: '',
+        }
+      },
+      {
+        name: 'Цель для одобрения 1',
+        dateStart: '2020-09-25',
+        dateEnd: '2020-09-29',
+        author: 'Екатерина',
+        command: 'Castoroides',
+        id: 4,
+        percentOfCompletion: 0,
+        showKr: false,
+        remainderWeight: 0,
+        krs: [
+          {
+            title: "кр цели для одобрения", 
+            weight: "100", 
+            executor: "Титова Арина Радиевна", 
+            performers: [], 
+            percent: 0, 
+            id: 1
+          }
+        ],
+        status: 'proposed',
+        newKr: {
+          title: '',
+          weight: '',
+          executor: '',
+        }
+      },
+      {
+        name: 'новая цель',
+        dateStart: '2020-09-25',
+        dateEnd: '2020-09-29',
+        author: 'Екатерина',
+        command: 'Castoroides',
+        id: 5,
+        percentOfCompletion: 0,
+        showKr: false,
+        remainderWeight: 70,
+        krs: [
+          {
+            title: "кр цели отдела", 
+            weight: "30", 
+            executor: "Титова Арина Радиевна", 
+            performers: [], 
+            percent: 0, 
+            id: 1
+          }
+        ],
+        status: 'unsent',
+        newKr: {
+          title: '',
+          weight: '',
+          executor: '',
+        }
+      },
+      {
+        name: 'цель, которую отклонили',
+        dateStart: '2020-09-25',
+        dateEnd: '2020-09-29',
+        author: 'Екатерина',
+        command: 'Castoroides',
+        id: 6,
+        percentOfCompletion: 0,
+        showKr: false,
+        remainderWeight: 0,
+        krs: [
+          {
+            title: "кр цели отдела", 
+            weight: "100", 
+            executor: "Титова Арина Радиевна", 
+            performers: [], 
+            percent: 0, 
+            id: 1
+          }
+        ],
+        status: 'rejected',
+        newKr: {
+          title: '',
+          weight: '',
+          executor: '',
+        }
+      },
+    ],
   },
   mutations: {
     authErr: (state) => {
@@ -89,9 +236,15 @@ export default new Vuex.Store({
         if (goal.id > maxID) maxID = goal.id;
       }) 
       newGoal.id = maxID + 1;
-      newGoal.lvl = 2;
       newGoal.showKr = false;
       newGoal.krs = [];
+      newGoal.status = 'unsent';
+      newGoal.remainderWeight = 100;
+      newGoal.newKr = {
+        title: '',
+        weight: '',
+        executor: '',
+      }
       state.goals.push(newGoal);
     },
 
@@ -111,6 +264,30 @@ export default new Vuex.Store({
       });
     },
 
+    approveGoal: (state, idGoal) => {
+      state.goals.forEach((goal) => {
+        if (goal.id === idGoal) {
+          goal.status = 'approved';
+        }
+      });
+    },
+
+    rejectGoal: (state, idGoal) => {
+      state.goals.forEach((goal) => {
+        if (goal.id === idGoal) {
+          goal.status = 'rejected';
+        }
+      });
+    },
+    
+    sendGoal: (state, idGoal) => {
+      state.goals.forEach((goal) => {
+        if (goal.id === idGoal) {
+          goal.status = 'proposed';
+        }
+      });
+    },
+
     displayKr: (state, idGoal) => {
       state.goals.forEach((goal) => {
         if (goal.id === idGoal) {
@@ -119,9 +296,9 @@ export default new Vuex.Store({
       });
     },
 
-    createKr: (state, newKR) => {
+    createKr: (state, goalId) => {
       state.goals.forEach((goal) => {
-        if (goal.id === newKR.goalId) {
+        if (goal.id === goalId) {
           let maxID = 0;
           if (goal.krs.length > 0) {
             goal.krs.forEach((kr) => {
@@ -129,16 +306,22 @@ export default new Vuex.Store({
             });
           }
           maxID ++;
-          goal.remainderWeight -= newKR.weight;
+          goal.remainderWeight -= goal.newKr.weight;
 
           goal.krs.push({
-            title: newKR.title,
-            weight: newKR.weight,
-            executor: newKR.executor,
+            title: goal.newKr.title,
+            weight: goal.newKr.weight,
+            executor: goal.newKr.executor,
             performers: [],
             percent: 0,
             id: maxID,
           });
+
+          goal.newKr = {
+            title: '',
+            weight: '',
+            executor: '',
+          }
         }
       });
     },

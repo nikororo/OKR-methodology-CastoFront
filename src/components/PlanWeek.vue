@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="tasks">
-                        <div class="status_tasks">
+                        <div>
                             <h2 class="h2_status_tasks">Запланировано
                                 <div class="circle_status_planner"></div>
                             </h2>
@@ -58,7 +58,7 @@
                                     <p class="i_task"><span>+</span>Cвязать задачу с целью</p></a>
                             </div>
                         </div>
-                        <div class="status_tasks">
+                        <div>
                             <h2 class="h2_status_tasks">Готово
                                 <div class="circle_status_ready"></div>
                             </h2>
@@ -73,7 +73,7 @@
                                     <p class="i_task"><span>+</span>Cвязать задачу с целью</p></a>
                             </div>
                         </div>
-                        <div class="status_tasks">
+                        <div>
                             <h2 class="h2_status_tasks">Возникшие проблемы
                                 <div class="circle_status_problem"></div>
                             </h2>

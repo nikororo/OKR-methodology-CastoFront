@@ -80,9 +80,16 @@ const routes = [
     component: () => import('../components/Signup')
   },
   {
-    path: '/goals/goalsQuarter',
-    name: 'goalsQuarter',
-    component: () => import('../components/GoalsQuarter')
+    path: '/goals/companyMission',
+    name: 'companyMission',
+    component: () => import('../components/CompanyMission'),
+    beforeEnter: ifAuthenticated
+  },
+  {
+    path: '/goals/goalsProtection',
+    name: 'goalsProtection',
+    component: () => import('../components/GoalsProtection'),
+    beforeEnter: ifAuthenticated
   },
 
   { 

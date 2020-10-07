@@ -5,11 +5,14 @@
       <toolBar/>
       <div class="col-lg-10 col-md-7">
         <div class="header_targets_link">
-          <router-link class="link_targets" active-class="active_link_targets" to="/goals" exact>
-            Дерево целей
+          <router-link class="link_targets" active-class="active_link_targets" to="/goals/companyMission">
+            Миссии компании
           </router-link>
-          <router-link class="link_targets" active-class="active_link_targets" to="/goals/goalsQuarter">
-            Цели на квартал
+          <router-link class="link_targets" active-class="active_link_targets" to="/goals" exact>
+            Цели
+          </router-link>
+          <router-link class="link_targets" active-class="active_link_targets" to="/goals/goalsProtection">
+            Защита целей
           </router-link>
         </div>
         <div class="page">
