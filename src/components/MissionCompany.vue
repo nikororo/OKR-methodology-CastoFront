@@ -9,10 +9,10 @@
             Миссия компании
           </router-link>
           <router-link class="link_targets" active-class="active_link_targets" to="/goals" exact>
-            Дерево целей
+            Цели
           </router-link>
           <router-link class="link_targets" active-class="active_link_targets" to="/goals/goalsQuarter">
-            Цели отделов
+            Защита целей
           </router-link>
         </div>
         <div class="page">
