@@ -448,7 +448,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .tasks {
     min-height: calc(100vh - 150px);
-    padding: 47px 60px 90px;
+    padding: 10px 60px 90px;
     background-color: #F4F4F4;
 }
 
@@ -780,6 +780,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     border-radius: 4px;
     background-color: #F4F4F4;
 }
+
 .sliderGoal {
     -webkit-appearance: none;
     overflow: hidden;
@@ -795,8 +796,9 @@ input:active, input:focus, select:focus, button:active, button:focus {
     -webkit-appearance: none;
     height: 10px;
     background: #D76101;
-    box-shadow: -480px 0 0 480px #D76101;
+    box-shadow: -480px 0 0 480px #D76101 ;
 }
+
 .sliderGoal::-moz-range-thumb {
     width:1px;
     -webkit-appearance: none;
@@ -806,6 +808,96 @@ input:active, input:focus, select:focus, button:active, button:focus {
     background: #D76101;
     box-shadow: -480px 0 0 480px #D76101;
 }
+
+
+.redSlider {
+    -webkit-appearance: none;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 4px;
+    left: 50%;
+    width: 30%;
+    background-color: #bebebe;
+}
+
+.redSlider::-webkit-slider-thumb {
+    width:1px;
+    -webkit-appearance: none;
+    height: 10px;
+    background: #D76101;
+    box-shadow: -480px 0 0 480px red;
+}
+
+.redSlider::-moz-range-thumb {
+    width:1px;
+    -webkit-appearance: none;
+    height: 10px;
+    border-radius: 4px;
+    cursor: ew-resize;
+    background: #D76101;
+    box-shadow: -480px 0 0 480px red;
+}
+
+
+
+.yellowSlider {
+    -webkit-appearance: none;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 4px;
+    left: 50%;
+    width: 30%;
+    background-color: #bebebe;
+}
+
+.yellowSlider::-webkit-slider-thumb {
+    width:1px;
+    -webkit-appearance: none;
+    height: 10px;
+    background: #D76101;
+    box-shadow: -480px 0 0 480px yellow;
+}
+
+.yellowSlider::-moz-range-thumb {
+    width:1px;
+    -webkit-appearance: none;
+    height: 10px;
+    border-radius: 4px;
+    cursor: ew-resize;
+    background: #D76101;
+    box-shadow: -480px 0 0 480px yellow;
+}
+
+
+.greenSlider {
+    -webkit-appearance: none;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 4px;
+    left: 50%;
+    width: 30%;
+    background-color: #bebebe;
+}
+
+.greenSlider::-webkit-slider-thumb {
+    width:1px;
+    -webkit-appearance: none;
+    height: 10px;
+    background: #D76101;
+    box-shadow: -480px 0 0 480px green;
+}
+
+.greenSlider::-moz-range-thumb {
+    width:1px;
+    -webkit-appearance: none;
+    height: 10px;
+    border-radius: 4px;
+    cursor: ew-resize;
+    background: #D76101;
+    box-shadow: -480px 0 0 480px green;
+}
+
+
 
 .slider {
     -webkit-appearance: none;

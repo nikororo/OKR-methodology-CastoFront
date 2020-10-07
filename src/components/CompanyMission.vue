@@ -16,7 +16,13 @@
           </router-link>
         </div>
         <div class="page">
-          Тут что-нибудь когда-нибудь будет =)
+          <div v-if="this.$store.state.missions.length !== 0">
+
+          </div>
+          <div v-else class="haveNoMission">
+            <div>Здесь еще ничего нет, Вы не составили миссии компании</div>
+            <img src="../style/img/CatNoGoals.png" alt="Котик">
+          </div>
         </div>
       </div>
     </div>
@@ -34,3 +40,18 @@ export default {
   },
 }
 </script>
+
+<style>
+.haveNoMission {
+  text-align: center;
+  font-size: 36px;
+  color: #0C2528;
+  opacity: 0.5;
+  padding-top: 70px;
+}
+
+.haveNoMission img {
+  max-width: 410px;
+  padding-top: 30px;
+}
+</style>

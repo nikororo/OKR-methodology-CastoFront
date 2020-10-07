@@ -16,7 +16,7 @@
           </router-link>
         </div>
         <div class="page">
-          <div v-if="haveGoals">
+          <div v-if="proposedGoals.length !== 0">
             <div v-for="goal in proposedGoals" v-bind:key="goal.id">
               <div class="contGoal">
                 <div class="companyGoals">
@@ -43,6 +43,12 @@
                     </a>
                     <div class="links_menu">
                       <div class="tre"></div>
+                      <div>
+                        <button @click="openEditGoal(goal.id)" class="btnLogOut">
+                          <img width="25" height="25" src="../style/img/Pen.png" alt="Pen">
+                          <span>Редактировать</span>
+                        </button>
+                      </div>
                       <div>
                         <button class="btnLogOut">
                           <img width="25" height="25" src="../style/img/Expand.png" alt="Expand">
@@ -133,6 +139,9 @@
                 </div>
               </div>
             </div>
+            <EditGoalModal v-if="showEditGoalModal" v-bind:idGoal="idSelectedGoal" @close="showEditGoalModal = false"/>
+            <EditKrModal v-if="showEditKrModal" v-bind:idGoal="idSelectedGoal" v-bind:idKr="idSelectedKr" @close="showEditKrModal = false"/>
+            <DeleteKrModal v-if="showDeleteKrModal" @close="showDeleteKrModal = false" @delete="deleteKr"/>
           </div>
           <div v-else class="haveNoGoals">
             <div>Цели еще не предложены, здесь ничего нет.</div>
@@ -147,22 +156,28 @@
 <script>
 import Head from "@/components/Head";
 import ToolBar from "@/components/ToolBar";
+import EditGoalModal from './EditGoalModal';
+import EditKrModal from './EditKrModal';
+import DeleteKrModal from './DeleteKrModal';
 
 export default {
   name: 'CommonGoals',
   components: {
     Head, 
-    ToolBar
+    ToolBar, 
+    EditGoalModal, 
+    EditKrModal,
+    DeleteKrModal, 
   },
 
   data: () => ({
     showEditGoalModal: false,
     showEditKrModal: false,
     showDeleteKrModal: false,
-    haveGoals: true,
     errorWeigth: false,
     people: '',
     idSelectedGoal: '',
+    idSelectedKr: ''
   }),
     
   computed: {
@@ -205,12 +220,6 @@ export default {
       this.errorWeigth = false;
     },
 
-    openDeleteGoal(idGoal) {
-      this.idSelectedGoal = idGoal;
-      this.showDeleteGoalModal = true;
-      this.errorWeigth = false;
-    },
-
     openEditKr(idGoal, idKr) {
       this.idSelectedGoal = idGoal;
       this.idSelectedKr = idKr;
@@ -223,11 +232,6 @@ export default {
       this.idSelectedKr = idKr;
       this.showDeleteKrModal = true;
       this.errorWeigth = false;
-    },
-
-    deleteGoal() {
-      this.$store.commit('deleteGoal', this.idSelectedGoal);
-      this.idSelectedGoal = '';
     },
 
     deleteKr() {

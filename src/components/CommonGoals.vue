@@ -16,14 +16,17 @@
           </router-link>
         </div>
         <div class="page">
-          <div v-if="haveGoals">
+          <div v-if="approvedGoals.length !== 0">
             <div v-for="goal in approvedGoals" v-bind:key="goal.id">
               <div class="contGoal">
                 <div class="companyGoals">
                   <button class="btnShowKR" @click="displayKr(goal.id)">
-                    <p class="nameGoals">{{goal.name}}</p>
+                    <p class="nameGoals">{{ goal.name }}</p>
                   </button>
-                  <input type="range" min="0" max="100" class="sliderGoal" v-model="goal.percentOfCompletion" disabled>
+                  <div>
+                    <input type="range" min="0" max="100" class="sliderGoal"
+                           v-model="goal.percentOfCompletion" disabled>
+                  </div>
                   <p class="percentGoals">{{ goal.percentOfCompletion }}%</p>
 
                   <div class="menu">
@@ -53,11 +56,11 @@
                     </div>
                   </div>
                 </div>
-                
                 <div class="contKr" v-if="goal.showKr">
                   <div class="krs" v-for="kr in goal.krs" :key="kr.id">
                     <label for="newKr"> {{ kr.title }}</label>
-                    <input id="newKr" type="range" min="0" max="100" @change="sum(goal.id)" v-model="kr.percent" class="slider">
+                    <input id="newKr" type="range" min="0" max="100" @change="sum(goal.id)" v-model="kr.percent"
+                           class="slider">
                     <p class="percentGoals">{{ kr.percent }}%</p>
                   </div>
                 </div>
@@ -84,10 +87,6 @@ export default {
     Head, 
     ToolBar,
   },
-
-  data: () => ({
-    haveGoals: true,
-  }),
     
   computed: {
     approvedGoals: function () {
@@ -109,6 +108,7 @@ export default {
 
 
 <style scoped>
+
 p {
   margin-bottom: 0;
 }
