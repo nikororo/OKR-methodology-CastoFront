@@ -14,7 +14,7 @@
         <img src="../style/img/User.png" alt="Photo" class="user_photo icon_user">
 
         <div class="menu">
-          <a href="" class="button_menu"><img src="../style/img/Menu.png" alt=""></a>
+          <a class="button_menu"><img src="../style/img/Menu.png" alt=""></a>
           <div class="links_menu">
             <div class="tre"></div>
             <div>

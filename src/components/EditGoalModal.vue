@@ -29,7 +29,10 @@
                 <p>{{author}}</p>
               </div>
               <select v-model="command" id="addGoalExecutor" class="input_user">
-                <option selected>{{command}}</option>
+                <option selected hidden>{{command}}</option>
+                <option v-for="(com, index) in this.$store.state.commands" v-bind:key="index">
+                  {{com}}
+                </option>
               </select>
               <div class="addGoalDate">
                 <input v-model="dateStart" id="addGoalDateStart" class="input_user" placeholder="Дата начала" type="text"
@@ -38,7 +41,10 @@
                       onfocus="(this.type='date')" onblur="(this.type='text')" required>
               </div>
               <select v-model="executor" id="addGoalExecutor" class="input_user">
-                <option selected>{{executor}}</option>
+                <option selected hidden>{{executor}}</option>
+                <option v-for="(men, index) in this.$store.state.people" v-bind:key="index">
+                  {{men}}
+                </option>
               </select>
               <textarea v-model="descr" id="addGoalDescr" class="input_user" type="text"
                         placeholder="Описание цели" minlength="5" maxlength="500"></textarea>
@@ -113,7 +119,7 @@ export default {
 
 <style scoped>
 .addGoalModal {
-  padding: 0 0 60px;
+  padding: 0 0 30px;
 }
 
 .modal_user_name {

@@ -13,6 +13,22 @@ export default new Vuex.Store({
       command: 'Castoroides'
     },
     missions: [],
+    people: [
+      'Литвинова Наталья Игоревна',
+      'Черкасов Данил Владимирович',
+      'Печуркина Екатерина Андреевна',
+      'Чеснокова Ксения Андреевна',
+      'Венберг Алексей Алексеевич',
+      'Бруев Максим Олегович',
+      'Титова Арина Радиевна',
+    ],
+    commands: [
+      'Тестировщики',
+      'Castoroides',
+      'Академия',
+      'Marketing',
+      'Человек Умелый',
+    ],
     goals: [
       {
         name: 'Главная цель компании',
@@ -24,6 +40,7 @@ export default new Vuex.Store({
         lvl: 1,
         percentOfCompletion: 0,
         showKr: false,
+        remainderWeight: 100,
         krs: []
       },
       {
@@ -36,6 +53,7 @@ export default new Vuex.Store({
         lvl: 2,
         percentOfCompletion: 0,
         showKr: false,
+        remainderWeight: 100,
         krs: []
       },
       {
@@ -49,6 +67,7 @@ export default new Vuex.Store({
         lvl: 2,
         percentOfCompletion: 0,
         showKr: false,
+        remainderWeight: 100,
         krs: []
       }
     ]
@@ -111,10 +130,13 @@ export default new Vuex.Store({
             });
           }
           maxID ++;
+          goal.remainderWeight -= newKR.weight;
 
           goal.krs.push({
             title: newKR.title,
             weight: newKR.weight,
+            executor: newKR.executor,
+            performers: [],
             percent: 0,
             id: maxID,
           });
@@ -122,11 +144,31 @@ export default new Vuex.Store({
       });
     },
 
+    editKr: (state, modifiedKr) => {
+      state.goals.forEach((goal) => {
+        if (goal.id === modifiedKr.idGoal) {
+          goal.krs.forEach((kr) => {
+            if (kr.id === modifiedKr.id) {
+              if (kr.weight !== modifiedKr.weight) {
+                goal.remainderWeight += kr.weight - modifiedKr.weight;
+              }
+
+              delete modifiedKr.idGoal;
+              for (const property in modifiedKr) {
+                kr[property] = modifiedKr[property];
+              }
+            }
+          });
+        }
+      }); 
+    },
+
     deleteKr: (state, {idGoal, idKr}) => {
       state.goals.forEach((goal) => {
         if (goal.id === idGoal) {
           goal.krs.forEach((kr, i) => {
             if (kr.id === idKr) {
+              goal.remainderWeight += Number(kr.weight);
               goal.krs.splice(i, 1);
             }
           });
