@@ -12,7 +12,18 @@ export default new Vuex.Store({
       name: 'Максимов Станислав Игоревич',
       command: 'Castoroides'
     },
-    missions: [],
+    auth: {
+      email: 'mail@mail.ru',
+      password: '12345678'
+    },
+    missions: [
+      {
+        id: '0',
+        name: 'Стремление к успеху',
+        descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+      }
+
+    ],
     people: [
       'Литвинова Наталья Игоревна',
       'Черкасов Данил Владимирович',
@@ -82,6 +93,21 @@ export default new Vuex.Store({
     },
     logOut: (state) => {
       state.user = {};
+    },
+
+    addMission: (state, newMission) => {
+      let maxID = 0;
+      state.missions.forEach((mission)=>{
+        if (mission.id > maxID) maxID = mission.id;
+      })
+      newMission.id = maxID + 1;
+      state.missions.push(newMission)
+    },
+
+    deleteMission: (state, idGoal) => {
+      state.missions.forEach((mission, i) => {
+        if (mission.id === idGoal) state.goals.splice(i, 1);
+      });
     },
 
     addGoal: (state, newGoal) => {

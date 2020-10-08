@@ -81,6 +81,18 @@ input:active, input:focus, select:focus, button:active, button:focus {
     height: 12px;
 }
 
+.button_menu_mission {
+    background: transparent;
+    text-decoration: none;
+    position: absolute;
+    right: -5px;
+    top: -15px;
+}
+.button_menu_mission img {
+    width: 25px;
+    height: 12px;
+}
+
 .menu {
     display: inline-block;
 }
@@ -1079,7 +1091,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     white-space: nowrap;
     text-align: center;
 }
-  
+
 .flexModalCont {
     display: flex;
     width: 100%;
@@ -1165,6 +1177,10 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 #addGoalDescr {
     height: 100px;
+    width: 520px;
+}
+#addMissionDescr {
+    height: 200px;
     width: 520px;
 }
 

@@ -11,10 +11,10 @@
       <div class="authTitle">Вход</div>
       <form v-on:submit.prevent="onLog">
         <label for="signinEmail">E-mail</label>
-        <input id="signinEmail" v-model="email" v-bind:class="{error: this.$store.state.authHasError}" type="email"
+        <input id="signinEmail" v-model="email" type="email"
                placeholder="E-mail" required minlength="3" maxlength="40"/>
         <label for="signinPass">Пароль</label>
-        <input id="signinPass" v-model="password" v-bind:class="{error: this.$store.state.authHasError}" type="password"
+        <input id="signinPass" v-model="password" type="password"
                placeholder="Пароль" required minlength="8" maxlength="30"/>
         <div class="errorMsg" v-if="this.$store.state.authHasError">Неверно введен email и/или пароль.</div>
         <div class="message">Еще не зарегистрированы?
@@ -28,6 +28,7 @@
 
 <script>
 // import Vue from 'vue'
+// import router from "@/router";
 
 export default {
   name: 'Signin',
@@ -38,6 +39,17 @@ export default {
   }),
 
   methods: {
+    onLog() {
+      let login = this.$store.state.auth.email
+      let pass = this.$store.state.auth.password
+      if (this.email === login && this.password === pass) {
+        this.$router.push('/')
+      } else {
+        this.$store.commit('authErr')
+        this.email = ''
+        this.password = ''
+      }
+    }
     // onLog() {
     //   Vue.axios.post(this.$store.state.urlBD + 'api/user/login', {
     //     email: this.email,
