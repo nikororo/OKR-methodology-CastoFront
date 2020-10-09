@@ -17,8 +17,8 @@
           <a class="button_menu"><img src="../style/img/Menu.png" alt=""></a>
           <div class="links_menu">
             <div class="tre"></div>
-            <div>
-              <router-link class="btnLogOut" to="/settingsUser">
+            <div class="btnLogOut">
+              <router-link to="/settingsUser">
                 <img width="25" height="25" src="../style/img/Settings.png" alt="">
                 <span>Настройки</span>
               </router-link>
@@ -58,25 +58,8 @@ export default {
   position: relative;
 }
 
-.tre {
-  top: -42px;
-  right: 0;
-  position: absolute;
-  border: 24px solid transparent;
-  border-bottom: 30px solid #70C7D4;
-  border-radius: 10px;
-}
-
-.btnLogOut {
-  border: none;
-  background: transparent;
+.btnLogOut a {
   text-decoration: none;
-  opacity: 0.7;
-  margin: 10px 0 10px;
 }
 
-.btnLogOut span {
-  margin-left: 12px;
-  color: #0C2528;
-}
 </style>

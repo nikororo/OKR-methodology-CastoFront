@@ -1219,10 +1219,31 @@ input:active, input:focus, select:focus, button:active, button:focus {
     color: #6d7273;
 }
 
-
 .errorWeigth {
     color:brown;
     border-color: brown;
+}
+
+.btnLogOut {
+    margin-bottom: 5px;
+    border: none;
+    background: transparent;
+    text-decoration: none;
+    opacity: 0.7;
+}
+  
+.btnLogOut span {
+    color: #0C2528;
+    margin-left: 12px;
+}
+
+.tre {
+    top: -42px;
+    right: 0;
+    position: absolute;
+    border: 24px solid transparent;
+    border-bottom: 30px solid #70C7D4;
+    border-radius: 10px;
 }
 
 input:-webkit-autofill,

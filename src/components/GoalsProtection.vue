@@ -297,28 +297,6 @@ button {
   right: 25px;
 }
 
-.tre {
-  top: -42px;
-  right: 0;
-  position: absolute;
-  border: 24px solid transparent;
-  border-bottom: 30px solid #70C7D4;
-  border-radius: 10px;
-}
-
-.btnLogOut {
-  margin-bottom: 10px;
-  border: none;
-  background: transparent;
-  text-decoration: none;
-  opacity: 0.7;
-}
-
-.btnLogOut span {
-  color: #0C2528;
-  margin-left: 12px;
-}
-
 .links_menu {
   width: 220px;
   font-size: 18px;

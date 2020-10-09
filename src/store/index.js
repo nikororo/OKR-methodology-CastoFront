@@ -8,12 +8,13 @@ export default new Vuex.Store({
   state: {
     authHasError: false,
     urlBD: 'http://127.0.0.1:8000/',
-    user: {
-      name: 'Максимов Станислав Игоревич',
+    account: {
+      name: 'Титова Арина Радиевна',
       command: 'Castoroides',
       email: 'mail@mail.ru',
       password: '12345678'
     },
+    user: {},
     missions: [
       {
         id: '0',
@@ -255,7 +256,6 @@ export default new Vuex.Store({
     },
 
     deleteMission: (state, idMission) => {
-      console.log(idMission)
       state.missions.forEach((mission, i) => {
         if (mission.id === idMission) state.missions.splice(i, 1);
       });

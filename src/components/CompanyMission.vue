@@ -151,11 +151,10 @@ button {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  min-width: 49%;
-  height: 559px;
+  width: 49%;
   background-color: #F4F4F4;
   box-shadow: 0px 0px 20px 2px rgba(12, 37, 40, 0.1);
-  padding: 15px 30px;
+  padding: 15px 35px 35px;
   margin-bottom: 25px;
 }
 
@@ -214,23 +213,6 @@ button {
 .menu {
   position: absolute;
   right: -3px;
-}
-
-.tre {
-  top: -42px;
-  right: 0;
-  position: absolute;
-  border: 24px solid transparent;
-  border-bottom: 30px solid #70C7D4;
-  border-radius: 10px;
-}
-
-.btnLogOut {
-  margin-bottom: 10px;
-  border: none;
-  background: transparent;
-  text-decoration: none;
-  opacity: 0.7;
 }
 
 .ps_button_mission {
