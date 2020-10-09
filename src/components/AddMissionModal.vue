@@ -20,7 +20,8 @@
               <label for="addGoalDescr">Описание цели</label>
             </div>
             <div class="addGoalInput">
-              <textarea v-model="descr" id="addMissionDescr" required class="input_user" type="text" placeholder="Описание цели" minlength="5" maxlength="500"></textarea>
+              <textarea v-model="descr" id="addMissionDescr" required class="input_user" type="text"
+                        placeholder="Описание цели" minlength="5" maxlength="500"></textarea>
             </div>
           </section>
           <footer>

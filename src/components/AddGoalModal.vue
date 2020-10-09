@@ -5,7 +5,7 @@
 
         <form v-on:submit.prevent="addGoal">
           <header>
-            <input v-model="name" placeholder="Название цели" required minlength="5" maxlength="100"/>
+            <input v-model.trim="name" placeholder="Название цели" required minlength="5" maxlength="100"/>
             <button class="btnClose" @click="close">
               <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -26,21 +26,22 @@
             <div class="addGoalInput">
               <div class="modal_user_name">
                 <img class="icon_user" src="../style/img/User.png" alt="User">
-                <p>{{this.$store.state.user.name}}</p>
+                <p>{{ this.$store.state.user.name }}</p>
               </div>
-               <div class="modal_user_name">
-                <p>{{this.$store.state.user.command}}</p>
+              <div class="modal_user_name">
+                <p>{{ this.$store.state.user.command }}</p>
               </div>
               <div class="addGoalDate">
-                <input v-model="dateStart" id="addGoalDateStart" class="input_user" placeholder="Дата начала" type="text"
-                      onfocus="(this.type='date')" onblur="(this.type='text')" required>
+                <input v-model="dateStart" id="addGoalDateStart" class="input_user" placeholder="Дата начала"
+                       type="text"
+                       onfocus="(this.type='date')" onblur="(this.type='text')" required>
                 <input v-model="dateEnd" id="addGoalDateEnd" class="input_user" placeholder="Дата окончания" type="text"
-                      onfocus="(this.type='date')" onblur="(this.type='text')" required>
+                       onfocus="(this.type='date')" onblur="(this.type='text')" required>
               </div>
               <select v-model="executor" id="addGoalExecutor" class="input_user">
                 <option value disabled selected hidden>Ответственный</option>
                 <option v-for="(men, index) in this.$store.state.people" v-bind:key="index">
-                  {{men}}
+                  {{ men }}
                 </option>
               </select>
               <textarea v-model="descr" id="addGoalDescr" class="input_user" type="text"

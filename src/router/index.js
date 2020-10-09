@@ -52,7 +52,7 @@ const routes = [
     beforeEnter: ifAuthenticated
   },
   {
-    path: '/goalsUser',
+    path: '/planWeek/goalsUser',
     name: 'GoalsUser',
     component: () => import('../components/GoalsUser'),
     beforeEnter: ifAuthenticated
@@ -80,14 +80,16 @@ const routes = [
     component: () => import('../components/Signup')
   },
   {
-    path: '/goals/goalsQuarter',
-    name: 'goalsQuarter',
-    component: () => import('../components/GoalsQuarter')
+    path: '/goals/companyMission',
+    name: 'companyMission',
+    component: () => import('../components/CompanyMission'),
+    beforeEnter: ifAuthenticated
   },
   {
-    path: '/goals/MissionCompany',
-    name: 'MissionCompany',
-    component: () => import('../components/MissionCompany')
+    path: '/goals/goalsProtection',
+    name: 'goalsProtection',
+    component: () => import('../components/GoalsProtection'),
+    beforeEnter: ifAuthenticated
   },
 
   { 

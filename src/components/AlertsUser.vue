@@ -8,7 +8,8 @@
           <router-link class="link_targets" active-class="active_link_targets" to="/settingsUser" exact>Найстройки
             профиля
           </router-link>
-          <router-link class="link_targets" active-class="active_link_targets" to="/settingsUser/alertsUser">Оповещения
+          <router-link class="link_targets" active-class="active_link_targets" to="/settingsUser/alertsUser">
+            Оповещения
           </router-link>
         </div>
         <div class="main_settings">

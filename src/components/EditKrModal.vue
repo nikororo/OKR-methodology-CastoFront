@@ -5,7 +5,7 @@
 
         <form v-on:submit.prevent="editKr">
           <header>
-            <input v-model="title" required minlength="5" maxlength="100"/>
+            <input v-model.trim="title" required minlength="5" maxlength="100"/>
             <button class="btnClose" @click="close">
               <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path

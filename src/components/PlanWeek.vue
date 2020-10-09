@@ -8,10 +8,10 @@
                     <h2 class="h2_user_name">{{ this.$store.state.user.name }}</h2>
                 </div>
                 <div class="header_targets_link">
-                    <router-link class="link_targets" active-class="active_link_targets" to="/planWeek">Планы на
+                    <router-link class="link_targets" active-class="active_link_targets" to="/planWeek" exact>Планы на
                         неделю
                     </router-link>
-                    <router-link class="link_targets" active-class="active_link_targets" to="/goalsUser">Цели
+                    <router-link class="link_targets" active-class="active_link_targets" to="/planWeek/goalsUser">Цели
                     </router-link>
                 </div>
                 <div class="main_plan_week">
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="tasks">
-                        <div class="status_tasks">
+                        <div>
                             <h2 class="h2_status_tasks">Запланировано
                                 <div class="circle_status_planner"></div>
                             </h2>
@@ -58,7 +58,7 @@
                                     <p class="i_task"><span>+</span>Cвязать задачу с целью</p></a>
                             </div>
                         </div>
-                        <div class="status_tasks">
+                        <div>
                             <h2 class="h2_status_tasks">Готово
                                 <div class="circle_status_ready"></div>
                             </h2>
@@ -73,7 +73,7 @@
                                     <p class="i_task"><span>+</span>Cвязать задачу с целью</p></a>
                             </div>
                         </div>
-                        <div class="status_tasks">
+                        <div>
                             <h2 class="h2_status_tasks">Возникшие проблемы
                                 <div class="circle_status_problem"></div>
                             </h2>
