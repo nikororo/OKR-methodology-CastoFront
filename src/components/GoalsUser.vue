@@ -16,7 +16,26 @@
             Цели
           </router-link>
         </div>
+
         <div class="tasks">
+          <div>
+            <div class="goalsDepHeadHeader">
+              <select v-model="selectedStatus" class="selectStatus">
+                <option value="unsent" selected>Неотправленные цели</option>
+                <option value="proposed">Предложенные цели</option>
+                <option value="approved">Одобренные цели</option>
+                <option value="rejected">Неодобренные цели</option>
+              </select>
+              <button v-if="selectedStatus === 'unsent'" class="button_goals" @click="showAddGoalModal = true">Добавить</button>
+              <AddGoalModal v-if="showAddGoalModal" @close="showAddGoalModal = false"/>
+            </div>
+            <UnsentGoals v-if="selectedStatus === 'unsent'" />
+            <ApprovedGoals v-if="selectedStatus === 'approved'" />
+            <ProposedGoals v-if="selectedStatus === 'proposed'" />
+            <RejectedGoals v-if="selectedStatus === 'rejected'" />
+          </div>
+        </div>
+        <!-- <div class="tasks">
           <div>
             <div class="goalsDepHeadHeader">
               <h2>Неотправленные цели
@@ -329,8 +348,8 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div>-->
+      </div> 
     </div>
   </div>
 </template>
@@ -338,122 +357,26 @@
 <script>
 import Head from "@/components/Head";
 import ToolBar from "@/components/ToolBar";
-import AddGoalModal from './AddGoalModal';
-import DeleteGoalModal from './DeleteGoalModal';
-import DeleteKrModal from './DeleteKrModal';
-import EditGoalModal from './EditGoalModal';
-import EditKrModal from './EditKrModal';
+import UnsentGoals from "@/components/differentGoalsUser/UnsentGoals";
+import ApprovedGoals from "@/components/differentGoalsUser/ApprovedGoals";
+import ProposedGoals from "@/components/differentGoalsUser/ProposedGoals";
+import RejectedGoals from "@/components/differentGoalsUser/RejectedGoals";
 
 export default {
   name: 'CommonGoals',
   components: {
     Head, 
-    ToolBar, 
-    AddGoalModal, 
-    DeleteGoalModal, 
-    DeleteKrModal, 
-    EditGoalModal, 
-    EditKrModal
+    ToolBar,
+    UnsentGoals,
+    ApprovedGoals,
+    ProposedGoals,
+    RejectedGoals
   },
 
   data: () => ({
     showAddGoalModal: false,
-    showEditGoalModal: false,
-    showDeleteGoalModal: false,
-    showEditKrModal: false,
-    showDeleteKrModal: false,
-    haveGoals: true,
-    errorWeigth: false,
-    people: '',
-    idSelectedGoal: '',
-    idSelectedKr: ''
+    selectedStatus: 'unsent',
   }),
-    
-  computed: {
-    unsentGoals: function () {
-      return this.$store.state.goals.filter(goal => goal.status === 'unsent');
-    },
-    proposedGoals: function () {
-      return this.$store.state.goals.filter(goal => goal.status === 'proposed');
-    },
-    approvedGoals: function () {
-      return this.$store.state.goals.filter(goal => goal.status === 'approved');
-    },
-    rejectedGoals: function () {
-      return this.$store.state.goals.filter(goal => goal.status === 'rejected');
-    },
-  },
-
-  mounted: function () {
-    this.people = this.$store.state.people;
-  }, 
-
-  methods: {
-    sum(id) {
-      this.$store.dispatch('sumPercent', id)
-    },
-
-    addKr(goalId, remainderWeight, weight, event) {
-      event.preventDefault();
-      if (weight > remainderWeight) {
-        this.errorWeigth = true;
-        return;
-      }
-      this.errorWeigth = false;
-
-      this.$store.commit('createKr', goalId);
-    },
-
-    openEditGoal(id) {
-      this.idSelectedGoal = id;
-      this.showEditGoalModal = true;
-      this.errorWeigth = false;
-    },
-
-    openDeleteGoal(id) {
-      this.idSelectedGoal = id;
-      this.showDeleteGoalModal = true;
-      this.errorWeigth = false;
-    },
-
-    openEditKr(idGoal, idKr) {
-      this.idSelectedGoal = idGoal;
-      this.idSelectedKr = idKr;
-      this.showEditKrModal = true;
-      this.errorWeigth = false;
-    },
-
-    openDeleteKr(idGoal, idKr) {
-      this.idSelectedGoal = idGoal;
-      this.idSelectedKr = idKr;
-      this.showDeleteKrModal = true;
-      this.errorWeigth = false;
-    },
-
-    deleteGoal() {
-      this.$store.commit('deleteGoal', this.idSelectedGoal);
-      this.idSelectedGoal = '';
-    },
-
-    deleteKr() {
-      let payload = {
-        idGoal: this.idSelectedGoal, 
-        idKr: this.idSelectedKr
-      }
-      this.$store.commit('deleteKr', payload);
-      this.$store.dispatch('sumPercent', this.idSelectedGoal);
-      this.idSelectedGoal = '';
-      this.idSelectedKr = '';
-    },
-
-    displayKr(idGoal) {
-      this.$store.commit('displayKr', idGoal);
-    },
-
-    sendGoal(idGoal) {
-      this.$store.commit('sendGoal', idGoal);
-    }
-  }
 }
 </script>
 
@@ -467,81 +390,20 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 40px 40px 20px;
-}
-
-.goalsDepHeadHeader h2 {
-  margin: 0;
-  font-size: 24px;
+  margin: 40px 0 20px;
+  height: 37px;
 }
 
 button {
   border: none;
 }
 
-.haveNoGoals {
-  text-align: center;
-  font-size: 36px;
-  color: #0C2528;
-  opacity: 0.5;
-  padding-top: 10px;
-}
-
-.haveNoGoals img {
-  max-width: 410px;
-  padding-top: 30px;
-}
-
-.input_percent {
+.selectStatus {
   background-color: #f4f4f4;
-  width: 89px;
-  height: 29px;
   border: solid 1px #43CBD7;
+  width: 250px;
+  padding: 2px 10px;
+  border-radius: 10px;
   margin-right: 10px;
-}
-
-.menu {
-  position: absolute;
-  right: 25px;
-}
-
-.links_menu {
-  width: 220px;
-  font-size: 18px;
-  top: 32px;
-  right: -11px;
-}
-
-.companyGoals .links_menu {
-  top: 49px;
-  right: -7px;
-}
-
-.btnShowKR {
-  width: 100%;
-  background-color: #f4f4f4;
-  text-align: left;
-}
-
-.flexModalCont:last-child {
-  margin-top: 40px;
-}
-
-.flexModalCont label {
-  margin: 0 20px 0 0;
-}
-
-#createKrExecutor {
-  color: #6d7273;
-  margin-right: 55px;
-  width: 320px;
-  font-size: 18px;
-}
-
-.promptWeight {
-  position: absolute;
-  font-size: 18px;
-  right: 80px;
-  top: 10px;
 }
 </style>
