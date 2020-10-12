@@ -1,4 +1,6 @@
-# casto-front
+# Приложение по методологии ОКР CastoFront
+# Посмотреть-потыкать: https://nikororo.github.io/CastoFront/
+## Login: mail@mail.ru  Pass: 12345678
 
 ## Project setup
 ```
@@ -19,6 +21,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
