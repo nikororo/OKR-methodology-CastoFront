@@ -33,6 +33,12 @@
                     <span>Подробнее</span>
                   </button>
                 </div>
+                <div>
+                  <button class="btnLogOut" @click="openDeleteGoal(goal.id)">
+                    <img width="25" height="25" src="@/style/img/Delete.png" alt="Delete">
+                    <span>Удалить</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -45,6 +51,7 @@
           </div>
         </div>
       </div>
+      <DeleteGoalModal v-if="showDeleteGoalModal" @close="showDeleteGoalModal = false" @delete="deleteGoal"/>
     </div>
     <div v-else class="haveNoGoals">
       <div>Неодобренных целей нет</div>
@@ -54,8 +61,19 @@
 </template>
 
 <script>
+import DeleteGoalModal from '../DeleteGoalModal';
+
 export default {
   name: 'RejectedGoals',
+
+  components: {
+    DeleteGoalModal,
+  },
+
+  data: () => ({
+    showDeleteGoalModal: false,
+    idSelectedGoal: '',
+  }),
 
   computed: {
     goals: function () {
@@ -66,6 +84,16 @@ export default {
   methods: {
     displayKr(idGoal) {
       this.$store.commit('displayKr', idGoal);
+    },
+
+    openDeleteGoal(id) {
+      this.idSelectedGoal = id;
+      this.showDeleteGoalModal = true;
+    },
+
+    deleteGoal() {
+      this.$store.commit('deleteGoal', this.idSelectedGoal);
+      this.idSelectedGoal = '';
     },
   }
 }

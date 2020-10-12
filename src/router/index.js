@@ -39,20 +39,20 @@ const routes = [
     component: () => import('../components/SettingsUser'),
     beforeEnter: ifAuthenticated
   },
+  // {
+  //   path: '/settingsUser/alertsUser',
+  //   name: 'AlertsUser',
+  //   component: () => import('../components/AlertsUser'),
+  //   beforeEnter: ifAuthenticated
+  // },
   {
-    path: '/settingsUser/alertsUser',
-    name: 'AlertsUser',
-    component: () => import('../components/AlertsUser'),
-    beforeEnter: ifAuthenticated
-  },
-  {
-    path: '/planWeek',
+    path: '/profile/planWeek',
     name: 'PlanWeek',
     component: () => import('../components/PlanWeek'),
     beforeEnter: ifAuthenticated
   },
   {
-    path: '/planWeek/goalsUser',
+    path: '/profile',
     name: 'GoalsUser',
     component: () => import('../components/GoalsUser'),
     beforeEnter: ifAuthenticated

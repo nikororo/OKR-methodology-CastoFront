@@ -107,9 +107,9 @@ input:active, input:focus, select:focus, button:active, button:focus {
     padding: 15px 20px 10px;
 }
 
-.menu:hover .links_menu {
-    display: flex;
-}
+.menu:focus .links_menu, .menu:active  .links_menu, .links_menu:hover { 
+   display: flex; 
+} 
 
 /*ToolBar*/
 .toolBar {
