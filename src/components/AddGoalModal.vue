@@ -40,8 +40,8 @@
               </div>
               <select v-model="executor" id="addGoalExecutor" class="input_user">
                 <option value disabled selected hidden>Ответственный</option>
-                <option v-for="(men, index) in this.$store.state.people" v-bind:key="index">
-                  {{ men }}
+                <option v-for="men in people" v-bind:key="men.id" v-bind:value="men.id">
+                  {{men.name}}
                 </option>
               </select>
               <textarea v-model="descr" id="addGoalDescr" class="input_user" type="text"
@@ -72,8 +72,14 @@ export default {
     dateStart: '',
     dateEnd: '',
     executor: '',
+    people: '',
     descr: ''
   }),
+
+  created: async function () {
+    await this.$store.dispatch('getUsers');
+    this.people = this.$store.state.people;
+  },
 
   methods: {
     close() {

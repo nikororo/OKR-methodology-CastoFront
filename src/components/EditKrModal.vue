@@ -28,14 +28,14 @@
                 <span>%</span>
               </div>
               <select v-model="executor" id="addGoalExecutor" class="input_user">
-                <option disabled selected hidden>{{executor}}</option>
-                <option v-for="(men, index) in this.$store.state.people" v-bind:key="index">
-                  {{men}}
+                <option value disabled selected hidden>{{executor}}</option>
+                <option v-for="men in people" v-bind:key="men.id" v-bind:value="men.id">
+                  {{men.name}}
                 </option>
               </select>
               <select v-model="performers" id="editKrPerformers" class="input_user" multiple>
-                <option v-for="(men, index) in this.$store.state.people" v-bind:key="index">
-                  {{men}}
+                <option v-for="men in people" v-bind:key="men.id" v-bind:value="men.id">
+                  {{men.name}}
                 </option>
               </select>
               <label for="createKrFile">Документ <img class="icon_user" src="../style/img/AddFile.png" alt="add"></label>
@@ -68,10 +68,16 @@ export default {
     oldWeight: '',
     weight: '',
     executor: '',
+    people: [],
     performers: [],
     remainderWeight: '',
     errorWeigth: false,
   }),
+
+  created: async function () {
+    await this.$store.dispatch('getUsers');
+    this.people = this.$store.state.people;
+  },
 
   mounted: function () {
     this.$store.state.goals.forEach(goal => {

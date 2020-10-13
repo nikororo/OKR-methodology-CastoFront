@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import store from '../store/index'
 
 Vue.use(VueRouter);
 
 const ifNotAuthenticated = (to, from, next) => {
-  if (!store.state.user.name) {
+  const token = localStorage.getItem('token');
+  if (!token) {
     next()
     return
   }
@@ -13,7 +13,8 @@ const ifNotAuthenticated = (to, from, next) => {
 }
 
 const ifAuthenticated = (to, from, next) => {
-  if (store.state.user.name) {
+  const token = localStorage.getItem('token');
+  if (token) {
     next()
     return
   }

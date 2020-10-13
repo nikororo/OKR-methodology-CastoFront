@@ -1,3 +1,15 @@
+import axios from 'axios'
+
+axios.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    config.headers['Authorization'] =  `Bearer ${token}`;
+    return config;
+  }),
+  (error) => {
+    return Promise.reject(error);
+  }
+
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from "vuex-persistedstate";
@@ -226,17 +238,7 @@ export default new Vuex.Store({
 
     authCorr: (state, data) => {
       state.user = data.user;
-      localStorage.setItem('token', data.access_token)
-
-      Vue.axios.interceptors.request.use(
-        (config) => {
-          const token = localStorage.getItem('token');
-          config.headers['Authorization'] =  `Bearer ${token}`;
-          return config;
-        }),
-        (error) => {
-          throw error;
-        }
+      localStorage.setItem('token', data.access_token);
       state.authHasError = false;
     },
 
@@ -438,7 +440,7 @@ export default new Vuex.Store({
           .then(({data}) => {
             commit('authCorr', data);
           })
-          .catch(() => state.authHasError = true);
+          .catch(() =>  commit('authErr'));
     },
 
     register: async ({state, commit, dispatch}, newUser) => {

@@ -28,7 +28,7 @@
                 <img class="icon_user" src="../style/img/User.png" alt="">
                 <p>{{author}}</p>
               </div>
-              <select v-model="command" id="addGoalExecutor" class="input_user">
+              <select v-model="command" id="addGoalCommand" class="input_user">
                 <option disabled selected hidden>{{command}}</option>
                 <option v-for="(com, index) in this.$store.state.commands" v-bind:key="index">
                   {{com}}
@@ -41,9 +41,9 @@
                       onfocus="(this.type='date')" onblur="(this.type='text')" required>
               </div>
               <select v-model="executor" id="addGoalExecutor" class="input_user">
-                <option disabled selected hidden>{{executor}}</option>
-                <option v-for="(men, index) in this.$store.state.people" v-bind:key="index">
-                  {{men}}
+                <option value disabled selected hidden>{{executor}}</option>
+                <option v-for="men in people" v-bind:key="men.id" v-bind:value="men.id">
+                  {{men.name}}
                 </option>
               </select>
               <textarea v-model="descr" id="addGoalDescr" class="input_user" type="text"
@@ -77,9 +77,15 @@ export default {
     dateStart: '',
     dateEnd: '',
     executor: '',
+    people: '',
     command: '',
     descr: ''
   }),
+
+  created: async function () {
+    await this.$store.dispatch('getUsers');
+    this.people = this.$store.state.people;
+  },
 
   mounted: function () {
     this.$store.state.goals.forEach(goal => {
