@@ -8,8 +8,8 @@
           <router-link class="link_targets" active-class="active_link_targets" to="/settingsUser" exact>Найстройки
             профиля
           </router-link>
-          <router-link class="link_targets" active-class="active_link_targets" to="/settingsUser/alertsUser">Оповещения
-          </router-link>
+          <!-- <router-link class="link_targets" active-class="active_link_targets" to="/settingsUser/alertsUser">Оповещения
+          </router-link> -->
         </div>
         <div class="main_settings">
           <div class="ps_settings">
@@ -28,7 +28,7 @@
             <div class="data_user">
               <p class="p_data_user">Сфера деятельности</p>
               <select class="input_user" type="text" id="signupActivity" v-model="activity" required>
-                <option value disabled selected>Сфера деятельности</option>
+                <option value selected hidden>Сфера деятельности</option>
                 <option value="departmentHead">Руководитель отдела</option>
                 <option value="manager">Менеджер</option>
                 <option selected value="developer">Разработчик</option>

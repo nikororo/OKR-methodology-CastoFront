@@ -93,6 +93,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .links_menu {
+    font-size: 18px;
     z-index: 100;
     display: none;
     position: absolute;
@@ -103,12 +104,12 @@ input:active, input:focus, select:focus, button:active, button:focus {
     background-color: #70C7D4;
     justify-content: space-between;
     flex-direction: column;
-    padding: 20px 20px 10px;
+    padding: 15px 20px 10px;
 }
 
-.menu:hover .links_menu {
-    display: flex;
-}
+.menu:focus .links_menu, .menu:active  .links_menu, .links_menu:hover { 
+   display: flex; 
+} 
 
 /*ToolBar*/
 .toolBar {
@@ -455,7 +456,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .tasks {
     min-height: calc(100vh - 150px);
-    padding: 10px 60px 90px;
+    padding: 10px 60px 130px;
     background-color: #F4F4F4;
 }
 
@@ -693,6 +694,19 @@ input:active, input:focus, select:focus, button:active, button:focus {
     margin-left: calc(50% - 245px);
 }
 
+.haveNoGoals {
+    text-align: center;
+    font-size: 36px;
+    color: #0C2528;
+    opacity: 0.5;
+    padding-top: 10px;
+}
+
+.haveNoGoals img {
+    max-width: 410px;
+    padding-top: 30px;
+}
+
 
 @media (orientation: portrait), (max-width: 1000px) {
     .imgAuth, .blueAuth, .authLogo {
@@ -718,7 +732,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .page {
     background-color: #F4F4F4;
-    padding: 40px 100px 120px;
+    padding: 40px 100px 100px;
     min-height: calc(100vh - 166px);
     width: 100%;
 }

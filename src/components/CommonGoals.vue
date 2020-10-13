@@ -128,19 +128,6 @@ button {
   border: none;
 }
 
-.haveNoGoals {
-  text-align: center;
-  font-size: 36px;
-  color: #0C2528;
-  opacity: 0.5;
-  padding-top: 10px;
-}
-
-.haveNoGoals img {
-  max-width: 410px;
-  padding-top: 30px;
-}
-
 .input_percent {
   background-color: #f4f4f4;
   width: 89px;
@@ -154,14 +141,8 @@ button {
   right: 25px;
 }
 
-.links_menu {
-  width: 220px;
-  font-size: 18px;
-  top: 32px;
-  right: -11px;
-}
-
 .companyGoals .links_menu {
+  width: 220px;
   top: 49px;
   right: -7px;
 }
