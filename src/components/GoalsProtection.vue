@@ -21,9 +21,9 @@
               <div class="contGoal">
                 <div class="companyGoals">
                   <button class="btnShowKR" @click="displayKr(goal.id, goal.krs)">
-                    <p class="nameGoals">{{goal.name}}</p>
+                    <p class="nameGoals">{{ goal.name }}</p>
                   </button>
-                  <div class="commandGoals">{{goal.command}}</div>
+                  <div class="commandGoals">{{ goal.command }}</div>
 
                   <div class="menu">
                     <a class="button_menu">
@@ -50,7 +50,7 @@
                         </button>
                       </div>
                       <div>
-                        <button class="btnLogOut">
+                        <button @click="openDetailsGoald(goal.id)" class="btnLogOut">
                           <img width="25" height="25" src="../style/img/Expand.png" alt="Expand">
                           <span>Подробнее</span>
                         </button>
@@ -70,20 +70,21 @@
                     </div>
                   </div>
                 </div>
-                
+
                 <div class="contKr" v-if="goal.showKr">
                   <div class="krs" v-for="kr in goal.krs" :key="kr.id">
                     <label for="newKr"> {{ kr.title }}</label>
-                    <input id="newKr" type="range" min="0" max="100" @change="sum(goal.id)" v-model="kr.percent" class="slider">
+                    <input id="newKr" type="range" min="0" max="100" @change="sum(goal.id)" v-model="kr.percent"
+                           class="slider">
                     <p class="percentGoals">{{ kr.percent }}%</p>
                     <div class="menu">
                       <a class="button_menu">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35"
-                            viewBox="0 0 172 172" style=" fill:#000000;">
+                             viewBox="0 0 172 172" style=" fill:#000000;">
                           <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
-                            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
-                            font-family="none" font-weight="none" font-size="none" text-anchor="none"
-                            style="mix-blend-mode: normal">
+                             stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                             font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                             style="mix-blend-mode: normal">
                             <path d="M0,172v-172h172v172z" fill="none"></path>
                             <g fill="#aad7de">
                               <path
@@ -111,16 +112,19 @@
                   </div>
 
                   <form v-on:submit="addKr(goal.id, goal.remainderWeight, goal.newKr.weight, $event)" class="createKR">
-                      <div class="flexModalCont"> <div class="nameCreateKR">
+                    <div class="flexModalCont">
+                      <div class="nameCreateKR">
                         <button type="submit">
                           <img src="../style/img/Plus.png" alt="Add KR">
                         </button>
-                        <input type="text" placeholder="Добавить КР" required v-model.trim="goal.newKr.title" minlength="5" maxlength="100">
+                        <input type="text" placeholder="Добавить КР" required v-model.trim="goal.newKr.title"
+                               minlength="5" maxlength="100">
                       </div>
-                      <div class="promptWeight" v-bind:class="{errorWeigth}">Осталось: {{goal.remainderWeight}}</div>
+                      <div class="promptWeight" v-bind:class="{errorWeigth}">Осталось: {{ goal.remainderWeight }}</div>
                       <div class="meaning">
                         <label for="createKrPercent">Вес</label>
-                        <input v-bind:class="{errorWeigth}" id="createKrPercent" class="input_percent" type="number" min="1" max="100" placeholder="1" v-model="goal.newKr.weight" required>
+                        <input v-bind:class="{errorWeigth}" id="createKrPercent" class="input_percent" type="number"
+                               min="1" max="100" placeholder="1" v-model="goal.newKr.weight" required>
                         <span>%</span>
                       </div>
                     </div>
@@ -129,18 +133,22 @@
                       <select v-model="goal.newKr.executor" id="createKrExecutor" class="input_percent">
                         <option value disabled selected hidden>Ответственный</option>
                         <option v-for="(men, index) in people" v-bind:key="index">
-                          {{men}}
+                          {{ men }}
                         </option>
                       </select>
-                      <label for="createKrFile">Прикрепить документ <img class="icon_user" src="../style/img/AddFile.png" alt="add"></label>
-                      <input type="file" id="createKrFile" class="fileKr" />
+                      <label for="createKrFile">Прикрепить документ <img class="icon_user"
+                                                                         src="../style/img/AddFile.png"
+                                                                         alt="add"></label>
+                      <input type="file" id="createKrFile" class="fileKr"/>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
+            <DetailsGoal v-if="detailsGoalWindow" v-bind:idGoal="idSelectedGoal" @close="detailsGoalWindow = false"/>
             <EditGoalModal v-if="showEditGoalModal" v-bind:idGoal="idSelectedGoal" @close="showEditGoalModal = false"/>
-            <EditKrModal v-if="showEditKrModal" v-bind:idGoal="idSelectedGoal" v-bind:idKr="idSelectedKr" @close="showEditKrModal = false"/>
+            <EditKrModal v-if="showEditKrModal" v-bind:idGoal="idSelectedGoal" v-bind:idKr="idSelectedKr"
+                         @close="showEditKrModal = false"/>
             <DeleteKrModal v-if="showDeleteKrModal" @close="showDeleteKrModal = false" @delete="deleteKr"/>
           </div>
           <div v-else class="haveNoGoals">
@@ -159,18 +167,21 @@ import ToolBar from "@/components/ToolBar";
 import EditGoalModal from './EditGoalModal';
 import EditKrModal from './EditKrModal';
 import DeleteKrModal from './DeleteKrModal';
+import DetailsGoal from "@/components/DetailsGoal";
 
 export default {
   name: 'CommonGoals',
   components: {
-    Head, 
-    ToolBar, 
-    EditGoalModal, 
+    Head,
+    ToolBar,
+    EditGoalModal,
     EditKrModal,
-    DeleteKrModal, 
+    DeleteKrModal,
+    DetailsGoal
   },
 
   data: () => ({
+    detailsGoalWindow: false,
     showEditGoalModal: false,
     showEditKrModal: false,
     showDeleteKrModal: false,
@@ -179,7 +190,7 @@ export default {
     idSelectedGoal: '',
     idSelectedKr: ''
   }),
-    
+
   computed: {
     proposedGoals: function () {
       return this.$store.state.goals.filter(goal => goal.status === 'proposed');
@@ -188,7 +199,7 @@ export default {
 
   mounted: function () {
     this.people = this.$store.state.people;
-  }, 
+  },
 
   methods: {
     sum(idGoal) {
@@ -234,9 +245,14 @@ export default {
       this.errorWeigth = false;
     },
 
+    openDetailsGoald(id) {
+      this.idSelectedGoal = id;
+      this.detailsGoalWindow = true;
+    },
+
     deleteKr() {
       let payload = {
-        idGoal: this.idSelectedGoal, 
+        idGoal: this.idSelectedGoal,
         idKr: this.idSelectedKr
       }
       this.$store.commit('deleteKr', payload);
