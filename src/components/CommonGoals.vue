@@ -3,7 +3,7 @@
     <Head/>
     <div class="row no-gutter">
       <toolBar/>
-      <div class="col-lg-10 col-md-10 col-sm-11">
+      <div class="col-lg-10 col-md-10 col-sm-10">
         <div class="header_targets_link">
           <router-link class="link_targets" active-class="active_link_targets" to="/goals/companyMission">
             Миссии компании

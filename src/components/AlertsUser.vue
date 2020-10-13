@@ -3,7 +3,7 @@
     <Head/>
     <div class="row no-gutter cont">
       <toolBar/>
-      <div class="col-md-5 col-lg-10 settings">
+      <div class="col-md-10 col-lg-10 settings">
         <div class="header_targets_link">
           <router-link class="link_targets" active-class="active_link_targets" to="/settingsUser" exact>Найстройки
             профиля
@@ -31,7 +31,6 @@ export default {
   },
   data: () => ({
     activity: '',
-    publicPath: process.env.BASE_URL,
   }),
 
   methods: {}

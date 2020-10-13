@@ -7,14 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     authHasError: false,
-    urlBD: 'http://127.0.0.1:8000/',
-    account: {
-      name: 'Титова Арина Радиевна',
-      command: 'Castoroides',
-      email: 'mail@mail.ru',
-      password: '12345678'
-    },
-    user: {},
+    urlBD: 'http://31.31.199.37:81/api/',
     missions: [
       {
         id: '0',
@@ -28,15 +21,7 @@ export default new Vuex.Store({
       }
 
     ],
-    people: [
-      'Литвинова Наталья Игоревна',
-      'Черкасов Данил Владимирович',
-      'Печуркина Екатерина Андреевна',
-      'Чеснокова Ксения Андреевна',
-      'Венберг Алексей Алексеевич',
-      'Бруев Максим Олегович',
-      'Титова Арина Радиевна',
-    ],
+    people: [],
     commands: [
       'Тестировщики',
       'Castoroides',
@@ -81,10 +66,10 @@ export default new Vuex.Store({
             id: 4
           }
         ],
-        status: 'approved',
+        status: 'unsent',
         newKr: {
           title: '',
-          weight: '',
+          weight: 0,
           executor: '',
         }
       },
@@ -238,10 +223,23 @@ export default new Vuex.Store({
     authErr: (state) => {
       state.authHasError = true;
     },
-    authCorr: (state, user) => {
-      state.user = user;
+
+    authCorr: (state, data) => {
+      state.user = data.user;
+      localStorage.setItem('token', data.access_token)
+
+      Vue.axios.interceptors.request.use(
+        (config) => {
+          const token = localStorage.getItem('token');
+          config.headers['Authorization'] =  `Bearer ${token}`;
+          return config;
+        }),
+        (error) => {
+          throw error;
+        }
       state.authHasError = false;
     },
+
     logOut: (state) => {
       state.user = {};
     },
@@ -330,31 +328,23 @@ export default new Vuex.Store({
     createKr: (state, goalId) => {
       state.goals.forEach((goal) => {
         if (goal.id === goalId) {
-          let maxID = 0;
-          if (goal.krs.length > 0) {
-            goal.krs.forEach((kr) => {
-              if (kr.id > maxID) maxID = kr.id;
-            });
+          //goal.remainderWeight -= goal.newKr.weight;
+          if (goal.newKr.executor !== '')
+            goal.newKr.executor = Number(goal.newKr.executor);
+          Vue.axios.post(state.urlBD + 'goals/' + goalId, goal.newKr)
+            .then((res) => {
+              console.log(res)
+            })
+            .catch ((networkError) => {
+              throw networkError;
+            })
           }
-          maxID ++;
-          goal.remainderWeight -= goal.newKr.weight;
-
-          goal.krs.push({
-            title: goal.newKr.title,
-            weight: goal.newKr.weight,
-            executor: goal.newKr.executor,
-            performers: [],
-            percent: 0,
-            id: maxID,
-          });
-
           goal.newKr = {
             title: '',
             weight: '',
             executor: '',
           }
-        }
-      });
+        })
     },
 
     editKr: (state, modifiedKr) => {
@@ -396,6 +386,7 @@ export default new Vuex.Store({
         }
       })
     },
+
     percentFromColors:(state, id) => {
       state.goals.forEach((goal) =>{
         if (goal.id === id) {
@@ -413,27 +404,73 @@ export default new Vuex.Store({
         }
       })
     },
+
+    setUsers: (state, users) => {
+      state.people = users;
+    }
   },
+
   plugins: [createPersistedState()],
-    actions: {
-      sumPercent: ({commit, state}, id) => {
-        state.goals.forEach((goal) => {
-          if (goal.id === id) {
-            let percentOfCompletion = 0;
-            goal.krs.forEach((kr) => {
-              let weightKr = kr.weight / 100;
-              let percentKr = kr.percent;
-              percentOfCompletion = weightKr * percentKr + percentOfCompletion;
-            })
-            let payload = {
-              id,
-              percent: percentOfCompletion
-            }
-            commit('setPercentOfCompletion', payload)
+  
+  actions: {
+    sumPercent: ({commit, state}, id) => {
+      state.goals.forEach((goal) => {
+        if (goal.id === id) {
+          let percentOfCompletion = 0;
+          goal.krs.forEach((kr) => {
+            let weightKr = kr.weight / 100;
+            let percentKr = kr.percent;
+            percentOfCompletion = weightKr * percentKr + percentOfCompletion;
+          })
+          let payload = {
+            id,
+            percent: percentOfCompletion
           }
-        })
-      }
+          commit('setPercentOfCompletion', payload)
+        }
+      })
     },
+
+    login: async ({state, commit}, user) => {
+      await Vue.axios.get(state.urlBD + 'login', {
+        params: user
+      })
+          .then(({data}) => {
+            commit('authCorr', data);
+          })
+          .catch(() => state.authHasError = true);
+    },
+
+    register: async ({state, commit, dispatch}, newUser) => {
+      await Vue.axios.post(state.urlBD + 'register', newUser)
+        .then(async () => {
+          let user = {
+            email: newUser.email,
+            password: newUser.password
+          }
+          await dispatch('login', user);
+        })
+        .catch(() => commit('authErr'));
+    },
+
+    getUsers: async ({state, commit}) => {
+      await Vue.axios.get(state.urlBD + 'users')
+        .then(({data}) => {
+          data.map((user) => {
+            delete user.email;
+            delete user.activity_sphere;
+            delete user.created_at;
+            delete user.updated_at;
+            return user;
+          })
+          commit('setUsers', data);
+        })
+        .catch ((networkError) => {
+          throw networkError;
+        })
+    }
+  },
+
   modules: {
   }
 })

@@ -29,7 +29,7 @@
                 <p>{{author}}</p>
               </div>
               <select v-model="command" id="addGoalExecutor" class="input_user">
-                <option selected hidden>{{command}}</option>
+                <option disabled selected hidden>{{command}}</option>
                 <option v-for="(com, index) in this.$store.state.commands" v-bind:key="index">
                   {{com}}
                 </option>
@@ -41,7 +41,7 @@
                       onfocus="(this.type='date')" onblur="(this.type='text')" required>
               </div>
               <select v-model="executor" id="addGoalExecutor" class="input_user">
-                <option selected hidden>{{executor}}</option>
+                <option disabled selected hidden>{{executor}}</option>
                 <option v-for="(men, index) in this.$store.state.people" v-bind:key="index">
                   {{men}}
                 </option>

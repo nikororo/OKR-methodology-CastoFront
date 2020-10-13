@@ -111,8 +111,8 @@
                 <label for="createKrExecutor">Ответственный</label>
                 <select v-model="goal.newKr.executor" id="createKrExecutor" class="input_percent">
                   <option value disabled selected hidden>Ответственный</option>
-                  <option v-for="(men, index) in people" v-bind:key="index">
-                    {{men}}
+                  <option v-for="men in people" v-bind:key="men.id" v-bind:value="men.id">
+                    {{men.name}}
                   </option>
                 </select>
                 <label for="createKrFile">Прикрепить документ <img class="icon_user" src="@/style/img/AddFile.png" alt="add"></label>
@@ -169,9 +169,10 @@ export default {
     },
   },
 
-  mounted: function () {
+  created: async function () {
+    await this.$store.dispatch('getUsers');
     this.people = this.$store.state.people;
-  }, 
+  },
 
   methods: {
     addKr(goalId, remainderWeight, weight, event) {

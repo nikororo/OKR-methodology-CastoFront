@@ -28,7 +28,7 @@
                 <span>%</span>
               </div>
               <select v-model="executor" id="addGoalExecutor" class="input_user">
-                <option selected hidden>{{executor}}</option>
+                <option disabled selected hidden>{{executor}}</option>
                 <option v-for="(men, index) in this.$store.state.people" v-bind:key="index">
                   {{men}}
                 </option>

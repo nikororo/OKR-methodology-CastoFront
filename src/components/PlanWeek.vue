@@ -3,7 +3,7 @@
         <Head/>
         <div class="row no-gutter cont">
             <toolBar/>
-            <div class="col-md-5 col-lg-10 settings">
+            <div class="col-sm-10 col-md-10 col-lg-10 settings">
                 <div class="header_targets">
                     <h2 class="h2_user_name">{{ this.$store.state.user.name }}</h2>
                 </div>

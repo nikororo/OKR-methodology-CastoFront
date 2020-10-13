@@ -3,7 +3,7 @@
     <Head/>
     <div class="row no-gutter cont">
       <toolBar/>
-      <div class="col-md-5 col-lg-10 settings">
+      <div class="col-sm-10 col-md-10 col-lg-10 settings">
         <div class="header_targets_link">
           <router-link class="link_targets" active-class="active_link_targets" to="/settingsUser" exact>Найстройки
             профиля
@@ -28,7 +28,7 @@
             <div class="data_user">
               <p class="p_data_user">Сфера деятельности</p>
               <select class="input_user" type="text" id="signupActivity" v-model="activity" required>
-                <option value selected hidden>Сфера деятельности</option>
+                <option value disabled selected hidden>Сфера деятельности</option>
                 <option value="departmentHead">Руководитель отдела</option>
                 <option value="manager">Менеджер</option>
                 <option selected value="developer">Разработчик</option>
@@ -72,7 +72,6 @@ export default {
   },
   data: () => ({
     activity: '',
-    publicPath: process.env.BASE_URL,
   }),
 
   methods: {}

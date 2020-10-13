@@ -25,48 +25,26 @@
 </template>
 
 <script>
-// import Vue from 'vue'
-// import router from "@/router";
 
 export default {
   name: 'Signin',
   data: () => ({
     email: '',
     password: '',
-    publicPath: process.env.BASE_URL
   }),
 
   methods: {
-    onLog() {
-      let login = this.$store.state.account.email
-      let pass = this.$store.state.account.password
-      if (this.email === login && this.password === pass) {
-        let user = this.$store.state.account;
-        this.$store.commit('authCorr', user);
-        this.$router.push('/');
-      } else {
-        this.$store.commit('authErr')
-        this.email = ''
-        this.password = ''
+    async onLog()  {
+      let user = {
+        email: this.email,
+        password: this.password
       }
-    }
-    // onLog() {
-    //   Vue.axios.post(this.$store.state.urlBD + 'api/user/login', {
-    //     email: this.email,
-    //     password: this.password
-    //   })
-    //       .then((res) => {
-    //         let user = {
-    //           email: res.data.user.email,
-    //           name: res.data.user.name,
-    //           id: res.data.user.id,
-    //           activity: res.data.user.activity
-    //         }
-    //         this.$store.commit('authCorr', user);
-    //         this.$router.push('/');
-    //       })
-    //       .catch(() => this.$store.commit('authErr'));
-    // },
+
+      await this.$store.dispatch('login', user);
+      if (!this.$store.state.authHasError) { 
+        this.$router.push('/');  
+      }
+    },
   }
 }
 </script>

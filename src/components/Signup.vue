@@ -19,7 +19,7 @@
         <label for="signupActivity">Ваша сфера деятельности</label>
         <div>
           <select id="signupActivity" v-model="activity" required>
-            <option value disabled selected>Сфера деятельности</option>
+            <option value hidden selected>Сфера деятельности</option>
             <option value="Руководитель отдела">Руководитель отдела</option>
             <option value="Менеджер">Менеджер</option>
             <option selected value="Разработчик">Разработчик</option>
@@ -27,6 +27,15 @@
             <option value="Дизайнер">Дизайнер</option>
             <option selected value="Тестировщик">Тестировщик</option>
             <option value="Другое">Другое</option>
+          </select>
+        </div>
+        <label for="signupCommand">Ваш отдел</label>
+        <div>
+          <select id="signupCommand" v-model="command" required>
+            <option value hidden selected>Отдел</option>
+            <option v-for="(command, index) in this.$store.state.commands" v-bind:key="index">
+              {{command}}
+            </option>
           </select>
         </div>
         <label for="signupPass">Пароль</label>
@@ -44,8 +53,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
-
 export default {
   name: 'Signup',
   data: () => ({
@@ -53,36 +60,23 @@ export default {
     password: '',
     fullName: '',
     activity: '',
-    publicPath: process.env.BASE_URL,
+    command: '',
   }),
 
   methods: {
-    onReg() {
-      Vue.axios.post(this.$store.state.urlBD + 'api/user/register', {
+    async onReg() {
+      let newUser = {
         name: this.fullName,
         email: this.email,
         password: this.password,
-        c_password: this.password,
-        activity: this.activity
-      })
-          .then(() => {
-            Vue.axios.post(this.$store.state.urlBD + 'api/user/login', {
-              email: this.email,
-              password: this.password
-            })
-                .then((res) => {
-                  let user = {
-                    email: res.data.user.email,
-                    name: res.data.user.name,
-                    id: res.data.user.id,
-                    activity: res.data.user.activity
-                  }
-                  this.$store.commit('authCorr', user);
-                  this.$router.push('/goals');
-                })
-                .catch(() => this.$store.commit('authErr'));
-          })
-          .catch(() => this.$store.commit('authErr'));
+        activity_sphere: this.activity,
+        command: this.command
+      }
+
+      await this.$store.dispatch('register', newUser);
+      if (!this.$store.state.authHasError) { 
+        this.$router.push('/');  
+      }
     },
   }
 }
