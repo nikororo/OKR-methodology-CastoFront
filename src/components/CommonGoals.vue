@@ -102,6 +102,7 @@ export default {
 
     displayKr(idGoal) {
       this.$store.commit('displayKr', idGoal);
+      this.$store.dispatch('getKrs', idGoal);
     },
   }
 }

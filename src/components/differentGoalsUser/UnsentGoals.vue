@@ -166,6 +166,7 @@ export default {
 
   created: async function () {
     await this.$store.dispatch('getGoals');
+    // await this.$store.dispatch('getKrs');
     this.unsentGoals = this.$store.state.goals.filter(goal => goal.status === 'unsent');
     await this.$store.dispatch('getUsers');
     this.people = this.$store.state.people;
@@ -227,6 +228,7 @@ export default {
 
     displayKr(idGoal) {
       this.$store.commit('displayKr', idGoal);
+      this.$store.dispatch('getKrs', idGoal);
     },
 
     sendGoal(idGoal) {
