@@ -455,6 +455,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .tasks {
+    position: relative;
     min-height: calc(100vh - 150px);
     padding: 10px 60px 130px;
     background-color: #F4F4F4;
@@ -607,11 +608,11 @@ input:active, input:focus, select:focus, button:active, button:focus {
     margin-bottom: 0;
 }
 
-.authorization .error {
+.error {
     border: 2px solid rgb(255, 112, 112);
 }
 
-.authorization .errorMsg {
+.errorMsg {
     color: #ff3838;
     text-align: left;
     margin-bottom: 15px;
@@ -1176,6 +1177,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .addGoalDate {
     display: flex;
+    position: relative;
 }
 
 .addGoalDate input {

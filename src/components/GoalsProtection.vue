@@ -51,13 +51,13 @@
                       </div>
                       <div>
                         <button @click="approveGoal(goal.id)" class="btnLogOut">
-                          <img height="25" src="../style/img/ApproveGoal.png" alt="Pen">
+                          <img height="25" src="../style/img/ApproveGoal.png" alt="Approve">
                           <span>Одобрить</span>
                         </button>
                       </div>
                       <div>
                         <button @click="rejectGoal(goal.id)" class="btnLogOut">
-                          <img height="25" src="../style/img/RejectGoal.png" alt="Delete">
+                          <img height="25" src="../style/img/RejectGoal.png" alt="Reject">
                           <span>Отклонить</span>
                         </button>
                       </div>
@@ -99,22 +99,28 @@ export default {
     proposedGoals: [],
   }),
 
-  created: async function () {
-    await this.$store.dispatch('getGoals');
-    this.proposedGoals = this.$store.state.goals.filter(goal => goal.status === 'proposed');
+  created: function () {
+    this.getGoals();
   },
+ 
+   methods: {
+    async getGoals() {
+      await this.$store.dispatch('getGoals');
+      this.proposedGoals = this.$store.state.goals.filter(goal => goal.status === 'proposed');
+    },
 
-  methods: {
     sum(idGoal) {
       this.$store.dispatch('sumPercent', idGoal)
     },
 
     approveGoal(idGoal) {
-      this.$store.commit('approveGoal', idGoal);
+      this.$store.dispatch('goalProtection', { status: 'approved', idGoal });
+      this.getGoals();
     },
 
     rejectGoal(idGoal) {
-      this.$store.commit('rejectGoal', idGoal);
+      this.$store.dispatch('goalProtection', { status: 'rejected', idGoal });
+      this.getGoals();
     },
 
     displayKr(idGoal) {

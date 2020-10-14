@@ -1,5 +1,7 @@
 <template>
-  <div>  
+  <div> 
+    <button class="button_goals" @click="showAddGoalModal = true">Добавить</button>
+    <AddGoalModal v-if="showAddGoalModal" @close="closeAdd"/> 
     <div v-if="unsentGoals.length !== 0">
       <div v-for="goal in unsentGoals" v-bind:key="goal.id">
         <div class="contGoal">
@@ -136,6 +138,7 @@
 </template>
 
 <script>
+import AddGoalModal from "@/components/AddGoalModal";
 import DeleteGoalModal from '../DeleteGoalModal';
 import DeleteKrModal from '../DeleteKrModal';
 import EditGoalModal from '../EditGoalModal';
@@ -145,6 +148,7 @@ import EditKrModal from '../EditKrModal';
 export default {
   name: 'UnsentGoals',
   components: {
+    AddGoalModal,
     DeleteGoalModal, 
     DeleteKrModal, 
     EditGoalModal, 
@@ -173,6 +177,12 @@ export default {
   },
 
   methods: {
+    async closeAdd() {
+      this.showAddGoalModal = false;
+      await this.$store.dispatch('getGoals');
+      this.unsentGoals = this.$store.state.goals.filter(goal => goal.status === 'unsent');
+    },
+
     addKr(goalId, remainderWeight, weight, event) {
       event.preventDefault();
       if (weight > remainderWeight) {
@@ -231,14 +241,22 @@ export default {
       this.$store.dispatch('getKrs', idGoal);
     },
 
-    sendGoal(idGoal) {
-      this.$store.commit('sendGoal', idGoal);
+    async sendGoal(idGoal) {
+      await this.$store.dispatch('goalProtection', { status: 'proposed', idGoal });
+      await this.$store.dispatch('getGoals');
+      this.unsentGoals = this.$store.state.goals.filter(goal => goal.status === 'unsent');
     }
   }
 }
 </script>
 
 <style scoped>
+.button_goals {
+  position: absolute;
+  top: 50px;
+  right: 60px;
+}
+
 p {
   margin-bottom: 0;
 }

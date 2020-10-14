@@ -26,8 +26,6 @@
                 <option value="approved">Одобренные цели</option>
                 <option value="rejected">Неодобренные цели</option>
               </select>
-              <button v-if="selectedStatus === 'unsent'" class="button_goals" @click="showAddGoalModal = true">Добавить</button>
-              <AddGoalModal v-if="showAddGoalModal" @close="showAddGoalModal = false"/>
             </div>
             <UnsentGoals v-if="selectedStatus === 'unsent'" />
             <ApprovedGoals v-if="selectedStatus === 'approved'" />
@@ -43,7 +41,6 @@
 <script>
 import Head from "@/components/Head";
 import ToolBar from "@/components/ToolBar";
-import AddGoalModal from "@/components/AddGoalModal";
 import UnsentGoals from "@/components/differentGoalsUser/UnsentGoals";
 import ApprovedGoals from "@/components/differentGoalsUser/ApprovedGoals";
 import ProposedGoals from "@/components/differentGoalsUser/ProposedGoals";
@@ -54,7 +51,6 @@ export default {
   components: {
     Head, 
     ToolBar,
-    AddGoalModal,
     UnsentGoals,
     ApprovedGoals,
     ProposedGoals,
@@ -62,7 +58,6 @@ export default {
   },
 
   data: () => ({
-    showAddGoalModal: false,
     selectedStatus: 'unsent',
   }),
 }

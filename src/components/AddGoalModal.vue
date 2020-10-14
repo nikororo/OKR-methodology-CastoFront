@@ -33,10 +33,12 @@
               </div>
               <div class="addGoalDate">
                 <input v-model="dateStart" id="addGoalDateStart" class="input_user" placeholder="Дата начала"
-                       type="text"
+                       v-bind:class="{error: this.dataErr}" type="text"
                        onfocus="(this.type='date')" onblur="(this.type='text')" required>
-                <input v-model="dateEnd" id="addGoalDateEnd" class="input_user" placeholder="Дата окончания" type="text"
+                <input v-model="dateEnd" id="addGoalDateEnd" class="input_user" placeholder="Дата окончания"
+                       v-bind:class="{error: this.dataErr}" type="text"
                        onfocus="(this.type='date')" onblur="(this.type='text')" required>
+                <div class="errorMsg" v-if="this.dataErr">Дата начала позже даты окончания</div>       
               </div>
               <select v-model="executor" id="addGoalExecutor" class="input_user">
                 <option value disabled selected hidden>Ответственный</option>
@@ -72,6 +74,7 @@ export default {
     dateStart: '',
     dateEnd: '',
     executor: '',
+    dataErr: false,
     people: '',
     descr: '',
     status: 'unsent'
@@ -86,20 +89,21 @@ export default {
     close() {
       this.$emit('close');
     },
-    addGoal() {
+    async addGoal() {
+      if (this.dateStart > this.dateEnd) {
+        this.dataErr = true;
+        return;
+      }
       let newGoal = {
         name: this.name,
         dateStart: this.dateStart,
         dateEnd: this.dateEnd,
         status: this.status
-
-        // author: this.$store.state.user.name,
-        // command: this.$store.state.user.command,
-        // percentOfCompletion: 0,
       }
       if (this.descr) newGoal.descr = this.descr;
       if (this.executor) newGoal.executor = this.executor;
-      this.$store.dispatch('addGoal', newGoal);
+      this.dataErr = false;
+      await this.$store.dispatch('addGoal', newGoal);
       this.$emit('close');
     }
   },
@@ -107,6 +111,10 @@ export default {
 </script>
 
 <style scoped>
+.errorMsg {
+  position: absolute;
+  top: -20px;
+}
 .addGoalModal {
   padding: 0 0 30px;
 }

@@ -313,15 +313,22 @@ export default new Vuex.Store({
                 })
         },
 
-        addGoal: ({state}, newGaol) => {
-            Vue.axios({
+        addGoal: async ({state}, newGaol) => {
+            await Vue.axios({
                 method: 'POST',
                 url: `${state.urlBD}goals`,
                 data: newGaol
             }).then((r) => {
                 console.log(r)
             }).catch(error => console.log(error));
-        }
+        },
+        goalProtection: async ({state, commit}, {status, idGoal}) => {
+            await Vue.axios.put(state.urlBD + 'goals/' + idGoal, {status})
+                .then()
+                .catch (err => {
+                    if (err.response.status === 401) commit('logOut');
+                })
+        },
     },
 
     modules: {}
