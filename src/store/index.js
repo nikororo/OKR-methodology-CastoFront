@@ -261,23 +261,23 @@ export default new Vuex.Store({
       });
     },
 
-    addGoal: (state, newGoal) => {
-      let maxID = 0;
-      state.goals.forEach((goal) => {
-        if (goal.id > maxID) maxID = goal.id;
-      }) 
-      newGoal.id = maxID + 1;
-      newGoal.showKr = false;
-      newGoal.krs = [];
-      newGoal.status = 'unsent';
-      newGoal.remainderWeight = 100;
-      newGoal.newKr = {
-        title: '',
-        weight: '',
-        executor: '',
-      }
-      state.goals.push(newGoal);
-    },
+    // addGoal: (state, newGoal) => {
+    //   let maxID = 0;
+    //   state.goals.forEach((goal) => {
+    //     if (goal.id > maxID) maxID = goal.id;
+    //   })
+    //   newGoal.id = maxID + 1;
+    //   newGoal.showKr = false;
+    //   newGoal.krs = [];
+    //   newGoal.status = 'unsent';
+    //   newGoal.remainderWeight = 100;
+    //   newGoal.newKr = {
+    //     title: '',
+    //     weight: '',
+    //     executor: '',
+    //   }
+    //   state.goals.push(newGoal);
+    // },
 
     editGoal: (state, modifiedGoal) => {
       state.goals.forEach((goal) => {
@@ -470,6 +470,16 @@ export default new Vuex.Store({
         .catch ((networkError) => {
           throw networkError;
         })
+    },
+
+    addGoal: ({state}, newGaol) => {
+      Vue.axios({
+        method: 'POST',
+        url: `${state.urlBD}goals`,
+        data: newGaol
+      }).then((r) => {
+        console.log(r)
+      }).catch(error => console.log(error));
     }
   },
 

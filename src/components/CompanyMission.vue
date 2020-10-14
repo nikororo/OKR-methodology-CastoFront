@@ -6,7 +6,7 @@
       <div class="col-sm-10 col-md-10 col-lg-10">
         <div class="header_targets_link">
           <router-link class="link_targets" active-class="active_link_targets" to="/goals/companyMission">
-            Миссии компании
+            Стратегические цели
           </router-link>
           <router-link class="link_targets" active-class="active_link_targets" to="/goals" exact>
             Цели

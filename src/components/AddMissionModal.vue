@@ -5,7 +5,7 @@
 
         <form v-on:submit.prevent="addGoal">
           <header>
-            <input v-model="name" placeholder="Название цели" required minlength="5" maxlength="100"/>
+            <input v-model="name" placeholder="Название стратегической цели" required minlength="5" maxlength="100"/>
             <button class="btnClose" @click="close">
               <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -26,7 +26,7 @@
           </section>
           <footer>
             <button type="submit" class="button_pass">
-              Отправить
+              Добавить
             </button>
             <button type="button" class="button_pass" @click="close">
               Отмена
