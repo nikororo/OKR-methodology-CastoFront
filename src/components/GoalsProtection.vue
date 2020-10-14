@@ -94,11 +94,14 @@ export default {
     Head, 
     ToolBar,
   },
-    
-  computed: {
-    proposedGoals: function () {
-      return this.$store.state.goals.filter(goal => goal.status === 'proposed');
-    }
+   
+  data: () => ({
+    proposedGoals: [],
+  }),
+
+  created: async function () {
+    await this.$store.dispatch('getGoals');
+    this.proposedGoals = this.$store.state.goals.filter(goal => goal.status === 'proposed');
   },
 
   methods: {

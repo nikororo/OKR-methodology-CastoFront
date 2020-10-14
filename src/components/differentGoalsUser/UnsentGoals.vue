@@ -1,7 +1,7 @@
 <template>
   <div>  
-    <div v-if="goals.length !== 0">
-      <div v-for="goal in goals" v-bind:key="goal.id">
+    <div v-if="unsentGoals.length !== 0">
+      <div v-for="goal in unsentGoals" v-bind:key="goal.id">
         <div class="contGoal">
           <div class="companyGoals">
             <button class="btnShowKR" @click="displayKr(goal.id)">
@@ -160,16 +160,13 @@ export default {
     errorWeigth: false,
     people: '',
     idSelectedGoal: '',
-    idSelectedKr: ''
+    idSelectedKr: '',
+    unsentGoals: [],
   }),
-    
-  computed: {
-    goals: function () {
-      return this.$store.state.goals.filter(goal => goal.status === 'unsent');
-    },
-  },
 
   created: async function () {
+    await this.$store.dispatch('getGoals');
+    this.unsentGoals = this.$store.state.goals.filter(goal => goal.status === 'unsent');
     await this.$store.dispatch('getUsers');
     this.people = this.$store.state.people;
   },

@@ -86,10 +86,13 @@ export default {
     ToolBar,
   },
 
-  computed: {
-    approvedGoals: function () {
-      return this.$store.state.goals.filter(goal => goal.status === 'approved');
-    }
+  data: () => ({
+    approvedGoals: [],
+  }),
+
+  created: async function () {
+    await this.$store.dispatch('getGoals');
+    this.approvedGoals = this.$store.state.goals.filter(goal => goal.status === 'approved');
   },
 
   methods: {

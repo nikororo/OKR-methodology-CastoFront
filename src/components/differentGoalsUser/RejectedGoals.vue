@@ -1,7 +1,7 @@
 <template>
   <div>  
-    <div v-if="goals.length !== 0">
-      <div v-for="goal in goals" v-bind:key="goal.id">
+    <div v-if="rejectedGoals.length !== 0">
+      <div v-for="goal in rejectedGoals" v-bind:key="goal.id">
         <div class="contGoal">
           <div class="companyGoals">
             <button class="btnShowKR" @click="displayKr(goal.id)">
@@ -73,12 +73,11 @@ export default {
   data: () => ({
     showDeleteGoalModal: false,
     idSelectedGoal: '',
+    rejectedGoals: [],
   }),
 
-  computed: {
-    goals: function () {
-      return this.$store.state.goals.filter(goal => goal.status === 'rejected');
-    },
+  created: async function () {
+    this.rejectedGoals = this.$store.state.goals.filter(goal => goal.status === 'rejected');
   },
 
   methods: {

@@ -11,10 +11,10 @@
         <div class="listOfEmployees">
           <button class="addBtnUserComm">Создать команду</button>
           <ol>
-            <div class="contUserComm" v-for="comm in this.commands" v-bind:key="comm.id">
+            <div class="contUserComm" v-for="(command, index) in this.$store.state.commands" v-bind:key="index">
               <li>
                 <div class="userComm">
-                  <p>{{comm.name}}</p>
+                  <p>{{command}}</p>
                 </div>
               </li>
             </div>
@@ -36,32 +36,7 @@ export default {
   components: {
     Head, ToolBar
   },
-
-  data: () => ({
-    commands: [
-      {
-        name: 'Тестировщики',
-        id: 0
-      },
-      {
-        name: 'Castoroides',
-        id: 1
-      },
-      {
-        name: 'Академия',
-        id: 2
-      },
-      {
-        name: 'Marketing',
-        id: 3
-      },
-      {
-        name: 'Человек Умелый',
-        id: 4
-      },
-    ]
-  }),
-
+  
   created: function() {
     //запрашиваем данные об отделах с бэка и записываем в commands
   }

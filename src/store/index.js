@@ -5,13 +5,14 @@ axios.interceptors.request.use(
     const token = localStorage.getItem('token');
     config.headers['Authorization'] =  `Bearer ${token}`;
     return config;
-  }),
+  },
   (error) => {
     return Promise.reject(error);
-  }
+  });
 
 import Vue from 'vue'
 import Vuex from 'vuex'
+import router from '@/router'
 import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
@@ -41,195 +42,7 @@ export default new Vuex.Store({
       'Marketing',
       'Человек Умелый',
     ],
-    goals: [
-      {
-        name: 'Цель 1',
-        dateStart: '2020-09-25',
-        dateEnd: '2020-09-29',
-        author: 'Екатерина',
-        command: 'Castoroides',
-        id: 1,
-        percentOfCompletion: 0,
-        showKr: false,
-        remainderWeight: 0,
-        krs: [
-          {
-            title: "кр цели 1", 
-            weight: "20", 
-            executor: "Титова Арина Радиевна", 
-            performers: [], 
-            percent: 0, 
-            id: 1
-          },
-          {
-            title: "кр цели 1 второй", 
-            weight: "50", 
-            executor: "Титова Арина Радиевна", 
-            performers: [], 
-            percent: 0, 
-            id: 3
-          },
-          {
-            title: "кр цели 1 еще один", 
-            weight: "30", 
-            executor: "Титова Арина Радиевна", 
-            performers: [], 
-            percent: 0, 
-            id: 4
-          }
-        ],
-        status: 'unsent',
-        newKr: {
-          title: '',
-          weight: 0,
-          executor: '',
-        }
-      },
-      {
-        name: 'Цель отдела',
-        dateStart: '2020-09-25',
-        dateEnd: '2020-09-29',
-        author: 'Виктор',
-        command: 'Тераторн',
-        id: 2,
-        percentOfCompletion: 0,
-        showKr: false,
-        remainderWeight: 0,
-        krs: [
-          {
-            title: "кр цели 2", 
-            weight: "100", 
-            executor: "Титова Арина Радиевна", 
-            performers: [], 
-            percent: 0, 
-            id: 1
-          }
-        ],
-        status: 'approved',
-        newKr: {
-          title: '',
-          weight: '',
-          executor: '',
-        }
-      },
-      {
-        name: 'Цель отдела 2',
-        dateStart: '2020-09-25',
-        dateEnd: '2020-09-29',
-        author: 'Максимов Станислав Игоревич',
-        command: 'Castoroides',
-        executor: 'Екатерина',
-        id: 3,
-        percentOfCompletion: 0,
-        showKr: false,
-        remainderWeight: 0,
-        krs: [
-          {
-            title: "кр цели 3", 
-            weight: "60", 
-            executor: "Титова Арина Радиевна", 
-            performers: [], 
-            percent: 0, 
-            id: 1
-          },
-          {
-            title: "кр цели 3 второй", 
-            weight: "40", 
-            executor: "Титова Арина Радиевна", 
-            performers: [], 
-            percent: 0, 
-            id: 2
-          }
-        ],
-        status: 'approved',
-        newKr: {
-          title: '',
-          weight: '',
-          executor: '',
-        }
-      },
-      {
-        name: 'Цель для одобрения 1',
-        dateStart: '2020-09-25',
-        dateEnd: '2020-09-29',
-        author: 'Екатерина',
-        command: 'Castoroides',
-        id: 4,
-        percentOfCompletion: 0,
-        showKr: false,
-        remainderWeight: 0,
-        krs: [
-          {
-            title: "кр цели для одобрения", 
-            weight: "100", 
-            executor: "Титова Арина Радиевна", 
-            performers: [], 
-            percent: 0, 
-            id: 1
-          }
-        ],
-        status: 'proposed',
-        newKr: {
-          title: '',
-          weight: '',
-          executor: '',
-        }
-      },
-      {
-        name: 'новая цель',
-        dateStart: '2020-09-25',
-        dateEnd: '2020-09-29',
-        author: 'Екатерина',
-        command: 'Castoroides',
-        id: 5,
-        percentOfCompletion: 0,
-        showKr: false,
-        remainderWeight: 70,
-        krs: [
-          {
-            title: "кр цели отдела", 
-            weight: "30", 
-            executor: "Титова Арина Радиевна", 
-            performers: [], 
-            percent: 0, 
-            id: 1
-          }
-        ],
-        status: 'unsent',
-        newKr: {
-          title: '',
-          weight: '',
-          executor: '',
-        }
-      },
-      {
-        name: 'цель, которую отклонили',
-        dateStart: '2020-09-25',
-        dateEnd: '2020-09-29',
-        author: 'Екатерина',
-        command: 'Castoroides',
-        id: 6,
-        percentOfCompletion: 0,
-        showKr: false,
-        remainderWeight: 0,
-        krs: [
-          {
-            title: "кр цели отдела", 
-            weight: "100", 
-            executor: "Титова Арина Радиевна", 
-            performers: [], 
-            percent: 0, 
-            id: 1
-          }
-        ],
-        status: 'rejected',
-        newKr: {
-          title: '',
-          weight: '',
-          executor: '',
-        }
-      },
-    ],
+    goals: [],
   },
   mutations: {
     authErr: (state) => {
@@ -242,8 +55,13 @@ export default new Vuex.Store({
       state.authHasError = false;
     },
 
-    logOut: (state) => {
-      state.user = {};
+    logOut: () => {
+      localStorage.removeItem('token');
+      router.push('/');  
+    },
+
+    setGoals: (state, goals) => {
+      state.goals = goals;
     },
 
     addMission: (state, newMission) => {
@@ -334,11 +152,14 @@ export default new Vuex.Store({
           if (goal.newKr.executor !== '')
             goal.newKr.executor = Number(goal.newKr.executor);
           Vue.axios.post(state.urlBD + 'goals/' + goalId, goal.newKr)
-            .then((res) => {
+            .then(res => {
               console.log(res)
             })
-            .catch ((networkError) => {
-              throw networkError;
+            .catch (err => {
+              if (err.response.status === 401) {
+                localStorage.removeItem('token');
+                router.push('/');  
+              } else throw err
             })
           }
           goal.newKr = {
@@ -455,6 +276,27 @@ export default new Vuex.Store({
         .catch(() => commit('authErr'));
     },
 
+    getGoals: async ({state, commit}) => {
+      await Vue.axios.get(state.urlBD + 'goals')
+        .then(({data}) => {
+          data.map(goal => {
+            goal.author = goal.author.name;
+            goal.showKr = false;
+            goal.krs = [];
+            goal.remainderWeight = 100;
+            goal.newKr = {
+              title: '',
+              weight: '',
+              executor: '',
+            }
+          })
+          commit('setGoals', data)
+        })
+        .catch (err => {
+          if (err.response.status === 401) commit('logOut');
+        })
+    },
+
     getUsers: async ({state, commit}) => {
       await Vue.axios.get(state.urlBD + 'users')
         .then(({data}) => {
@@ -467,8 +309,8 @@ export default new Vuex.Store({
           })
           commit('setUsers', data);
         })
-        .catch ((networkError) => {
-          throw networkError;
+        .catch (err => {
+          if (err.response.status === 401) commit('logOut');
         })
     }
   },
