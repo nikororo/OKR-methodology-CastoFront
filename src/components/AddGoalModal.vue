@@ -73,7 +73,8 @@ export default {
     dateEnd: '',
     executor: '',
     people: '',
-    descr: ''
+    descr: '',
+    status: 'unsent'
   }),
 
   created: async function () {
@@ -88,15 +89,17 @@ export default {
     addGoal() {
       let newGoal = {
         name: this.name,
-        author: this.$store.state.user.name,
-        command: this.$store.state.user.command,
         dateStart: this.dateStart,
         dateEnd: this.dateEnd,
-        percentOfCompletion: 0,
+        status: this.status
+
+        // author: this.$store.state.user.name,
+        // command: this.$store.state.user.command,
+        // percentOfCompletion: 0,
       }
       if (this.descr) newGoal.descr = this.descr;
       if (this.executor) newGoal.executor = this.executor;
-      this.$store.commit('addGoal', newGoal);
+      this.$store.dispatch('addGoal', newGoal);
       this.$emit('close');
     }
   },
