@@ -76,6 +76,25 @@ export default new Vuex.Store({
             });
         },
 
+        editKr: (state, modifiedKr) => {
+            state.goals.forEach((goal) => {
+                if (goal.id === modifiedKr.idGoal) {
+                    goal.krs.forEach((kr) => {
+                        if (kr.id === modifiedKr.id) {
+                            if (kr.weight !== modifiedKr.weight) {
+                                goal.remainderWeight += kr.weight - modifiedKr.weight;
+                            }
+
+                            delete modifiedKr.idGoal;
+                            for (const property in modifiedKr) {
+                                kr[property] = modifiedKr[property];
+                            }
+                        }
+                    });
+                }
+            });
+        },
+
         setKrs: (state, krs) => {
             state.goals.forEach((goal) => {
                 goal.krs = krs
@@ -128,38 +147,6 @@ export default new Vuex.Store({
                     executor: '',
                 }
             })
-        },
-
-        editKr: (state, modifiedKr) => {
-            state.goals.forEach((goal) => {
-                if (goal.id === modifiedKr.idGoal) {
-                    goal.krs.forEach((kr) => {
-                        if (kr.id === modifiedKr.id) {
-                            if (kr.weight !== modifiedKr.weight) {
-                                goal.remainderWeight += kr.weight - modifiedKr.weight;
-                            }
-
-                            delete modifiedKr.idGoal;
-                            for (const property in modifiedKr) {
-                                kr[property] = modifiedKr[property];
-                            }
-                        }
-                    });
-                }
-            });
-        },
-
-        deleteKr: (state, {idGoal, idKr}) => {
-            state.goals.forEach((goal) => {
-                if (goal.id === idGoal) {
-                    goal.krs.forEach((kr, i) => {
-                        if (kr.id === idKr) {
-                            goal.remainderWeight += Number(kr.weight);
-                            goal.krs.splice(i, 1);
-                        }
-                    });
-                }
-            });
         },
 
         setPercentOfCompletion: (state, payload) => {
@@ -259,17 +246,6 @@ export default new Vuex.Store({
                 })
         },
 
-        getKrs: ({state, commit}, goalId) => {
-            state.goals.forEach(async (goal) => {
-               if (goal.id === goalId) {
-                    await Vue.axios.get(state.urlBD + 'goals/' + goalId + '/key-results')
-                        .then(({data}) => {
-                            commit('setKrs', data);
-                        }).catch(error => console.log(error));
-                }
-            })
-        },
-
         getUsers: async ({state, commit}) => {
             await Vue.axios.get(state.urlBD + 'users')
                 .then(({data}) => {
@@ -318,6 +294,35 @@ export default new Vuex.Store({
                 if (err.response.status === 401) commit('logOut');
             })
         },
+
+        getKrs: ({state, commit}, goalId) => {
+            state.goals.forEach(async (goal) => {
+                if (goal.id === goalId) {
+                    await Vue.axios.get(state.urlBD + 'goals/' + goalId + '/key-results')
+                        .then(({data}) => {
+                            commit('setKrs', data);
+                        }).catch(error => console.log(error));
+                }
+            })
+        },
+
+        editKr: async ({state, commit}, {id, ...modifiedKr}) => {
+            await Vue.axios.put(state.urlBD + 'key-results/' + id, modifiedKr)
+                .then(({data}) => {
+                    commit('editKr', {id,data});
+                }).catch().catch (err => {
+                    if (err.response.status === 401) commit('logOut');
+                })
+        },
+
+        deleteKr: async ({state, commit}, {idKr}) => {
+            await Vue.axios.delete(state.urlBD + 'key-results/' + idKr)
+                .catch (err => {
+                    if (err.response.status === 401) commit('logOut');
+                })
+        }
+
+
     },
 
     modules: {}

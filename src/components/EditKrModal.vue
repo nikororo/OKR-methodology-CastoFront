@@ -114,9 +114,9 @@ export default {
         idGoal: this.idGoal,
         id: this.idKr
       }
-      this.$store.commit('editKr', modifiedKr);
+      this.$store.dispatch('editKr', modifiedKr);
       //придумать как пересчитывать, когда доделается редактирование
-      //this.$store.dispatch('sumPercent', this.idGoal);
+      // this.$store.dispatch('sumPercent', this.idGoal);
       this.$emit('close');
     }
   },
