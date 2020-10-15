@@ -150,7 +150,7 @@ p {
 }
 
 .goalNameInput p {
-  margin: 12px 25px 27px 0;
+  margin:  13px 25px 30px 0;
 }
 
 .icon_user {
@@ -159,7 +159,7 @@ p {
 
 .dateDetails {
   width: 253px;
-  margin-bottom: 15px;
+  margin-bottom: 21px;
   display: flex;
   align-items: center;
   justify-content: space-between
@@ -180,7 +180,7 @@ p {
 .executorDetails {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
 .executorDetails div {
@@ -191,7 +191,7 @@ p {
   width: 208px;
   height: 46px;
   border: 2px solid #3AACBD;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 21px;
   color: #0C2528;
 }
@@ -199,7 +199,7 @@ p {
 .descrDetails {
   padding: 15px 15px ;
   width: 90%;
-  margin-bottom: 15px;
+  margin-bottom: 14px;
   min-height: 50px;
   max-height: auto;
   font-size: 18px;
@@ -231,6 +231,11 @@ p {
   justify-content: flex-start;
   font-size: 16px;
   line-height: 22px;
+}
+
+.modal_user_name:first-child {
+  padding-top: 8px;
+  margin-bottom: 27px;
 }
 
 .goalNameInput {
