@@ -115,7 +115,8 @@ export default {
         id: this.idKr
       }
       this.$store.commit('editKr', modifiedKr);
-      this.$store.dispatch('sumPercent', this.idGoal);
+      //придумать как пересчитывать, когда доделается редактирование
+      //this.$store.dispatch('sumPercent', this.idGoal);
       this.$emit('close');
     }
   },

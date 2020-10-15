@@ -47,7 +47,7 @@
           <div class="contKr" v-if="goal.showKr">
             <div class="krs" v-for="kr in goal.krs" :key="kr.id">
               <label for="newKr"> {{ kr.title }}</label>
-              <input id="newKr" type="range" min="0" max="100" @change="sum(goal.id)" v-model="kr.percent" class="slider">
+              <input id="newKr" type="range" min="0" max="100" @change="sum(goal.id, kr.id, kr.percent)" v-model="kr.percent" class="slider">
               <p class="percentGoals">{{ kr.percent }}%</p>
               <div class="menu">
                 <a class="button_menu">
@@ -147,8 +147,8 @@ export default {
   },
 
   methods: {
-    sum(id) {
-      this.$store.dispatch('sumPercent', id)
+    async sum(idGoal, idKr, percent) {
+      await this.$store.dispatch('sumPercent', {idGoal, idKr, percent})
     },
 
     addKr(goalId, remainderWeight, weight, event) {

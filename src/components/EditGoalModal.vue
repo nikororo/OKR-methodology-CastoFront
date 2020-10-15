@@ -28,17 +28,17 @@
                 <img class="icon_user" src="../style/img/User.png" alt="">
                 <p>{{author}}</p>
               </div>
-              <select v-model="command" id="addGoalCommand" class="input_user">
-                <option disabled selected hidden>{{command}}</option>
-                <option v-for="(com, index) in this.$store.state.commands" v-bind:key="index">
-                  {{com}}
-                </option>
-              </select>
+              <div class="modal_user_name">
+                <p>{{command}}</p>
+              </div>
               <div class="addGoalDate">
-                <input v-model="dateStart" id="addGoalDateStart" class="input_user" placeholder="Дата начала" type="text"
-                      onfocus="(this.type='date')" onblur="(this.type='text')" required>
-                <input v-model="dateEnd" id="addGoalDateEnd" class="input_user" placeholder="Дата окончания" type="text"
-                      onfocus="(this.type='date')" onblur="(this.type='text')" required>
+                <input v-model="dateStart" id="addGoalDateStart" class="input_user" placeholder="Дата начала"
+                       v-bind:class="{error: this.dataErr}" type="text"
+                       onfocus="(this.type='date')" onblur="(this.type='text')" required>
+                <input v-model="dateEnd" id="addGoalDateEnd" class="input_user" placeholder="Дата окончания"
+                       v-bind:class="{error: this.dataErr}" type="text"
+                       onfocus="(this.type='date')" onblur="(this.type='text')" required>
+                <div class="errorMsg" v-if="this.dataErr">Дата начала позже даты окончания</div>       
               </div>
               <select v-model="executor" id="addGoalExecutor" class="input_user">
                 <option value disabled selected hidden>{{executor}}</option>
@@ -76,6 +76,7 @@ export default {
     author: '',
     dateStart: '',
     dateEnd: '',
+    dataErr: false,
     executor: '',
     people: '',
     command: '',
@@ -107,16 +108,20 @@ export default {
     },
 
     editGoal() {
+      if (this.dateStart > this.dateEnd) {
+        this.dataErr = true;
+        return;
+      }
       let modifiedGoal = {
         name: this.name,
-        command: this.command,
         dateStart: this.dateStart,
         dateEnd: this.dateEnd,
         id: this.idGoal,
         descr: this.descr,
         executor: this.executor
       }
-      this.$store.commit('editGoal', modifiedGoal);
+      this.dataErr = false;
+      this.$store.dispatch('editGoal', modifiedGoal);
       this.$emit('close');
     }
   },
@@ -124,11 +129,12 @@ export default {
 </script>
 
 <style scoped>
-.addGoalModal {
-  padding: 0 0 30px;
+.errorMsg {
+  position: absolute;
+  top: -20px;
 }
 
-.modal_user_name {
-  margin-bottom: 23px;
+.addGoalModal {
+  padding: 0 0 30px;
 }
 </style>

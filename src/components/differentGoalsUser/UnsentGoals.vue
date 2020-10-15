@@ -177,10 +177,14 @@ export default {
   },
 
   methods: {
-    async closeAdd() {
-      this.showAddGoalModal = false;
+    async getGoals() {
       await this.$store.dispatch('getGoals');
       this.unsentGoals = this.$store.state.goals.filter(goal => goal.status === 'unsent');
+    },
+
+    closeAdd() {
+      this.showAddGoalModal = false;
+      this.getGoals();
     },
 
     addKr(goalId, remainderWeight, weight, event) {
@@ -220,8 +224,9 @@ export default {
       this.errorWeigth = false;
     },
 
-    deleteGoal() {
-      this.$store.commit('deleteGoal', this.idSelectedGoal);
+    async deleteGoal() {
+      await this.$store.dispatch('deleteGoal', this.idSelectedGoal);
+      this.getGoals();
       this.idSelectedGoal = '';
     },
 
@@ -231,7 +236,7 @@ export default {
         idKr: this.idSelectedKr
       }
       this.$store.commit('deleteKr', payload);
-      this.$store.dispatch('sumPercent', this.idSelectedGoal);
+      this.$store.dispatch('getGoalPercent', this.idSelectedGoal);
       this.idSelectedGoal = '';
       this.idSelectedKr = '';
     },
@@ -243,8 +248,7 @@ export default {
 
     async sendGoal(idGoal) {
       await this.$store.dispatch('goalProtection', { status: 'proposed', idGoal });
-      await this.$store.dispatch('getGoals');
-      this.unsentGoals = this.$store.state.goals.filter(goal => goal.status === 'unsent');
+      this.getGoals();
     }
   }
 }

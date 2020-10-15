@@ -109,10 +109,6 @@ export default {
       this.proposedGoals = this.$store.state.goals.filter(goal => goal.status === 'proposed');
     },
 
-    sum(idGoal) {
-      this.$store.dispatch('sumPercent', idGoal)
-    },
-
     approveGoal(idGoal) {
       this.$store.dispatch('goalProtection', { status: 'approved', idGoal });
       this.getGoals();

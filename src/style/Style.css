@@ -608,7 +608,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     margin-bottom: 0;
 }
 
-.error {
+.error, .authorization .error {
     border: 2px solid rgb(255, 112, 112);
 }
 

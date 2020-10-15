@@ -90,8 +90,10 @@ export default {
       this.showDeleteGoalModal = true;
     },
 
-    deleteGoal() {
-      this.$store.commit('deleteGoal', this.idSelectedGoal);
+    async deleteGoal() {
+      await this.$store.dispatch('deleteGoal', this.idSelectedGoal);
+      await this.$store.dispatch('getGoals');
+      this.rejectedGoals = this.$store.state.goals.filter(goal => goal.status === 'rejected');
       this.idSelectedGoal = '';
     },
   }

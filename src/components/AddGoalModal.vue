@@ -115,6 +115,7 @@ export default {
   position: absolute;
   top: -20px;
 }
+
 .addGoalModal {
   padding: 0 0 30px;
 }

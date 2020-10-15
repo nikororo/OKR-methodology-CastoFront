@@ -64,6 +64,18 @@ export default new Vuex.Store({
             state.goals = goals;
         },
 
+        setEditedGoal: (state, {id, data}) => {
+            state.goals.map((goal) => {
+                if (goal.id === id) {
+                    goal.name = data.name;
+                    goal.dateStart = data.dateStart;
+                    goal.dateEnd = data.dateEnd;
+                    goal.descr = data.descr;
+                    goal.executor = data.executor;
+                }
+            });
+        },
+
         setKrs: (state, krs) => {
             state.goals.forEach((goal) => {
                 goal.krs = krs
@@ -82,46 +94,6 @@ export default new Vuex.Store({
         deleteMission: (state, idMission) => {
             state.missions.forEach((mission, i) => {
                 if (mission.id === idMission) state.missions.splice(i, 1);
-            });
-        },
-
-        editGoal: (state, modifiedGoal) => {
-            state.goals.forEach((goal) => {
-                if (goal.id === modifiedGoal.id) {
-                    for (const property in modifiedGoal) {
-                        goal[property] = modifiedGoal[property];
-                    }
-                }
-            });
-        },
-
-        deleteGoal: (state, idGoal) => {
-            state.goals.forEach((goal, i) => {
-                if (goal.id === idGoal) state.goals.splice(i, 1);
-            });
-        },
-
-        approveGoal: (state, idGoal) => {
-            state.goals.forEach((goal) => {
-                if (goal.id === idGoal) {
-                    goal.status = 'approved';
-                }
-            });
-        },
-
-        rejectGoal: (state, idGoal) => {
-            state.goals.forEach((goal) => {
-                if (goal.id === idGoal) {
-                    goal.status = 'rejected';
-                }
-            });
-        },
-
-        sendGoal: (state, idGoal) => {
-            state.goals.forEach((goal) => {
-                if (goal.id === idGoal) {
-                    goal.status = 'proposed';
-                }
             });
         },
 
@@ -193,7 +165,7 @@ export default new Vuex.Store({
         setPercentOfCompletion: (state, payload) => {
             state.goals.forEach((goal) => {
                 if (goal.id === payload.id) {
-                    goal.percentOfCompletion = payload.percent.toFixed()
+                    goal.percentOfCompletion = payload.percentOfCompletion.toFixed()
                 }
             })
         },
@@ -224,22 +196,24 @@ export default new Vuex.Store({
     plugins: [createPersistedState()],
 
     actions: {
-        sumPercent: ({commit, state}, id) => {
-            state.goals.forEach((goal) => {
-                if (goal.id === id) {
-                    let percentOfCompletion = 0;
-                    goal.krs.forEach((kr) => {
-                        let weightKr = kr.weight / 100;
-                        let percentKr = kr.percent;
-                        percentOfCompletion = weightKr * percentKr + percentOfCompletion;
-                    })
-                    let payload = {
-                        id,
-                        percent: percentOfCompletion
-                    }
-                    commit('setPercentOfCompletion', payload)
-                }
-            })
+        sumPercent: async ({state, commit, dispatch}, {idGoal, idKr, percent}) => {
+            await Vue.axios.put(state.urlBD + 'key-results/' + idKr, {percent})
+                .then(() => {
+                    dispatch('getGoalPercent', idGoal);
+                })
+                .catch (err => {
+                    if (err.response.status === 401) commit('logOut');
+                })
+        },
+
+        getGoalPercent: ({state, commit}, idGoal) => {
+            Vue.axios.get(state.urlBD + 'goals/' + idGoal)
+                .then(({data}) => {
+                    commit('setPercentOfCompletion', data);
+                })
+                .catch (err => {
+                    if (err.response.status === 401) commit('logOut');
+                })
         },
 
         login: async ({state, commit}, user) => {
@@ -285,10 +259,10 @@ export default new Vuex.Store({
                 })
         },
 
-        getKrs: async ({state, commit}, goalId) => {
-            await state.goals.forEach((goal) => {
+        getKrs: ({state, commit}, goalId) => {
+            state.goals.forEach(async (goal) => {
                if (goal.id === goalId) {
-                    Vue.axios.get(state.urlBD + 'goals/' + goalId + '/key-results')
+                    await Vue.axios.get(state.urlBD + 'goals/' + goalId + '/key-results')
                         .then(({data}) => {
                             commit('setKrs', data);
                         }).catch(error => console.log(error));
@@ -318,16 +292,31 @@ export default new Vuex.Store({
                 method: 'POST',
                 url: `${state.urlBD}goals`,
                 data: newGaol
-            }).then((r) => {
-                console.log(r)
             }).catch(error => console.log(error));
         },
+        
+        editGoal: async ({state, commit}, {id, ...modifiedGoal}) => {
+            await Vue.axios.put(state.urlBD + 'goals/' + id, modifiedGoal)
+            .then(({data}) => {
+                commit('setEditedGoal', {id, data});
+            })
+            .catch (err => {
+                if (err.response.status === 401) commit('logOut');
+            })
+        },
+
         goalProtection: async ({state, commit}, {status, idGoal}) => {
             await Vue.axios.put(state.urlBD + 'goals/' + idGoal, {status})
-                .then()
                 .catch (err => {
                     if (err.response.status === 401) commit('logOut');
                 })
+        },
+
+        deleteGoal: async ({state, commit}, idGoal) => {
+            await Vue.axios.delete(state.urlBD + 'goals/' + idGoal)
+            .catch (err => {
+                if (err.response.status === 401) commit('logOut');
+            })
         },
     },
 
