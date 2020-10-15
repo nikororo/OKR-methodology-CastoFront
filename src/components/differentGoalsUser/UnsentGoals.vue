@@ -42,7 +42,7 @@
                   </button>
                 </div>
                 <div>
-                  <button class="btnLogOut">
+                  <button @click="openDetailsGoald(goal.id)" class="btnLogOut">
                     <img width="25" height="25" src="@/style/img/Expand.png" alt="Expand">
                     <span>Подробнее</span>
                   </button>
@@ -125,6 +125,7 @@
         
         </div>
       </div>
+      <DetailsGoal v-if="detailsGoalWindow" v-bind:idGoal="idSelectedGoal" @close="detailsGoalWindow = false"/>
       <EditGoalModal v-if="showEditGoalModal" v-bind:idGoal="idSelectedGoal" @close="showEditGoalModal = false"/>
       <DeleteGoalModal v-if="showDeleteGoalModal" @close="showDeleteGoalModal = false" @delete="deleteGoal"/>
       <EditKrModal v-if="showEditKrModal" v-bind:idGoal="idSelectedGoal" v-bind:idKr="idSelectedKr" @close="showEditKrModal = false"/>
@@ -143,6 +144,7 @@ import DeleteGoalModal from '../DeleteGoalModal';
 import DeleteKrModal from '../DeleteKrModal';
 import EditGoalModal from '../EditGoalModal';
 import EditKrModal from '../EditKrModal';
+import DetailsGoal from "@/components/DetailsGoal";
 
 
 export default {
@@ -152,7 +154,8 @@ export default {
     DeleteGoalModal, 
     DeleteKrModal, 
     EditGoalModal, 
-    EditKrModal
+    EditKrModal,
+    DetailsGoal
   },
 
   data: () => ({
@@ -162,6 +165,7 @@ export default {
     showEditKrModal: false,
     showDeleteKrModal: false,
     errorWeigth: false,
+    detailsGoalWindow: false,
     people: '',
     idSelectedGoal: '',
     idSelectedKr: '',
@@ -249,6 +253,11 @@ export default {
     async sendGoal(idGoal) {
       await this.$store.dispatch('goalProtection', { status: 'proposed', idGoal });
       this.getGoals();
+    },
+
+    openDetailsGoald(id) {
+      this.idSelectedGoal = id;
+      this.detailsGoalWindow = true;
     }
   }
 }

@@ -33,7 +33,7 @@
             <RejectedGoals v-if="selectedStatus === 'rejected'" />
           </div>
         </div>
-      </div> 
+      </div>
     </div>
   </div>
 </template>
@@ -45,18 +45,16 @@ import UnsentGoals from "@/components/differentGoalsUser/UnsentGoals";
 import ApprovedGoals from "@/components/differentGoalsUser/ApprovedGoals";
 import ProposedGoals from "@/components/differentGoalsUser/ProposedGoals";
 import RejectedGoals from "@/components/differentGoalsUser/RejectedGoals";
-
 export default {
   name: 'CommonGoals',
   components: {
-    Head, 
+    Head,
     ToolBar,
     UnsentGoals,
     ApprovedGoals,
     ProposedGoals,
     RejectedGoals
   },
-
   data: () => ({
     selectedStatus: 'unsent',
   }),
@@ -68,7 +66,6 @@ export default {
 p {
   margin-bottom: 0;
 }
-
 .goalsDepHeadHeader {
   display: flex;
   justify-content: space-between;
@@ -76,11 +73,9 @@ p {
   margin: 40px 0 20px;
   height: 37px;
 }
-
 button {
   border: none;
 }
-
 .selectStatus {
   background-color: #f4f4f4;
   border: solid 1px #43CBD7;

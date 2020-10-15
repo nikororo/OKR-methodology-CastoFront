@@ -24,7 +24,8 @@
                     <p class="nameGoals">{{ goal.name }}</p>
                   </button>
                   <div>
-                    <input type="range" min="0" max="100" class="sliderGoal" v-model="goal.percentOfCompletion" disabled>
+                    <input type="range" min="0" max="100" class="sliderGoal" v-model="goal.percentOfCompletion"
+                           disabled>
                   </div>
                   <p class="percentGoals">{{ goal.percentOfCompletion }}%</p>
                   <div class="menu">
@@ -46,7 +47,7 @@
                     <div class="links_menu">
                       <div class="tre"></div>
                       <div>
-                        <button class="btnLogOut">
+                        <button @click="openDetailsGoald(goal.id)" class="btnLogOut">
                           <img width="25" height="25" src="../style/img/Expand.png" alt="Expand">
                           <span>Подробнее</span>
                         </button>
@@ -64,6 +65,7 @@
                 </div>
               </div>
             </div>
+            <DetailsGoal v-if="detailsGoalWindow" v-bind:idGoal="idSelectedGoal" @close="detailsGoalWindow = false"/>
           </div>
           <div v-else class="haveNoGoals">
             <div>Цели еще не одобрены, здесь ничего нет</div>
@@ -78,15 +80,18 @@
 <script>
 import Head from "@/components/Head";
 import ToolBar from "@/components/ToolBar";
+import DetailsGoal from "@/components/DetailsGoal";
 
 export default {
   name: 'CommonGoals',
   components: {
     Head,
     ToolBar,
+    DetailsGoal
   },
-
   data: () => ({
+    detailsGoalWindow: false,
+    idSelectedGoal: '',
     approvedGoals: [],
   }),
 
@@ -104,6 +109,11 @@ export default {
       this.$store.commit('displayKr', idGoal);
       this.$store.dispatch('getKrs', idGoal);
     },
+
+    openDetailsGoald(id) {
+      this.idSelectedGoal = id;
+      this.detailsGoalWindow = true;
+    }
   }
 }
 </script>

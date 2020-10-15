@@ -28,7 +28,7 @@
               <div class="links_menu">
                 <div class="tre"></div>
                 <div>
-                  <button class="btnLogOut">
+                  <button @click="openDetailsGoald(goal.id)" class="btnLogOut">
                     <img width="25" height="25" src="@/style/img/Expand.png" alt="Expand">
                     <span>Подробнее</span>
                   </button>
@@ -45,6 +45,7 @@
           </div>
         </div>
       </div>
+      <DetailsGoal v-if="detailsGoalWindow" v-bind:idGoal="idSelectedGoal" @close="detailsGoalWindow = false"/>
     </div>
     <div v-else class="haveNoGoals">
       <div>Цели еще не предложены, здесь ничего нет</div>
@@ -54,10 +55,17 @@
 </template>
 
 <script>
+import DetailsGoal from "@/components/DetailsGoal";
+
 export default {
   name: 'ProposedGoals',
-    
+  components: {
+    DetailsGoal
+  },
+
   data: () => ({
+    detailsGoalWindow: false,
+    idSelectedGoal: '',
     proposedGoals: [],
   }),
 
@@ -69,6 +77,10 @@ export default {
     displayKr(idGoal) {
       this.$store.commit('displayKr', idGoal);
     },
+    openDetailsGoald(id) {
+      this.idSelectedGoal = id;
+      this.detailsGoalWindow = true;
+    }
   }
 }
 </script>

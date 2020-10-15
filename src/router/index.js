@@ -92,7 +92,6 @@ const routes = [
     component: () => import('../components/GoalsProtection'),
     beforeEnter: ifAuthenticated
   },
-
   { 
     path: '*', 
     redirect: '/goals' 

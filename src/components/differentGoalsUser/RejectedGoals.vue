@@ -28,7 +28,7 @@
               <div class="links_menu">
                 <div class="tre"></div>
                 <div>
-                  <button class="btnLogOut">
+                  <button @click="openDetailsGoald(goal.id)" class="btnLogOut">
                     <img width="25" height="25" src="@/style/img/Expand.png" alt="Expand">
                     <span>Подробнее</span>
                   </button>
@@ -51,6 +51,7 @@
           </div>
         </div>
       </div>
+      <DetailsGoal v-if="detailsGoalWindow" v-bind:idGoal="idSelectedGoal" @close="detailsGoalWindow = false"/>
       <DeleteGoalModal v-if="showDeleteGoalModal" @close="showDeleteGoalModal = false" @delete="deleteGoal"/>
     </div>
     <div v-else class="haveNoGoals">
@@ -62,16 +63,19 @@
 
 <script>
 import DeleteGoalModal from '../DeleteGoalModal';
+import DetailsGoal from "@/components/DetailsGoal";
 
 export default {
   name: 'RejectedGoals',
 
   components: {
     DeleteGoalModal,
+    DetailsGoal
   },
 
   data: () => ({
     showDeleteGoalModal: false,
+    detailsGoalWindow: false,
     idSelectedGoal: '',
     rejectedGoals: [],
   }),
@@ -96,6 +100,10 @@ export default {
       this.rejectedGoals = this.$store.state.goals.filter(goal => goal.status === 'rejected');
       this.idSelectedGoal = '';
     },
+    openDetailsGoald(id) {
+      this.idSelectedGoal = id;
+      this.detailsGoalWindow = true;
+    }
   }
 }
 </script>

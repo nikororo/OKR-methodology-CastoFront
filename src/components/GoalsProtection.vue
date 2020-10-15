@@ -44,7 +44,7 @@
                     <div class="links_menu">
                       <div class="tre"></div>
                       <div>
-                        <button class="btnLogOut">
+                        <button @click="openDetailsGoald(goal.id)" class="btnLogOut">
                           <img height="25" src="../style/img/Expand.png" alt="Expand">
                           <span>Подробнее</span>
                         </button>
@@ -64,7 +64,7 @@
                     </div>
                   </div>
                 </div>
-                
+
                 <div class="contKr" v-if="goal.showKr">
                   <div class="krs" v-for="kr in goal.krs" :key="kr.id">
                     <p>{{ kr.title }}</p>
@@ -73,6 +73,7 @@
                 </div>
               </div>
             </div>
+            <DetailsGoal v-if="detailsGoalWindow" v-bind:idGoal="idSelectedGoal" @close="detailsGoalWindow = false"/>
           </div>
           <div v-else class="haveNoGoals">
             <div>Цели еще не предложены, здесь ничего нет</div>
@@ -87,16 +88,18 @@
 <script>
 import Head from "@/components/Head";
 import ToolBar from "@/components/ToolBar";
-
+import DetailsGoal from "@/components/DetailsGoal";
 export default {
   name: 'CommonGoals',
   components: {
-    Head, 
+    Head,
     ToolBar,
+    DetailsGoal
   },
    
   data: () => ({
     proposedGoals: [],
+    detailsGoalWindow: false,
   }),
 
   created: function () {
@@ -108,21 +111,22 @@ export default {
       await this.$store.dispatch('getGoals');
       this.proposedGoals = this.$store.state.goals.filter(goal => goal.status === 'proposed');
     },
-
     approveGoal(idGoal) {
       this.$store.dispatch('goalProtection', { status: 'approved', idGoal });
       this.getGoals();
     },
-
     rejectGoal(idGoal) {
       this.$store.dispatch('goalProtection', { status: 'rejected', idGoal });
       this.getGoals();
     },
-
     displayKr(idGoal) {
       this.$store.commit('displayKr', idGoal);
       this.$store.dispatch('getKrs', idGoal);
     },
+    openDetailsGoald(id) {
+      this.idSelectedGoal = id;
+      this.detailsGoalWindow = true;
+    }
   }
 }
 </script>
@@ -133,19 +137,15 @@ export default {
   position: absolute;
   right: 10%;
 }
-
 .nameGoals {
   width: 65%;
 }
-
 p {
   margin-bottom: 0;
 }
-
 button {
   border: none;
 }
-
 .input_percent {
   background-color: #f4f4f4;
   width: 89px;
@@ -153,44 +153,36 @@ button {
   border: solid 1px #43CBD7;
   margin-right: 10px;
 }
-
 .menu {
   position: absolute;
   right: 25px;
 }
-
 .links_menu {
   width: 220px;
   top: 32px;
   right: -11px;
 }
-
 .companyGoals .links_menu {
   top: 49px;
   right: -7px;
 }
-
 .btnShowKR {
   width: 100%;
   background-color: #f4f4f4;
   text-align: left;
 }
-
 .flexModalCont:last-child {
   margin-top: 40px;
 }
-
 .flexModalCont label {
   margin: 0 20px 0 0;
 }
-
 #createKrExecutor {
   color: #6d7273;
   margin-right: 55px;
   width: 320px;
   font-size: 18px;
 }
-
 .promptWeight {
   position: absolute;
   font-size: 18px;

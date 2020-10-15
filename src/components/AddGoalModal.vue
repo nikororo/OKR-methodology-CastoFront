@@ -52,7 +52,7 @@
           </section>
           <footer>
             <button type="submit" class="button_pass">
-              Отправить
+              Добавить
             </button>
             <button type="button" class="button_pass" @click="close">
               Отмена

@@ -35,7 +35,7 @@
                   </button>
                 </div>
                 <div>
-                  <button class="btnLogOut">
+                  <button @click="openDetailsGoald(goal.id)" class="btnLogOut">
                     <img width="25" height="25" src="@/style/img/Expand.png" alt="Expand">
                     <span>Подробнее</span>
                   </button>
@@ -107,6 +107,7 @@
         
         </div>
       </div>
+      <DetailsGoal v-if="detailsGoalWindow" v-bind:idGoal="idSelectedGoal" @close="detailsGoalWindow = false"/>
       <EditGoalModal v-if="showEditGoalModal" v-bind:idGoal="idSelectedGoal" @close="showEditGoalModal = false"/>
       <EditKrModal v-if="showEditKrModal" v-bind:idGoal="idSelectedGoal" v-bind:idKr="idSelectedKr" @close="showEditKrModal = false"/>
     </div>
@@ -120,13 +121,15 @@
 <script>
 import EditGoalModal from '../EditGoalModal';
 import EditKrModal from '../EditKrModal';
+import DetailsGoal from "@/components/DetailsGoal";
 
 
 export default {
   name: 'ApprovedGoals',
   components: {
     EditGoalModal, 
-    EditKrModal
+    EditKrModal,
+    DetailsGoal
   },
 
   data: () => ({
@@ -137,6 +140,7 @@ export default {
     idSelectedGoal: '',
     idSelectedKr: '',
     approvedGoals: [],
+    detailsGoalWindow: false,
   }),
 
   created: async function () {
@@ -178,6 +182,10 @@ export default {
     displayKr(idGoal) {
       this.$store.commit('displayKr', idGoal);
     },
+    openDetailsGoald(id) {
+      this.idSelectedGoal = id;
+      this.detailsGoalWindow = true;
+    }
   }
 }
 </script>
