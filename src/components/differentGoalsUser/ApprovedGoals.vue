@@ -140,8 +140,9 @@ export default {
       this.errorWeigth = false;
     },
 
-    displayKr(idGoal) {
+    async displayKr(idGoal) {
       this.$store.commit('displayKr', idGoal);
+      await this.$store.dispatch('getKrs', idGoal);
     },
     openDetailsGoald(id) {
       this.idSelectedGoal = id;

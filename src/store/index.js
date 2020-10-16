@@ -101,7 +101,9 @@ export default new Vuex.Store({
 
         setKrs: (state, krs) => {
             state.goals.forEach((goal) => {
-                goal.krs = krs
+                if (goal.id === krs[0].goal_id) {
+                    goal.krs = krs
+                }
             })
         },
 
@@ -192,7 +194,7 @@ export default new Vuex.Store({
                 .then(() => {
                     dispatch('getGoalPercent', idGoal);
                 })
-                .catch (err => {
+                .catch(err => {
                     if (err.response.status === 401) commit('logOut');
                 })
         },
@@ -202,7 +204,7 @@ export default new Vuex.Store({
                 .then(({data}) => {
                     commit('setPercentOfCompletion', data);
                 })
-                .catch (err => {
+                .catch(err => {
                     if (err.response.status === 401) commit('logOut');
                 })
         },
@@ -274,29 +276,29 @@ export default new Vuex.Store({
                 data: newGaol
             }).catch(error => console.log(error));
         },
-        
+
         editGoal: async ({state, commit}, {id, ...modifiedGoal}) => {
             await Vue.axios.put(state.urlBD + 'goals/' + id, modifiedGoal)
-            .then(({data}) => {
-                commit('setEditedGoal', {id, data});
-            })
-            .catch (err => {
-                if (err.response.status === 401) commit('logOut');
-            })
+                .then(({data}) => {
+                    commit('setEditedGoal', {id, data});
+                })
+                .catch(err => {
+                    if (err.response.status === 401) commit('logOut');
+                })
         },
 
         goalProtection: async ({state, commit}, {status, idGoal}) => {
             await Vue.axios.put(state.urlBD + 'goals/' + idGoal, {status})
-                .catch (err => {
+                .catch(err => {
                     if (err.response.status === 401) commit('logOut');
                 })
         },
 
         deleteGoal: async ({state, commit}, idGoal) => {
             await Vue.axios.delete(state.urlBD + 'goals/' + idGoal)
-            .catch (err => {
-                if (err.response.status === 401) commit('logOut');
-            })
+                .catch(err => {
+                    if (err.response.status === 401) commit('logOut');
+                })
         },
 
         getKrs: ({state, commit}, goalId) => {
@@ -313,15 +315,15 @@ export default new Vuex.Store({
         editKr: async ({state, commit}, {id, ...modifiedKr}) => {
             await Vue.axios.put(state.urlBD + 'key-results/' + id, modifiedKr)
                 .then(({data}) => {
-                    commit('editKr', {id,data});
-                }).catch().catch (err => {
+                    commit('editKr', {id, data});
+                }).catch().catch(err => {
                     if (err.response.status === 401) commit('logOut');
                 })
         },
 
         deleteKr: async ({state, commit}, {idKr}) => {
             await Vue.axios.delete(state.urlBD + 'key-results/' + idKr)
-                .catch (err => {
+                .catch(err => {
                     if (err.response.status === 401) commit('logOut');
                 })
         }

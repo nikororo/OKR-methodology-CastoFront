@@ -85,8 +85,9 @@ export default {
   },
 
   methods: {
-    displayKr(idGoal) {
+    async displayKr(idGoal) {
       this.$store.commit('displayKr', idGoal);
+      await this.$store.dispatch('getKrs', idGoal);
     },
 
     openDeleteGoal(id) {

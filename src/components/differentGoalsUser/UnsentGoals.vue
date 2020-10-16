@@ -59,6 +59,7 @@
 
           <div class="contKr" v-if="goal.showKr">
             <div class="krs" v-for="kr in goal.krs" :key="kr.id">
+              <DeleteKrModal v-if="showDeleteKrModal" @close="getKR(goal.id)" @delete="deleteKr"/>
               <p>{{ kr.title }}</p>
               <p class="percentGoals">Вес: {{ kr.weight }}</p>
               <div class="menu">
@@ -71,8 +72,7 @@
                        style="mix-blend-mode: normal">
                       <path d="M0,172v-172h172v172z" fill="none"></path>
                       <g fill="#aad7de">
-                        <path
-                            d="M86,21.5c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333zM86,71.66667c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333zM86,121.83333c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333z"></path>
+                        <path d="M86,21.5c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333zM86,71.66667c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333zM86,121.83333c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333z"></path>
                       </g>
                     </g>
                   </svg>
@@ -120,11 +120,10 @@
                     {{ men.name }}
                   </option>
                 </select>
-                <label for="createKrFile">Прикрепить документ <img class="icon_user" src="@/style/img/AddFile.png"
-                                                                   alt="add"></label>
+                <label for="createKrFile">Прикрепить документ <img class="icon_user" src="@/style/img/AddFile.png" alt="add"></label>
                 <input type="file" id="createKrFile" class="fileKr"/>
               </div>
-              <DeleteKrModal v-if="showDeleteKrModal" @close="getKR(goal.id)" @delete="deleteKr"/>
+
             </form>
           </div>
         </div>
@@ -178,7 +177,6 @@ export default {
 
   created: async function () {
     await this.$store.dispatch('getGoals');
-    await this.$store.dispatch('getKrs');
     this.unsentGoals = this.$store.state.goals.filter(goal => goal.status === 'unsent');
     await this.$store.dispatch('getUsers');
     this.people = this.$store.state.people;
@@ -190,25 +188,15 @@ export default {
       this.unsentGoals = this.$store.state.goals.filter(goal => goal.status === 'unsent');
     },
 
-    async displayKr(idGoal) {
-      await this.$store.dispatch('getKrs', idGoal);
-      this.$store.commit('displayKr', idGoal);
+    async getKR(idGoal) {
+      this.showDeleteKrModal = false;
+      this.showEditKrModal = false;
+      await this.$store.dispatch('getKrs', idGoal)
     },
 
     closeAdd() {
       this.showAddGoalModal = false;
       this.getGoals();
-    },
-
-    addKr(goalId, remainderWeight, weight, event) {
-      event.preventDefault();
-      if (weight > remainderWeight) {
-        this.errorWeigth = true;
-        return;
-      }
-      this.getKR(goalId);
-      this.errorWeigth = false;
-      this.$store.commit('createKr', goalId);
     },
 
     openEditGoal(id) {
@@ -223,18 +211,9 @@ export default {
       this.errorWeigth = false;
     },
 
-    openEditKr(idGoal, idKr) {
-      this.idSelectedGoal = idGoal;
-      this.idSelectedKr = idKr;
-      this.showEditKrModal = true;
-      this.errorWeigth = false;
-    },
-
-    openDeleteKr(idGoal, idKr) {
-      this.idSelectedGoal = idGoal;
-      this.idSelectedKr = idKr;
-      this.showDeleteKrModal = true;
-      this.errorWeigth = false;
+    openDetailsGoald(id) {
+      this.idSelectedGoal = id;
+      this.detailsGoalWindow = true;
     },
 
     async deleteGoal() {
@@ -243,10 +222,33 @@ export default {
       this.idSelectedGoal = '';
     },
 
-    async getKR(idGoal) {
-      this.showDeleteKrModal = false;
-      this.showEditKrModal = false;
-      await this.$store.dispatch('getKrs', idGoal)
+    async sendGoal(idGoal) {
+      await this.$store.dispatch('goalProtection', {status: 'proposed', idGoal});
+      this.getGoals();
+    },
+
+    async displayKr(idGoal) {
+      await this.$store.dispatch('getKrs', idGoal);
+      this.$store.commit('displayKr', idGoal);
+    },
+
+    addKr(goalId, remainderWeight, weight, event) {
+      event.preventDefault();
+      if (weight > remainderWeight) {
+        this.errorWeigth = true;
+        this.getKR(goalId);
+        return;
+      }
+      this.errorWeigth = false;
+      this.$store.commit('createKr', goalId);
+      this.getKR(goalId);
+    },
+
+    openDeleteKr(idGoal, idKr) {
+      this.idSelectedGoal = idGoal;
+      this.idSelectedKr = idKr;
+      this.showDeleteKrModal = true;
+      this.errorWeigth = false;
     },
 
     async deleteKr() {
@@ -258,18 +260,16 @@ export default {
       await this.$store.dispatch('getGoalPercent', this.idSelectedGoal);
       this.idSelectedGoal = '';
       this.idSelectedKr = '';
+      this.getKR(payload.idGoal)
     },
 
-
-    async sendGoal(idGoal) {
-      await this.$store.dispatch('goalProtection', {status: 'proposed', idGoal});
-      this.getGoals();
+    openEditKr(idGoal, idKr) {
+      this.idSelectedGoal = idGoal;
+      this.idSelectedKr = idKr;
+      this.showEditKrModal = true;
+      this.errorWeigth = false;
     },
 
-    openDetailsGoald(id) {
-      this.idSelectedGoal = id;
-      this.detailsGoalWindow = true;
-    }
   }
 }
 </script>
