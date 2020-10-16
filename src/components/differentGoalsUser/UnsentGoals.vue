@@ -232,7 +232,7 @@ export default {
       this.$store.commit('displayKr', idGoal);
     },
 
-    addKr(goalId, remainderWeight, weight, event) {
+    async addKr(goalId, remainderWeight, weight, event) {
       event.preventDefault();
       if (weight > remainderWeight) {
         this.errorWeigth = true;
@@ -240,7 +240,7 @@ export default {
         return;
       }
       this.errorWeigth = false;
-      this.$store.commit('createKr', goalId);
+      await this.$store.dispatch('createKr', goalId);
       this.getKR(goalId);
     },
 

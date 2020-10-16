@@ -80,6 +80,18 @@ export default new Vuex.Store({
             });
         },
 
+        resetNewKr: (state, id) => {
+            state.goals.map((goal) => {
+                if (goal.id === id) {
+                    goal.newKr = {
+                        title: '',
+                        weight: '',
+                        executor: '',
+                    }
+                }
+            });
+        },
+
         editKr: (state, modifiedKr) => {
             state.goals.forEach((goal) => {
                 if (goal.id === modifiedKr.idGoal) {
@@ -99,10 +111,13 @@ export default new Vuex.Store({
             });
         },
 
-        setKrs: (state, krs) => {
+        setKrs: (state, payload) => {
+            let krs = payload.data;
+            let goalId = payload.goalId;
+
             state.goals.forEach((goal) => {
-                if (goal.id === krs[0].goal_id) {
-                    goal.krs = krs
+                if (goal.id === goalId) {
+                    goal.krs = krs;
                 }
             })
         },
@@ -128,31 +143,6 @@ export default new Vuex.Store({
                     goal.showKr = !goal.showKr;
                 }
             });
-        },
-
-        createKr: (state, goalId) => {
-            state.goals.forEach((goal) => {
-                if (goal.id === goalId) {
-                    //goal.remainderWeight -= goal.newKr.weight;
-                    if (goal.newKr.executor !== '')
-                        goal.newKr.executor = Number(goal.newKr.executor);
-                    Vue.axios.post(state.urlBD + 'goals/' + goalId, goal.newKr)
-                        .then(res => {
-                            console.log(res)
-                        })
-                        .catch(err => {
-                            if (err.response.status === 401) {
-                                localStorage.removeItem('token');
-                                router.push('/');
-                            } else throw err
-                        })
-                }
-                goal.newKr = {
-                    title: '',
-                    weight: '',
-                    executor: '',
-                }
-            })
         },
 
         setPercentOfCompletion: (state, payload) => {
@@ -269,12 +259,14 @@ export default new Vuex.Store({
                 })
         },
 
-        addGoal: async ({state}, newGaol) => {
+        addGoal: async ({state, commit}, newGaol) => {
             await Vue.axios({
                 method: 'POST',
                 url: `${state.urlBD}goals`,
                 data: newGaol
-            }).catch(error => console.log(error));
+            }).catch(err => {
+                if (err.response.status === 401) commit('logOut');
+            })
         },
 
         editGoal: async ({state, commit}, {id, ...modifiedGoal}) => {
@@ -306,10 +298,29 @@ export default new Vuex.Store({
                 if (goal.id === goalId) {
                     await Vue.axios.get(state.urlBD + 'goals/' + goalId + '/key-results')
                         .then(({data}) => {
-                            commit('setKrs', data);
-                        }).catch(error => console.log(error));
+                            commit('setKrs', {data, goalId});
+                        }).catch(err => {
+                            if (err.response.status === 401) commit('logOut');
+                        })
                 }
             })
+        },
+
+        createKr: async ({state, commit}, goalId) => {
+            let newKR;
+            state.goals.forEach((goal) => {
+                if (goal.id === goalId) {
+                    //goal.remainderWeight -= goal.newKr.weight;
+                    if (goal.newKr.executor !== '')
+                        goal.newKr.executor = Number(goal.newKr.executor);
+                    newKR = goal.newKr;
+                }
+            })
+            await Vue.axios.post(state.urlBD + 'goals/' + goalId, newKR)
+                .then(() => commit('resetNewKr', goalId))
+                .catch(err => {
+                    if (err.response.status === 401) commit('logOut');
+                })
         },
 
         editKr: async ({state, commit}, {id, ...modifiedKr}) => {
