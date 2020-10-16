@@ -267,6 +267,9 @@ p {
   background-color: #F4F4F4;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
 }
+.krsDetails label {
+  width: 47%;
+}
 
 .percentGoalsDetails {
   position: absolute;
