@@ -49,6 +49,10 @@ export default new Vuex.Store({
             state.authHasError = true;
         },
 
+        resetErr: (state) => {
+            state.authHasError = false;
+        },
+
         authCorr: (state, data) => {
             state.user = data.user;
             localStorage.setItem('token', data.access_token);

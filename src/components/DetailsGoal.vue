@@ -50,7 +50,7 @@
             <p class="krHeader">Ключевые результаты</p>
             <div class="krsDetails" v-for="kr in krs" :key="kr.id">
               <label for="newKr"> {{ kr.title }}</label>
-              <input id="newKr" type="range" min="0" max="100" v-model="kr.percent" class="slider">
+              <input id="newKr" type="range" min="0" max="100" v-model="kr.percent" class="slider" disabled>
               <p class="percentGoalsDetails">{{ kr.percent }}%</p>
             </div>
           </div>

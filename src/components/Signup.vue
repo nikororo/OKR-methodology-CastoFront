@@ -63,6 +63,10 @@ export default {
     command: '',
   }),
 
+  mounted: function () {
+    this.$store.commit('resetErr');
+  },
+
   methods: {
     async onReg() {
       let newUser = {

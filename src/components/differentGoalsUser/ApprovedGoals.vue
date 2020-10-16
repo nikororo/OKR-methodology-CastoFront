@@ -76,35 +76,7 @@
                 </div>
               </div>
             </div>
-
-            <form v-on:submit="addKr(goal.id, goal.remainderWeight, goal.newKr.weight, $event)" class="createKR">
-                <div class="flexModalCont"> <div class="nameCreateKR">
-                  <button type="submit">
-                    <img src="@/style/img/Plus.png" alt="Add">
-                  </button>
-                  <input type="text" placeholder="Добавить КР" required v-model.trim="goal.newKr.title" minlength="5" maxlength="100">
-                </div>
-                <div class="promptWeight" v-bind:class="{errorWeigth}">Осталось: {{goal.remainderWeight}}</div>
-                <div class="meaning">
-                  <label for="createKrPercent">Вес</label>
-                  <input v-bind:class="{errorWeigth}" id="createKrPercent" class="input_percent" type="number" min="1" max="100" placeholder="1" v-model="goal.newKr.weight" required>
-                  <span>%</span>
-                </div>
-              </div>
-              <div class="flexModalCont">
-                <label for="createKrExecutor">Ответственный</label>
-                <select v-model="goal.newKr.executor" id="createKrExecutor" class="input_percent">
-                  <option value disabled selected hidden>Ответственный</option>
-                  <option v-for="men in people" v-bind:key="men.id" v-bind:value="men.id">
-                    {{men.name}}
-                  </option>
-                </select>
-                <label for="createKrFile">Прикрепить документ <img class="icon_user" src="@/style/img/AddFile.png" alt="add"></label>
-                <input type="file" id="createKrFile" class="fileKr" />
-              </div>
-            </form>
           </div>
-        
         </div>
       </div>
       <DetailsGoal v-if="detailsGoalWindow" v-bind:idGoal="idSelectedGoal" @close="detailsGoalWindow = false"/>
@@ -153,17 +125,6 @@ export default {
   methods: {
     async sum(idGoal, idKr, percent) {
       await this.$store.dispatch('sumPercent', {idGoal, idKr, percent})
-    },
-
-    addKr(goalId, remainderWeight, weight, event) {
-      event.preventDefault();
-      if (weight > remainderWeight) {
-        this.errorWeigth = true;
-        return;
-      }
-      this.errorWeigth = false;
-
-      this.$store.commit('createKr', goalId);
     },
 
     openEditGoal(id) {

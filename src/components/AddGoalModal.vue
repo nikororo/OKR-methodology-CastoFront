@@ -40,7 +40,7 @@
                        onfocus="(this.type='date')" onblur="(this.type='text')" required>
                 <div class="errorMsg" v-if="this.dataErr">Дата начала позже даты окончания</div>       
               </div>
-              <select v-model="executor" id="addGoalExecutor" class="input_user">
+              <select v-model="executor" id="addGoalExecutor" class="input_user" required>
                 <option value disabled selected hidden>Ответственный</option>
                 <option v-for="men in people" v-bind:key="men.id" v-bind:value="men.id">
                   {{men.name}}

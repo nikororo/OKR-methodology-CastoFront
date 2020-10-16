@@ -5,7 +5,7 @@
 
         <form v-on:submit.prevent="editGoal">
           <header>
-            <input v-model.trim="name" required minlength="5" maxlength="100"/>
+            <div>{{name}}</div>
             <button class="btnClose" @click="close">
               <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -40,12 +40,8 @@
                        onfocus="(this.type='date')" onblur="(this.type='text')" required>
                 <div class="errorMsg" v-if="this.dataErr">Дата начала позже даты окончания</div>       
               </div>
-              <select v-model="executor" id="addGoalExecutor" class="input_user">
-                <option value disabled selected hidden>{{executor}}</option>
-                <option v-for="men in people" v-bind:key="men.id" v-bind:value="men.id">
-                  {{men.name}}
-                </option>
-              </select>
+              <div class="modal_user_name">
+                <p>{{executorName}}</p></div>
               <textarea v-model="descr" id="addGoalDescr" class="input_user" type="text"
                         placeholder="Описание цели" minlength="5" maxlength="500"></textarea>
             </div>
@@ -77,7 +73,8 @@ export default {
     dateStart: '',
     dateEnd: '',
     dataErr: false,
-    executor: '',
+    executorId: '',
+    executorName: '',
     people: '',
     command: '',
     descr: ''
@@ -95,10 +92,15 @@ export default {
           this.author = goal.author;
           this.dateStart = goal.dateStart;
           this.dateEnd = goal.dateEnd;
-          this.executor = goal.executor;
+          this.executorId = goal.executor;
           this.command = goal.command;
           this.descr = goal.descr;
         }
+    });
+    this.$store.state.people.map((men) => {
+      if (men.id === this.executorId) {
+        this.executorName = men.name;
+      }
     });
   },
 
@@ -136,5 +138,9 @@ export default {
 
 .addGoalModal {
   padding: 0 0 30px;
+}
+
+.addGoalDate input {
+    margin-bottom: 26px;
 }
 </style>

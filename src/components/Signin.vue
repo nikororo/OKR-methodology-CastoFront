@@ -33,6 +33,10 @@ export default {
     password: '',
   }),
 
+  mounted: function () {
+    this.$store.commit('resetErr');
+  },
+
   methods: {
     async onLog()  {
       let user = {
