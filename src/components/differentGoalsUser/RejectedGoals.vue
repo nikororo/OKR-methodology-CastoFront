@@ -7,8 +7,16 @@
             <button class="btnShowKR" @click="displayKr(goal.id)">
               <p class="nameGoals">{{goal.name}}</p>
             </button>
-            <p class="percentGoals">{{ goal.command }}</p>
-
+            <div class="percentGoals">
+              <p>{{ goal.command }}</p>
+              <div class="btnRejectComm">
+                <img width="25" height="25" src="@/style/img/Comment.png" alt="Comment">
+                <div class="links_menu rejectComm">
+                  <div class="tre"></div>
+                  <p>{{goal.comment}}</p>
+                </div>
+              </div>
+            </div>
             <div class="menu">
               <a class="button_menu">
                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35"
@@ -80,11 +88,22 @@ export default {
     rejectedGoals: [],
   }),
 
-  created: async function () {
-    this.rejectedGoals = this.$store.state.goals.filter(goal => goal.status === 'rejected');
+  mounted: function () {
+    this.getGoals();
   },
 
   methods: {
+    async getGoals() {
+      this.rejectedGoals = this.$store.state.goals.filter(goal => goal.status === 'rejected');
+      this.rejectedGoals.map(goal => {
+        if (this.$store.state.rejectionComments[goal.id]) {
+          goal.comment = this.$store.state.rejectionComments[goal.id];
+        } else {
+          goal.comment = 'Цель отклонена'
+        }
+      });
+    },
+
     async displayKr(idGoal) {
       this.$store.commit('displayKr', idGoal);
       await this.$store.dispatch('getKrs', idGoal);
@@ -98,7 +117,7 @@ export default {
     async deleteGoal() {
       await this.$store.dispatch('deleteGoal', this.idSelectedGoal);
       await this.$store.dispatch('getGoals');
-      this.rejectedGoals = this.$store.state.goals.filter(goal => goal.status === 'rejected');
+      this.getGoals();
       this.idSelectedGoal = '';
     },
     openDetailsGoald(id) {
@@ -169,4 +188,34 @@ button {
   right: 80px;
   top: 10px;
 }
+
+.btnRejectComm {
+  margin: 0 20px 0 10px;
+}
+
+.btnRejectComm img {
+  opacity: 0.7;
+}
+
+.companyGoals .rejectComm {
+  top: 30px;
+  right: 5px;
+  min-width: 300px;    
+  color: #0C2528;
+}
+
+.rejectComm p {
+  opacity: 0.8;  
+  color: #0C2528;
+}
+
+.rejectComm .tre {
+  border: none;
+  width: 60px;
+  height: 60px;
+}
+
+.btnRejectComm:focus .rejectComm, .btnRejectComm:active  .rejectComm, .rejectComm:hover { 
+   display: flex; 
+} 
 </style>

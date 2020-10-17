@@ -56,7 +56,7 @@
                         </button>
                       </div>
                       <div>
-                        <button @click="rejectGoal(goal.id)" class="btnLogOut">
+                        <button @click="openRejectGoalModal(goal.id, goal.name)" class="btnLogOut">
                           <img height="25" src="../style/img/RejectGoal.png" alt="Reject">
                           <span>Отклонить</span>
                         </button>
@@ -73,6 +73,7 @@
                 </div>
               </div>
             </div>
+            <RejectGoalModal v-if="showRejectGoalModal" :nameGoal="nameSelectedGoal" :idGoal="idSelectedGoal" @close="closeRejectGoal"/>
             <DetailsGoal v-if="detailsGoalWindow" v-bind:idGoal="idSelectedGoal" @close="detailsGoalWindow = false"/>
           </div>
           <div v-else class="haveNoGoals">
@@ -89,17 +90,23 @@
 import Head from "@/components/Head";
 import ToolBar from "@/components/ToolBar";
 import DetailsGoal from "@/components/DetailsGoal";
+import RejectGoalModal from "@/components/RejectGoalModal";
+
 export default {
   name: 'CommonGoals',
   components: {
     Head,
     ToolBar,
-    DetailsGoal
+    DetailsGoal,
+    RejectGoalModal
   },
    
   data: () => ({
     proposedGoals: [],
     detailsGoalWindow: false,
+    showRejectGoalModal: false,
+    idSelectedGoal: '',
+    nameSelectedGoal: '',
   }),
 
   created: function () {
@@ -115,8 +122,8 @@ export default {
       this.$store.dispatch('goalProtection', { status: 'approved', idGoal });
       this.getGoals();
     },
-    rejectGoal(idGoal) {
-      this.$store.dispatch('goalProtection', { status: 'rejected', idGoal });
+    closeRejectGoal() {
+      this.showRejectGoalModal = false;
       this.getGoals();
     },
     displayKr(idGoal) {
@@ -126,7 +133,12 @@ export default {
     openDetailsGoald(id) {
       this.idSelectedGoal = id;
       this.detailsGoalWindow = true;
-    }
+    },
+    openRejectGoalModal(id, name) {
+      this.idSelectedGoal = id;
+      this.nameSelectedGoal = name;
+      this.showRejectGoalModal = true;
+    },
   }
 }
 </script>
