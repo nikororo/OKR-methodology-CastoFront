@@ -33,8 +33,7 @@
                     </div>
                     <div class="rightBlockGoal">
                       <p class="percentGoals">{{ goal.percentOfCompletion }}%</p>
-                      <input type="range" min="0" max="100" class="sliderGoal" v-model="goal.percentOfCompletion"
-                             disabled>
+                      <input type="range" min="0" max="100" class="sliderGoal" v-model="goal.percentOfCompletion" disabled>
                     </div>
                   </button>
                 </div>
@@ -45,7 +44,7 @@
                     <div class="infoKr">
                       <input id="newKr" type="range" min="0" max="100" @change="sum(goal.id, kr.id, kr.percent)"
                              v-model="kr.percent" class="slider">
-                      <p class="weightKr">{{ kr.weight }}/100</p>
+                      <p class="weightKr">Вес {{ kr.weight }}/100</p>
                     </div>
                     <div class="rightBlockKr modalExecutor">
                       <p class="percentGoals">{{ kr.percent }}%</p>

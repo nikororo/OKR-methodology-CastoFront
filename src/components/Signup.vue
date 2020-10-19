@@ -78,8 +78,8 @@ export default {
       }
 
       await this.$store.dispatch('register', newUser);
-      if (!this.$store.state.authHasError) { 
-        this.$router.push('/');  
+      if (!this.$store.state.authHasError) {
+        this.$router.push('/');
       }
     },
   }

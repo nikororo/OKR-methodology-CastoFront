@@ -45,8 +45,8 @@ export default {
       }
 
       await this.$store.dispatch('login', user);
-      if (!this.$store.state.authHasError) { 
-        this.$router.push('/');  
+      if (!this.$store.state.authHasError) {
+        this.$router.push('/');
       }
     },
   }

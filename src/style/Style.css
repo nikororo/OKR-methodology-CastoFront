@@ -30,6 +30,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     width: 30px;
     height: 30px;
 }
+
 .icon_user_kr {
     width: 25px;
     height: 25px;
@@ -87,6 +88,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     right: -5px;
     top: -15px;
 }
+
 .button_menu_mission img {
     width: 25px;
     height: 12px;
@@ -111,9 +113,9 @@ input:active, input:focus, select:focus, button:active, button:focus {
     padding: 12px 20px;
 }
 
-.menu:focus .links_menu, .menu:active  .links_menu, .links_menu:hover { 
-   display: flex; 
-} 
+.menu:focus .links_menu, .menu:active .links_menu, .links_menu:hover {
+    display: flex;
+}
 
 /*ToolBar*/
 .toolBar {
@@ -784,6 +786,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     right: 15px;
     top: -17px;
 }
+
 .krs .links_menu {
     right: 15px;
 }
@@ -795,6 +798,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     flex-direction: column;
     width: 50%;
 }
+
 .rightBlockKr {
     position: relative;
     display: flex;
@@ -802,18 +806,21 @@ input:active, input:focus, select:focus, button:active, button:focus {
     justify-content: space-between;
     width: 100px;
 }
+
 .weightKr {
     position: absolute;
-    top:18px;
+    top: 18px;
     font-size: 16px;
     line-height: 19px;
     color: #0C2528;
     opacity: 0.3;
 }
+
 .descrGoal {
     display: flex;
     justify-content: center;
     margin: 0 auto;
+    padding-bottom: 35px;
 }
 
 .nameGoals {
@@ -853,6 +860,12 @@ input:active, input:focus, select:focus, button:active, button:focus {
     align-items: center;
     width: 30%;
 }
+
+.infoGoal img {
+    width: 40px;
+    height: 40px;
+}
+
 .rightBlockGoal {
     display: flex;
     justify-content: center;
@@ -860,6 +873,11 @@ input:active, input:focus, select:focus, button:active, button:focus {
     align-items: center;
     width: 30%;
     padding-right: 20px;
+
+}
+
+.btnShowKR:hover {
+    box-shadow: 0px 0px 20px rgba(58, 172, 189, 0.7);
 }
 
 .infoGoal img {
@@ -875,15 +893,15 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .sliderGoal::-webkit-slider-thumb {
-    width:1px;
+    width: 1px;
     -webkit-appearance: none;
     height: 10px;
     background: #D76101;
-    box-shadow: -480px 0 0 480px #D76101 ;
+    box-shadow: -480px 0 0 480px #D76101;
 }
 
 .sliderGoal::-moz-range-thumb {
-    width:1px;
+    width: 1px;
     -webkit-appearance: none;
     height: 10px;
     border-radius: 4px;
@@ -904,7 +922,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .redSlider::-webkit-slider-thumb {
-    width:1px;
+    width: 1px;
     -webkit-appearance: none;
     height: 10px;
     background: #D76101;
@@ -912,7 +930,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .redSlider::-moz-range-thumb {
-    width:1px;
+    width: 1px;
     -webkit-appearance: none;
     height: 10px;
     border-radius: 4px;
@@ -920,8 +938,6 @@ input:active, input:focus, select:focus, button:active, button:focus {
     background: #D76101;
     box-shadow: -480px 0 0 480px red;
 }
-
-
 
 .yellowSlider {
     -webkit-appearance: none;
@@ -934,7 +950,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .yellowSlider::-webkit-slider-thumb {
-    width:1px;
+    width: 1px;
     -webkit-appearance: none;
     height: 10px;
     background: #D76101;
@@ -942,7 +958,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .yellowSlider::-moz-range-thumb {
-    width:1px;
+    width: 1px;
     -webkit-appearance: none;
     height: 10px;
     border-radius: 4px;
@@ -950,7 +966,6 @@ input:active, input:focus, select:focus, button:active, button:focus {
     background: #D76101;
     box-shadow: -480px 0 0 480px yellow;
 }
-
 
 .greenSlider {
     -webkit-appearance: none;
@@ -963,7 +978,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .greenSlider::-webkit-slider-thumb {
-    width:1px;
+    width: 1px;
     -webkit-appearance: none;
     height: 10px;
     background: #D76101;
@@ -971,7 +986,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .greenSlider::-moz-range-thumb {
-    width:1px;
+    width: 1px;
     -webkit-appearance: none;
     height: 10px;
     border-radius: 4px;
@@ -979,8 +994,6 @@ input:active, input:focus, select:focus, button:active, button:focus {
     background: #D76101;
     box-shadow: -480px 0 0 480px green;
 }
-
-
 
 .slider {
     -webkit-appearance: none;
@@ -1215,6 +1228,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     font-size: 16px;
     line-height: 22px;
 }
+
 .addGoalModalBody button {
     position: absolute;
     right: 240px;
@@ -1257,6 +1271,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     height: 100px;
     width: 520px;
 }
+
 #addMissionDescr {
     height: 200px;
     width: 520px;
@@ -1303,7 +1318,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .errorWeigth {
-    color:brown;
+    color: brown;
     border-color: brown;
 }
 
@@ -1314,7 +1329,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     text-decoration: none;
     opacity: 0.7;
 }
-  
+
 .btnLogOut span {
     color: #0C2528;
     margin-left: 12px;
