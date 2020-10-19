@@ -7,9 +7,13 @@
         <div class="contGoal">
           <div class="companyGoals">
             <button class="btnShowKR" @click="displayKr(goal.id)">
-              <p class="nameGoals">{{ goal.name }}</p>
+              <div class="leftBlockGoal">
+                <p class="nameGoals">{{ goal.name }}</p>
+              </div>
+              <div class="rightBlockGoal">
+                <p class="percentGoals">{{ goal.command }}</p>
+              </div>
             </button>
-            <p class="percentGoals">{{ goal.command }}</p>
 
             <div class="menu">
               <a class="button_menu">
@@ -39,12 +43,6 @@
                   <button @click="openEditGoal(goal.id)" class="btnLogOut">
                     <img width="25" height="25" src="@/style/img/Pen.png" alt="Pen">
                     <span>Редактировать</span>
-                  </button>
-                </div>
-                <div>
-                  <button @click="openDetailsGoald(goal.id)" class="btnLogOut">
-                    <img width="25" height="25" src="@/style/img/Expand.png" alt="Expand">
-                    <span>Подробнее</span>
                   </button>
                 </div>
                 <div>
@@ -128,7 +126,7 @@
           </div>
         </div>
       </div>
-      <DetailsGoal v-if="detailsGoalWindow" v-bind:idGoal="idSelectedGoal" @close="detailsGoalWindow = false"/>
+
       <EditGoalModal v-if="showEditGoalModal" v-bind:idGoal="idSelectedGoal" @close="showEditGoalModal = false"/>
       <DeleteGoalModal v-if="showDeleteGoalModal" @close="showDeleteGoalModal = false" @delete="deleteGoal"/>
       <EditKrModal v-if="showEditKrModal" v-bind:idGoal="idSelectedGoal" v-bind:idKr="idSelectedKr"
@@ -147,7 +145,6 @@ import DeleteGoalModal from '../DeleteGoalModal';
 import DeleteKrModal from '../DeleteKrModal';
 import EditGoalModal from '../EditGoalModal';
 import EditKrModal from '../EditKrModal';
-import DetailsGoal from "@/components/DetailsGoal";
 
 
 export default {
@@ -157,8 +154,7 @@ export default {
     DeleteGoalModal,
     DeleteKrModal,
     EditGoalModal,
-    EditKrModal,
-    DetailsGoal
+    EditKrModal
   },
 
   data: () => ({
@@ -172,7 +168,7 @@ export default {
     people: '',
     idSelectedGoal: '',
     idSelectedKr: '',
-    unsentGoals: [],
+    unsentGoals: []
   }),
 
   created: async function () {
@@ -339,5 +335,8 @@ button {
   font-size: 18px;
   right: 80px;
   top: 10px;
+}
+.krs .links_menu {
+  right: 8px;
 }
 </style>

@@ -20,10 +20,18 @@
             <div v-for="goal in proposedGoals" v-bind:key="goal.id">
               <div class="contGoal">
                 <div class="companyGoals">
-                  <button class="btnShowKR" @click="displayKr(goal.id, goal.krs)">
-                    <p class="nameGoals">{{goal.name}}</p>
+                  <button class="btnShowKR" @click="displayKr(goal.id)">
+                    <div class="leftBlockGoal">
+                      <p class="nameGoals">{{ goal.name }}</p>
+                    </div>
+                    <div class="infoGoal">
+                      <img class="icon_user" src="../style/img/User.png" alt="User">
+                      <div>
+                        <p class="NameExecutor">Арина Титова</p>
+                        <p class="dataGoal">{{ goal.dateStart }}/{{ goal.dateEnd }}</p>
+                      </div>
+                    </div>
                   </button>
-                  <div class="commandGoals">{{goal.command}}</div>
 
                   <div class="menu">
                     <a class="button_menu">
@@ -44,12 +52,6 @@
                     <div class="links_menu">
                       <div class="tre"></div>
                       <div>
-                        <button @click="openDetailsGoald(goal.id)" class="btnLogOut">
-                          <img height="25" src="../style/img/Expand.png" alt="Expand">
-                          <span>Подробнее</span>
-                        </button>
-                      </div>
-                      <div>
                         <button @click="approveGoal(goal.id)" class="btnLogOut">
                           <img height="25" src="../style/img/ApproveGoal.png" alt="Approve">
                           <span>Одобрить</span>
@@ -68,6 +70,8 @@
                 <div class="contKr" v-if="goal.showKr">
                   <div class="krs" v-for="kr in goal.krs" :key="kr.id">
                     <p>{{ kr.title }}</p>
+                    <p><img class="icon_user_kr" src="../style/img/User.png" alt="User">{{goal.executor}}</p>
+                    <p><img class="icon_user_kr" src="../style/img/User.png" alt="User">Арина Титова</p>
                     <p class="percentGoals">Вес: {{ kr.weight }}</p>
                   </div>
                 </div>
@@ -133,9 +137,21 @@ export default {
 
 
 <style scoped>
-.commandGoals {
-  position: absolute;
-  right: 10%;
+.leftBlockGoal {
+  width: 50%;
+}
+.infoGoal {
+  width: 50%;
+}
+.krs img {
+  margin-right: 12px;
+}
+.dataGoal {
+  margin-top: 5px;
+  font-size: 14px;
+  line-height: 19px;
+  color: #0C2528;
+  opacity: 0.3;
 }
 .nameGoals {
   width: 65%;
@@ -145,13 +161,6 @@ p {
 }
 button {
   border: none;
-}
-.input_percent {
-  background-color: #f4f4f4;
-  width: 89px;
-  height: 29px;
-  border: solid 1px #43CBD7;
-  margin-right: 10px;
 }
 .menu {
   position: absolute;
@@ -171,22 +180,7 @@ button {
   background-color: #f4f4f4;
   text-align: left;
 }
-.flexModalCont:last-child {
-  margin-top: 40px;
-}
 .flexModalCont label {
   margin: 0 20px 0 0;
-}
-#createKrExecutor {
-  color: #6d7273;
-  margin-right: 55px;
-  width: 320px;
-  font-size: 18px;
-}
-.promptWeight {
-  position: absolute;
-  font-size: 18px;
-  right: 80px;
-  top: 10px;
 }
 </style>

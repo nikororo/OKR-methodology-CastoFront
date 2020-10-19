@@ -84,4 +84,10 @@ button {
   border-radius: 10px;
   margin-right: 10px;
 }
+.krs svg {
+  position: absolute;
+  right: 15px;
+  top: -17px;
+}
+
 </style>

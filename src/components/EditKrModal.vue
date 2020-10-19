@@ -129,10 +129,6 @@ export default {
   width: 750px;
 }
 
-.modal_user_name {
-  margin-bottom: 23px;
-}
-
 #editKrWeight {
   font-size: 16px;
   width: 80px;

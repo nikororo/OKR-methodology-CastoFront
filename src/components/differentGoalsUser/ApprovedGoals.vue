@@ -1,23 +1,35 @@
 <template>
-  <div>  
+  <div>
     <div v-if="approvedGoals.length !== 0">
       <div v-for="goal in approvedGoals" v-bind:key="goal.id">
         <div class="contGoal">
           <div class="companyGoals">
             <button class="btnShowKR" @click="displayKr(goal.id)">
-              <p class="nameGoals">{{goal.name}}</p>
+              <div class="leftBlockGoal">
+                <p class="nameGoals">{{ goal.name }}</p>
+              </div>
+              <div class="infoGoal">
+                <img class="icon_user" src="@/style/img/User.png" alt="User">
+                <div>
+                  <p class="NameExecutor">Арина Титова</p>
+                  <p class="dataGoal">{{ goal.dateStart }}/{{ goal.dateEnd }}</p>
+                </div>
+              </div>
+              <div class="rightBlockGoal">
+                <p class="percentGoals">{{ goal.percentOfCompletion }}%</p>
+                <input type="range" min="0" max="100" class="sliderGoal" v-model="goal.percentOfCompletion"
+                       disabled>
+              </div>
             </button>
-            <input type="range" min="0" max="100" class="sliderGoal" v-model="goal.percentOfCompletion" disabled>
-            <p class="percentGoals">{{ goal.percentOfCompletion }}%</p>
 
             <div class="menu">
               <a class="button_menu">
                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35"
-                    viewBox="0 0 172 172" style=" fill:#000000;">
+                     viewBox="0 0 172 172" style=" fill:#000000;">
                   <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
-                    stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
-                    font-family="none" font-weight="none" font-size="none" text-anchor="none"
-                    style="mix-blend-mode: normal">
+                     stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                     font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                     style="mix-blend-mode: normal">
                     <path d="M0,172v-172h172v172z" fill="none"></path>
                     <g fill="#aad7de">
                       <path
@@ -34,29 +46,35 @@
                     <span>Редактировать</span>
                   </button>
                 </div>
-                <div>
-                  <button @click="openDetailsGoald(goal.id)" class="btnLogOut">
-                    <img width="25" height="25" src="@/style/img/Expand.png" alt="Expand">
-                    <span>Подробнее</span>
-                  </button>
-                </div>
               </div>
             </div>
           </div>
-          
+
           <div class="contKr" v-if="goal.showKr">
             <div class="krs" v-for="kr in goal.krs" :key="kr.id">
               <label for="newKr"> {{ kr.title }}</label>
-              <input id="newKr" type="range" min="0" max="100" @change="sum(goal.id, kr.id, kr.percent)" v-model="kr.percent" class="slider">
-              <p class="percentGoals">{{ kr.percent }}%</p>
+              <div class="infoKr">
+                <input id="newKr" type="range" min="0" max="100" @change="sum(goal.id, kr.id, kr.percent)"
+                       v-model="kr.percent" class="slider">
+                <p class="weightKr">{{ kr.weight }}/100</p>
+              </div>
+              <div class="rightBlockKr modalExecutor">
+                <p class="percentGoals">{{ kr.percent }}%</p>
+                <img class="icon_user_kr" src="@/style/img/User.png" alt="User">
+                <div class="modalNameExecutor">
+                  <p><img class="icon_user_kr" src="@/style/img/User.png" alt="User">{{goal.executor}}</p>
+                  <p><img class="icon_user_kr" src="@/style/img/User.png" alt="User">Арина Титова</p>
+                </div>
+              </div>
+
               <div class="menu">
                 <a class="button_menu">
                   <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35"
-                      viewBox="0 0 172 172" style=" fill:#000000;">
+                       viewBox="0 0 172 172" style=" fill:#000000;">
                     <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
-                      stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
-                      font-family="none" font-weight="none" font-size="none" text-anchor="none"
-                      style="mix-blend-mode: normal">
+                       stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                       font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                       style="mix-blend-mode: normal">
                       <path d="M0,172v-172h172v172z" fill="none"></path>
                       <g fill="#aad7de">
                         <path
@@ -75,13 +93,14 @@
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
       </div>
-      <DetailsGoal v-if="detailsGoalWindow" v-bind:idGoal="idSelectedGoal" @close="detailsGoalWindow = false"/>
       <EditGoalModal v-if="showEditGoalModal" v-bind:idGoal="idSelectedGoal" @close="showEditGoalModal = false"/>
-      <EditKrModal v-if="showEditKrModal" v-bind:idGoal="idSelectedGoal" v-bind:idKr="idSelectedKr" @close="showEditKrModal = false"/>
+      <EditKrModal v-if="showEditKrModal" v-bind:idGoal="idSelectedGoal" v-bind:idKr="idSelectedKr"
+                   @close="showEditKrModal = false"/>
     </div>
     <div v-else class="haveNoGoals">
       <div>Цели еще не одобрены, здесь ничего нет</div>
@@ -93,15 +112,13 @@
 <script>
 import EditGoalModal from '../EditGoalModal';
 import EditKrModal from '../EditKrModal';
-import DetailsGoal from "@/components/DetailsGoal";
 
 
 export default {
   name: 'ApprovedGoals',
   components: {
-    EditGoalModal, 
-    EditKrModal,
-    DetailsGoal
+    EditGoalModal,
+    EditKrModal
   },
 
   data: () => ({
@@ -161,14 +178,6 @@ button {
   border: none;
 }
 
-.input_percent {
-  background-color: #f4f4f4;
-  width: 89px;
-  height: 29px;
-  border: solid 1px #43CBD7;
-  margin-right: 10px;
-}
-
 .menu {
   position: absolute;
   right: 25px;
@@ -191,25 +200,50 @@ button {
   text-align: left;
 }
 
-.flexModalCont:last-child {
-  margin-top: 40px;
-}
-
 .flexModalCont label {
   margin: 0 20px 0 0;
 }
 
-#createKrExecutor {
-  color: #6d7273;
-  margin-right: 55px;
-  width: 320px;
-  font-size: 18px;
+.dataGoal {
+  margin-top: 5px;
+  font-size: 14px;
+  line-height: 19px;
+  color: #0C2528;
+  opacity: 0.3;
 }
-
-.promptWeight {
+.modalExecutor:hover .modalNameExecutor {
+  display: flex;
+}
+.modalNameExecutor {
+  display: none;
+  justify-content: center;
+  flex-direction: column;
+  width: 300px;
+  padding: 42px 31px;
   position: absolute;
-  font-size: 18px;
-  right: 80px;
-  top: 10px;
+  top: 36px;
+  right: -10px;
+  z-index: 999;
+  background: #0C2528;
+  box-shadow: 0px 0px 20px rgba(12, 37, 40, 0.2);
+  border-radius: 24px;
+  color: #F4F4F4;
+}
+.modalNameExecutor p img {
+  margin-right: 12px;
+  width: 40px;
+  height: 40px;
+  filter: invert(100%);
+}
+.modalNameExecutor p:first-child {
+  margin-bottom: 15px;
+}
+.krs svg {
+  position: absolute;
+  right: 15px;
+  top: -17px;
+}
+.krs .links_menu {
+  right: 8px;
 }
 </style>

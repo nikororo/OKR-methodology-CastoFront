@@ -131,7 +131,9 @@ p {
   padding-bottom: 15px;
   border-bottom: 1px solid #bec3c3;
 }
-
+.slider {
+  width: 30%;
+}
 .ps_details {
   position: fixed;
   top: 0;
