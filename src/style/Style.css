@@ -108,7 +108,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     background-color: #70C7D4;
     justify-content: space-between;
     flex-direction: column;
-    padding: 15px 20px 10px;
+    padding: 12px 20px;
 }
 
 .menu:focus .links_menu, .menu:active  .links_menu, .links_menu:hover { 
@@ -818,6 +818,9 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .nameGoals {
     word-wrap: break-word;
+    display: flex;
+    align-items: center;
+    right: 10%;
 }
 
 .companyGoals {
@@ -1150,9 +1153,9 @@ input:active, input:focus, select:focus, button:active, button:focus {
     right: 0;
     bottom: 0;
     left: 0;
+    z-index: 1000;
     background-color: rgba(0, 0, 0, 0.3);
     overflow: auto;
-    z-index: 9999;
     padding: 30px;
     white-space: nowrap;
     text-align: center;

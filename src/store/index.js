@@ -42,6 +42,7 @@ export default new Vuex.Store({
             'Marketing',
             'Человек Умелый',
         ],
+        rejectionComments: {},
         goals: [],
     },
     mutations: {
@@ -117,7 +118,11 @@ export default new Vuex.Store({
 
             state.goals.forEach((goal) => {
                 if (goal.id === goalId) {
+                    goal.remainderWeight = 100;
                     goal.krs = krs;
+                    goal.krs.forEach((kr) => {
+                        goal.remainderWeight -= Number(kr.weight);
+                    });
                 }
             })
         },
@@ -173,6 +178,14 @@ export default new Vuex.Store({
 
         setUsers: (state, users) => {
             state.people = users;
+        },
+
+        setComment: (state, {idGoal, comment}) => {
+            state.rejectionComments[idGoal] = comment
+        },
+
+        deleteComment: (state, idGoal) => {
+            delete state.rejectionComments[idGoal];
         }
     },
 
@@ -286,8 +299,20 @@ export default new Vuex.Store({
                 })
         },
 
+        rejectGoal: async ({state, commit}, {idGoal, comment}) => {
+            await Vue.axios.put(state.urlBD + 'goals/' + idGoal, {status: 'rejected'})
+                .then(() => commit('setComment', {idGoal, comment}))
+                .catch(err => {
+                    if (err.response.status === 401) commit('logOut');
+                })
+        },
+
         deleteGoal: async ({state, commit}, idGoal) => {
             await Vue.axios.delete(state.urlBD + 'goals/' + idGoal)
+                .then(() => {
+                    if (state.rejectionComments[idGoal])
+                        commit('deleteComment', idGoal)
+                })
                 .catch(err => {
                     if (err.response.status === 401) commit('logOut');
                 })

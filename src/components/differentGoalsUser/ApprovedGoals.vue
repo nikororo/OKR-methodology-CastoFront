@@ -224,16 +224,15 @@ button {
   top: 36px;
   right: -10px;
   z-index: 999;
-  background: #0C2528;
-  box-shadow: 0px 0px 20px rgba(12, 37, 40, 0.2);
+  background: #F4F4F4;
+  box-shadow: 0px 0px 20px rgba(12, 37, 40, 0.27);
   border-radius: 24px;
-  color: #F4F4F4;
+  color: #0C2528;
 }
 .modalNameExecutor p img {
   margin-right: 12px;
   width: 40px;
   height: 40px;
-  filter: invert(100%);
 }
 .modalNameExecutor p:first-child {
   margin-bottom: 15px;
