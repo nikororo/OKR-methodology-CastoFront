@@ -122,8 +122,8 @@ export default {
       await this.$store.dispatch('getGoals');
       this.proposedGoals = this.$store.state.goals.filter(goal => goal.status === 'proposed');
     },
-    approveGoal(idGoal) {
-      this.$store.dispatch('goalProtection', { status: 'approved', idGoal });
+    async approveGoal(idGoal) {
+      await this.$store.dispatch('goalProtection', { status: 'approved', idGoal });
       this.getGoals();
     },
     closeRejectGoal() {

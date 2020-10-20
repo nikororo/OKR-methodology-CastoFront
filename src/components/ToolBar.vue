@@ -21,7 +21,7 @@
         <div class="button_toolbar">
           <img class="img_color" width="18" height="18" src="../style/img/Group.png" alt="">
         </div>
-        <p>Команды</p>
+        <p>Отдел</p>
       </div>
     </router-link>
   </div>

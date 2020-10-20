@@ -39,8 +39,8 @@ export default new Vuex.Store({
             'Тестировщики',
             'Castoroides',
             'Академия',
-            'Marketing',
-            'Человек Умелый',
+            'Маркетинг',
+            'HR-отдел',
         ],
         rejectionComments: {},
         goals: [],
@@ -213,9 +213,7 @@ export default new Vuex.Store({
         },
 
         login: async ({state, commit}, user) => {
-            await Vue.axios.get(state.urlBD + 'login', {
-                params: user
-            })
+            await Vue.axios.post(state.urlBD + 'login', user)
                 .then(({data}) => {
                     commit('authCorr', data);
                 })
@@ -272,13 +270,26 @@ export default new Vuex.Store({
                 })
         },
 
-        addGoal: async ({state, commit}, newGaol) => {
+        addGoal: async ({state, commit, dispatch}, {newGoal, krs}) => {
             await Vue.axios({
                 method: 'POST',
                 url: `${state.urlBD}goals`,
-                data: newGaol
+                data: newGoal
+            }).then(({data}) => {
+                let goalId = data.id;
+                dispatch('addKrs', {goalId, krs});
             }).catch(err => {
                 if (err.response.status === 401) commit('logOut');
+            })
+        },
+
+        addKrs: async ({state, commit}, {goalId, krs}) => {
+            krs.map (async (newKR) => {
+                newKR.executor = Number(newKR.executor);
+                await Vue.axios.post(state.urlBD + 'goals/' + goalId, newKR)
+                .catch(err => {
+                    if (err.response.status === 401) commit('logOut');
+                })
             })
         },
 
@@ -331,6 +342,7 @@ export default new Vuex.Store({
             })
         },
 
+        
         createKr: async ({state, commit}, goalId) => {
             let newKR;
             state.goals.forEach((goal) => {

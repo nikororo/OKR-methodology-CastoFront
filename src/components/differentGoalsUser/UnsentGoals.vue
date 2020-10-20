@@ -119,7 +119,7 @@
                   </option>
                 </select>
                 <label for="createKrFile">Прикрепить документ <img class="icon_user" src="@/style/img/AddFile.png" alt="add"></label>
-                <input type="file" id="createKrFile" class="fileKr"/>
+                <input type="file" id="createKrFile" class="fileKr" disabled/>
               </div>
 
             </form>

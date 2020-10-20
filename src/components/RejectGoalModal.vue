@@ -47,12 +47,12 @@ export default {
       this.$emit('close');
     },
 
-    reject() {
+    async reject() {
       let payload = {
         idGoal: this.idGoal,
         comment: this.comment
       }
-      this.$store.dispatch('rejectGoal',  payload);
+      await this.$store.dispatch('rejectGoal',  payload);
       this.$emit('close');
     }
   },

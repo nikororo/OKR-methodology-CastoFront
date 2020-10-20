@@ -225,14 +225,6 @@ input:active, input:focus, select:focus, button:active, button:focus {
     margin-bottom: 0;
 }
 
-.input_file {
-    display: none;
-    outline: 0;
-    opacity: 0;
-    pointer-events: none;
-    user-select: none
-}
-
 .button_file {
     display: flex;
     align-items: center;
@@ -250,12 +242,6 @@ input:active, input:focus, select:focus, button:active, button:focus {
     background-color: #F4F4F4;
     color: #0C2528;
     border: 1px solid #0C2528;
-}
-
-.p_input_file {
-    font-size: 12px;
-    margin-right: 163px;
-    margin-left: 15px;
 }
 
 .input_user {
@@ -1237,7 +1223,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     flex-direction: column;
 }
 
-.addGoalInput input, .addGoalInput select {
+.addGoalInput input, .addGoalInput select, .addGoalInput textarea {
     margin-bottom: 15px;
     font-size: 14px;
     line-height: 19px;

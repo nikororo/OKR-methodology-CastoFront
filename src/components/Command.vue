@@ -5,12 +5,12 @@
       <toolBar/>    
       <div class="col-sm-10 col-md-10 col-lg-10 command">
         <div class="header_targets_link">
-          <router-link class="link_targets" active-class="active_link_targets" to="/command" exact>Моя команда</router-link>
-          <router-link class="link_targets" active-class="active_link_targets" to="/command/commandList">Список команд</router-link>
+          <router-link class="link_targets" active-class="active_link_targets" to="/command" exact>Мой отдел</router-link>
+          <router-link class="link_targets" active-class="active_link_targets" to="/command/commandList">Список отделов</router-link>
         </div>
         <h2 class="commandName">{{commName}}</h2>
         <div class="listOfEmployees">
-          <button class="addBtnUserComm">Добавить в команду</button>
+          <button class="addBtnUserComm">Добавить в отдел</button>
           <ol>
             <div class="contUserComm" v-for="user in this.usersComm" v-bind:key="user.id">
               <li>

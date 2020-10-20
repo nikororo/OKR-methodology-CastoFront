@@ -14,16 +14,8 @@
         <div class="main_settings">
           <div class="ps_settings">
             <div class="data_user">
-              <p class="p_data_user">Фото</p>
-              <input type="file" id="file" class="input_file" accept="image/*">
-              <label for="file" class="button_file">
-                <span>Фото</span>
-              </label>
-              <span class="p_input_file">Выбрать фото</span>
-            </div>
-            <div class="data_user">
               <p class="p_data_user">Полное имя</p>
-              <input class="input_user" type="text" placeholder="Полное имя">
+              <input class="input_user" type="text" placeholder="Полное имя" minlength="3" maxlength="80">
             </div>
             <div class="data_user">
               <p class="p_data_user">Сфера деятельности</p>
@@ -40,19 +32,19 @@
             </div>
             <div class="data_user">
               <p class="p_data_user">Пароль</p>
-              <input class="input_user" type="password" placeholder="Ваш пароль">
+              <input class="input_user" type="password" placeholder="Ваш пароль" minlength="8" maxlength="30">
               <div class="promt">
                 <span class="promt_pass">Заполните в случае обновления пароля</span>
               </div>
             </div>
             <div class="data_user">
               <p class="p_data_user">Новый пароль</p>
-              <input class="input_user" type="password" placeholder="Новый пароль">
+              <input class="input_user" type="password" placeholder="Новый пароль" minlength="8" maxlength="30">
             </div>
-            <a href="" class="button_pass">Обновить пароль</a>
+            <a class="button_pass">Обновить пароль</a>
             <div class="save_settings">
-              <a href="" class="button_save">Сохранить изменения</a>
-              <a href="" class="button_canceling">Отмена</a>
+              <a class="button_save">Сохранить изменения</a>
+              <a class="button_canceling">Отмена</a>
             </div>
           </div>
         </div>

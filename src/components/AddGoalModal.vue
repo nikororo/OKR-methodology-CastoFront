@@ -28,10 +28,10 @@
                   <div class="addGoalDate">
                     <input v-model="dateStart" id="addGoalDateStart" class="input_user" placeholder="Дата начала"
                            v-bind:class="{error: this.dataErr}" type="text"
-                           onfocus="(this.type='date')" onblur="(this.type='text')" required>
+                           onfocus="(this.type='date')" onblur="(this.type='text')" required maxlength="30">
                     <input v-model="dateEnd" id="addGoalDateEnd" class="input_user" placeholder="Дата окончания"
                            v-bind:class="{error: this.dataErr}" type="text"
-                           onfocus="(this.type='date')" onblur="(this.type='text')" required>
+                           onfocus="(this.type='date')" onblur="(this.type='text')" required maxlength="30">
                     <div class="errorMsg" v-if="this.dataErr">Дата начала позже даты окончания</div>
                   </div>
                   <select v-model="executor" id="addGoalExecutor" class="input_user" required>
@@ -45,27 +45,29 @@
               </section>
 
               <h2>Ключевые результаты</h2>
-              <div v-for="kr in newKrs" :key="kr.id">
+              <div v-for="(kr, index) in newKrs" :key="kr.id">
                 <form>
                   <section class="addGoalModalBody">
-                    <button @click="deleteFormKr"><img src="@/style/img/CloseKr.png" alt=""></button>
                     <div class="addGoalNameInput">
-                      <label for="addKrName">Ключевой результат</label>
+                      <label class="labelKr" for="addKrName">Ключевой результат</label>
                     </div>
                     <div class="addKrInput">
-                      <input v-model.trim="kr.title" class="input_user" id="addKrName" placeholder="Название цели"
+                      <div class="flex flex-row">
+                        <input v-model.trim="kr.title" class="input_user" id="addKrName" placeholder="Название цели"
                              required minlength="5" maxlength="100">
+                        <button @click="deleteFormKr(index)"><img src="@/style/img/CloseKr.png" alt=""></button>
+                      </div>
                       <div class="settingKr">
                         <div class="parametersKr">
                           <label for="createKrPercent">Вес</label>
                           <input v-model="kr.weight" id="createKrPercent" class="input_user" type="number" min="1"
-                                 max="100" placeholder="1" required>
+                                 max="100" placeholder="100%" required>
                           <label for="createKrFile">Прикрепить документ <img class="icon_user" src="@/style/img/AddFile.png" alt="add"></label>
-                          <input type="file" id="createKrFile" class="fileKr"/>
+                          <input type="file" id="createKrFile" class="fileKr" disabled/>
                         </div>
                         <div class="responsibleKr">
-                          <label for="addGoalExecutor">Ответственный</label>
-                          <select v-model="kr.executor" id="addGoalExecutor" class="input_user" required>
+                          <label for="addKrExecutor">Ответственный</label>
+                          <select v-model="kr.executor" id="addKrExecutor" class="input_user" required>
                             <option value disabled selected hidden>Ответственный</option>
                             <option v-for="men in people" v-bind:key="men.id" v-bind:value="men.id">
                               {{ men.name }}
@@ -79,7 +81,7 @@
               </div>
               <footer>
                 <button type="submit" class="button_pass_add_goal">
-                  Добавить
+                  Отправить
                 </button>
                 <button type="button" class="button_pass_add_goal" @click="close">
                   Отмена
@@ -112,12 +114,12 @@ export default {
     dataErr: false,
     people: '',
     descr: '',
-    status: 'unsent',
     executor: '',
     newKrs: []
   }),
 
   created: async function () {
+    this.addForm();
     await this.$store.dispatch('getUsers');
     this.people = this.$store.state.people;
   },
@@ -148,12 +150,13 @@ export default {
         name: this.name,
         dateStart: this.dateStart,
         dateEnd: this.dateEnd,
-        status: this.status
+        executor: this.executor,
       }
       if (this.descr) newGoal.descr = this.descr;
-      if (this.executor) newGoal.executor = this.executor;
       this.dataErr = false;
-      await this.$store.dispatch('addGoal', newGoal);
+      let krs = this.newKrs.filter(kr => kr.title !== '')
+      let payload = { newGoal, krs }
+      await this.$store.dispatch('addGoal', payload);
       this.$emit('close');
     }
   }
@@ -186,7 +189,7 @@ p {
   flex-direction: column;
 }
 
-.addKrInput input .addKrInput select {
+.addKrInput input, .addKrInput select {
   margin: 0;
   font-size: 14px;
   line-height: 19px;
@@ -249,7 +252,7 @@ h2 {
 }
 
 .addGoalModalBody {
-  margin: 0 0 65px 0;
+  margin: 0 0 40px 0;
   display: flex;
   font-size: 16px;
   line-height: 22px;
@@ -263,7 +266,7 @@ h2 {
   opacity: 0.5;
   padding: 11px;
   height: 46px;
-  width: 323px;
+  width: 520px;
 }
 
 .modal_user_name:first-child {
@@ -340,6 +343,11 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 145px;
+}
+
+.labelKr {
+  margin-top: 0;
 }
 
 footer {
@@ -362,17 +370,15 @@ footer {
   width: 177px;
   text-decoration: none;
   font-size: 16px;
+  border-radius: 20px;
 }
 
 .button_pass_add_goal:last-child {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: transparent;
   border: 1px solid #40B5C6;
   color: #0C2528;
   height: 40px;
-  width: 83px;
+  width: 110px;
   text-decoration: none;
   margin-left: 15px;
   font-size: 16px;
@@ -404,137 +410,29 @@ footer {
 .button_pass_add_kr {
   display: flex;
   justify-content: center;
-  padding: 10px 24px;
+  width: 139px;
+  height: 40px;
   align-items: center;
   font-size: 18px;
   line-height: 25px;
   color: #0C2528;
   border: 1px solid #3AACBD;
   box-sizing: border-box;
-  margin-left: 176px;
+  margin-left: 145px;
   margin-bottom: 50px;
+  border-radius: 20px;
+}
+
+.addGoalModalBody button {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  margin-left: 10px;
+  right: 0;
+  top: 0;
+}
+
+#addKrName {
+  width: 520px;
 }
 </style>
-
-<!--<template>-->
-<!--  <div class="addGoalModalCont">-->
-<!--    <div class="flexModalCont">-->
-<!--      <div class="addGoalModal">-->
-
-<!--        <form v-on:submit.prevent="addGoal">-->
-<!--          <header>-->
-<!--            <input v-model.trim="name" placeholder="Название цели" required minlength="5" maxlength="100"/>-->
-<!--            <button class="btnClose" @click="close">-->
-<!--              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--                <path-->
-<!--                    d="M14.4361 13.0008L25.7023 1.73457C26.0989 1.33792 26.0989 0.694822 25.7023 0.298221C25.3056 -0.0983798 24.6625 -0.0984305 24.2659 0.298221L12.9997 11.5644L1.73359 0.298221C1.33694 -0.0984305 0.693845 -0.0984305 0.297244 0.298221C-0.0993563 0.694873 -0.099407 1.33797 0.297244 1.73457L11.5634 13.0007L0.297244 24.2669C-0.099407 24.6636 -0.099407 25.3067 0.297244 25.7033C0.495545 25.9016 0.755494 26.0007 1.01544 26.0007C1.27539 26.0007 1.53529 25.9016 1.73364 25.7033L12.9997 14.4371L24.2659 25.7033C24.4642 25.9016 24.7241 26.0007 24.9841 26.0007C25.244 26.0007 25.5039 25.9016 25.7023 25.7033C26.0989 25.3066 26.0989 24.6635 25.7023 24.2669L14.4361 13.0008Z"-->
-<!--                    fill="black"/>-->
-<!--              </svg>-->
-<!--            </button>-->
-<!--          </header>-->
-<!--          <hr>-->
-<!--          <section class="addGoalModalBody">-->
-<!--            <div class="addGoalNameInput">-->
-<!--              <label for="addGoalAuthor">Автор</label>-->
-<!--              <label for="addGoalCommand">Отдел</label>-->
-<!--              <label for="addGoalDateStart">Период</label>-->
-<!--              <label for="addGoalExecutor">Ответственный</label>-->
-<!--              <label for="addGoalDescr">Описание цели</label>-->
-<!--            </div>-->
-<!--            <div class="addGoalInput">-->
-<!--              <div class="modal_user_name">-->
-<!--                <img class="icon_user" src="../style/img/User.png" alt="User">-->
-<!--                <p>{{ this.$store.state.user.name }}</p>-->
-<!--              </div>-->
-<!--              <div class="modal_user_name">-->
-<!--                <p>{{ this.$store.state.user.command }}</p>-->
-<!--              </div>-->
-<!--              <div class="addGoalDate">-->
-<!--                <input v-model="dateStart" id="addGoalDateStart" class="input_user" placeholder="Дата начала"-->
-<!--                       v-bind:class="{error: this.dataErr}" type="text"-->
-<!--                       onfocus="(this.type='date')" onblur="(this.type='text')" required>-->
-<!--                <input v-model="dateEnd" id="addGoalDateEnd" class="input_user" placeholder="Дата окончания"-->
-<!--                       v-bind:class="{error: this.dataErr}" type="text"-->
-<!--                       onfocus="(this.type='date')" onblur="(this.type='text')" required>-->
-<!--                <div class="errorMsg" v-if="this.dataErr">Дата начала позже даты окончания</div>       -->
-<!--              </div>-->
-<!--              <select v-model="executor" id="addGoalExecutor" class="input_user" required>-->
-<!--                <option value disabled selected hidden>Ответственный</option>-->
-<!--                <option v-for="men in people" v-bind:key="men.id" v-bind:value="men.id">-->
-<!--                  {{men.name}}-->
-<!--                </option>-->
-<!--              </select>-->
-<!--              <textarea v-model="descr" id="addGoalDescr" class="input_user" type="text"-->
-<!--                        placeholder="Описание цели" minlength="5" maxlength="500"></textarea>-->
-<!--            </div>-->
-<!--          </section>-->
-<!--          <footer>-->
-<!--            <button type="submit" class="button_pass">-->
-<!--              Добавить-->
-<!--            </button>-->
-<!--            <button type="button" class="button_pass" @click="close">-->
-<!--              Отмена-->
-<!--            </button>-->
-<!--          </footer>-->
-<!--        </form>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</template>-->
-
-<!--<script>-->
-
-<!--export default {-->
-<!--  name: 'AddGoalModal',-->
-
-<!--  data: () => ({-->
-<!--    name: '',-->
-<!--    dateStart: '',-->
-<!--    dateEnd: '',-->
-<!--    executor: '',-->
-<!--    dataErr: false,-->
-<!--    people: '',-->
-<!--    descr: '',-->
-<!--    status: 'unsent'-->
-<!--  }),-->
-
-<!--  created: async function () {-->
-<!--    await this.$store.dispatch('getUsers');-->
-<!--    this.people = this.$store.state.people;-->
-<!--  },-->
-
-<!--  methods: {-->
-<!--    close() {-->
-<!--      this.$emit('close');-->
-<!--    },-->
-<!--    async addGoal() {-->
-<!--      if (this.dateStart > this.dateEnd) {-->
-<!--        this.dataErr = true;-->
-<!--        return;-->
-<!--      }-->
-<!--      let newGoal = {-->
-<!--        name: this.name,-->
-<!--        dateStart: this.dateStart,-->
-<!--        dateEnd: this.dateEnd,-->
-<!--        status: this.status-->
-<!--      }-->
-<!--      if (this.descr) newGoal.descr = this.descr;-->
-<!--      if (this.executor) newGoal.executor = this.executor;-->
-<!--      this.dataErr = false;-->
-<!--      await this.$store.dispatch('addGoal', newGoal);-->
-<!--      this.$emit('close');-->
-<!--    }-->
-<!--  },-->
-<!--}-->
-<!--</script>-->
-
-<!--<style scoped>-->
-<!--.errorMsg {-->
-<!--  position: absolute;-->
-<!--  top: -20px;-->
-<!--}-->
-
-<!--.addGoalModal {-->
-<!--  padding: 0 0 30px;-->
-<!--}-->
-<!--</style>-->
