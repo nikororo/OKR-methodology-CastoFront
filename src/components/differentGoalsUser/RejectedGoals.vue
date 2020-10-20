@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     async getGoals() {
-      this.rejectedGoals = this.$store.state.goals.filter(goal => goal.status === 'rejected');
+      this.rejectedGoals = this.$store.state.goals.filter(goal => goal.status === 'rejected' && goal.authorID === this.$store.state.user.id);
       this.rejectedGoals.map(goal => {
         if (this.$store.state.rejectionComments[goal.id]) {
           goal.comment = this.$store.state.rejectionComments[goal.id];

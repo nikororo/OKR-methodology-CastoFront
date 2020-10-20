@@ -46,7 +46,6 @@
 
               <h2>Ключевые результаты</h2>
               <div v-for="(kr, index) in newKrs" :key="kr.id">
-                <form>
                   <section class="addGoalModalBody">
                     <div class="addGoalNameInput">
                       <label class="labelKr" for="addKrName">Ключевой результат</label>
@@ -60,8 +59,11 @@
                       <div class="settingKr">
                         <div class="parametersKr">
                           <label for="createKrPercent">Вес</label>
-                          <input v-model="kr.weight" id="createKrPercent" class="input_user" type="number" min="1"
-                                 max="100" placeholder="100%" required>
+                          <div class="weightCont">
+                            <div class="promptWeight errorWeigthMsg" v-if="errorWeigth">Общий вес превышает 100</div>
+                            <input v-model="kr.weight" id="createKrPercent" class="input_user" type="number" min="1"
+                                  max="100" placeholder="100%" v-bind:class="{errorWeigth}" required>
+                          </div>
                           <label for="createKrFile">Прикрепить документ <img class="icon_user" src="@/style/img/AddFile.png" alt="add"></label>
                           <input type="file" id="createKrFile" class="fileKr" disabled/>
                         </div>
@@ -77,7 +79,6 @@
                       </div>
                     </div>
                   </section>
-                </form>
               </div>
               <footer>
                 <button type="submit" class="button_pass_add_goal">
@@ -112,6 +113,7 @@ export default {
     dateStart: '',
     dateEnd: '',
     dataErr: false,
+    errorWeigth: false,
     people: '',
     descr: '',
     executor: '',
@@ -146,6 +148,15 @@ export default {
         this.dataErr = true;
         return;
       }
+      let krs = this.newKrs.filter(kr => kr.title !== '')
+      let allWeight = 0;
+      krs.map(kr => {
+        allWeight += Number(kr.weight);
+      })
+      if (allWeight > 100) {
+        this.errorWeigth = true;
+        return;
+      }
       let newGoal = {
         name: this.name,
         dateStart: this.dateStart,
@@ -154,7 +165,7 @@ export default {
       }
       if (this.descr) newGoal.descr = this.descr;
       this.dataErr = false;
-      let krs = this.newKrs.filter(kr => kr.title !== '')
+      this.errorWeigth = false;
       let payload = { newGoal, krs }
       await this.$store.dispatch('addGoal', payload);
       this.$emit('close');
@@ -217,7 +228,7 @@ p {
 }
 
 .parametersKr .input_user {
-  width: 17%;
+  width: 80px;
 }
 
 .responsibleKr {
@@ -434,5 +445,17 @@ footer {
 
 #addKrName {
   width: 520px;
+}
+
+.weightCont {
+  position: relative;
+}
+
+.errorWeigthMsg {
+  position: absolute;
+  width: 230px;
+  top: -20px;
+  left: -50px;
+  color: brown;
 }
 </style>

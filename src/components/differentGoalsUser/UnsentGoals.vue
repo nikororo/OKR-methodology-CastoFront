@@ -58,36 +58,40 @@
           <div class="contKr" v-if="goal.showKr">
             <div class="krs" v-for="kr in goal.krs" :key="kr.id">
               <DeleteKrModal v-if="showDeleteKrModal" @close="getKR(goal.id)" @delete="deleteKr"/>
-              <p>{{ kr.title }}</p>
-              <p class="percentGoals">Вес: {{ kr.weight }}</p>
-              <div class="menu">
-                <a class="button_menu">
-                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35"
-                       viewBox="0 0 172 172" style=" fill:#000000;">
-                    <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
-                       stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
-                       font-family="none" font-weight="none" font-size="none" text-anchor="none"
-                       style="mix-blend-mode: normal">
-                      <path d="M0,172v-172h172v172z" fill="none"></path>
-                      <g fill="#aad7de">
-                        <path d="M86,21.5c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333zM86,71.66667c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333zM86,121.83333c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333z"></path>
+              <div class="leftBlockGoal">
+                <p>{{ kr.title }}</p>
+              </div>
+              <div class="rightBlockGoal">
+                <p class="percentGoals">Вес: {{ kr.weight }}</p>
+                <div class="menu">
+                  <a class="button_menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35"
+                        viewBox="0 0 172 172" style=" fill:#000000;">
+                      <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                        stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                        font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                        style="mix-blend-mode: normal">
+                        <path d="M0,172v-172h172v172z" fill="none"></path>
+                        <g fill="#aad7de">
+                          <path d="M86,21.5c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333zM86,71.66667c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333zM86,121.83333c-7.91608,0 -14.33333,6.41725 -14.33333,14.33333c0,7.91608 6.41725,14.33333 14.33333,14.33333c7.91608,0 14.33333,-6.41725 14.33333,-14.33333c0,-7.91608 -6.41725,-14.33333 -14.33333,-14.33333z"></path>
+                        </g>
                       </g>
-                    </g>
-                  </svg>
-                </a>
-                <div class="links_menu">
-                  <div class="tre"></div>
-                  <div>
-                    <button @click="openEditKr(goal.id, kr.id)" class="btnLogOut">
-                      <img width="25" height="25" src="@/style/img/Pen.png" alt="Pen">
-                      <span>Редактировать</span>
-                    </button>
-                  </div>
-                  <div>
-                    <button class="btnLogOut" @click="openDeleteKr(goal.id, kr.id)">
-                      <img width="25" height="25" src="@/style/img/Delete.png" alt="Delete">
-                      <span>Удалить</span>
-                    </button>
+                    </svg>
+                  </a>
+                  <div class="links_menu">
+                    <div class="tre"></div>
+                    <div>
+                      <button @click="openEditKr(goal.id, kr.id)" class="btnLogOut">
+                        <img width="25" height="25" src="@/style/img/Pen.png" alt="Pen">
+                        <span>Редактировать</span>
+                      </button>
+                    </div>
+                    <div>
+                      <button class="btnLogOut" @click="openDeleteKr(goal.id, kr.id)">
+                        <img width="25" height="25" src="@/style/img/Delete.png" alt="Delete">
+                        <span>Удалить</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -171,9 +175,8 @@ export default {
     unsentGoals: []
   }),
 
-  created: async function () {
-    await this.$store.dispatch('getGoals');
-    this.unsentGoals = this.$store.state.goals.filter(goal => goal.status === 'unsent');
+  mounted: async function () {
+    this.getGoals();
     await this.$store.dispatch('getUsers');
     this.people = this.$store.state.people;
   },
@@ -181,7 +184,7 @@ export default {
   methods: {
     async getGoals() {
       await this.$store.dispatch('getGoals');
-      this.unsentGoals = this.$store.state.goals.filter(goal => goal.status === 'unsent');
+      this.unsentGoals = this.$store.state.goals.filter(goal => goal.status === 'unsent' && goal.authorID === this.$store.state.user.id);
     },
 
     async getKR(idGoal) {
@@ -338,5 +341,14 @@ button {
 }
 .krs .links_menu {
   right: 8px;
+}
+
+.leftBlockGoal {
+  width: 65%;
+}
+
+.krs .percentGoals {
+    position: absolute;
+    right: 80px;
 }
 </style>

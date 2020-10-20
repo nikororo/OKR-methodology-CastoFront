@@ -133,7 +133,7 @@ export default {
   }),
 
   created: async function () {
-    this.approvedGoals = this.$store.state.goals.filter(goal => goal.status === 'approved');
+    this.approvedGoals = this.$store.state.goals.filter(goal => goal.status === 'approved' && goal.authorID === this.$store.state.user.id);
     await this.$store.dispatch('getUsers');
     await this.$store.dispatch('getKrs');
     this.people = this.$store.state.people;

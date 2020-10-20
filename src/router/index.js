@@ -21,6 +21,26 @@ const ifAuthenticated = (to, from, next) => {
   next('/notAuth')
 }
 
+const ifManager = (to, from, next) => {
+  const token = localStorage.getItem('token');
+  const userRole = localStorage.getItem('userRole');
+  if (token && userRole === 'manager') {
+    next()
+    return
+  }
+  next('/goals')
+}
+
+const ifLeader = (to, from, next) => {
+  const token = localStorage.getItem('token');
+  const userRole = localStorage.getItem('userRole');
+  if (token && userRole === 'leader') {
+    next()
+    return
+  }
+  next('/goals')
+}
+
 const routes = [
   {
     path: '/notAuth',
@@ -32,7 +52,7 @@ const routes = [
     path: '/goals',
     name: 'Goals',
     component: () => import('../components/CommonGoals'),
-    beforeEnter: ifAuthenticated
+    beforeEnter: ifAuthenticated,
   },
   {
     path: '/settingsUser',
@@ -47,16 +67,16 @@ const routes = [
   //   beforeEnter: ifAuthenticated
   // },
   {
-    path: '/profile/planWeek',
+    path: '/profile',
     name: 'PlanWeek',
     component: () => import('../components/PlanWeek'),
     beforeEnter: ifAuthenticated
   },
   {
-    path: '/profile',
+    path: '/profile/goals',
     name: 'GoalsUser',
     component: () => import('../components/GoalsUser'),
-    beforeEnter: ifAuthenticated
+    beforeEnter: ifManager
   },
   {
     path: '/command',
@@ -90,7 +110,7 @@ const routes = [
     path: '/goals/goalsProtection',
     name: 'goalsProtection',
     component: () => import('../components/GoalsProtection'),
-    beforeEnter: ifAuthenticated
+    beforeEnter: ifLeader
   },
   { 
     path: '*', 

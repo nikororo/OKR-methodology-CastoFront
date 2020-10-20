@@ -11,7 +11,7 @@
           <router-link class="link_targets" active-class="active_link_targets" to="/goals">
             Цели
           </router-link>
-          <router-link class="link_targets" active-class="active_link_targets" to="/goals/goalsProtection">
+          <router-link v-if="this.$store.state.user.role == 'leader'" class="link_targets" active-class="active_link_targets" to="/goals/goalsProtection">
             Защита целей
           </router-link>
         </div>
@@ -40,7 +40,7 @@
                 <div class="contKr" v-if="goal.showKr">
                   <p class="descrGoal">{{goal.descr}}</p>
                   <div class="krs" v-for="kr in goal.krs" :key="kr.id">
-                      <label for="newKr"> {{ kr.title }}</label>
+                    <label for="newKr"> {{ kr.title }}</label>
                     <div class="infoKr">
                       <input id="newKr" type="range" min="0" max="100" @change="sum(goal.id, kr.id, kr.percent)"
                              v-model="kr.percent" class="slider">

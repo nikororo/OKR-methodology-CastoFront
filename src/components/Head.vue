@@ -33,6 +33,9 @@
         </div>
         <LogOutModal v-if="showLogOutModal" @close="showLogOutModal = false"/>
       </div>
+      <div v-if="this.$store.state.errorNotEnoughRights" class="notEnoughRightsPopup">
+        У вас недостаточно прав для выполнения этих действий
+      </div>
     </header>
   </div>
 </template>
@@ -62,4 +65,17 @@ export default {
   text-decoration: none;
 }
 
+.notEnoughRightsPopup {
+  position: fixed;
+  z-index: 1000;
+  left: calc(50% - 250px);
+  bottom: 0;
+  background: #0C2528;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+  border-radius: 34px;
+  color: white;
+  font-size: 18px;
+  padding: 11px 30px;
+  margin: 40px 0;
+}
 </style>

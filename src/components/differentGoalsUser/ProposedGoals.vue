@@ -42,7 +42,7 @@ export default {
   }),
 
   created: async function () {
-    this.proposedGoals = this.$store.state.goals.filter(goal => goal.status === 'proposed');
+    this.proposedGoals = this.$store.state.goals.filter(goal => goal.status === 'proposed' && goal.authorID === this.$store.state.user.id);
   },
 
   methods: {

@@ -11,13 +11,13 @@
           <router-link class="link_targets" active-class="active_link_targets" to="/goals" exact>
             Цели
           </router-link>
-          <router-link class="link_targets" active-class="active_link_targets" to="/goals/goalsProtection">
+          <router-link v-if="role == 'leader'" class="link_targets" active-class="active_link_targets" to="/goals/goalsProtection">
             Защита целей
           </router-link>
         </div>
         <div class="pageMission">
           <div class="ps_button_mission">
-            <button class="button_goals" @click="showAddMissionModal = true">Добавить</button>
+            <button v-if="this.$store.state.user.role == 'leader'" class="button_goals" @click="showAddMissionModal = true">Добавить</button>
             <AddMissionModal v-if="showAddMissionModal" @close="showAddMissionModal = false"/>
           </div>
           <div v-if="this.$store.state.missions.length !== 0">
@@ -26,7 +26,7 @@
                 <div class="headMission">
                   <img class="imgChel" src="../style/img/Chel.png" alt="mission">
                   <p>{{ mission.name }}</p>
-                  <div class="menu">
+                  <div class="menu" v-if="role == 'leader'">
                     <a class="button_menu_mission">
                       <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35"
                            viewBox="0 0 172 172" style=" fill:#000000;">
@@ -91,8 +91,12 @@ export default {
   data: () => ({
     showDeleteMissionModal: false,
     showAddMissionModal: false,
-    idSelectedMission: ''
+    idSelectedMission: '',
+    role: ''
   }),
+    mounted: function () {
+    this.role = this.$store.state.user.role;
+  },
   methods: {
     openDeleteMission(id){
       this.idSelectedMission = id;

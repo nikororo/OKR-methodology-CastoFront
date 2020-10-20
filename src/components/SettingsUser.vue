@@ -44,7 +44,7 @@
             <a class="button_pass">Обновить пароль</a>
             <div class="save_settings">
               <a class="button_save">Сохранить изменения</a>
-              <a class="button_canceling">Отмена</a>
+              <a class="button_pass_add_goal">Отмена</a>
             </div>
           </div>
         </div>
@@ -69,3 +69,25 @@ export default {
   methods: {}
 }
 </script>
+
+<style scoped>
+.button_pass_add_goal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background: transparent;
+  border: 1px solid #40B5C6;
+  color: #0C2528;
+  height: 40px;
+  width: 110px;
+  text-decoration: none;
+  margin-left: 15px;
+  font-size: 16px;
+}
+
+.button_pass_add_goal:hover {
+  border: 1px solid #0C2528;
+  color: #0C2528;
+}
+</style>

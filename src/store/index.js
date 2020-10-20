@@ -12,7 +12,6 @@ axios.interceptors.request.use(
 
 import Vue from 'vue'
 import Vuex from 'vuex'
-import router from '@/router'
 import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
@@ -20,6 +19,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         authHasError: false,
+        errorNotEnoughRights: false,
         urlBD: 'http://31.31.199.37:81/api/',
         missions: [
             {
@@ -57,12 +57,18 @@ export default new Vuex.Store({
         authCorr: (state, data) => {
             state.user = data.user;
             localStorage.setItem('token', data.access_token);
+            localStorage.setItem('userRole', data.user.role);
             state.authHasError = false;
+        },
+
+        hasErrorNotEnoughRights: (state) => {
+            state.errorNotEnoughRights = true;
+            setTimeout(() => state.errorNotEnoughRights = false, 5000);
         },
 
         logOut: () => {
             localStorage.removeItem('token');
-            router.push('/');
+            localStorage.removeItem('userRole');
         },
 
         setGoals: (state, goals) => {
@@ -199,6 +205,7 @@ export default new Vuex.Store({
                 })
                 .catch(err => {
                     if (err.response.status === 401) commit('logOut');
+                    if (err.response.status === 403) commit('hasErrorNotEnoughRights');
                 })
         },
 
@@ -209,6 +216,7 @@ export default new Vuex.Store({
                 })
                 .catch(err => {
                     if (err.response.status === 401) commit('logOut');
+                    if (err.response.status === 403) commit('hasErrorNotEnoughRights');
                 })
         },
 
@@ -236,6 +244,7 @@ export default new Vuex.Store({
             await Vue.axios.get(state.urlBD + 'goals')
                 .then(({data}) => {
                     data.map(goal => {
+                        goal.authorID = goal.author.id;
                         goal.author = goal.author.name;
                         goal.showKr = false;
                         goal.krs = [];
@@ -250,6 +259,7 @@ export default new Vuex.Store({
                 })
                 .catch(err => {
                     if (err.response.status === 401) commit('logOut');
+                    if (err.response.status === 403) commit('hasErrorNotEnoughRights');
                 })
         },
 
@@ -267,6 +277,7 @@ export default new Vuex.Store({
                 })
                 .catch(err => {
                     if (err.response.status === 401) commit('logOut');
+                    if (err.response.status === 403) commit('hasErrorNotEnoughRights');
                 })
         },
 
@@ -280,6 +291,7 @@ export default new Vuex.Store({
                 dispatch('addKrs', {goalId, krs});
             }).catch(err => {
                 if (err.response.status === 401) commit('logOut');
+                if (err.response.status === 403) commit('hasErrorNotEnoughRights');
             })
         },
 
@@ -289,6 +301,7 @@ export default new Vuex.Store({
                 await Vue.axios.post(state.urlBD + 'goals/' + goalId, newKR)
                 .catch(err => {
                     if (err.response.status === 401) commit('logOut');
+                    if (err.response.status === 403) commit('hasErrorNotEnoughRights');
                 })
             })
         },
@@ -300,6 +313,7 @@ export default new Vuex.Store({
                 })
                 .catch(err => {
                     if (err.response.status === 401) commit('logOut');
+                    if (err.response.status === 403) commit('hasErrorNotEnoughRights');
                 })
         },
 
@@ -307,6 +321,7 @@ export default new Vuex.Store({
             await Vue.axios.put(state.urlBD + 'goals/' + idGoal, {status})
                 .catch(err => {
                     if (err.response.status === 401) commit('logOut');
+                    if (err.response.status === 403) commit('hasErrorNotEnoughRights');
                 })
         },
 
@@ -315,6 +330,7 @@ export default new Vuex.Store({
                 .then(() => commit('setComment', {idGoal, comment}))
                 .catch(err => {
                     if (err.response.status === 401) commit('logOut');
+                    if (err.response.status === 403) commit('hasErrorNotEnoughRights');
                 })
         },
 
@@ -326,6 +342,7 @@ export default new Vuex.Store({
                 })
                 .catch(err => {
                     if (err.response.status === 401) commit('logOut');
+                    if (err.response.status === 403) commit('hasErrorNotEnoughRights');
                 })
         },
 
@@ -337,6 +354,7 @@ export default new Vuex.Store({
                             commit('setKrs', {data, goalId});
                         }).catch(err => {
                             if (err.response.status === 401) commit('logOut');
+                            if (err.response.status === 403) commit('hasErrorNotEnoughRights');
                         })
                 }
             })
@@ -357,6 +375,7 @@ export default new Vuex.Store({
                 .then(() => commit('resetNewKr', goalId))
                 .catch(err => {
                     if (err.response.status === 401) commit('logOut');
+                    if (err.response.status === 403) commit('hasErrorNotEnoughRights');
                 })
         },
 
@@ -366,6 +385,7 @@ export default new Vuex.Store({
                     commit('editKr', {id, data});
                 }).catch().catch(err => {
                     if (err.response.status === 401) commit('logOut');
+                    if (err.response.status === 403) commit('hasErrorNotEnoughRights');
                 })
         },
 
@@ -373,6 +393,7 @@ export default new Vuex.Store({
             await Vue.axios.delete(state.urlBD + 'key-results/' + idKr)
                 .catch(err => {
                     if (err.response.status === 401) commit('logOut');
+                    if (err.response.status === 403) commit('hasErrorNotEnoughRights');
                 })
         }
 
