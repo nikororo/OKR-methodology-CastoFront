@@ -62,9 +62,20 @@
                 <p class="percentGoals">{{ kr.percent }}%</p>
                 <img class="icon_user_kr" src="@/style/img/User.png" alt="User">
                 <div class="modalNameExecutor">
-                  <p><img class="icon_user_kr" src="@/style/img/User.png" alt="User">{{goal.executor}}</p>
-                  <p>Исполнители:</p>
-                  <p><img class="icon_user_kr" src="@/style/img/User.png" alt="User"></p>
+                  <div>
+                    <img class="icon_user" src="@/style/img/Group.png" alt="Depart">
+                    <p>{{ goal.command }}</p>
+                  </div>
+                  <p class="executorP">Ответственный:</p>
+                  <div>
+                    <img class="icon_user_kr" src="@/style/img/User.png" alt="User">
+                    <p>{{ goal.executor }}</p>
+                  </div>
+                  <p class="executorP">Исполнители:</p>
+                  <div>
+                    <img class="icon_user_kr" src="@/style/img/User.png" alt="User">
+                    <p></p>
+                  </div>
                 </div>
               </div>
 
@@ -200,22 +211,19 @@ button {
   background-color: #f4f4f4;
   text-align: left;
 }
+
 .rightBlockKr {
   justify-content: left;
 }
+
 .rightBlockKr p {
   margin-right: 10px;
 }
+
 .flexModalCont label {
   margin: 0 20px 0 0;
 }
-.modalNameExecutor p:nth-child(2) {
-  opacity: 0.3;
-  margin-bottom: 15px;
-}
-.modalNameExecutor p {
-  width: 90%;
-}
+
 .dataGoal {
   margin-top: 5px;
   font-size: 14px;
@@ -223,37 +231,13 @@ button {
   color: #0C2528;
   opacity: 0.3;
 }
-.modalExecutor:hover .modalNameExecutor {
-  display: flex;
-}
-.modalNameExecutor {
-  display: none;
-  justify-content: center;
-  flex-direction: column;
-  width: 300px;
-  padding: 42px 31px;
-  position: absolute;
-  top: 36px;
-  right: -10px;
-  z-index: 999;
-  background: #F4F4F4;
-  box-shadow: 0px 0px 20px rgba(12, 37, 40, 0.27);
-  border-radius: 24px;
-  color: #0C2528;
-}
-.modalNameExecutor p img {
-  margin-right: 12px;
-  width: 40px;
-  height: 40px;
-}
-.modalNameExecutor p:first-child {
-  margin-bottom: 15px;
-}
+
 .krs svg {
   position: absolute;
   right: 15px;
   top: -17px;
 }
+
 .krs .links_menu {
   right: 8px;
 }
@@ -261,6 +245,7 @@ button {
 .krs .infoKr {
   width: 40%;
 }
+
 .rightBlockKr {
   margin-right: 50px;
 }
