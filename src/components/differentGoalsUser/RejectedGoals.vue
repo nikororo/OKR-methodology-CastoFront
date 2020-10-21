@@ -88,6 +88,7 @@ export default {
   mounted: function () {
     this.getGoals();
   },
+
   methods: {
     async getGoals() {
       this.rejectedGoals = this.$store.state.goals.filter(goal => goal.status === 'rejected' && goal.authorID === this.$store.state.user.id);

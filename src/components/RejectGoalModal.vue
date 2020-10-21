@@ -60,6 +60,7 @@ export default {
 </script>
 
 <style scoped>
+
 .addGoalModal {
   padding: 0;
   padding-bottom: 50px;
