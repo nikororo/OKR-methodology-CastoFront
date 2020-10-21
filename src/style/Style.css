@@ -1170,8 +1170,8 @@ input:active, input:focus, select:focus, button:active, button:focus {
     background-color: rgba(0, 0, 0, 0.3);
     overflow: auto;
     padding: 30px;
-    white-space: nowrap;
-    text-align: center;
+    white-space: normal;
+    text-align: start;
 }
 
 .flexModalCont {

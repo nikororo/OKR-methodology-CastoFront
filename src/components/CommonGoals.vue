@@ -60,7 +60,8 @@
                       <img class="icon_user_kr" src="../style/img/User.png" alt="User">
                       <div class="modalNameExecutor">
                         <p><img class="icon_user_kr" src="../style/img/User.png" alt="User">{{goal.executor}}</p>
-                        <p><img class="icon_user_kr" src="../style/img/User.png" alt="User">Арина Титова</p>
+                        <p>Исполнители:</p>
+                        <p><img class="icon_user_kr" src="../style/img/User.png" alt="User"></p>
                       </div>
                     </div>
                   </div>
@@ -164,22 +165,28 @@ button {
   display: none;
   justify-content: center;
   flex-direction: column;
-  width: 300px;
+  width: 400px;
   padding: 42px 31px;
   position: absolute;
   top: 36px;
   right: -10px;
   z-index: 999;
-  background: #0C2528;
-  box-shadow: 0px 0px 20px rgba(12, 37, 40, 0.2);
+  background: #F4F4F4;
+  box-shadow: 0px 0px 20px rgba(12, 37, 40, 0.27);
   border-radius: 24px;
-  color: #F4F4F4;
+  color: #0C2528;
+}
+.modalNameExecutor p {
+  width: 90%;
 }
 .modalNameExecutor p img {
   margin-right: 12px;
   width: 40px;
   height: 40px;
-  filter: invert(100%);
+}
+.modalNameExecutor p:nth-child(2) {
+  opacity: 0.3;
+  margin-bottom: 15px;
 }
 .modalNameExecutor p:first-child {
   margin-bottom: 15px;

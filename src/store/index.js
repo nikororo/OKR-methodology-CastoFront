@@ -58,6 +58,7 @@ export default new Vuex.Store({
             state.user = data.user;
             localStorage.setItem('token', data.access_token);
             localStorage.setItem('userRole', data.user.role);
+            console.log(data.user.role)
             state.authHasError = false;
         },
 
@@ -323,15 +324,23 @@ export default new Vuex.Store({
         },
 
         goalProtection: async ({state, commit}, {status, idGoal}) => {
-            await Vue.axios.put(state.urlBD + 'goals/' + idGoal, {status})
+            await Vue.axios.put(state.urlBD + 'goals/' + idGoal +  '/send-for-check', {status})
                 .catch(err => {
                     if (err.response.status === 401) commit('logOut');
                     if (err.response.status === 403) commit('hasErrorNotEnoughRights');
                 })
         },
 
+        goalApprove: async ({state, commit}, {status, idGoal}) => {
+            await Vue.axios.put(state.urlBD +'goals/' + idGoal + '/approve', {status})
+                .catch((err => {
+                    if (err.response.status === 401) commit('logOut');
+                    if (err.response.status === 403) commit('hasErrorNotEnoughRights');
+                }))
+        },
+
         rejectGoal: async ({state, commit}, {idGoal, comment}) => {
-            await Vue.axios.put(state.urlBD + 'goals/' + idGoal, {status: 'rejected'})
+            await Vue.axios.put(state.urlBD + 'goals/' + idGoal + '/reject', {status: 'reject'})
                 .then(() => commit('setComment', {idGoal, comment}))
                 .catch(err => {
                     if (err.response.status === 401) commit('logOut');
