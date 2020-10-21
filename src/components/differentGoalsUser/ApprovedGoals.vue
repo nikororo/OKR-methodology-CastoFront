@@ -11,7 +11,7 @@
               <div class="infoGoal">
                 <img class="icon_user" src="@/style/img/User.png" alt="User">
                 <div>
-                  <p class="NameExecutor">Арина Титова</p>
+                  <p class="NameExecutor">{{ goal.executor }}</p>
                   <p class="dataGoal">{{ goal.dateStart }}/{{ goal.dateEnd }}</p>
                 </div>
               </div>
@@ -244,5 +244,12 @@ button {
 }
 .krs .links_menu {
   right: 8px;
+}
+
+.krs .infoKr {
+  width: 40%;
+}
+.rightBlockKr {
+  margin-right: 50px;
 }
 </style>

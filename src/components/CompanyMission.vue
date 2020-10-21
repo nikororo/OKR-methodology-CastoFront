@@ -17,7 +17,7 @@
         </div>
         <div class="pageMission">
           <div class="ps_button_mission">
-            <button v-if="this.$store.state.user.role == 'leader'" class="button_goals" @click="showAddMissionModal = true">Добавить</button>
+            <button v-if="role == 'leader'" class="button_goals" @click="showAddMissionModal = true">Добавить</button>
             <AddMissionModal v-if="showAddMissionModal" @close="showAddMissionModal = false"/>
           </div>
           <div v-if="this.$store.state.missions.length !== 0">
@@ -94,7 +94,7 @@ export default {
     idSelectedMission: '',
     role: ''
   }),
-    mounted: function () {
+  mounted: function () {
     this.role = this.$store.state.user.role;
   },
   methods: {

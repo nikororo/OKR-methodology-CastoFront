@@ -1,6 +1,7 @@
 html {
     max-width: 1900px;
     margin: 0 auto;
+    word-wrap: break-word;
 }
 
 button, input {
@@ -854,7 +855,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
 .infoGoal {
     display: flex;
     align-items: center;
-    width: 30%;
+    width: 45%;
 }
 
 .infoGoal img {
@@ -867,9 +868,12 @@ input:active, input:focus, select:focus, button:active, button:focus {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 30%;
+    width: 20%;
     padding-right: 20px;
+}
 
+.NameExecutor {
+    font-size: 20px;
 }
 
 .btnShowKR:hover {

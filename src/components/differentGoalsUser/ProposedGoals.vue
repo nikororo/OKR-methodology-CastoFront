@@ -6,10 +6,14 @@
           <div class="companyGoals">
             <button class="btnShowKR" @click="displayKr(goal.id)">
               <div class="leftBlockGoal">
-              <p class="nameGoals">{{goal.name}}</p>
+                <p class="nameGoals">{{ goal.name }}</p>
               </div>
-              <div class="rightBlockGoal">
-              <p class="percentGoals">{{ goal.command }}</p>
+              <div class="infoGoal">
+                <img class="icon_user" src="@/style/img/User.png" alt="User">
+                <div>
+                  <p class="NameExecutor">{{ goal.executor }}</p>
+                  <p class="dataGoal">{{ goal.dateStart }}/{{ goal.dateEnd }}</p>
+                </div>
               </div>
             </button>
           </div>
@@ -75,5 +79,17 @@ button {
 
 .flexModalCont label {
   margin: 0 20px 0 0;
+}
+
+.dataGoal {
+  margin-top: 5px;
+  font-size: 14px;
+  line-height: 19px;
+  color: #0C2528;
+  opacity: 0.3;
+}
+
+.krs p:first-child {
+  max-width: calc(100% - 150px);
 }
 </style>

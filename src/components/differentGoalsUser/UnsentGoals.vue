@@ -10,8 +10,12 @@
               <div class="leftBlockGoal">
                 <p class="nameGoals">{{ goal.name }}</p>
               </div>
-              <div class="rightBlockGoal">
-                <p class="percentGoals">{{ goal.command }}</p>
+              <div class="infoGoal">
+                <img class="icon_user" src="@/style/img/User.png" alt="User">
+                <div>
+                  <p class="NameExecutor">{{ goal.executor }}</p>
+                  <p class="dataGoal">{{ goal.dateStart }}/{{ goal.dateEnd }}</p>
+                </div>
               </div>
             </button>
 
@@ -58,10 +62,7 @@
           <div class="contKr" v-if="goal.showKr">
             <div class="krs" v-for="kr in goal.krs" :key="kr.id">
               <DeleteKrModal v-if="showDeleteKrModal" @close="getKR(goal.id)" @delete="deleteKr"/>
-              <div class="leftBlockGoal">
                 <p>{{ kr.title }}</p>
-              </div>
-              <div class="rightBlockGoal">
                 <p class="percentGoals">Вес: {{ kr.weight }}</p>
                 <div class="menu">
                   <a class="button_menu">
@@ -93,7 +94,6 @@
                       </button>
                     </div>
                   </div>
-                </div>
               </div>
             </div>
 
@@ -350,5 +350,21 @@ button {
 .krs .percentGoals {
     position: absolute;
     right: 80px;
+}
+
+.infoGoal {
+  margin-right: 10%;
+}
+
+.dataGoal {
+  margin-top: 5px;
+  font-size: 14px;
+  line-height: 19px;
+  color: #0C2528;
+  opacity: 0.3;
+}
+
+.krs p:first-child {
+  max-width: calc(100% - 150px);
 }
 </style>

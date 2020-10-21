@@ -16,6 +16,13 @@
           </router-link>
         </div>
         <div class="page">
+          <select v-on:change="getGoals" v-model="selectedCommand" class="selectStatus" required>
+            <option value disabled selected hidden>По отделам</option>
+            <option value="">Все</option>
+            <option v-for="(command, index) in this.$store.state.commands" v-bind:key="index" v-bind:value="command">
+              {{ command }}
+            </option>
+          </select>
           <div v-if="proposedGoals.length !== 0">
             <div v-for="goal in proposedGoals" v-bind:key="goal.id">
               <div class="contGoal">
@@ -25,9 +32,9 @@
                       <p class="nameGoals">{{ goal.name }}</p>
                     </div>
                     <div class="infoGoal">
-                      <img class="icon_user" src="../style/img/User.png" alt="User">
+                      <img class="icon_user" src="../style/img/Group.png" alt="Depart">
                       <div>
-                        <p class="NameExecutor">Арина Титова</p>
+                        <p>{{ goal.command }}</p>
                         <p class="dataGoal">{{ goal.dateStart }}/{{ goal.dateEnd }}</p>
                       </div>
                     </div>
@@ -69,9 +76,8 @@
 
                 <div class="contKr" v-if="goal.showKr">
                   <div class="krs" v-for="kr in goal.krs" :key="kr.id">
-                    <p>{{ kr.title }}</p>
-                    <p><img class="icon_user_kr" src="../style/img/User.png" alt="User">{{goal.executor}}</p>
-                    <p><img class="icon_user_kr" src="../style/img/User.png" alt="User">Арина Титова</p>
+                    <p class="nameKrs">{{ kr.title }}</p>
+                    <p class="NameExecutor"><img class="icon_user_kr" src="../style/img/User.png" alt="User">{{goal.executor}}</p>
                     <p class="percentGoals">Вес: {{ kr.weight }}</p>
                   </div>
                 </div>
@@ -111,16 +117,21 @@ export default {
     showRejectGoalModal: false,
     idSelectedGoal: '',
     nameSelectedGoal: '',
+    selectedCommand: ''
   }),
 
   created: function () {
     this.getGoals();
   },
  
-   methods: {
+  methods: {
     async getGoals() {
       await this.$store.dispatch('getGoals');
-      this.proposedGoals = this.$store.state.goals.filter(goal => goal.status === 'proposed');
+      if (this.selectedCommand) {
+        this.proposedGoals = this.$store.state.goals.filter(goal => goal.status === 'proposed' && goal.command == this.selectedCommand);
+      } else {
+        this.proposedGoals = this.$store.state.goals.filter(goal => goal.status === 'proposed');
+      }
     },
     async approveGoal(idGoal) {
       await this.$store.dispatch('goalProtection', { status: 'approved', idGoal });
@@ -150,7 +161,7 @@ export default {
 
 <style scoped>
 .leftBlockGoal {
-  width: 50%;
+  width: 65%;
 }
 .infoGoal {
   width: 50%;
@@ -164,9 +175,6 @@ export default {
   line-height: 19px;
   color: #0C2528;
   opacity: 0.3;
-}
-.nameGoals {
-  width: 65%;
 }
 p {
   margin-bottom: 0;
@@ -194,5 +202,30 @@ button {
 }
 .flexModalCont label {
   margin: 0 20px 0 0;
+}
+.infoGoal {
+  width: 35%;
+}
+.nameGoals {
+  width: 95%;
+}
+.nameKrs {
+  width: 40%;
+  margin-right: 10px;
+}
+.krs .NameExecutor {
+  width: 40%;
+  margin-right: 10px;
+}
+.krs .percentGoal {
+  width: 20%;
+}
+.selectStatus {
+  background-color: #f4f4f4;
+  border: solid 1px #43CBD7;
+  width: 250px;
+  padding: 2px 10px;
+  border-radius: 10px;
+  margin-bottom: 40px;
 }
 </style>

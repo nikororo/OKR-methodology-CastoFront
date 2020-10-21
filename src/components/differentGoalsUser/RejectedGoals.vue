@@ -5,10 +5,18 @@
         <div class="contGoal">
           <div class="companyGoals">
             <button class="btnShowKR" @click="displayKr(goal.id)">
-              <p class="nameGoals">{{goal.name}}</p>
+              <div class="leftBlockGoal">
+                <p class="nameGoals">{{ goal.name }}</p>
+              </div>
+              <div class="infoGoal">
+                <img class="icon_user" src="@/style/img/User.png" alt="User">
+                <div>
+                  <p class="NameExecutor">{{ goal.executor }}</p>
+                  <p class="dataGoal">{{ goal.dateStart }}/{{ goal.dateEnd }}</p>
+                </div>
+              </div>
             </button>
             <div class="percentGoals">
-              <p>{{ goal.command }}</p>
               <div class="btnRejectComm">
                 <img width="25" height="25" src="@/style/img/Comment.png" alt="Comment">
                 <div class="links_menu rejectComm">
@@ -207,5 +215,27 @@ button {
   display: flex;
   position: absolute;
   right: 50px;
+}
+
+.leftBlockGoal {
+  width: 55%;
+  margin-right: 15px;
+}
+
+.infoGoal {
+  margin-right: 70px;
+  width: 40%;
+}
+
+.dataGoal {
+  margin-top: 5px;
+  font-size: 14px;
+  line-height: 19px;
+  color: #0C2528;
+  opacity: 0.3;
+}
+
+.krs p:first-child {
+  max-width: calc(100% - 150px);
 }
 </style>

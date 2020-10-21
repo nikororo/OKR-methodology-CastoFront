@@ -240,7 +240,8 @@ export default new Vuex.Store({
                 .catch(() => commit('authErr'));
         },
 
-        getGoals: async ({state, commit}) => {
+        getGoals: async ({state, commit, dispatch}) => {
+            await dispatch('getUsers');
             await Vue.axios.get(state.urlBD + 'goals')
                 .then(({data}) => {
                     data.map(goal => {
@@ -254,6 +255,10 @@ export default new Vuex.Store({
                             weight: '',
                             executor: '',
                         }
+                        state.people.map(man => {
+                            if (man.id === goal.executor)
+                                goal.executor = man.name
+                        })
                     })
                     commit('setGoals', data)
                 })
