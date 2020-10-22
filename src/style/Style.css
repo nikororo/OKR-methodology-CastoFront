@@ -815,9 +815,9 @@ input:active, input:focus, select:focus, button:active, button:focus {
 
 .descrGoal {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     margin: 0 auto;
-    padding-bottom: 35px;
+    padding: 0 40px 25px;
 }
 
 .nameGoals {
@@ -1053,7 +1053,8 @@ input:active, input:focus, select:focus, button:active, button:focus {
 }
 
 .contKr {
-    padding: 10px 40px 25px;
+    padding: 25px 40px;
+    box-shadow: 0 10px 20px -20px rgba(0, 0, 0, 0.5) inset;
 }
 
 .meaning {
@@ -1187,6 +1188,7 @@ input:active, input:focus, select:focus, button:active, button:focus {
     height: auto;
     padding: 60px 20px 40px;
     margin: auto;
+    text-align: center;
 }
 
 .addGoalModal header {

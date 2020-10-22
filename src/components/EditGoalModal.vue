@@ -41,7 +41,7 @@
                 <div class="errorMsg" v-if="this.dataErr">Дата начала позже даты окончания</div>       
               </div>
               <div class="modal_user_name">
-                <p>{{executorName}}</p></div>
+                <p>{{executor}}</p></div>
               <textarea v-model="descr" id="addGoalDescr" class="input_user" type="text"
                         placeholder="Описание цели" minlength="5" maxlength="500"></textarea>
             </div>
@@ -73,8 +73,7 @@ export default {
     dateStart: '',
     dateEnd: '',
     dataErr: false,
-    executorId: '',
-    executorName: '',
+    executor: '',
     people: '',
     command: '',
     descr: ''
@@ -92,15 +91,10 @@ export default {
           this.author = goal.author;
           this.dateStart = goal.dateStart;
           this.dateEnd = goal.dateEnd;
-          this.executorId = goal.executor;
+          this.executor = goal.executor;
           this.command = goal.command;
           this.descr = goal.descr;
         }
-    });
-    this.$store.state.people.map((men) => {
-      if (men.id === this.executorId) {
-        this.executorName = men.name;
-      }
     });
   },
 

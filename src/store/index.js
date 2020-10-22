@@ -24,13 +24,13 @@ export default new Vuex.Store({
         missions: [
             {
                 id: '0',
-                name: 'Стремление к успеху 1',
-                descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                name: 'Искоренить маты в компании',
+                descr: 'Все сотрудники должны перестать нецензурно выражаться.'
             },
             {
                 id: '1',
-                name: 'Стремление к успеху 2',
-                descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                name: 'Расширить компанию на другие регионы',
+                descr: 'Выделить области для последующего продвижения компании, подготовить почву для внедрения на чужие рынки.'
             }
 
         ],
@@ -58,7 +58,6 @@ export default new Vuex.Store({
             state.user = data.user;
             localStorage.setItem('token', data.access_token);
             localStorage.setItem('userRole', data.user.role);
-            console.log(data.user.role)
             state.authHasError = false;
         },
 
@@ -96,25 +95,6 @@ export default new Vuex.Store({
                         weight: '',
                         executor: '',
                     }
-                }
-            });
-        },
-
-        editKr: (state, modifiedKr) => {
-            state.goals.forEach((goal) => {
-                if (goal.id === modifiedKr.idGoal) {
-                    goal.krs.forEach((kr) => {
-                        if (kr.id === modifiedKr.id) {
-                            if (kr.weight !== modifiedKr.weight) {
-                                goal.remainderWeight += kr.weight - modifiedKr.weight;
-                            }
-
-                            delete modifiedKr.idGoal;
-                            for (const property in modifiedKr) {
-                                kr[property] = modifiedKr[property];
-                            }
-                        }
-                    });
                 }
             });
         },
@@ -393,10 +373,14 @@ export default new Vuex.Store({
                 })
         },
 
-        editKr: async ({state, commit}, {id, ...modifiedKr}) => {
+        editKr: async ({state, commit, dispatch}, {id, modifiedKr, performers}) => {
             await Vue.axios.put(state.urlBD + 'key-results/' + id, modifiedKr)
-                .then(({data}) => {
-                    commit('editKr', {id, data});
+                .then(async ({data}) => {
+                    if (performers.length != 0) {
+                        await dispatch('addPerformers', {id, performers})
+                    }
+                    console.log(data)
+                    dispatch('getKrs', data.goal_id)
                 }).catch().catch(err => {
                     if (err.response.status === 401) commit('logOut');
                     if (err.response.status === 403) commit('hasErrorNotEnoughRights');
@@ -409,6 +393,14 @@ export default new Vuex.Store({
                     if (err.response.status === 401) commit('logOut');
                     if (err.response.status === 403) commit('hasErrorNotEnoughRights');
                 })
+        },
+
+        addPerformers: async ({state, commit}, {id, performers}) => {
+            await Vue.axios.post(state.urlBD + 'key-results/' + id + '/add-performers', {users: performers})
+            .catch(err => {
+                if (err.response.status === 401) commit('logOut');
+                if (err.response.status === 403) commit('hasErrorNotEnoughRights');
+            })
         }
 
     },

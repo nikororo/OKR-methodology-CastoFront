@@ -70,6 +70,7 @@ export default {
     executor: '',
     people: [],
     performers: [],
+    uncorrectPerf: [],
     remainderWeight: '',
     errorWeigth: false,
   }),
@@ -89,11 +90,14 @@ export default {
             this.weight = kr.weight;
             this.oldWeight = kr.weight;
             this.executor = kr.executor;
-            this.performers = kr.performers;
+            this.uncorrectPerf = kr.performers.users;
           }
         })
       }
     });
+    this.uncorrectPerf.map((user) => {
+      this.performers.push(user.id);
+    })
   },
 
   methods: {
@@ -110,14 +114,11 @@ export default {
         title: this.title,
         weight: this.weight,
         executor: this.executor,
-        performers: this.performers,
         idGoal: this.idGoal,
-        id: this.idKr
       }
-      console.log(modifiedKr.performers)
-      this.$store.dispatch('editKr', modifiedKr);
+      this.$store.dispatch('editKr', {id: this.idKr, modifiedKr, performers: this.performers});
       //придумать как пересчитывать, когда доделается редактирование
-      this.$store.dispatch('sumPercent', this.idGoal);
+      this.$store.dispatch('sumPercent', {idGoal: this.idGoal, idKr: this.idKr});
       this.$emit('close');
     }
   },

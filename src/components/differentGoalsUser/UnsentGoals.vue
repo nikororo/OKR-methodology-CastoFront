@@ -345,6 +345,7 @@ button {
 
 .leftBlockGoal {
   width: 65%;
+  margin-right: 15px;
 }
 
 .krs .percentGoals {
