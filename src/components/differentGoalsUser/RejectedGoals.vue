@@ -22,7 +22,7 @@
                 <div class="links_menu rejectComm">
                   <div class="tre"></div>
                   <h2>Комментарий:</h2>
-                  <p>{{goal.comment}}</p>
+                  <p>{{goal.rejectionComments}}</p>
                 </div>
               </div>
             </div>
@@ -100,13 +100,6 @@ export default {
   methods: {
     async getGoals() {
       this.rejectedGoals = this.$store.state.goals.filter(goal => goal.status === 'rejected' && goal.authorID === this.$store.state.user.id);
-      this.rejectedGoals.map(goal => {
-        if (this.$store.state.rejectionComments[goal.id]) {
-          goal.comment = this.$store.state.rejectionComments[goal.id];
-        } else {
-          goal.comment = 'Цель отклонена'
-        }
-      });
     },
     async displayKr(idGoal) {
       this.$store.commit('displayKr', idGoal);

@@ -123,7 +123,7 @@ export default {
     async getGoals() {
       await this.$store.dispatch('getGoals');
       if (this.selectedCommand) {
-        this.approvedGoals = this.$store.state.goals.filter(goal => goal.status === 'approved' && goal.command == this.selectedCommand);
+        this.approvedGoals = this.$store.state.goals.filter(goal => goal.status === 'approved' && goal.command === this.selectedCommand);
       } else {
         this.approvedGoals = this.$store.state.goals.filter(goal => goal.status === 'approved');
       }

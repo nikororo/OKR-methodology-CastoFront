@@ -42,7 +42,6 @@ export default new Vuex.Store({
             'Маркетинг',
             'HR-отдел',
         ],
-        rejectionComments: {},
         goals: [],
     },
     mutations: {
@@ -58,7 +57,7 @@ export default new Vuex.Store({
             state.user = data.user;
             localStorage.setItem('token', data.access_token);
             localStorage.setItem('userRole', data.user.role);
-            console.log(data.user.role)
+
             state.authHasError = false;
         },
 
@@ -186,14 +185,6 @@ export default new Vuex.Store({
         setUsers: (state, users) => {
             state.people = users;
         },
-
-        setComment: (state, {idGoal, comment}) => {
-            state.rejectionComments[idGoal] = comment
-        },
-
-        deleteComment: (state, idGoal) => {
-            delete state.rejectionComments[idGoal];
-        }
     },
 
     plugins: [createPersistedState()],
@@ -339,9 +330,9 @@ export default new Vuex.Store({
                 }))
         },
 
-        rejectGoal: async ({state, commit}, {idGoal, comment}) => {
-            await Vue.axios.put(state.urlBD + 'goals/' + idGoal + '/reject', {status: 'reject'})
-                .then(() => commit('setComment', {idGoal, comment}))
+        rejectGoal: async ({state, commit}, {idGoal, rejectionComments}) => {
+            console.log(rejectionComments)
+            await Vue.axios.put(state.urlBD + 'goals/' + idGoal + '/reject', {comment:rejectionComments})
                 .catch(err => {
                     if (err.response.status === 401) commit('logOut');
                     if (err.response.status === 403) commit('hasErrorNotEnoughRights');
@@ -350,10 +341,6 @@ export default new Vuex.Store({
 
         deleteGoal: async ({state, commit}, idGoal) => {
             await Vue.axios.delete(state.urlBD + 'goals/' + idGoal)
-                .then(() => {
-                    if (state.rejectionComments[idGoal])
-                        commit('deleteComment', idGoal)
-                })
                 .catch(err => {
                     if (err.response.status === 401) commit('logOut');
                     if (err.response.status === 403) commit('hasErrorNotEnoughRights');
@@ -379,7 +366,6 @@ export default new Vuex.Store({
             let newKR;
             state.goals.forEach((goal) => {
                 if (goal.id === goalId) {
-                    //goal.remainderWeight -= goal.newKr.weight;
                     if (goal.newKr.executor !== '')
                         goal.newKr.executor = Number(goal.newKr.executor);
                     newKR = goal.newKr;
