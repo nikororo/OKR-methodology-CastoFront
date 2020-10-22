@@ -59,8 +59,16 @@
                       <p class="percentGoals">{{ kr.percent }}%</p>
                       <img class="icon_user_kr" src="../style/img/User.png" alt="User">
                       <div class="modalNameExecutor">
-                        <p><img class="icon_user_kr" src="../style/img/User.png" alt="User">{{goal.executor}}</p>
-                        <p v-if="kr.performers.users.length !== 0">Исполнители:</p>
+                        <div>
+                          <img class="icon_user" src="../style/img/Group.png" alt="Depart">
+                          <p>{{ goal.command }}</p>
+                        </div>
+                        <p class="executorP">Ответственный:</p>
+                        <div>
+                          <img class="icon_user_kr" src="../style/img/User.png" alt="User">
+                          <p>{{goal.executor}}</p>
+                        </div>
+                        <p class="executorP" v-if="kr.performers.users.length !== 0">Исполнители:</p>
                         <div v-for="perf in kr.performers.users" v-bind:key="perf.id">
                           <p><img class="icon_user_kr" src="../style/img/User.png" alt="User">{{perf.name}}</p>
                         </div>
@@ -114,7 +122,7 @@ export default {
     async getGoals() {
       await this.$store.dispatch('getGoals');
       if (this.selectedCommand) {
-        this.approvedGoals = this.$store.state.goals.filter(goal => goal.status === 'approved' && goal.command == this.selectedCommand);
+        this.approvedGoals = this.$store.state.goals.filter(goal => goal.status === 'approved' && goal.command === this.selectedCommand);
       } else {
         this.approvedGoals = this.$store.state.goals.filter(goal => goal.status === 'approved');
       }
@@ -139,6 +147,9 @@ export default {
 
 
 <style scoped>
+.page {
+  padding-bottom: 250px;
+}
 
 p {
   margin-bottom: 0;
@@ -182,18 +193,7 @@ button {
 .krs p:first-child {
   max-width: 100%;
 }
-.modalNameExecutor p img {
-  margin-right: 12px;
-  width: 30px;
-  height: 30px;
-}
-.modalNameExecutor p:nth-child(2) {
-  opacity: 0.3;
-  margin-bottom: 15px;
-}
-.modalNameExecutor p:first-child {
-  margin-bottom: 15px;
-}
+
 .selectStatus {
   background-color: #f4f4f4;
   border: solid 1px #43CBD7;

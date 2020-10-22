@@ -222,7 +222,7 @@ export default {
     },
 
     async sendGoal(idGoal) {
-      await this.$store.dispatch('goalProtection', {status: 'proposed', idGoal});
+      await this.$store.dispatch('goalProtection', idGoal);
       this.getGoals();
     },
 

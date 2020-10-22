@@ -134,7 +134,7 @@ export default {
       }
     },
     async approveGoal(idGoal) {
-      await this.$store.dispatch('goalApprove', { status: 'approved', idGoal });
+      await this.$store.dispatch('goalApprove', idGoal);
       this.getGoals();
     },
     closeRejectGoal() {

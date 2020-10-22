@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="padding-bottom: 100px">
     <div v-if="approvedGoals.length !== 0">
       <div v-for="goal in approvedGoals" v-bind:key="goal.id">
         <div class="contGoal">
@@ -62,8 +62,16 @@
                 <p class="percentGoals">{{ kr.percent }}%</p>
                 <img class="icon_user_kr" src="@/style/img/User.png" alt="User">
                 <div class="modalNameExecutor">
-                  <p><img class="icon_user_kr" src="@/style/img/User.png" alt="User">{{goal.executor}}</p>
-                  <p v-if="kr.performers.users.length !== 0">Исполнители:</p>
+                  <div>
+                    <img class="icon_user" src="@/style/img/Group.png" alt="Depart">
+                    <p>{{ goal.command }}</p>
+                  </div>
+                  <p class="executorP">Ответственный:</p>
+                  <div>
+                    <img class="icon_user_kr" src="@/style/img/User.png" alt="User">
+                    <p>{{ goal.executor }}</p>
+                  </div>
+                  <p class="executorP" v-if="kr.performers.users.length !== 0">Исполнители:</p>
                   <div v-for="perf in kr.performers.users" v-bind:key="perf.id">
                     <p><img class="icon_user_kr" src="@/style/img/User.png" alt="User">{{perf.name}}</p>
                   </div>
@@ -202,22 +210,19 @@ button {
   background-color: #f4f4f4;
   text-align: left;
 }
+
 .rightBlockKr {
-  justify-content: left;
+  justify-content: space-between;
 }
+
 .rightBlockKr p {
-  margin-right: 10px;
+  margin-right: 20px;
 }
+
 .flexModalCont label {
   margin: 0 20px 0 0;
 }
-.modalNameExecutor p:nth-child(2) {
-  opacity: 0.3;
-  margin-bottom: 15px;
-}
-.modalNameExecutor p {
-  width: 90%;
-}
+
 .dataGoal {
   margin-top: 5px;
   font-size: 14px;
@@ -252,18 +257,13 @@ button {
   width: 30px;
   height: 30px;
 }
-.modalNameExecutor p:nth-child(2) {
-  opacity: 0.3;
-  margin-bottom: 15px;
-}
-.modalNameExecutor p:first-child {
-  margin-bottom: 15px;
-}
+
 .krs svg {
   position: absolute;
   right: 15px;
   top: -17px;
 }
+
 .krs .links_menu {
   right: 8px;
 }
@@ -271,6 +271,7 @@ button {
 .krs .infoKr {
   width: 40%;
 }
+
 .rightBlockKr {
   margin-right: 50px;
 }

@@ -50,7 +50,7 @@ export default {
     async reject() {
       let payload = {
         idGoal: this.idGoal,
-        comment: this.comment
+        rejectionComments: this.comment
       }
       await this.$store.dispatch('rejectGoal',  payload);
       this.$emit('close');

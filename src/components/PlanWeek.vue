@@ -102,3 +102,9 @@
         }
     }
 </script>
+
+<style scoped>
+.tasks {
+    padding-top: 40px;
+}
+</style>
