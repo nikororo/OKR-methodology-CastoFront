@@ -69,7 +69,7 @@
                   <p class="executorP">Ответственный:</p>
                   <div>
                     <img class="icon_user_kr" src="@/style/img/User.png" alt="User">
-                    <p>{{ goal.executor }}</p>
+                    <p>{{ kr.executorName }}</p>
                   </div>
                   <p class="executorP" v-if="kr.performers.users.length !== 0">Исполнители:</p>
                   <div v-for="perf in kr.performers.users" v-bind:key="perf.id">
