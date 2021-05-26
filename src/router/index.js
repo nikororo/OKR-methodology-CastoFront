@@ -20,8 +20,7 @@ const ifAuthenticated = (to, from, next) => {
   next('/notAuth')
 }
 
-const routes = [
-  {
+const routes = [{
     path: '/notAuth',
     name: 'UserNotAuth',
     component: () => import('../components/UserNotAuth'),
@@ -91,9 +90,9 @@ const routes = [
     component: () => import('../components/GoalsProtection'),
     beforeEnter: ifAuthenticated
   },
-  { 
-    path: '*', 
-    redirect: '/goals' 
+  {
+    path: '*',
+    redirect: '/goals'
   }
 ]
 

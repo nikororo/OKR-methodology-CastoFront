@@ -11,8 +11,7 @@ export default new Vuex.Store({
   state: {
     authHasError: true,
     user: null,
-    missions: [
-      {
+    missions: [{
         id: '0',
         name: 'Стремление к успеху 1',
         descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
@@ -40,8 +39,7 @@ export default new Vuex.Store({
       'Marketing',
       'Человек Умелый',
     ],
-    goals: [
-      {
+    goals: [{
         name: 'Цель 1',
         dateStart: '2020-09-25',
         dateEnd: '2020-09-29',
@@ -51,29 +49,28 @@ export default new Vuex.Store({
         percentOfCompletion: 0,
         showKr: false,
         remainderWeight: 0,
-        krs: [
-          {
-            title: "кр цели 1", 
-            weight: "20", 
-            executor: "Титова Арина Радиевна", 
-            performers: [], 
-            percent: 0, 
+        krs: [{
+            title: "кр цели 1",
+            weight: "20",
+            executor: "Титова Арина Радиевна",
+            performers: [],
+            percent: 0,
             id: 1
           },
           {
-            title: "кр цели 1 второй", 
-            weight: "50", 
-            executor: "Титова Арина Радиевна", 
-            performers: [], 
-            percent: 0, 
+            title: "кр цели 1 второй",
+            weight: "50",
+            executor: "Титова Арина Радиевна",
+            performers: [],
+            percent: 0,
             id: 3
           },
           {
-            title: "кр цели 1 еще один", 
-            weight: "30", 
-            executor: "Титова Арина Радиевна", 
-            performers: [], 
-            percent: 0, 
+            title: "кр цели 1 еще один",
+            weight: "30",
+            executor: "Титова Арина Радиевна",
+            performers: [],
+            percent: 0,
             id: 4
           }
         ],
@@ -94,16 +91,14 @@ export default new Vuex.Store({
         percentOfCompletion: 0,
         showKr: false,
         remainderWeight: 0,
-        krs: [
-          {
-            title: "кр цели 2", 
-            weight: "100", 
-            executor: "Титова Арина Радиевна", 
-            performers: [], 
-            percent: 0, 
-            id: 1
-          }
-        ],
+        krs: [{
+          title: "кр цели 2",
+          weight: "100",
+          executor: "Титова Арина Радиевна",
+          performers: [],
+          percent: 0,
+          id: 1
+        }],
         status: 'approved',
         newKr: {
           title: '',
@@ -122,21 +117,20 @@ export default new Vuex.Store({
         percentOfCompletion: 0,
         showKr: false,
         remainderWeight: 0,
-        krs: [
-          {
-            title: "кр цели 3", 
-            weight: "60", 
-            executor: "Титова Арина Радиевна", 
-            performers: [], 
-            percent: 0, 
+        krs: [{
+            title: "кр цели 3",
+            weight: "60",
+            executor: "Титова Арина Радиевна",
+            performers: [],
+            percent: 0,
             id: 1
           },
           {
-            title: "кр цели 3 второй", 
-            weight: "40", 
-            executor: "Титова Арина Радиевна", 
-            performers: [], 
-            percent: 0, 
+            title: "кр цели 3 второй",
+            weight: "40",
+            executor: "Титова Арина Радиевна",
+            performers: [],
+            percent: 0,
             id: 2
           }
         ],
@@ -157,16 +151,14 @@ export default new Vuex.Store({
         percentOfCompletion: 0,
         showKr: false,
         remainderWeight: 0,
-        krs: [
-          {
-            title: "кр цели для одобрения", 
-            weight: "100", 
-            executor: "Титова Арина Радиевна", 
-            performers: [], 
-            percent: 0, 
-            id: 1
-          }
-        ],
+        krs: [{
+          title: "кр цели для одобрения",
+          weight: "100",
+          executor: "Титова Арина Радиевна",
+          performers: [],
+          percent: 0,
+          id: 1
+        }],
         status: 'proposed',
         newKr: {
           title: '',
@@ -184,16 +176,14 @@ export default new Vuex.Store({
         percentOfCompletion: 0,
         showKr: false,
         remainderWeight: 70,
-        krs: [
-          {
-            title: "кр цели отдела", 
-            weight: "30", 
-            executor: "Титова Арина Радиевна", 
-            performers: [], 
-            percent: 0, 
-            id: 1
-          }
-        ],
+        krs: [{
+          title: "кр цели отдела",
+          weight: "30",
+          executor: "Титова Арина Радиевна",
+          performers: [],
+          percent: 0,
+          id: 1
+        }],
         status: 'unsent',
         newKr: {
           title: '',
@@ -211,16 +201,14 @@ export default new Vuex.Store({
         percentOfCompletion: 0,
         showKr: false,
         remainderWeight: 0,
-        krs: [
-          {
-            title: "кр цели отдела", 
-            weight: "100", 
-            executor: "Титова Арина Радиевна", 
-            performers: [], 
-            percent: 0, 
-            id: 1
-          }
-        ],
+        krs: [{
+          title: "кр цели отдела",
+          weight: "100",
+          executor: "Титова Арина Радиевна",
+          performers: [],
+          percent: 0,
+          id: 1
+        }],
         status: 'rejected',
         newKr: {
           title: '',
@@ -242,7 +230,7 @@ export default new Vuex.Store({
 
     addMission: (state, newMission) => {
       let maxID = 0;
-      state.missions.forEach((mission)=>{
+      state.missions.forEach((mission) => {
         if (mission.id > maxID) maxID = mission.id;
       })
       newMission.id = maxID + 1;
@@ -259,7 +247,7 @@ export default new Vuex.Store({
       let maxID = 0;
       state.goals.forEach((goal) => {
         if (goal.id > maxID) maxID = goal.id;
-      }) 
+      })
       newGoal.id = maxID + 1;
       newGoal.showKr = false;
       newGoal.krs = [];
@@ -280,7 +268,7 @@ export default new Vuex.Store({
             goal[property] = modifiedGoal[property];
           }
         }
-      }); 
+      });
     },
 
     deleteGoal: (state, idGoal) => {
@@ -304,7 +292,7 @@ export default new Vuex.Store({
         }
       });
     },
-    
+
     sendGoal: (state, idGoal) => {
       state.goals.forEach((goal) => {
         if (goal.id === idGoal) {
@@ -330,7 +318,7 @@ export default new Vuex.Store({
               if (kr.id > maxID) maxID = kr.id;
             });
           }
-          maxID ++;
+          maxID++;
           goal.remainderWeight -= goal.newKr.weight;
 
           goal.krs.push({
@@ -367,10 +355,13 @@ export default new Vuex.Store({
             }
           });
         }
-      }); 
+      });
     },
 
-    deleteKr: (state, {idGoal, idKr}) => {
+    deleteKr: (state, {
+      idGoal,
+      idKr
+    }) => {
       state.goals.forEach((goal) => {
         if (goal.id === idGoal) {
           goal.krs.forEach((kr, i) => {
@@ -390,13 +381,13 @@ export default new Vuex.Store({
         }
       })
     },
-    percentFromColors:(state, id) => {
-      state.goals.forEach((goal) =>{
+    percentFromColors: (state, id) => {
+      state.goals.forEach((goal) => {
         if (goal.id === id) {
           let PercGoal = goal.percentOfCompletion
           switch (PercGoal) {
             case PercGoal <= 30:
-              return  'red'
+              return 'red'
             case PercGoal >= 30 && PercGoal <= 70:
               return 'black'
             case PercGoal >= 70:
@@ -410,7 +401,9 @@ export default new Vuex.Store({
   },
   plugins: [createPersistedState()],
   actions: {
-    logCorr: async ({state}, resUser) => {
+    logCorr: async ({
+      state
+    }, resUser) => {
       state.authHasError = false;
       let db = firebase.database();
 
@@ -428,13 +421,18 @@ export default new Vuex.Store({
       }
     },
 
-    regCorr: async ({state}, resUser) => {
+    regCorr: async ({
+      state
+    }, resUser) => {
       let db = firebase.database();
       try {
         await new Promise((resolve) => {
-          db.ref(`/${resUser.id}`).set({'command': resUser.command, 'name': resUser.name}, (err) => { 
+          db.ref(`/${resUser.id}`).set({
+            'command': resUser.command,
+            'name': resUser.name
+          }, (err) => {
             if (err) throw err;
-            
+
             state.authHasError = false;
             state.user = resUser;
             console.log(state.user)
@@ -447,7 +445,10 @@ export default new Vuex.Store({
       }
     },
 
-    sumPercent: ({commit, state}, id) => {
+    sumPercent: ({
+      commit,
+      state
+    }, id) => {
       state.goals.forEach((goal) => {
         if (goal.id === id) {
           let percentOfCompletion = 0;
