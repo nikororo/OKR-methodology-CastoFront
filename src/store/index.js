@@ -1,20 +1,16 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import createPersistedState from "vuex-persistedstate";
+import Vue from 'vue';
+import Vuex from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    authHasError: false,
-    urlBD: 'http://127.0.0.1:8000/',
-    account: {
-      name: 'Титова Арина Радиевна',
-      command: 'Castoroides',
-      email: 'mail@mail.ru',
-      password: '12345678'
-    },
-    user: {},
+    authHasError: true,
+    user: null,
     missions: [
       {
         id: '0',
@@ -238,12 +234,10 @@ export default new Vuex.Store({
     authErr: (state) => {
       state.authHasError = true;
     },
-    authCorr: (state, user) => {
-      state.user = user;
-      state.authHasError = false;
-    },
+
     logOut: (state) => {
       state.user = {};
+      state.authHasError = false;
     },
 
     addMission: (state, newMission) => {
@@ -415,25 +409,60 @@ export default new Vuex.Store({
     },
   },
   plugins: [createPersistedState()],
-    actions: {
-      sumPercent: ({commit, state}, id) => {
-        state.goals.forEach((goal) => {
-          if (goal.id === id) {
-            let percentOfCompletion = 0;
-            goal.krs.forEach((kr) => {
-              let weightKr = kr.weight / 100;
-              let percentKr = kr.percent;
-              percentOfCompletion = weightKr * percentKr + percentOfCompletion;
-            })
-            let payload = {
-              id,
-              percent: percentOfCompletion
-            }
-            commit('setPercentOfCompletion', payload)
-          }
-        })
+  actions: {
+    logCorr: async ({state}, resUser) => {
+      state.authHasError = false;
+      let db = firebase.database();
+
+      try {
+        await new Promise((resolve) => {
+          db.ref(`/${resUser.id}`).on('value', (snap) => {
+            let value = snap.val();
+            state.user = Object.assign(resUser, value);
+            resolve('end');
+          })
+        });
+      } catch (err) {
+        state.authHasError = true;
+        throw err;
       }
     },
-  modules: {
+
+    regCorr: async ({state}, resUser) => {
+      let db = firebase.database();
+      try {
+        await new Promise((resolve) => {
+          db.ref(`/${resUser.id}`).set({'command': resUser.command, 'name': resUser.name}, (err) => { 
+            if (err) throw err;
+            
+            state.authHasError = false;
+            state.user = resUser;
+            console.log(state.user)
+            resolve('end');
+          });
+        });
+      } catch (err) {
+        state.authHasError = true;
+        throw err;
+      }
+    },
+
+    sumPercent: ({commit, state}, id) => {
+      state.goals.forEach((goal) => {
+        if (goal.id === id) {
+          let percentOfCompletion = 0;
+          goal.krs.forEach((kr) => {
+            let weightKr = kr.weight / 100;
+            let percentKr = kr.percent;
+            percentOfCompletion = weightKr * percentKr + percentOfCompletion;
+          })
+          let payload = {
+            id,
+            percent: percentOfCompletion
+          }
+          commit('setPercentOfCompletion', payload)
+        }
+      })
+    }
   }
 })

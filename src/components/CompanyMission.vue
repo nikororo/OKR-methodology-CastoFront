@@ -3,7 +3,7 @@
     <Head/>
     <div class="row no-gutter cont">
       <toolBar/>
-      <div class="col-lg-10 col-md-7">
+      <div class="col-lg-10 col-md-10">
         <div class="header_targets_link">
           <router-link class="link_targets" active-class="active_link_targets" to="/goals/companyMission">
             Стратегические цели

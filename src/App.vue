@@ -9,8 +9,8 @@
   @import "~bootstrap/dist/css/bootstrap.css";
   
   * {
-      margin: 0;
-      padding: 0;
+    margin: 0;
+    padding: 0;
   }
 
   input:active, input:focus, select:focus, button:active, button:focus {

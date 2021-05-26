@@ -44,7 +44,8 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import firebase from 'firebase/app';
+import 'firebase/auth'
 
 export default {
   name: 'Signup',
@@ -52,37 +53,53 @@ export default {
     email: '',
     password: '',
     fullName: '',
-    activity: '',
-    publicPath: process.env.BASE_URL,
+    activity: ''
   }),
 
   methods: {
+    // onReg() {
+    //   Vue.axios.post(this.$store.state.urlBD + 'api/user/register', {
+    //     name: this.fullName,
+    //     email: this.email,
+    //     password: this.password,
+    //     c_password: this.password,
+    //     activity: this.activity
+    //   })
+    //       .then(() => {
+    //         Vue.axios.post(this.$store.state.urlBD + 'api/user/login', {
+    //           email: this.email,
+    //           password: this.password
+    //         })
+    //             .then((res) => {
+    //               let user = {
+    //                 email: res.data.user.email,
+    //                 name: res.data.user.name,
+    //                 id: res.data.user.id,
+    //                 activity: res.data.user.activity
+    //               }
+    //               this.$store.commit('authCorr', user);
+    //               this.$router.push('/goals');
+    //             })
+    //             .catch(() => this.$store.commit('authErr'));
+    //       })
+    //       .catch(() => this.$store.commit('authErr'));
+    // },
     onReg() {
-      Vue.axios.post(this.$store.state.urlBD + 'api/user/register', {
-        name: this.fullName,
-        email: this.email,
-        password: this.password,
-        c_password: this.password,
-        activity: this.activity
-      })
-          .then(() => {
-            Vue.axios.post(this.$store.state.urlBD + 'api/user/login', {
-              email: this.email,
-              password: this.password
-            })
-                .then((res) => {
-                  let user = {
-                    email: res.data.user.email,
-                    name: res.data.user.name,
-                    id: res.data.user.id,
-                    activity: res.data.user.activity
-                  }
-                  this.$store.commit('authCorr', user);
-                  this.$router.push('/goals');
-                })
-                .catch(() => this.$store.commit('authErr'));
-          })
-          .catch(() => this.$store.commit('authErr'));
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+        .then(async (res) => {
+          await this.$store.dispatch('regCorr', 
+            {
+              email: res.user.email,
+              id: res.user.uid,
+              name: this.fullName,
+              command: this.activity
+            }
+          );
+          this.$router.push('/');
+        })
+        .catch(() => {
+          this.$store.commit('authErr');
+        });
     },
   }
 }

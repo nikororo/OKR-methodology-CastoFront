@@ -25,48 +25,29 @@
 </template>
 
 <script>
-// import Vue from 'vue'
-// import router from "@/router";
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 export default {
   name: 'Signin',
   data: () => ({
     email: '',
-    password: '',
-    publicPath: process.env.BASE_URL
+    password: ''
   }),
 
   methods: {
     onLog() {
-      let login = this.$store.state.account.email
-      let pass = this.$store.state.account.password
-      if (this.email === login && this.password === pass) {
-        let user = this.$store.state.account;
-        this.$store.commit('authCorr', user);
-        this.$router.push('/');
-      } else {
-        this.$store.commit('authErr')
-        this.email = ''
-        this.password = ''
-      }
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+        .then(async (res) => {
+          await this.$store.dispatch('logCorr', {email: res.user.email, id: res.user.uid});
+          this.$router.push('/');
+        })
+        .catch(() => {
+          this.$store.commit('authErr');
+          this.email = '';
+          this.password = '';
+        });
     }
-    // onLog() {
-    //   Vue.axios.post(this.$store.state.urlBD + 'api/user/login', {
-    //     email: this.email,
-    //     password: this.password
-    //   })
-    //       .then((res) => {
-    //         let user = {
-    //           email: res.data.user.email,
-    //           name: res.data.user.name,
-    //           id: res.data.user.id,
-    //           activity: res.data.user.activity
-    //         }
-    //         this.$store.commit('authCorr', user);
-    //         this.$router.push('/');
-    //       })
-    //       .catch(() => this.$store.commit('authErr'));
-    // },
   }
 }
 </script>
