@@ -57,7 +57,7 @@ export default {
         name: this.name,
         descr: this.descr
       }
-      this.$store.commit('addMission', newMission);
+      this.$store.dispatch('addMission', newMission);
       this.$emit('close');
     }
   },

@@ -93,13 +93,16 @@ export default {
     showAddMissionModal: false,
     idSelectedMission: ''
   }),
+  beforeCreate() {
+    this.$store.dispatch('getMissions');
+  },
   methods: {
     openDeleteMission(id){
       this.idSelectedMission = id;
       this.showDeleteMissionModal = true;
     },
     deleteMission() {
-      this.$store.commit('deleteMission', this.idSelectedMission);
+      this.$store.dispatch('deleteMission', this.idSelectedMission);
       this.idSelectedMission = '';
     }
   }

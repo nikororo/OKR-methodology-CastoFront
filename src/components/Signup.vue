@@ -57,33 +57,6 @@ export default {
   }),
 
   methods: {
-    // onReg() {
-    //   Vue.axios.post(this.$store.state.urlBD + 'api/user/register', {
-    //     name: this.fullName,
-    //     email: this.email,
-    //     password: this.password,
-    //     c_password: this.password,
-    //     activity: this.activity
-    //   })
-    //       .then(() => {
-    //         Vue.axios.post(this.$store.state.urlBD + 'api/user/login', {
-    //           email: this.email,
-    //           password: this.password
-    //         })
-    //             .then((res) => {
-    //               let user = {
-    //                 email: res.data.user.email,
-    //                 name: res.data.user.name,
-    //                 id: res.data.user.id,
-    //                 activity: res.data.user.activity
-    //               }
-    //               this.$store.commit('authCorr', user);
-    //               this.$router.push('/goals');
-    //             })
-    //             .catch(() => this.$store.commit('authErr'));
-    //       })
-    //       .catch(() => this.$store.commit('authErr'));
-    // },
     onReg() {
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
         .then(async (res) => {
