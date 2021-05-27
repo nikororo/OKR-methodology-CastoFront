@@ -63,6 +63,9 @@ export default {
     showAddGoalModal: false,
     selectedStatus: 'unsent',
   }),
+  beforeCreate() {
+    this.$store.dispatch('getGoals');
+  },
 }
 </script>
 

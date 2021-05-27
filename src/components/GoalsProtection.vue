@@ -100,6 +100,9 @@ export default {
     detailsGoalWindow: false,
     idSelectedGoal: ''
   }),
+  beforeCreate() {
+    this.$store.dispatch('getGoals');
+  },
   computed: {
     proposedGoals: function () {
       return this.$store.state.goals.filter(goal => goal.status === 'proposed');
@@ -110,13 +113,13 @@ export default {
       this.$store.dispatch('sumPercent', idGoal)
     },
     approveGoal(idGoal) {
-      this.$store.commit('approveGoal', idGoal);
+      this.$store.dispatch('approveGoal', idGoal);
     },
     rejectGoal(idGoal) {
-      this.$store.commit('rejectGoal', idGoal);
+      this.$store.dispatch('rejectGoal', idGoal);
     },
     displayKr(idGoal) {
-      this.$store.commit('displayKr', idGoal);
+      this.$store.dispatch('displayKr', idGoal);
     },
     openDetailsGoald(id) {
       this.idSelectedGoal = id;

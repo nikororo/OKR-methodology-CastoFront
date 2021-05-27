@@ -93,7 +93,9 @@ export default {
     detailsGoalWindow: false,
     idSelectedGoal: ''
   }),
-
+  beforeCreate() {
+    this.$store.dispatch('getGoals');
+  },
   computed: {
     approvedGoals: function () {
       return this.$store.state.goals.filter(goal => goal.status === 'approved');
@@ -106,7 +108,7 @@ export default {
     },
 
     displayKr(idGoal) {
-      this.$store.commit('displayKr', idGoal);
+      this.$store.dispatch('displayKr', idGoal);
     },
 
     openDetailsGoald(id) {

@@ -28,195 +28,7 @@ export default new Vuex.Store({
       "Marketing",
       "Человек Умелый",
     ],
-    goals: [
-      {
-        name: "Цель 1",
-        dateStart: "2020-09-25",
-        dateEnd: "2020-09-29",
-        author: "Екатерина",
-        command: "Castoroides",
-        id: 1,
-        percentOfCompletion: 0,
-        showKr: false,
-        remainderWeight: 0,
-        krs: [
-          {
-            title: "кр цели 1",
-            weight: "20",
-            executor: "Титова Арина Радиевна",
-            performers: [],
-            percent: 0,
-            id: 1,
-          },
-          {
-            title: "кр цели 1 второй",
-            weight: "50",
-            executor: "Титова Арина Радиевна",
-            performers: [],
-            percent: 0,
-            id: 3,
-          },
-          {
-            title: "кр цели 1 еще один",
-            weight: "30",
-            executor: "Титова Арина Радиевна",
-            performers: [],
-            percent: 0,
-            id: 4,
-          },
-        ],
-        status: "approved",
-        newKr: {
-          title: "",
-          weight: "",
-          executor: "",
-        },
-      },
-      {
-        name: "Цель отдела",
-        dateStart: "2020-09-25",
-        dateEnd: "2020-09-29",
-        author: "Виктор",
-        command: "Тераторн",
-        id: 2,
-        percentOfCompletion: 0,
-        showKr: false,
-        remainderWeight: 0,
-        krs: [
-          {
-            title: "кр цели 2",
-            weight: "100",
-            executor: "Титова Арина Радиевна",
-            performers: [],
-            percent: 0,
-            id: 1,
-          },
-        ],
-        status: "approved",
-        newKr: {
-          title: "",
-          weight: "",
-          executor: "",
-        },
-      },
-      {
-        name: "Цель отдела 2",
-        dateStart: "2020-09-25",
-        dateEnd: "2020-09-29",
-        author: "Максимов Станислав Игоревич",
-        command: "Castoroides",
-        executor: "Екатерина",
-        id: 3,
-        percentOfCompletion: 0,
-        showKr: false,
-        remainderWeight: 0,
-        krs: [
-          {
-            title: "кр цели 3",
-            weight: "60",
-            executor: "Титова Арина Радиевна",
-            performers: [],
-            percent: 0,
-            id: 1,
-          },
-          {
-            title: "кр цели 3 второй",
-            weight: "40",
-            executor: "Титова Арина Радиевна",
-            performers: [],
-            percent: 0,
-            id: 2,
-          },
-        ],
-        status: "approved",
-        newKr: {
-          title: "",
-          weight: "",
-          executor: "",
-        },
-      },
-      {
-        name: "Цель для одобрения 1",
-        dateStart: "2020-09-25",
-        dateEnd: "2020-09-29",
-        author: "Екатерина",
-        command: "Castoroides",
-        id: 4,
-        percentOfCompletion: 0,
-        showKr: false,
-        remainderWeight: 0,
-        krs: [
-          {
-            title: "кр цели для одобрения",
-            weight: "100",
-            executor: "Титова Арина Радиевна",
-            performers: [],
-            percent: 0,
-            id: 1,
-          },
-        ],
-        status: "proposed",
-        newKr: {
-          title: "",
-          weight: "",
-          executor: "",
-        },
-      },
-      {
-        name: "новая цель",
-        dateStart: "2020-09-25",
-        dateEnd: "2020-09-29",
-        author: "Екатерина",
-        command: "Castoroides",
-        id: 5,
-        percentOfCompletion: 0,
-        showKr: false,
-        remainderWeight: 70,
-        krs: [
-          {
-            title: "кр цели отдела",
-            weight: "30",
-            executor: "Титова Арина Радиевна",
-            performers: [],
-            percent: 0,
-            id: 1,
-          },
-        ],
-        status: "unsent",
-        newKr: {
-          title: "",
-          weight: "",
-          executor: "",
-        },
-      },
-      {
-        name: "цель, которую отклонили",
-        dateStart: "2020-09-25",
-        dateEnd: "2020-09-29",
-        author: "Екатерина",
-        command: "Castoroides",
-        id: 6,
-        percentOfCompletion: 0,
-        showKr: false,
-        remainderWeight: 0,
-        krs: [
-          {
-            title: "кр цели отдела",
-            weight: "100",
-            executor: "Титова Арина Радиевна",
-            performers: [],
-            percent: 0,
-            id: 1,
-          },
-        ],
-        status: "rejected",
-        newKr: {
-          title: "",
-          weight: "",
-          executor: "",
-        },
-      },
-    ],
+    goals: [],
   },
   mutations: {
     logOut: (state) => {
@@ -230,71 +42,8 @@ export default new Vuex.Store({
     setMissions: (state, missions) => {
       state.missions = missions;
     },
-
-    addGoal: (state, newGoal) => {
-      let maxID = 0;
-      state.goals.forEach((goal) => {
-        if (goal.id > maxID) maxID = goal.id;
-      });
-      newGoal.id = maxID + 1;
-      newGoal.showKr = false;
-      newGoal.krs = [];
-      newGoal.status = "unsent";
-      newGoal.remainderWeight = 100;
-      newGoal.newKr = {
-        title: "",
-        weight: "",
-        executor: "",
-      };
-      state.goals.push(newGoal);
-    },
-
-    editGoal: (state, modifiedGoal) => {
-      state.goals.forEach((goal) => {
-        if (goal.id === modifiedGoal.id) {
-          for (const property in modifiedGoal) {
-            goal[property] = modifiedGoal[property];
-          }
-        }
-      });
-    },
-
-    deleteGoal: (state, idGoal) => {
-      state.goals.forEach((goal, i) => {
-        if (goal.id === idGoal) state.goals.splice(i, 1);
-      });
-    },
-
-    approveGoal: (state, idGoal) => {
-      state.goals.forEach((goal) => {
-        if (goal.id === idGoal) {
-          goal.status = "approved";
-        }
-      });
-    },
-
-    rejectGoal: (state, idGoal) => {
-      state.goals.forEach((goal) => {
-        if (goal.id === idGoal) {
-          goal.status = "rejected";
-        }
-      });
-    },
-
-    sendGoal: (state, idGoal) => {
-      state.goals.forEach((goal) => {
-        if (goal.id === idGoal) {
-          goal.status = "proposed";
-        }
-      });
-    },
-
-    displayKr: (state, idGoal) => {
-      state.goals.forEach((goal) => {
-        if (goal.id === idGoal) {
-          goal.showKr = !goal.showKr;
-        }
-      });
+    setGoals: (state, goals) => {
+      state.goals = goals;
     },
 
     createKr: (state, goalId) => {
@@ -363,23 +112,6 @@ export default new Vuex.Store({
       state.goals.forEach((goal) => {
         if (goal.id === payload.id) {
           goal.percentOfCompletion = payload.percent.toFixed();
-        }
-      });
-    },
-    percentFromColors: (state, id) => {
-      state.goals.forEach((goal) => {
-        if (goal.id === id) {
-          let PercGoal = goal.percentOfCompletion;
-          switch (PercGoal) {
-            case PercGoal <= 30:
-              return "red";
-            case PercGoal >= 30 && PercGoal <= 70:
-              return "black";
-            case PercGoal >= 70:
-              return "blue";
-            default:
-              return "blue";
-          }
         }
       });
     },
@@ -460,8 +192,10 @@ export default new Vuex.Store({
       }
     },
 
-    addMission: ({state, dispatch}, newMission) => {
+    addMission: async ({state, dispatch}, newMission) => {
       const db = firebase.database();
+      await dispatch('getMissions');
+      
       let maxID = 0;
       state.missions.forEach((mission) => {
         if (mission.id > maxID) maxID = mission.id;
@@ -474,12 +208,134 @@ export default new Vuex.Store({
       });
     },
 
-    deleteMission: async ({dispatch}, idMission) => {
+    deleteMission: ({dispatch}, idMission) => {
       let db = firebase.database();
-      await db.ref(`/missions/${idMission}`).set(null, (err) =>
-      { if (err) throw err; });
+      db.ref(`/missions/${idMission}`).set(null, (err) => { 
+        if (err) throw err;
+        dispatch('getMissions');
+      });
+    },
+
+    getGoals: async ({ commit }) => {
+      const db = firebase.database();
+      try {
+        await new Promise((resolve) => {
+          db.ref(`/goals`).on('value', async (snap) => {
+            let value = snap.val();
+            let resultGoals = [];
+            for (let goalId in value) {
+              let goal = {};
+              goal.id = goalId;
+
+              await new Promise((resolve) => {
+                db.ref(`/goals/${goal.id}`).once('value')
+                  .then((snap) => {
+                    let value = snap.val();
+                    for (let attr in value) {
+                      goal[`${attr}`] = value[attr];
+                    }
+                    resolve();
+                  });
+              });
+              resultGoals.push(goal);
+            }
+            commit('setGoals', resultGoals);
+            resolve();
+          });
+        });
+      } catch (err) {
+        console.error(err);
+        throw err;
+      }
+    },
+
+    addGoal: async ({state, dispatch}, newGoal) => {
+      const db = firebase.database();
+      await dispatch('getGoals');
+
+      let maxID = 0;
+      state.goals.forEach((goal) => {
+        if (goal.id > maxID) maxID = goal.id;
+      });
+      maxID ++;
       
-      dispatch('getMissions');
+      newGoal.showKr = false;
+      newGoal.krs = [];
+      newGoal.status = "unsent";
+      newGoal.remainderWeight = 100;
+      newGoal.newKr = {
+        title: "",
+        weight: "",
+        executor: "",
+      };
+      db.ref(`/goals/` + maxID).set(newGoal, (err) => {
+        if (err) throw err;
+        dispatch('getGoals');
+      });
+    },
+
+    approveGoal: ({state, dispatch}, idGoal) => {
+      const db = firebase.database();
+      let newGoal = state.goals.filter((goal) => goal.id == idGoal)[0];
+      newGoal.status = "approved";
+      
+      db.ref(`/goals/${idGoal}`).set(newGoal, (err) => { 
+        if (err) throw err;
+        dispatch('getGoals');
+      });
+    },
+
+    rejectGoal: ({state, dispatch}, idGoal) => {
+      const db = firebase.database();
+      let newGoal = state.goals.filter((goal) => goal.id == idGoal)[0];
+      newGoal.status = "rejected";
+      
+      db.ref(`/goals/${idGoal}`).set(newGoal, (err) => { 
+        if (err) throw err;
+        dispatch('getGoals');
+      });
+    },
+
+    sendGoal: ({state, dispatch}, idGoal) => {
+      const db = firebase.database();
+      let newGoal = state.goals.filter((goal) => goal.id == idGoal)[0];
+      newGoal.status = "proposed";
+      
+      db.ref(`/goals/${idGoal}`).set(newGoal, (err) => { 
+        if (err) throw err;
+        dispatch('getGoals');
+      });
+    },
+
+    displayKr: ({state, dispatch}, idGoal) => {
+      const db = firebase.database();
+      let newGoal = state.goals.filter((goal) => goal.id == idGoal)[0];
+      newGoal.showKr = !newGoal.showKr;
+      
+      db.ref(`/goals/${idGoal}`).set(newGoal, (err) => { 
+        if (err) throw err;
+        dispatch('getGoals');
+      });
+    },
+
+    editGoal: ({state, dispatch}, modifiedGoal) => {
+      const db = firebase.database();
+      let editGoal = state.goals.find((goal) => goal.id == modifiedGoal.id);
+      for (const property in modifiedGoal) {
+        editGoal[property] = modifiedGoal[property];
+      }
+      db.ref(`/goals/${editGoal.id}`).set(editGoal, (err) => { 
+        if (err) throw err;
+        dispatch('getGoals');
+      });
+    },
+
+    deleteGoal: ({dispatch}, idGoal) => {
+      let db = firebase.database();
+      db.ref(`/goals/${idGoal}`).set(null, (err) => { 
+        if (err) throw err;
+        dispatch('getGoals');
+      });
     },
 
     sumPercent: ({ commit, state }, id) => {

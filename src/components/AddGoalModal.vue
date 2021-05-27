@@ -90,7 +90,7 @@ export default {
       }
       if (this.descr) newGoal.descr = this.descr;
       if (this.executor) newGoal.executor = this.executor;
-      this.$store.commit('addGoal', newGoal);
+      this.$store.dispatch('addGoal', newGoal);
       this.$emit('close');
     }
   },

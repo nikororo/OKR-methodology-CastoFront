@@ -182,7 +182,7 @@ export default {
     },
 
     displayKr(idGoal) {
-      this.$store.commit('displayKr', idGoal);
+      this.$store.dispatch('displayKr', idGoal);
     },
     openDetailsGoald(id) {
       this.idSelectedGoal = id;

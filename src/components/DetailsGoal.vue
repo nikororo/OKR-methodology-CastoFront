@@ -110,7 +110,7 @@ export default {
         descr: this.descr,
         executor: this.executor
       }
-      this.$store.commit('editGoal', modifiedGoal);
+      this.$store.dispatch('editGoal', modifiedGoal);
     }
   }
 }

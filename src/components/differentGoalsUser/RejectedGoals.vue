@@ -87,7 +87,7 @@ export default {
 
   methods: {
     displayKr(idGoal) {
-      this.$store.commit('displayKr', idGoal);
+      this.$store.dispatch('displayKr', idGoal);
     },
 
     openDeleteGoal(id) {
@@ -96,7 +96,7 @@ export default {
     },
 
     deleteGoal() {
-      this.$store.commit('deleteGoal', this.idSelectedGoal);
+      this.$store.dispatch('deleteGoal', this.idSelectedGoal);
       this.idSelectedGoal = '';
     },
     openDetailsGoald(id) {

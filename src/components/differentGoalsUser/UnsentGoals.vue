@@ -5,7 +5,7 @@
         <div class="contGoal">
           <div class="companyGoals">
             <button class="btnShowKR" @click="displayKr(goal.id)">
-              <p class="nameGoals">{{goal.name}}</p>
+              <p class="nameGoals">{{ goal.name }}</p>
             </button>
             <p class="percentGoals">{{ goal.command }}</p>
 
@@ -216,7 +216,7 @@ export default {
     },
 
     deleteGoal() {
-      this.$store.commit('deleteGoal', this.idSelectedGoal);
+      this.$store.dispatch('deleteGoal', this.idSelectedGoal);
       this.idSelectedGoal = '';
     },
 
@@ -232,11 +232,11 @@ export default {
     },
 
     displayKr(idGoal) {
-      this.$store.commit('displayKr', idGoal);
+      this.$store.dispatch('displayKr', idGoal);
     },
 
     sendGoal(idGoal) {
-      this.$store.commit('sendGoal', idGoal);
+      this.$store.dispatch('sendGoal', idGoal);
     },
 
     openDetailsGoald(id) {

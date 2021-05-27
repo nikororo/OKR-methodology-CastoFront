@@ -16,17 +16,15 @@
         <label for="signupEmail">E-mail</label>
         <input id="signupEmail" v-model.trim="email" v-bind:class="{error: this.$store.state.authHasError}" type="email"
                placeholder="E-mail" required minlength="3" maxlength="40"/>
-        <label for="signupActivity">Ваша сфера деятельности</label>
+        <label for="signupActivity">Ваша комманда</label>
         <div>
           <select id="signupActivity" v-model="activity" required>
-            <option value disabled selected>Сфера деятельности</option>
-            <option value="Руководитель отдела">Руководитель отдела</option>
-            <option value="Менеджер">Менеджер</option>
-            <option selected value="Разработчик">Разработчик</option>
-            <option value="Аналитик">Аналитик</option>
-            <option value="Дизайнер">Дизайнер</option>
-            <option selected value="Тестировщик">Тестировщик</option>
-            <option value="Другое">Другое</option>
+            <option value disabled selected>Комманда</option>
+            <option value="Castoroides">Castoroides</option>
+            <option value="Teratorn">Teratorn</option>
+            <option selected value="HR-отдел">HR-отдел</option>
+            <option value="Отдел аналитики">Отдел аналитики</option>
+            <option value="PR-отдел">PR-отдел</option>
           </select>
         </div>
         <label for="signupPass">Пароль</label>
