@@ -1,23 +1,5 @@
-# Приложение по методологии ОКР CastoFront
-# Посмотреть-потыкать: https://nikororo.github.io/CastoFront/
+# Application on the OKR methodology - CastoFront 
+# Demo: https://nikororo.github.io/CastoFront/
 ## Login: mail@mail.ru  Pass: 12345678
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
+# A branch of a project working with backend - https://github.com/nikororo/CastoFront/tree/CastoBack
