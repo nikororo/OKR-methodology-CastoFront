@@ -1,5 +1,4 @@
 # Приложение по методологии ОКР CastoFront
-# Посмотреть-потыкать: https://nikororo.github.io/CastoFront/
 ## Login: mail@mail.ru  Pass: 12345678
 
 ## Project setup
